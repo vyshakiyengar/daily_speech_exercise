@@ -44,7 +44,7 @@ Progress saves automatically without sign-in on the same browser. Clearing site 
 
 `analytics.js` loads Vercel Web Analytics only on HTTPS public hosts, respecting Do Not Track and Global Privacy Control. It strips query strings and URL fragments before events are sent. Analytics endpoints bypass the offline service-worker cache. Local previews do not load the analytics script.
 
-In Vercel, open this project → Analytics → Enable, then deploy. Pageviews and traffic insights become available once the production script is active. This dashboard step requires project access and has not been performed in the local build.
+In Vercel, open this project → Analytics → Enable, then deploy. Pageviews and traffic insights become available once the production script is active. Web Analytics was enabled on the existing Hobby plan for this project on 2026-09-06. A deployment containing the analytics script must receive visits before data appears.
 
 Detailed events are prepared but disabled by default because Vercel custom events require Pro or Enterprise. If your plan supports them, set `customEvents = true` in `analytics.js`, then deploy. Do not upgrade your plan just to launch this version.
 
