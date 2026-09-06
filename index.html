@@ -1,0 +1,1189 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="description" content="A guided daily practice for speech fluency. Eight minutes, seven compound exercises, with visual demonstrations.">
+<meta name="theme-color" content="#0E5F52" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0D1312" media="(prefers-color-scheme: dark)">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Voice On">
+<meta property="og:title" content="Voice On">
+<meta property="og:description" content="A guided daily practice for speech fluency.">
+<meta property="og:type" content="website">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-180.png">
+<style>html{color-scheme:light dark}body{margin:0;font:14px system-ui;overscroll-behavior-y:none}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Voice On</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --ground:#F6F8F7; --surface:#FFFFFF; --sunk:#EEF2F1;
+  --ink:#141E1C; --ink-soft:#3C4B48; --muted:#5E6F6B; --faint:#8A9A96;
+  --accent:#0E5F52; --accent-soft:#DCEBE7; --accent-line:#7FB5A9;
+  --warm:#A65A26; --warm-soft:#F6E9DF;
+  --hairline:#DCE3E1; --hairline-strong:#C3CFCC;
+  --shadow:0 1px 2px rgba(20,30,28,.05), 0 8px 24px -12px rgba(20,30,28,.16);
+  --f-display:"Spectral", Georgia, serif;
+  --f-ui:"Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --ground:#0D1312; --surface:#151D1C; --sunk:#101817;
+  --ink:#E5ECEA; --ink-soft:#C4D0CD; --muted:#93A5A1; --faint:#6B7C79;
+  --accent:#54C3AB; --accent-soft:#16302C; --accent-line:#2F6B60;
+  --warm:#E29359; --warm-soft:#2E2118;
+  --hairline:#22302E; --hairline-strong:#31423F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -16px rgba(0,0,0,.7);
+}}
+:root[data-theme="dark"]{
+  --ground:#0D1312; --surface:#151D1C; --sunk:#101817;
+  --ink:#E5ECEA; --ink-soft:#C4D0CD; --muted:#93A5A1; --faint:#6B7C79;
+  --accent:#54C3AB; --accent-soft:#16302C; --accent-line:#2F6B60;
+  --warm:#E29359; --warm-soft:#2E2118;
+  --hairline:#22302E; --hairline-strong:#31423F;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 32px -16px rgba(0,0,0,.7);
+}
+
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.01em}
+p{margin:0}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.eyebrow{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint)}
+
+button{font-family:var(--f-ui);cursor:pointer;border-radius:8px;border:1px solid var(--hairline-strong);background:var(--surface);color:var(--ink-soft);font-size:14px;font-weight:500;padding:9px 15px;transition:background .15s,border-color .15s,color .15s}
+button:hover{border-color:var(--accent-line);color:var(--ink)}
+button:disabled{opacity:.35;cursor:default}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--ground)}
+button.primary:hover{filter:brightness(1.1)}
+button.link{border:0;background:none;color:var(--faint);padding:6px 2px;font-size:13px}
+button.link:hover{color:var(--accent)}
+
+/* ================= HOME ================= */
+#home{max-width:560px;margin:0 auto;padding:40px 20px 64px;display:flex;flex-direction:column;gap:30px}
+.brand{display:flex;flex-direction:column;gap:6px}
+.brand h1{font-size:38px;line-height:1}
+.today-card{background:var(--surface);border:1px solid var(--hairline);border-radius:14px;box-shadow:var(--shadow);padding:24px;display:flex;flex-direction:column;gap:18px}
+.today-meta{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--f-mono);font-size:12px;color:var(--faint);font-variant-numeric:tabular-nums}
+.today-meta b{color:var(--accent);font-weight:500}
+.today-focus{display:flex;flex-direction:column;gap:5px}
+.today-focus h2{font-size:23px}
+.today-focus p{font-family:var(--f-display);font-style:italic;font-size:15px;color:var(--muted);line-height:1.5}
+#startBtn{font-size:16px;font-weight:600;padding:15px;border-radius:10px;width:100%}
+.resume-note{font-size:12.5px;color:var(--warm);text-align:center}
+.swap-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:12.5px;color:var(--faint);padding-top:12px;border-top:1px solid var(--hairline);line-height:1.5}
+select{font-family:var(--f-ui);font-size:13px;color:var(--ink);background:var(--surface);border:1px solid var(--hairline-strong);border-radius:7px;padding:5px 8px}
+
+.lenswitch{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lenswitch button{
+  display:flex;flex-direction:column;align-items:flex-start;gap:2px;
+  padding:11px 13px;border-radius:9px;text-align:left;line-height:1.3;
+}
+.lenswitch button b{font-size:14px;font-weight:600;color:var(--ink)}
+.lenswitch button span{font-size:11.5px;color:var(--faint)}
+.lenswitch button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);}
+.lenswitch button[aria-pressed="true"] b{color:var(--accent)}
+.lenswitch button[aria-pressed="true"] span{color:var(--muted)}
+
+.strip{display:flex;flex-direction:column;gap:8px}
+.strip-head{display:flex;justify-content:space-between;align-items:baseline}
+.strip-head .n{font-family:var(--f-mono);font-size:12px;color:var(--faint)}
+.cells{display:grid;grid-template-columns:repeat(30,1fr);gap:3px}
+.cell{aspect-ratio:1;border-radius:2px;background:var(--sunk);border:1px solid transparent}
+.cell[data-done="1"]{border-color:var(--accent-line)}
+.cell[data-r="1"]{background:color-mix(in srgb,var(--accent) 14%,var(--sunk))}
+.cell[data-r="2"]{background:color-mix(in srgb,var(--accent) 30%,var(--sunk))}
+.cell[data-r="3"]{background:color-mix(in srgb,var(--accent) 48%,var(--sunk))}
+.cell[data-r="4"]{background:color-mix(in srgb,var(--accent) 70%,var(--sunk))}
+.cell[data-r="5"]{background:var(--accent)}
+.cell.today{outline:2px solid var(--warm);outline-offset:1px}
+
+.home-links{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;padding-top:4px}
+.toggles{display:flex;flex-wrap:wrap;gap:10px 18px;justify-content:center;font-size:12.5px;color:var(--faint)}
+.toggles label{display:inline-flex;align-items:center;gap:7px;cursor:pointer}
+.toggles input{accent-color:var(--accent);width:15px;height:15px;cursor:pointer}
+
+/* ================= PLAYER ================= */
+#player{position:fixed;inset:0;background:var(--ground);display:flex;flex-direction:column;z-index:20}
+.pbar{display:flex;gap:2px;padding:0;height:3px;flex:none}
+.pseg{flex:1;background:var(--hairline);transition:background .3s}
+.pseg.done{background:var(--accent-line)}
+.pseg.now{background:var(--accent)}
+.ptop{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 18px;flex:none}
+.ptop .where{display:flex;flex-direction:column;gap:1px}
+.ptop .blk{font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.ptop .cnt{font-family:var(--f-mono);font-size:11.5px;color:var(--faint)}
+.iconbtn{border:0;background:none;color:var(--faint);font-size:22px;line-height:1;padding:6px 10px;border-radius:8px}
+.iconbtn:hover{color:var(--ink);background:var(--sunk)}
+
+.pstage{flex:1;overflow-y:auto;display:flex;flex-direction:column;align-items:center;gap:18px;padding:8px 22px 20px;text-align:center;justify-content:flex-start;justify-content:safe center}
+.pstage h2{font-size:31px;line-height:1.15;max-width:20ch}
+.pinstr{font-family:var(--f-display);font-size:18px;line-height:1.55;color:var(--ink-soft);max-width:40ch}
+.pinstr b{color:var(--ink);font-weight:600}
+.pinstr.lines{text-align:left;display:flex;flex-direction:column;gap:7px}
+.pnote{font-size:13.5px;color:var(--faint);max-width:44ch;line-height:1.5}
+
+/* how many — always explicit, so "30 seconds" is never mistaken for "as many as fit" */
+.reps{
+  display:inline-flex;align-items:center;gap:8px;
+  font-family:var(--f-mono);font-size:12.5px;letter-spacing:.02em;
+  color:var(--accent);background:var(--accent-soft);
+  border:1px solid var(--accent-line);border-radius:999px;padding:5px 14px;
+  font-variant-numeric:tabular-nums;
+}
+
+/* visual demo of the movement — the picture carries what the words cannot */
+.viz{width:100%;max-width:340px;display:flex;flex-direction:column;align-items:center;gap:9px}
+.viz svg{width:100%;height:auto;display:block}
+.vcaps{display:flex;justify-content:space-around;align-items:baseline;gap:14px;width:100%}
+.vcaps:has(> :only-child){justify-content:center}
+.vcap{
+  flex:1;text-align:center;
+  font-family:var(--f-ui);font-size:10.5px;font-weight:600;
+  letter-spacing:.07em;text-transform:uppercase;line-height:1.3;
+}
+.vcap.bad{color:var(--faint)}
+.vcap.good{color:var(--accent)}
+.viz .good{fill:var(--accent)}
+.viz .bad{fill:var(--faint)}
+.viz .gline{stroke:var(--accent);fill:none}
+.viz .bline{stroke:var(--faint);fill:none}
+.viz .trk{stroke:var(--hairline-strong);fill:none}
+@keyframes vBreathe{
+  0%,2%   {r:16}
+  33%     {r:44}
+  40%     {r:44}
+  98%,100%{r:16}
+}
+@keyframes vFadeCycle{ 0%{opacity:0} 12%{opacity:1} 78%{opacity:1} 100%{opacity:0} }
+@keyframes vDash{ to{stroke-dashoffset:0} }
+@keyframes vTravel{ 0%{offset-distance:0%} 100%{offset-distance:100%} }
+@keyframes vSweep{ 0%{transform:translateX(0)} 100%{transform:translateX(112px)} }
+@keyframes vPulse{ 0%,100%{opacity:.25} 50%{opacity:1} }
+.vbreath{animation:vBreathe 12s ease-in-out infinite}
+.vbreathLabel{animation:vFadeCycle 12s ease-in-out infinite}
+.vdraw{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:vDash 3s ease-in-out infinite alternate}
+.vdot{animation:vTravel 3s ease-in-out infinite alternate}
+.vsweep{animation:vSweep 2.4s linear infinite}
+.vpulse{animation:vPulse 2.4s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){
+  .vbreath{animation:none;r:34} .vbreathLabel{animation:none;opacity:1}
+  .vdraw{animation:none;stroke-dashoffset:0} .vdot{animation:none} .vsweep{animation:none} .vpulse{animation:none;opacity:1}
+}
+
+/* first run — what this is, before anyone presses anything */
+.welcome{
+  background:var(--surface);border:1px solid var(--accent-line);border-radius:14px;
+  padding:22px 24px;display:flex;flex-direction:column;gap:14px;box-shadow:var(--shadow);
+}
+.welcome h2{font-size:20px}
+.welcome p{font-family:var(--f-display);font-size:15.5px;line-height:1.6;color:var(--ink-soft)}
+.welcome ol{margin:0;padding-left:1.15em;display:flex;flex-direction:column;gap:7px}
+.welcome li{font-size:14px;line-height:1.55;color:var(--ink-soft)}
+.welcome li b{color:var(--ink);font-weight:600}
+.rule-box{background:var(--accent-soft);border-radius:9px;padding:12px 14px;font-size:14px;line-height:1.55;color:var(--ink)}
+.rule-box b{color:var(--accent);font-weight:600}
+.namerow{display:flex;flex-wrap:wrap;align-items:center;gap:9px;padding-top:2px;border-top:1px solid var(--hairline);font-size:13px;color:var(--muted)}
+.namerow input{flex:1;min-width:130px;font-family:var(--f-ui);font-size:14px;color:var(--ink);background:var(--surface);border:1px solid var(--hairline-strong);border-radius:8px;padding:8px 11px}
+.namerow .why{font-size:12.5px;color:var(--faint);flex-basis:100%;line-height:1.5}
+
+.mat{width:100%;max-width:620px;background:var(--surface);border:1px solid var(--hairline);border-radius:12px;padding:22px 24px;text-align:left;box-shadow:var(--shadow)}
+.mat .lab{font-size:10px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--faint);margin-bottom:12px}
+.mat .read{font-family:var(--f-display);font-size:22px;line-height:1.75;color:var(--ink)}
+.mat .prompt{font-family:var(--f-display);font-size:24px;line-height:1.4;color:var(--ink);font-style:italic}
+.mat ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:7px 20px}
+.mat li{font-size:16px;color:var(--ink-soft);line-height:1.45}
+.mat.big ul{grid-template-columns:1fr;gap:12px}
+.mat.big li{font-size:24px;font-family:var(--f-display);color:var(--ink)}
+
+.pbottom{flex:none;display:flex;flex-direction:column;align-items:center;gap:14px;padding:12px 20px calc(24px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--hairline);background:var(--surface)}
+.ring{position:relative;width:96px;height:96px;flex:none}
+.ring svg{transform:rotate(-90deg);display:block}
+.ring circle{fill:none;stroke-width:4}
+.ring .trk{stroke:var(--hairline)}
+.ring .arc{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset .35s linear}
+.ring .num{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:var(--f-mono);font-size:24px;font-variant-numeric:tabular-nums;color:var(--ink);letter-spacing:-.02em}
+.ring.paused .arc{stroke:var(--faint)}
+.ring.paused .num{color:var(--faint)}
+.pctrl{display:flex;align-items:center;gap:10px}
+.pctrl button{min-width:92px}
+
+/* ================= DONE ================= */
+#done{max-width:520px;margin:0 auto;padding:56px 20px 64px;display:flex;flex-direction:column;gap:26px;text-align:center;align-items:center}
+#done h2{font-size:32px}
+#done .sub{font-family:var(--f-display);font-size:17px;color:var(--muted);line-height:1.55;max-width:38ch}
+.rate{display:flex;gap:7px}
+.rate button{width:46px;height:44px;padding:0;font-family:var(--f-mono);font-size:15px}
+.rate button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--ground)}
+textarea{width:100%;font-family:var(--f-display);font-size:16px;line-height:1.5;color:var(--ink);background:var(--surface);border:1px solid var(--hairline-strong);border-radius:9px;padding:11px 13px;resize:vertical}
+
+/* ================= REFERENCE OVERLAY ================= */
+#ref{position:fixed;inset:0;background:var(--ground);z-index:30;overflow-y:auto}
+.refwrap{max-width:660px;margin:0 auto;padding:20px 22px 80px;display:flex;flex-direction:column;gap:34px}
+.refbar{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--ground);padding:12px 0;z-index:2;border-bottom:1px solid var(--hairline)}
+.refbar h2{font-size:20px}
+.prose{display:flex;flex-direction:column;gap:15px;font-family:var(--f-display);max-width:60ch}
+.prose p{font-size:16.5px;line-height:1.68;color:var(--ink-soft)}
+.prose strong{color:var(--ink);font-weight:600}
+.prose em{color:var(--ink)}
+.sec-h{display:flex;flex-direction:column;gap:6px;padding-bottom:6px;border-bottom:1px solid var(--hairline)}
+.sec-h h2{font-size:25px}
+.reset-card{background:var(--warm-soft);border:1px solid color-mix(in srgb,var(--warm) 35%,transparent);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:13px}
+.reset-card h2{color:var(--warm);font-size:22px}
+.reset-card ol{margin:0;padding:0;list-style:none;counter-reset:r;display:flex;flex-direction:column;gap:9px}
+.reset-card li{counter-increment:r;position:relative;padding-left:30px;font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+.reset-card li::before{content:counter(r);position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--warm) 45%,transparent);color:var(--warm);font-family:var(--f-mono);font-size:11px;display:flex;align-items:center;justify-content:center}
+.reset-card li b{color:var(--ink);font-weight:600}
+.reset-card .foot{font-family:var(--f-display);font-style:italic;font-size:13.5px;color:var(--muted)}
+details.ref{border-bottom:1px solid var(--hairline)}
+details.ref summary{cursor:pointer;list-style:none;padding:13px 0;display:flex;align-items:baseline;justify-content:space-between;gap:14px}
+details.ref summary::-webkit-details-marker{display:none}
+details.ref summary .st{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+details.ref summary h3{font-size:16px}
+details.ref summary .day{font-family:var(--f-mono);font-size:11px;color:var(--accent);letter-spacing:.06em;text-transform:uppercase}
+details.ref .rb{padding:0 0 18px;display:flex;flex-direction:column;gap:10px;max-width:60ch}
+details.ref .rb p{font-size:14.6px;line-height:1.62;color:var(--ink-soft)}
+details.ref .rb .why{font-family:var(--f-display);font-style:italic;color:var(--muted)}
+.wordbox{display:flex;flex-direction:column;gap:9px;max-width:52ch}
+.hint{font-size:13px;color:var(--faint);line-height:1.5}
+.callout{border-left:2px solid var(--warm);padding:2px 0 2px 16px;display:flex;flex-direction:column;gap:12px;font-family:var(--f-display);max-width:60ch}
+.callout p{font-size:16px;line-height:1.65;color:var(--ink-soft)}
+.foot-note{border-top:1px solid var(--hairline);padding-top:18px;display:flex;flex-direction:column;gap:10px;font-size:13px;color:var(--faint);line-height:1.6;max-width:60ch}
+.foot-note strong{color:var(--ink-soft)}
+
+@media (max-width:560px){
+  .brand h1{font-size:32px}
+  .pstage h2{font-size:26px}
+  .pstage{padding:6px 16px 16px}
+  .mat{padding:18px}
+  .mat .read{font-size:21px;line-height:1.72}
+  .mat .prompt{font-size:21px}
+  .cells{grid-template-columns:repeat(15,1fr)}
+  .pctrl button{min-width:80px;padding:12px 12px}
+  .ring{width:84px;height:84px}
+}
+</style>
+
+<!-- ===================== HOME ===================== -->
+<section id="home">
+  <div class="brand">
+    <p class="eyebrow">Daily speech fluency practice</p>
+    <h1>Voice On</h1>
+  </div>
+
+  <div class="welcome" id="welcome" hidden>
+    <h2>What this is</h2>
+    <p>A short daily practice for speech fluency. It runs itself: press start and it walks you through, one screen at a time, timing each step and moving on by itself.</p>
+    <ol>
+      <li><b>Do it out loud.</b> Every step is spoken. Somewhere you can use your full voice.</li>
+      <li><b>Same sequence every day.</b> Only the reading material changes.</li>
+      <li><b>Eight minutes by default.</b> Switch to the longer version if any of it feels unclear — it teaches each piece on its own first.</li>
+      <li><b>Turn on spoken guidance</b> below if you would rather listen than read the screen.</li>
+    </ol>
+    <div class="rule-box">Each step shows <b>a count and a timer</b>. The count is the target; the timer is how long you have. <b>Finish early, start again</b> until the timer runs out.</div>
+    <div class="namerow">
+      <label for="nameInput">Your first name</label>
+      <input type="text" id="nameInput" placeholder="optional" autocomplete="given-name" maxlength="24">
+      <span class="why">Your own name is the single most commonly feared word for people who stutter, so the drills use it. Stored on this device only.</span>
+    </div>
+    <button id="welcomeGo">Got it</button>
+  </div>
+
+  <div class="today-card">
+    <div class="today-meta">
+      <span id="mDate">—</span><span>Week <b id="mWeek">1</b></span><span>Rung <b id="mRung">1</b></span><span id="mStreak">—</span>
+    </div>
+    <div class="today-focus">
+      <h2 id="mFocus">—</h2>
+      <p id="mWhy">—</p>
+    </div>
+    <div class="lenswitch" role="group" aria-label="Session length">
+      <button id="mLen7" aria-pressed="true"><b>8 min</b><span>7 compound steps</span></button>
+      <button id="mLen15" aria-pressed="false"><b>12 min</b><span>15 steps, each target alone</span></button>
+    </div>
+    <button class="primary" id="startBtn">Start today&rsquo;s session &middot; 12 min</button>
+    <p class="resume-note" id="resumeNote" hidden></p>
+    <div class="swap-row">
+      <span id="mChanges">&mdash;</span>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="strip-head"><span class="eyebrow">Last 30 days</span><span class="n" id="stripN"></span></div>
+    <div class="cells" id="cells"></div>
+  </div>
+
+  <div class="toggles">
+    <label><input type="checkbox" id="tVoice"> Spoken guidance</label>
+    <label><input type="checkbox" id="tSound"> Chime between steps</label>
+    <label><input type="checkbox" id="tAuto"> Auto-advance</label>
+  </div>
+
+  <div class="home-links">
+    <button class="link" id="openRef">Why this works</button>
+    <button class="link" id="openReset">Extras &amp; the 20-second reset</button>
+    <button class="link" id="openWords">My scan list</button>
+      <button class="link" id="openHelp">How to use this</button>
+  </div>
+</section>
+
+<!-- ===================== PLAYER ===================== -->
+<section id="player" hidden>
+  <div class="pbar" id="pbar"></div>
+  <div class="ptop">
+    <div class="where">
+      <span class="blk" id="pBlock">—</span>
+      <span class="cnt" id="pCount">—</span>
+    </div>
+    <button class="iconbtn" id="pExit" aria-label="Exit session">&times;</button>
+  </div>
+  <div class="pstage" id="pStage"></div>
+  <div class="pbottom">
+    <div class="ring" id="ring">
+      <svg viewBox="0 0 100 100" width="100%" height="100%" aria-hidden="true">
+        <circle class="trk" cx="50" cy="50" r="45"></circle>
+        <circle class="arc" id="arc" cx="50" cy="50" r="45" stroke-dasharray="282.7" stroke-dashoffset="0"></circle>
+      </svg>
+      <div class="num mono" id="pTime">0:00</div>
+    </div>
+    <div class="pctrl">
+      <button id="pBack">Back</button>
+      <button class="primary" id="pPause">Pause</button>
+      <button id="pNext">Next</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== DONE ===================== -->
+<section id="done" hidden>
+  <p class="eyebrow">Session complete</p>
+  <h2 id="dTitle">That&rsquo;s twelve minutes.</h2>
+  <p class="sub" id="dSub">Carry one rule into the day: pause at phrase boundaries, light contacts, no substitutions.</p>
+  <div style="display:flex;flex-direction:column;gap:11px;align-items:center;width:100%">
+    <span class="eyebrow">How did speaking go today?</span>
+    <div class="rate" id="dRate" role="group" aria-label="Rate today's speaking"></div>
+    <span class="hint">You can come back this evening and set it.</span>
+  </div>
+  <textarea id="dNote" rows="3" placeholder="The hardest moment today, in one line. What word, what situation, what you did."></textarea>
+  <button class="primary" id="dHome" style="width:100%;padding:13px">Done</button>
+</section>
+
+<!-- ===================== REFERENCE ===================== -->
+<div id="ref" hidden>
+  <div class="refwrap">
+    <div class="refbar"><h2 id="refTitle">Why this works</h2><button class="iconbtn" id="refClose" aria-label="Close">&times;</button></div>
+    <div id="refBody"></div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   VOICE ON — content library
+   Rotates by date. Nothing repeats until the pool is exhausted.
+   ============================================================ */
+
+/* --- Reading passages. `flow` = vowel-rich, for linking and free reading.
+       `plosive` = dense in p/b/t/d/k/g, for light contact and phrase pausing. --- */
+var PASSAGES = [
+{t:"flow", x:"Every morning the river holds a low layer of mist, and if you are early enough you can hear it before you see it. The water moves slowly here, wide and unhurried, and the whole valley feels like it is still deciding whether to wake up. I like it more than the afternoon, when everyone else arrives and the light goes hard and ordinary."},
+{t:"flow", x:"The library on the hill has a reading room with eleven tall windows, and in winter the radiators hum all afternoon. Nobody hurries in that room. You can hear a page turn from thirty feet away. I used to go there when I had nowhere else to be, and I would read whatever was nearest, and I always left feeling wealthier than I arrived."},
+{t:"flow", x:"There is an hour in early evening when the whole city turns amber. Windows in the towers along the river catch the last of it and hold it, and for maybe eleven minutes everything looks warmer than it really is. Then it is gone, all at once, the lights come on below, and the evening is another thing entirely."},
+{t:"flow", x:"My grandmother grew lemons in an old oil tin on her balcony. She never watered them on a schedule. She would go out in the morning, hold a leaf between two fingers, and somehow know. In eleven years that tree never failed her, and I have never once managed the same trick with anything I have grown."},
+{t:"flow", x:"Whales sing in dialects. A population in one ocean will carry a song for a season, and slowly the whole group drifts into a new one, all of them arriving together at a melody nobody planned. Nobody knows why they do it. The songs travel further than the animals do, and a new one can cross an entire ocean in a year."},
+{t:"flow", x:"Rain in the hills arrives as a sound before it arrives as weather. You hear it moving along the ridge, a long low rolling noise coming closer, and you have maybe a minute. Everyone who lives there knows about the minute and uses it. Everyone who is visiting stands still, listens, and gets soaked."},
+{t:"flow", x:"The old railway line is a walking path now. The rails are gone but the gradient remains, and you can feel the engineering under your feet, the way it refuses to climb, always finding the gentle way around a hill. Whoever laid it out was thinking about steam and weight, and a hundred years later I am borrowing their patience."},
+{t:"flow", x:"A friend of mine repairs violins. He says the wood remembers everything: every room it has been in, every winter, every player. He works slowly and he almost never speaks while he works. When he finally hands an instrument back he says the same thing every time, which is that it will sound better in a year."},
+{t:"flow", x:"There is a bakery near my old flat that opens at five. The owner has been doing it for thirty years and he still comes in at three. I asked him once whether he ever wanted a morning off. He laughed and said the bread does not know about weekends, and then he went back to work."},
+{t:"flow", x:"In the mountains the weather is honest. It tells you what it is going to do and then it does it. In the valley, the weather negotiates. It hangs around all morning being neither one thing nor the other, and by the time it finally decides, most of the day is already gone."},
+{t:"flow", x:"Snow falls differently on water. It arrives and vanishes at the same moment, so a lake in a snowstorm looks like it is quietly swallowing the sky. I watched it once for nearly an hour from a cold bench with a worse sandwich, and I have thought about it every winter since."},
+{t:"flow", x:"The oldest living things on Earth are mostly boring to look at. A low shrub in a desert. A ring of grass. A tree so gnarled and small you would walk straight past it. Longevity, it turns out, rarely looks impressive in the moment. It looks like something that decided very early to stop hurrying."},
+{t:"flow", x:"Fog rolls into the bay the same way every summer evening, and everyone who lives there stops noticing by June. Visitors photograph it. Locals put on a jacket. It is the same fog, doing the same thing, and it is either a marvel or a nuisance depending entirely on how long you have been there."},
+{t:"flow", x:"My uncle could name every bird in the garden by sound alone, without looking up from the newspaper. He never made anything of it. It was simply a thing he had absorbed over fifty years of sitting in the same chair. I have tried to learn it deliberately and I am nowhere near, and I suspect that is the whole lesson."},
+{t:"flow", x:"The sea at that hour is almost oily, barely moving, holding the colour of the sky exactly. Boats sit in it rather than on it. If you swim out far enough the shore noise falls away and there is only your own breathing, which is louder than you expect, and slower."},
+{t:"flow", x:"Islands make their own weather. A ridge in the middle catches whatever the ocean sends, so one side is green all year and the other is dry and low and full of stone. People on either side will tell you they live in a completely different place, and in every way that matters they are right."},
+
+{t:"plosive", x:"The problem with a good plan is that it depends on people. A team can pick the perfect target, build the budget, book the dates, and still get pulled apart by a dozen small decisions nobody bothered to write down. Keep the big goal, but treat the details like they matter, because they do."},
+{t:"plosive", x:"Good coffee is mostly about temperature and patience. Grind it too coarse and it tastes thin. Grind it too fine and it turns bitter and gritty. Get the grind right, keep the water just below boiling, and a cheap bag of beans will beat an expensive cup made badly. The equipment gets the credit but the technique does the work."},
+{t:"plosive", x:"Bridges are built to bend. A big span that could not move would crack apart in a decade of traffic and wind. The trick is to build the give in deliberately, in the right places, in known amounts. It looks like weakness on the drawing, and it is the reason the thing keeps standing."},
+{t:"plosive", x:"Packing badly costs you twice: once at the departure gate and again at the other end when you cannot find anything. Pick a bag that fits, pack the heavy parts at the bottom, keep the documents together, and accept that you will bring a jumper you do not need. Everybody does."},
+{t:"plosive", x:"Good teaching is not about being clever. It is about knowing exactly which bit is going to be difficult, getting there before the student does, and putting something solid underneath them at the point where they would otherwise drop. That takes preparation, not brilliance, and it can be practised."},
+{t:"plosive", x:"Public transport tells you what a city thinks about its people. Clean, frequent, dependable, and going to the places people actually go: that is a city that plans. Grand terminals and no buses: that is a city that performs. You can tell inside a day, and you can tell without a guidebook."},
+{t:"plosive", x:"The best debugging trick is boring. Delete parts until it works, then put them back one at a time. Nobody wants to do it because it feels like giving up on being clever. But it finds the bug every single time, and it takes about a tenth as long as staring at the code and hoping."},
+{t:"plosive", x:"Cooking dried beans properly takes a day of doing almost nothing. Put them in a big pot of water in the morning. Come back at lunch. Add salt, a bay leaf, a bit of garlic. Keep it barely bubbling and never boiling hard, and by dinner you will have something better than anything from a tin."},
+{t:"plosive", x:"Keeping a plant alive is mostly about doing less. Too much water kills more houseplants than drought ever does. Pick a pot that drains, put it where the light actually is, and then leave it alone for a fortnight. Most people garden by fiddling, and most plants would prefer to be forgotten for a bit."},
+{t:"plosive", x:"Board games taught a generation to argue productively. You take a position, you defend it, you lose, you pack the box, and you eat dinner together anyway. It is a good deal of practice at being wrong in public with almost nothing depending on it, which is a skill that gets rare after about twenty."},
+{t:"plosive", x:"Old buildings get bought and repurposed, but the good ones keep their bones. A bank becomes a bar and the marble stays. A print works becomes a gallery and the big north windows do exactly the job they were built to do, just for different pictures. Adaptation beats demolition, and it usually costs less."},
+{t:"plosive", x:"The trick with a difficult conversation is to book it. Put it in the diary, pick a time, and tell the other person what it is about. Ambushing somebody in a corridor guarantees a bad result. Give them the same preparation you gave yourself and the conversation gets about twice as productive."},
+{t:"plosive", x:"Deep water is dark because red light gets absorbed in the top few metres. Drop below that and everything red looks black, which is precisely why a great many deep-sea creatures are red: down there it is perfect camouflage. Bring one up to the deck and it turns spectacular, but nothing down there ever sees it that way."},
+{t:"plosive", x:"A good map lies deliberately. It drops the buildings that do not help, thickens the roads that matter, and bends the geometry until the thing is readable at a glance. Accuracy is not the point. Getting somebody to the right place without stopping to think is the point, and that takes editing."},
+{t:"plosive", x:"Keys and cables migrate. You put them down in a sensible place and by Tuesday they are somewhere else entirely. The only fix anybody has ever found is a bowl by the door and the discipline to use it every single time, which is exactly why almost nobody solves this and almost everybody complains about it."},
+{t:"plosive", x:"Big projects do not go bad at the end. They go bad in the second week, quietly, when somebody decides not to bring up a problem because the meeting is nearly over. By the deadline the damage is obvious and expensive, but the decision that caused it took ten seconds and nobody wrote it down."}
+];
+
+/* --- Gentle-onset phrase sets. Twenty per set. --- */
+var PHRASE_SETS = [
+["Actually, I think","Are we aligned on that?","Okay, so","Every quarter","I'd push back on that","Obviously not","Anyway","Early on","Absolutely","At some point","Either way","Under the circumstances","Even so","Only if we have to","In my experience","As far as I know","Off the top of my head","Enough about that","Argue the other side","Ultimately"],
+["Product strategy","By the way","Coming back to that","To be clear","Ten minutes","Good question","Basically","Personally","Good to meet you","Can I add something?","Definitely","Broadly speaking","Ping me later","Two things","Down the line","Great, let's do that","Broadly agree","Different angle","Push it to Friday","Purely operationally"],
+["Hi, I'm {name}","Nice to meet you","Where are you based?","How has your week been?","Could I get a coffee?","Sorry, could you repeat that?","That makes sense","Fair enough","What do you do?","I'll grab the next one","Just water, thanks","Do you know the way?","Give me a second","See you Thursday","Take care","Let me think","Not for me, thanks","Same again, please","Right, I'll go first","Thanks for having me"],
+["Tell me about yourself","In my last role","Broadly, three things","Great question","Let me give you an example","Ultimately what mattered was","Directly, yes","I'd push back on the premise","My background is in","Before that, I was at","The trade-off there","The data made the call","Give me one second on that","Two years, roughly","That's the short version","Do you want the detail?","Originally, yes","Then I went back to study","Practically speaking","Any questions for me?"],
+["Every one of them","Absolutely everything","I always end up","Only occasionally","Under an hour","Eight or eleven","Are you around?","At eight, obviously","Anyone else?","Except on Tuesdays","In and out","Over and over","Up until then","Each of us","Almost identical","Either or","On and on","Out of order","Off and on","Around eleven"],
+["Ten, twenty, thirty","Tuesday the tenth","Two thousand and twenty-six","Particularly","Specifically","Strategy","Statistically","Probably","Definitely","Comparatively","Government","Development","Predictably","Consequently","Thirty-three","Categorically","Curiously","Ninety-nine","Quarterly targets","{name}"]
+];
+
+/* --- Tongue twisters. Four per set, done SLOW and over-articulated. --- */
+var TWISTER_SETS = [
+["Red leather, yellow leather","Unique New York","The lips, the teeth, the tip of the tongue","Six thick thistle sticks"],
+["Peter Piper picked a peck of pickled peppers","Bigger badger, better batter","Toy boat, toy boat, toy boat","Three free throws"],
+["She sells seashells by the seashore","Good blood, bad blood","Eleven benevolent elephants","Truly rural"],
+["A proper copper coffee pot","Which wristwatch is a Swiss wristwatch?","Rubber baby buggy bumpers","Freshly fried flying fish"],
+["Black background, brown background","Thin sticks, thick bricks","Selfish shellfish","Cooks cook cupcakes quickly"],
+["Betty bought a bit of better butter","Willy's real rear wheel","Stupid superstition","Six sleek swans swam swiftly"]
+];
+
+/* --- Monologue prompts. --- */
+var PROMPTS = [
+"Explain what you did in your last role to someone outside tech.",
+"Describe a decision you changed your mind about, and what changed it.",
+"Pitch a product you use every day as if you had built it.",
+"Explain one concept from your work to a smart twelve-year-old.",
+"Tell the story of how you got from your first job to now.",
+"Name a common belief in your field that you think is wrong, and say why.",
+"Describe where you grew up to someone who has never been to India.",
+"Argue for something you do not personally believe.",
+"Walk through the hardest trade-off you have had to make at work.",
+"So — tell me about yourself.",
+"Explain what an AI agent actually is, with no jargon at all.",
+"Describe your ideal working week, hour by hour.",
+"Talk about a person who changed how you work.",
+"Explain why you left your last role, in a way you'd be happy for them to hear.",
+"Describe a project that failed, and what you would do differently.",
+"Teach the rules of a game you know well.",
+"Give directions from your front door to the nearest good coffee.",
+"Explain the last thing you read that genuinely surprised you.",
+"Make the case for living in London. Then make the case against.",
+"Describe a photograph you love, in enough detail that someone could draw it.",
+"Explain a number you find interesting, and why it matters.",
+"Talk about something you are bad at and have made peace with.",
+"Sell a colleague on an idea they have already rejected once.",
+"Where do you see yourself in five years — without being boring about it."
+];
+
+var DEFAULT_WORDS = ["{name}","particularly","specifically","because","probably","definitely"];
+
+/* Backfill for the {name} slots when nobody has entered a first name. */
+var NAME_SPARES = ["Right, where were we?","One more thing","Broadly, yes","Understood","Quite possibly","Fair point"];
+
+</script>
+
+<script>
+(function(){
+"use strict";
+
+/* =========================================================
+   THE DAILY PRIME — one fixed sequence, fifteen steps, every day.
+   Nothing about the drill changes. Only the material does.
+   ========================================================= */
+
+/* =========================================================
+   VISUAL DEMOS — inline SVG for the drawing, HTML for the
+   captions. Captions stay HTML so they keep a fixed type size
+   instead of scaling with the viewBox.
+   Each one shows the mechanism the words struggle to describe.
+   ========================================================= */
+var VIZ = {
+
+/* A real pacer, not a picture: in for 4, out for 8, on a 12s loop. */
+breath: {
+  svg:'<svg viewBox="0 0 200 108" role="img" aria-label="Breathing pacer: in for four counts, out for eight">'
+     +'<circle cx="100" cy="54" r="46" class="trk" stroke-width="1" stroke-dasharray="2 4"/>'
+     +'<circle cx="100" cy="54" r="16" class="vbreath good" opacity="0.85"/>'
+     +'</svg>',
+  caps:'<span class="vcap good">Circle grows: in &#183; shrinks: out</span>'
+},
+
+/* The whole point of block 1, in one picture. */
+onset: {
+  svg:'<svg viewBox="0 0 200 62" role="img" aria-label="A hard onset spikes at the start; a gentle onset fades in">'
+     +'<g transform="translate(4,4)">'
+       +'<path d="M0,50 L1,50 L2,8 L60,8 L84,50 Z" class="bad" opacity=".4"/>'
+       +'<line x1="0" y1="50" x2="84" y2="50" class="trk" stroke-width="1"/>'
+     +'</g>'
+     +'<g transform="translate(112,4)">'
+       +'<path d="M0,50 C14,50 16,10 34,8 L60,8 L84,50 Z" class="good" opacity=".4"/>'
+       +'<line x1="0" y1="50" x2="84" y2="50" class="trk" stroke-width="1"/>'
+       +'<rect class="vsweep" x="-2" y="6" width="2" height="44" fill="var(--accent)" opacity=".9"/>'
+     +'</g></svg>',
+  caps:'<span class="vcap bad">&#10007; voice slams on</span><span class="vcap good">&#10003; air first, voice follows</span>'
+},
+
+/* One line, never broken, up and back down. */
+glide: {
+  svg:'<svg viewBox="0 0 200 72" role="img" aria-label="An unbroken line rising and falling">'
+     +'<path d="M12,58 C46,58 54,12 100,12 C146,12 154,58 188,58" class="trk" stroke-width="1.5" stroke-dasharray="2 4"/>'
+     +'<path d="M12,58 C46,58 54,12 100,12 C146,12 154,58 188,58" class="gline vdraw" stroke-width="3" stroke-linecap="round" style="--len:230"/>'
+     +'</svg>',
+  caps:'<span class="vcap good">One breath, no break</span>'
+},
+
+/* Continuous phonation: the single most useful picture in the set. */
+link: {
+  svg:'<svg viewBox="0 0 200 62" role="img" aria-label="Words with gaps between them, versus words joined by one continuous line">'
+     +'<g transform="translate(4,18)">'
+       +'<rect x="0"  y="0" width="24" height="14" rx="7" class="bad" opacity=".4"/>'
+       +'<rect x="32" y="0" width="18" height="14" rx="7" class="bad" opacity=".4"/>'
+       +'<rect x="58" y="0" width="26" height="14" rx="7" class="bad" opacity=".4"/>'
+       +'<path d="M26,7 h4 M52,7 h4" class="bline" stroke-width="1.5" stroke-dasharray="1 2"/>'
+     +'</g>'
+     +'<g transform="translate(112,18)">'
+       +'<rect x="0"  y="0" width="24" height="14" rx="7" class="good" opacity=".4"/>'
+       +'<rect x="28" y="0" width="18" height="14" rx="7" class="good" opacity=".4"/>'
+       +'<rect x="50" y="0" width="26" height="14" rx="7" class="good" opacity=".4"/>'
+       +'<path d="M2,7 H74" class="gline vdraw" stroke-width="2.5" stroke-linecap="round" style="--len:72"/>'
+     +'</g></svg>',
+  caps:'<span class="vcap bad">&#10007; voice switches off</span><span class="vcap good">&#10003; voice stays on</span>'
+},
+
+/* Light articulatory contact: barely touching beats slamming. */
+contact: {
+  svg:'<svg viewBox="0 0 200 62" role="img" aria-label="Hard contact slams closed; light contact barely touches">'
+     +'<g transform="translate(4,8)">'
+       +'<rect x="10" y="14" width="64" height="10" rx="5" class="bad" opacity=".5"/>'
+       +'<rect x="10" y="24" width="64" height="10" rx="5" class="bad" opacity=".5"/>'
+       +'<path d="M6,12 L1,7 M78,12 L83,7 M6,36 L1,41 M78,36 L83,41" class="bline" stroke-width="1.5" stroke-linecap="round"/>'
+     +'</g>'
+     +'<g transform="translate(112,8)">'
+       +'<rect x="10" y="10" width="64" height="10" rx="5" class="good" opacity=".5"/>'
+       +'<rect x="10" y="28" width="64" height="10" rx="5" class="good" opacity=".5"/>'
+       +'<line x1="42" y1="21" x2="42" y2="27" class="gline vpulse" stroke-width="1.5" stroke-linecap="round"/>'
+     +'</g></svg>',
+  caps:'<span class="vcap bad">&#10007; pressed shut</span><span class="vcap good">&#10003; barely touching</span>'
+}
+};
+
+function vizHTML(kind){
+  var v = VIZ[kind];
+  if(!v) return "";
+  return v.svg + '<div class="vcaps">' + v.caps + '</div>';
+}
+
+/* The load ladder is the single exception: its slot is always in the same
+   place, always one step, always the same length. The task inside it
+   escalates weekly, because priming without escalating load never reaches
+   the afternoon. */
+var RUNGS = [
+ {n:1, name:"Read aloud",
+  step:function(c){ return {t:"Read aloud, all three on", reps:"Read it twice",
+    i:"Gentle onset, voice linked, contacts light, all at once, on words somebody else chose. <b>You are not having to think what to say</b>, so everything can go on how you say it.",
+    s:105, mat:{k:"read", d:c.flow2, lab:"Read aloud"}}; }},
+ {n:2, name:"Read, then retell",
+  step:function(c){ return {t:"Read it, then say it back", reps:"Read once &#183; retell once",
+    i:"Read it aloud. Then <b>look away and say it back in your own words</b>, targets still on. Now you are choosing the words <em>and</em> holding the technique. First real test.",
+    s:105, mat:{k:"read", d:c.flow2, lab:"Read once, then retell from memory"}}; }},
+ {n:3, name:"Cold monologue",
+  step:function(c){ return {t:"Cold monologue", reps:"Speak the full 105 seconds",
+    i:"<b>No planning first.</b> Record it on your phone. Listen back once afterwards, for onsets and contacts, not for stutters.",
+    s:105, mat:{k:"prompt", d:c.prompt, lab:"Start speaking now"}}; }},
+ {n:4, name:"Under pressure",
+  step:function(c){ return {t:"Monologue under pressure", reps:"Start within 3 seconds &#183; no restarts",
+    i:"<b>Stand up.</b> Picture one specific person you would find hard. No apologising, <b>no substitutions.</b>",
+    s:105, mat:{k:"prompt", d:c.prompt, lab:"Speak on this"}}; }},
+ {n:5, name:"Real stakes",
+  step:function(c){ return {t:"Real stakes", reps:"One real message, actually sent",
+    i:"A <b>voice note to a real person</b>, or a two-minute mock interview answer with the camera on. Send it. This is where transfer becomes permanent.",
+    s:105, mat:{k:"prompt", d:c.prompt, lab:"If you need a subject"}}; }}
+];
+
+var BLOCK_COUNT = 6;
+
+function buildSession(rung, c){
+  var S=[], push=function(b,bn,arr){ arr.forEach(function(s){ s.block=b; s.blockName=bn; S.push(s); }); };
+
+  push(1,"Breath and voice on",[
+    {t:"Low breaths", reps:"4 rounds &#183; in 4, out 8", s:30, viz:"breath", mat:null,
+     i:"<b>Follow the circle.</b> Hand on your lower ribs, feel them widen sideways, not your shoulders lifting.",
+     note:"Growing circle: breathe in. Shrinking: breathe out, twice as long. This sets the airflow everything else sits on."},
+    {t:"Gentle onsets", reps:"6 &#215; about 8 seconds each", s:60, viz:"onset", mat:null,
+     i:"Start breathing out <b>before</b> you make any sound. Then let an <b>&ldquo;ahh&rdquo;</b> appear inside the breath that is already going, like a soft <b>h</b> turning into a vowel. Hold it, then fade out.",
+     note:"Test it with a hand in front of your mouth: you should feel warm air on your palm a moment BEFORE you hear anything. If the sound and the air start together, that was a hard onset."},
+    {t:"Pitch glides", reps:"4 glides &#183; one breath each", s:30, viz:"glide", mat:null,
+     i:"Slide &ldquo;ahh&rdquo; from <b>low to high and back down</b>. The sound never stops on the way.",
+     note:"One unbroken line of sound. That is the whole point of this block."}
+  ]);
+
+  push(2,"Articulators awake",[
+    {t:"Lips", reps:"10 oo–ee, then trill to the end", s:25, mat:null,
+     i:"Ten exaggerated <b>oo–ee</b>, stretching the shapes right out. Then a <b>lip trill</b>: lips loosely together, blow through them so they flap. The motorboat noise children make."},
+    {t:"Tongue", reps:"10 taps, then 10 each of la / ta / ka", s:25, mat:null,
+     i:"Tap your tongue tip to the ridge just behind your top teeth. Then <b>la-la-la, ta-ta-ta, ka-ka-ka</b>, slow and deliberate."},
+    {t:"Jaw", reps:"10 openings, then 5 yawn-sighs", s:25, mat:null,
+     i:"Slow openings, hand on the joint below your ear checking for tension. Then five <b>yawn-sighs</b>: start a real yawn, and let a relaxed “haaa” fall out of it on the way down.",
+     note:"Available, not tired. If anything aches you are pressing too hard, which is the same error that creates blocks."}
+  ]);
+
+  push(3,"The three targets",[
+    {t:"Gentle onset", reps:"All 20 phrases &#183; again if time", s:75, viz:"onset",
+     mat:{k:"list", d:c.phrases, lab:"Say each one, softest possible start"},
+     i:"Work down the list out loud. Each one starts on breath that is <b>already moving</b>: a whisper of h, then the words arrive on top of it.",
+     note:"Say “uh-oh” and feel the catch in your throat just before the “uh”. That catch is a hard onset, and a block is the same thing gone wrong. Target 1 of 3 is learning to start without it."},
+    {t:"Link every word", reps:"Read it twice", s:75, viz:"link",
+     mat:{k:"read", d:c.flow, lab:"Read aloud · fully linked"},
+     i:"<b>No silence inside a phrase.</b> Deliberately smear the words together. The voice does not switch off until the phrase ends.",
+     note:"Target 2 of 3: if the voice stays on across word boundaries, there is nothing available to slam shut."},
+    {t:"Light contact", reps:"Read it twice", s:75, viz:"contact",
+     mat:{k:"read", d:c.plosive, lab:"Read aloud · feather-light contacts"},
+     i:"Every <b>p, b, t, d, k and g</b> as light as you can make it. It should sound slightly under-articulated, almost lazy.",
+     note:"Target 3 of 3: a block is excess closure force. This trains the opposite reflex."}
+  ]);
+
+  push(4,"Blend",[
+    {t:"All three, normal effort", reps:"Read it once, unhurried", s:60,
+     mat:{k:"read", d:c.plosive, lab:"Read again · about a third of each"},
+     i:"Normal speaking effort now, keeping <b>roughly a third of each target</b>. Not three exercises. One way of speaking.",
+     note:"This step is what turns drills into a habit instead of a warm-up. Do not skip it."},
+    {t:"Now your own words", reps:"Keep talking for the full minute", s:60, mat:null,
+     i:"Say <b>anything</b> &mdash; your plan for today, what you can see out of the window &mdash; with all three still on.",
+     note:"First moment of the session where you choose your own words. Notice whether the three targets survive it, and pull them back when they slip."}
+  ]);
+
+  push(5,"Carry it into real speech",[ rung.step(c) ]);
+
+  push(6,"Anticipation work",[
+    {t:"Five words, as themselves", reps:"5 words &#183; twice each", s:30,
+     mat:{k:"list", d:c.words.slice(0,5), lab:"From your scan list", big:true},
+     i:"Out loud, deliberately. Before each word, <b>get set first</b>: breath already moving, mouth loose, and only then start. Say the word itself, never a safer one."},
+    {t:"Voluntary stuttering", reps:"3 words &#183; on purpose", s:25, mat:null,
+     i:"Pick three words you <b>do not</b> fear. Put a deliberate easy repetition in each: <b>&ldquo;b-b-but&rdquo;</b>. Relaxed. Loose. On purpose.",
+     note:"The most counterintuitive thing here and the most effective. The point is not fluency. It is proving to your nervous system that a stutter is survivable and that you are steering it."},
+    {t:"Set the rule", reps:"Say it once, out loud", s:15, mat:null,
+     i:"To yourself: <b>pause at phrase boundaries, light contacts, no substitutions.</b> That is the rule for the next hour."}
+  ]);
+
+  return S;
+}
+
+
+/* =========================================================
+   THE PRIME — 7 compound steps, 8 minutes. The default.
+   Each step stacks targets that the long version isolates.
+   Fewer switches, more load per minute, and it ends on a
+   sentence you are actually going to say today.
+   ========================================================= */
+function buildShort(rung, c){
+  var S=[], push=function(b,bn,arr){ arr.forEach(function(s){ s.block=b; s.blockName=bn; S.push(s); }); };
+
+  push(1,"Breath into voice",[
+    {t:"Breathe, then sound", reps:"6 rounds · in 4, out 8", s:60, viz:"breath", mat:null,
+     i:"Follow the circle, ribs widening sideways. On <b>every</b> out-breath, once the air is already moving, let an <b>“ahh”</b> appear inside it and ride the breath all the way down.",
+     note:"Hand in front of your mouth: warm air on your palm a moment BEFORE any sound. Breath support and gentle onset, trained together instead of separately."}
+  ]);
+
+  push(2,"Open the instrument",[
+    {t:"Glide on a trill", reps:"6 glides · one breath each", s:45, viz:"glide", mat:null,
+     i:"Lips loosely together, blow through them so they flap — the motorboat noise. Now <b>slide that trill low to high and back</b>, one unbroken line per breath.",
+     note:"This one exercise does lips, jaw, breath and continuous voicing at once. If the trill collapses, your lips are too tight or the air is too slow."}
+  ]);
+
+  push(3,"Onset ladder",[
+    {t:"Soft start, then real", reps:"All 20 · exaggerated, then normal", s:75, viz:"onset",
+     mat:{k:"list", d:c.phrases, lab:"Each phrase twice"},
+     i:"Say each phrase <b>twice</b>: once absurdly soft, breath first; then again at <b>normal speaking effort</b> keeping that same start.",
+     note:"Say “uh-oh” and feel the catch before the “uh”. That catch is a hard onset, and a block is the same thing gone wrong. The second pass is what transfers."}
+  ]);
+
+  push(4,"Read it three ways",[
+    {t:"One text, three passes", reps:"Linked → light → normal", s:120, viz:"link",
+     mat:{k:"read", d:c.plosive, lab:"Same passage, three times through"},
+     i:"<b>1. Linked:</b> no silence inside a phrase, smear the words together.<br><b>2. Light:</b> every p, b, t, d, k, g barely touching, almost lazy.<br><b>3. Normal:</b> ordinary effort, keeping about a third of both.",
+     note:"The whole of block 3 and 4 of the long version, on one text. Feeling the three passes back to back is what fuses them into one way of speaking, rather than three exercises you did separately."}
+  ]);
+
+  push(5,"Carry it into real speech",[ (function(){ var st=rung.step(c); st.s=90; return st; })() ]);
+
+  push(6,"Face the hard ones",[
+    {t:"Feared words, then fake it", reps:"5 real · then 3 on purpose", s:60,
+     mat:{k:"list", d:c.words.slice(0,5), lab:"From your scan list", big:true},
+     i:"Say each one, getting set first: breath moving, mouth loose, then start. Then pick <b>three words you do not fear</b> and put a deliberate easy repetition in each — <b>“b-b-but”</b>. Relaxed. On purpose.",
+     note:"Voluntary stuttering is the most counterintuitive thing here and the most effective. The point is not fluency. It is proving to your nervous system that a stutter is survivable and that you are steering it."}
+  ]);
+
+  push(7,"Take it with you",[
+    {t:"One real sentence", reps:"Say it twice, out loud", s:30, mat:null,
+     i:"Out loud, with everything on: <b>the actual first line you will say today.</b> Your standup opener, your coffee order, “Hi, I’m ___.” Then the rule: <b>pause at phrase boundaries, light contacts, no substitutions.</b>",
+     note:"This is the step that makes the difference feel real within the hour. Practice that never touches a sentence you are about to say stays practice."}
+  ]);
+
+  return S;
+}
+
+/* =========================================================
+   STATE
+   ========================================================= */
+var LS = "voiceOn.v1", state = {config:{start:null, words:null}, days:{}}, db = null;
+var prefs = {voice:false, sound:true, auto:true, mode:"short"};
+
+function pad(n){ return n<10 ? "0"+n : ""+n; }
+function dkey(d){ d=d||new Date(); return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate()); }
+function toDate(k){ var p=k.split("-"); return new Date(+p[0],+p[1]-1,+p[2]); }
+
+function loadLocal(){
+  try{ var r=localStorage.getItem(LS); if(r){ var o=JSON.parse(r); if(o&&o.days) state=o; } }catch(e){}
+  try{ var p=localStorage.getItem(LS+".prefs"); if(p) prefs=Object.assign(prefs,JSON.parse(p)); }catch(e){}
+  if(!state.config) state.config={};
+  if(!state.config.start) state.config.start=dkey();
+  if(!state.days) state.days={};
+}
+function saveLocal(){ try{ localStorage.setItem(LS,JSON.stringify(state)); }catch(e){} }
+function savePrefs(){ try{ localStorage.setItem(LS+".prefs",JSON.stringify(prefs)); }catch(e){} }
+
+function today(){
+  var k=dkey();
+  if(!state.days[k]) state.days[k]={done:[],rating:0,note:"",step:0};
+  if(state.days[k].step===undefined) state.days[k].step=0;
+  return state.days[k];
+}
+
+var wt=null;
+function persist(){
+  saveLocal();
+  if(!db) return;
+  clearTimeout(wt);
+  wt=setTimeout(function(){
+    var k=dkey(), d=state.days[k];
+    db.doc("log/"+k).set({date:k,done:d.done,complete:!!d.complete,rating:d.rating,note:d.note,step:d.step||0,at:Date.now()}).catch(function(){});
+    db.doc("meta/config").set({start:state.config.start,words:state.config.words||null,name:state.config.name||null,at:Date.now()}).catch(function(){});
+  },700);
+}
+
+function progWeek(){ var n=Math.round((toDate(dkey())-toDate(state.config.start))/86400000); if(n<0)n=0; return Math.floor(n/7)+1; }
+function rung(){ return RUNGS[Math.min(progWeek(),RUNGS.length)-1]; }
+function firstName(){ return (state.config.name||"").trim(); }
+
+/* Drills lean on your own name on purpose: it is the single most commonly
+   feared word for people who stutter. With no name set, those slots fall
+   back to ordinary phrases rather than showing a placeholder. */
+function subName(str){
+  var n=firstName();
+  if(str.indexOf("{name}")===-1) return str;
+  return n ? str.replace(/\{name\}/g, n) : null;
+}
+function applyNames(list){
+  var spare=0;
+  return list.map(function(x){
+    var v=subName(x);
+    if(v!==null) return v;
+    return NAME_SPARES[(spare++) % NAME_SPARES.length];
+  });
+}
+function words(){
+  var raw=state.config.words;
+  if(raw===null||raw===undefined) return applyNames(DEFAULT_WORDS.slice());
+  var a=String(raw).split("\n").map(function(s){return s.trim();}).filter(Boolean);
+  return a.length?a:applyNames(DEFAULT_WORDS.slice());
+}
+
+/* date-seeded material: stable all day, different tomorrow */
+function seed(salt){ var k=dkey()+"|"+salt, h=2166136261;
+  for(var i=0;i<k.length;i++){ h^=k.charCodeAt(i); h=Math.imul(h,16777619); }
+  return (h>>>0);
+}
+function pickFrom(arr, salt){ return arr[seed(salt)%arr.length]; }
+function content(){
+  var flows=PASSAGES.filter(function(p){return p.t==="flow";}),
+      plos =PASSAGES.filter(function(p){return p.t==="plosive";});
+  var i1=seed("flow")%flows.length, i2=(i1+5)%flows.length;
+  return {
+    flow: flows[i1].x,
+    flow2: flows[i2].x,
+    plosive: plos[seed("plos")%plos.length].x,
+    phrases: applyNames(pickFrom(PHRASE_SETS,"phr")),
+    prompt: pickFrom(PROMPTS,"pr"),
+    words: words()
+  };
+}
+
+/* `complete` is authoritative; the length rule keeps older logged days counting */
+function isFull(k){ var r=state.days[k]; return !!(r&&(r.complete||(r.done&&r.done.length>=5))); }
+function streak(){ var n=0,d=new Date(); if(!isFull(dkey(d))) d.setDate(d.getDate()-1);
+  while(isFull(dkey(d))){ n++; d.setDate(d.getDate()-1); } return n; }
+
+/* =========================================================
+   AUDIO + VOICE
+   ========================================================= */
+var actx=null;
+function chime(kind){
+  if(!prefs.sound) return;
+  try{
+    if(!actx) actx = new (window.AudioContext||window.webkitAudioContext)();
+    if(actx.state==="suspended") actx.resume();
+    var f = kind==="end" ? [523.25,784] : [659.25];
+    f.forEach(function(hz,i){
+      var o=actx.createOscillator(), g=actx.createGain(), t=actx.currentTime+i*0.18;
+      o.type="sine"; o.frequency.value=hz;
+      g.gain.setValueAtTime(0,t); g.gain.linearRampToValueAtTime(0.16,t+0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001,t+0.7);
+      o.connect(g); g.connect(actx.destination); o.start(t); o.stop(t+0.75);
+    });
+  }catch(e){}
+}
+function say(text){
+  if(!prefs.voice || !("speechSynthesis" in window)) return;
+  try{
+    speechSynthesis.cancel();
+    var u=new SpeechSynthesisUtterance(String(text).replace(/<[^>]+>/g," ").replace(/&[a-z]+;/g," ").replace(/\s+/g," ").trim());
+    u.rate=0.94; u.pitch=1;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+function hush(){ try{ if("speechSynthesis" in window) speechSynthesis.cancel(); }catch(e){} }
+
+/* =========================================================
+   SCREENS
+   ========================================================= */
+var $=function(id){ return document.getElementById(id); };
+var SESSION=[], idx=0, remain=0, tick=null, paused=false;
+
+/* Keep the phone screen awake for the whole session. Without this the display
+   sleeps around 30s in and the timer, the passage and the prompt all vanish. */
+var wakeLock=null;
+function holdScreen(){
+  try{
+    if(!("wakeLock" in navigator)) return;
+    navigator.wakeLock.request("screen").then(function(w){
+      wakeLock=w;
+      w.addEventListener("release", function(){ wakeLock=null; });
+    }).catch(function(){});
+  }catch(e){}
+}
+function freeScreen(){ try{ if(wakeLock){ wakeLock.release(); wakeLock=null; } }catch(e){} }
+/* iOS drops the lock whenever the app is backgrounded; take it back on return. */
+document.addEventListener("visibilitychange", function(){
+  if(document.visibilityState==="visible" && !$("player").hidden && !wakeLock) holdScreen();
+});
+
+function show(which){
+  ["home","player","done"].forEach(function(s){ $(s).hidden = (s!==which); });
+  window.scrollTo(0,0);
+}
+
+/* ---------- HOME ---------- */
+function renderHome(){
+  var d=today(), r=rung();
+  $("mDate").textContent = new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long"});
+  $("mWeek").textContent = progWeek();
+  $("mRung").textContent = r.n;
+  var s=streak();
+  $("mStreak").textContent = s===0 ? "no streak yet" : (s===1?"1 day in a row":s+" days in a row");
+  var short = prefs.mode!=="full";
+  $("mFocus").textContent = short ? "The prime" : "The full session";
+  $("mWhy").textContent = short
+    ? "Seven compound exercises. Every one stacks breath, onset, voicing and contact together, and it ends on a sentence you are about to say for real."
+    : "Fifteen steps that isolate each target before combining them. Slower, and the better way in if any of this is still new.";
+  $("mLen7").setAttribute("aria-pressed", short?"true":"false");
+  $("mLen15").setAttribute("aria-pressed", short?"false":"true");
+  $("mChanges").innerHTML = "The sequence never changes. New reading material every day; the last step steps up each week — this week: <b style=\"color:var(--accent)\">" + r.name.toLowerCase() + "</b>.";
+
+  var mins = short ? "8 min" : "12 min", steps = short ? 7 : 15;
+  var full = isFull(dkey());
+  var mid  = !full && d.step>0;
+  $("startBtn").textContent = full ? ("Run it again · "+mins)
+                    : mid ? ("Resume · step "+(d.step+1)+" of "+steps)
+                          : ("Start · "+mins);
+  $("resumeNote").hidden = !(full||mid);
+  if(full) $("resumeNote").textContent = "Today is done. Nice.";
+  else if(mid) $("resumeNote").textContent = "You stopped partway through. Picking up where you left off.";
+
+  $("tVoice").checked=prefs.voice; $("tSound").checked=prefs.sound; $("tAuto").checked=prefs.auto;
+  var seen = prefs.seen || Object.keys(state.days).some(function(k){ return isFull(k); });
+  $("welcome").hidden = !!seen;
+  var ni=$("nameInput"); if(ni && document.activeElement!==ni) ni.value = firstName();
+  renderCells();
+}
+function renderCells(){
+  var c=$("cells"); c.innerHTML=""; var base=new Date(), n=0;
+  for(var i=29;i>=0;i--){
+    var dt=new Date(base); dt.setDate(dt.getDate()-i);
+    var k=dkey(dt), rec=state.days[k], cell=document.createElement("div");
+    cell.className="cell"+(i===0?" today":"");
+    if(rec){
+      if(isFull(k)){ cell.dataset.done="1"; n++; }
+      if(rec.rating) cell.dataset.r=String(rec.rating);
+    }
+    cell.title=k+(rec?" — "+(rec.done?rec.done.length:0)+"/"+BLOCK_COUNT+" blocks"+(rec.rating?", rated "+rec.rating:""):" — no session");
+    c.appendChild(cell);
+  }
+  $("stripN").textContent = n+" complete";
+}
+
+/* ---------- PLAYER ---------- */
+function startSession(resume){
+  SESSION = (prefs.mode==="full" ? buildSession : buildShort)(rung(), content());
+  var d=today();
+  idx = (resume && d.step>0 && d.step<SESSION.length) ? d.step : 0;
+  buildBar();
+  show("player");
+  holdScreen();
+  goto(idx, true);
+}
+function buildBar(){
+  var b=$("pbar"); b.innerHTML="";
+  SESSION.forEach(function(){ var s=document.createElement("div"); s.className="pseg"; b.appendChild(s); });
+}
+function paintBar(){
+  var segs=$("pbar").children;
+  for(var i=0;i<segs.length;i++) segs[i].className="pseg"+(i<idx?" done":(i===idx?" now":""));
+}
+function goto(i, speak){
+  if(i>=SESSION.length){ finish(); return; }
+  if(i<0) i=0;
+  idx=i;
+  var st=SESSION[idx];
+  today().step=idx; persist();
+
+  $("pBlock").textContent = st.blockName;
+  $("pCount").textContent = "Step "+(idx+1)+" of "+SESSION.length;
+
+  var stage=$("pStage"); stage.innerHTML="";
+  var h=document.createElement("h2"); h.textContent=st.t; stage.appendChild(h);
+  if(st.reps){ var rp=document.createElement("span"); rp.className="reps"; rp.innerHTML=st.reps; stage.appendChild(rp); }
+  if(st.viz && VIZ[st.viz]){ var vz=document.createElement("div"); vz.className="viz"; vz.innerHTML=vizHTML(st.viz); stage.appendChild(vz); }
+  var p=document.createElement("p"); p.className="pinstr"+(st.i.indexOf("<br>")!==-1?" lines":""); p.innerHTML=st.i; stage.appendChild(p);
+
+  if(st.mat){
+    var m=document.createElement("div"); m.className="mat"+(st.mat.big?" big":"");
+    var l=document.createElement("div"); l.className="lab"; l.textContent=st.mat.lab||""; m.appendChild(l);
+    if(st.mat.k==="read"){ var rr=document.createElement("p"); rr.className="read"; rr.textContent=st.mat.d; m.appendChild(rr); }
+    else if(st.mat.k==="prompt"){ var q=document.createElement("p"); q.className="prompt"; q.textContent=st.mat.d; m.appendChild(q); }
+    else if(st.mat.k==="list"){
+      var ul=document.createElement("ul");
+      st.mat.d.forEach(function(x){ var li=document.createElement("li"); li.textContent=x; ul.appendChild(li); });
+      m.appendChild(ul);
+    }
+    stage.appendChild(m);
+  }
+  if(st.note){ var nn=document.createElement("p"); nn.className="pnote"; nn.textContent=st.note; stage.appendChild(nn); }
+
+  $("pBack").disabled = (idx===0);
+  paintBar();
+  stage.scrollTop=0;
+  if(speak!==false) say(st.t + ". " + (st.reps? st.reps + ". " : "") + st.i);
+  startTimer(st.s);
+}
+function startTimer(secs){
+  clearInterval(tick); paused=false;
+  remain=secs;
+  var total=secs, endAt=Date.now()+secs*1000;
+  $("ring").classList.remove("paused");
+  $("pPause").textContent="Pause";
+  paintTimer(total);
+  tick=setInterval(function(){
+    if(paused){ endAt=Date.now()+remain*1000; return; }
+    remain=Math.max(0, Math.round((endAt-Date.now())/1000));
+    paintTimer(total);
+    if(remain<=0){
+      clearInterval(tick);
+      chime(idx===SESSION.length-1?"end":"step");
+      if(prefs.auto) setTimeout(function(){ next(); },900);
+    }
+  },250);
+}
+function paintTimer(total){
+  $("pTime").textContent = Math.floor(remain/60)+":"+pad(remain%60);
+  var C=282.7, frac = total? (total-remain)/total : 0;
+  $("arc").setAttribute("stroke-dashoffset", String(C*frac));
+}
+function next(){
+  var st=SESSION[idx], d=today();
+  var last = (idx===SESSION.length-1) || SESSION[idx+1].block!==st.block;
+  if(last && d.done.indexOf("b"+st.block)===-1) d.done.push("b"+st.block);
+  persist();
+  goto(idx+1);
+}
+function finish(){
+  clearInterval(tick); hush(); freeScreen();
+  var d=today();
+  SESSION.forEach(function(st){ if(d.done.indexOf("b"+st.block)===-1) d.done.push("b"+st.block); });
+  d.complete=true; d.step=0; persist();
+  show("done");
+  renderDone();
+  chime("end");
+}
+function exitSession(){ clearInterval(tick); hush(); freeScreen(); show("home"); renderHome(); }
+
+/* ---------- DONE ---------- */
+function renderDone(){
+  var d=today();
+  var rb=$("dRate"); rb.innerHTML="";
+  for(var i=1;i<=5;i++)(function(v){
+    var b=document.createElement("button"); b.textContent=String(v);
+    b.setAttribute("aria-pressed", d.rating===v?"true":"false");
+    b.onclick=function(){ today().rating = today().rating===v?0:v; persist(); renderDone(); };
+    rb.appendChild(b);
+  })(i);
+  var nb=$("dNote"); if(document.activeElement!==nb) nb.value=d.note||"";
+}
+
+/* =========================================================
+   REFERENCE
+   ========================================================= */
+var REF_WHY = '<div class="prose">'
++'<p>Speech runs three systems off one pool of attention. <strong>Formulation</strong> picks what to say and which words. <strong>Motor execution</strong> turns that into the timing between breath, voice onset and the articulators. <strong>Monitoring</strong> is the internal listener checking how it is going.</p>'
++'<p>Stuttering is not weak muscles. It is a vulnerability in the <em>timing</em> of the second system, and it gets dramatically worse when the third system gets loud. Monitoring gets loud when it predicts trouble.</p>'
++'<p><strong>Your blank-out is probably not a separate problem from your stutter. It is likely your stutter, in covert form.</strong> You scan a few words ahead, spot one that feels risky, and start hunting for a substitute. From the inside that hunt feels exactly like a blank. Then time pressure builds, so you rush the onset of whatever word you land on. Rushing an onset is mechanically what produces a block. The block confirms the prediction, monitoring gets louder, the next scan starts earlier. That is the spiral, and it explains the order you noticed: blank, then stutter, then more blank.</p>'
++'<p><strong>Reading aloud</strong> takes formulation entirely off the table, so every resource goes to motor execution and it runs clean. Your good days are not days when your mouth got fitter.</p>'
++'<p><strong>Exaggerating then slowing</strong> forces continuous voicing and gentle onsets. A block is a hard closure with airflow stopped behind it. If the voice is already on and stays on across word boundaries, there is nothing available to slam shut.</p>'
++'<p><strong>The warm-up</strong> mostly works by dropping your <em>expectancy</em>, and expected stuttering is one of the strongest predictors of actual stuttering.</p>'
++'<p><strong>The trap:</strong> those effects have very different half-lives. Motor priming lasts about an hour. Expectancy lasts until the first hard moment of the day. That is why a great morning routine still leaves you stuttering at 3pm. Blocks 4 and 5 are what a warm-up cannot do: blend the targets into unscripted speech, then carry them into speech that has real load.</p>'
++'</div>';
+
+var REF_SEQ = '<div class="prose"><p>Fifteen steps, the same every morning. The point is not variety. It is that <strong>the three motor targets get a full dose every single day</strong>, until they stop being exercises and become the way you talk.</p></div>'
++'<div style="margin-top:20px">'
++'<details class="ref" open><summary><span class="st"><span class="day">2 min</span><h3>1 &middot; Breath and voice on</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb"><p class="why">Installs gentle onset and continuous voicing.</p><p>Low breaths, six sustained &ldquo;ahh&rdquo;s that fade in rather than click on, four unbroken pitch glides. This is the direct physical antidote to a block.</p></div></details>'
++'<details class="ref"><summary><span class="st"><span class="day">1.5 min</span><h3>2 &middot; Articulators awake</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb"><p class="why">Not strength. Awareness, so that light contact is available to you.</p><p>Lips, tongue, jaw. Your mouth should finish this feeling available, never tired.</p></div></details>'
++'<details class="ref"><summary><span class="st"><span class="day">3.75 min</span><h3>3 &middot; The three targets</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb"><p class="why">The core. All three, every day, in the same order.</p><p><strong>Gentle onset</strong> means starting a word on breath that is already flowing, instead of closing your vocal folds, building pressure behind them, and popping them open. Say &ldquo;uh-oh&rdquo; and feel the catch before the &ldquo;uh&rdquo;: that catch is the closed-then-popped version, and a block is the same thing failing to pop. <strong>Continuous phonation</strong> keeps the voice on across word boundaries, so nothing is available to slam shut. <strong>Light contact</strong> trains the opposite reflex to excess closure force. They are not three skills. They are three components of one habit.</p></div></details>'
++'<details class="ref"><summary><span class="st"><span class="day">2 min</span><h3>4 &middot; Blend</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb"><p class="why">The step that turns drills into a habit.</p><p>Same passage at normal effort with about a third of each target left in, then a minute of your own unscripted words. Without this step you have three exercises. With it you have one way of speaking.</p></div></details>'
++'<details class="ref"><summary><span class="st"><span class="day">1.75 min</span><h3>5 &middot; Carry it into real speech</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb"><p class="why">The one slot whose task escalates, one rung per week.</p><p>Read aloud &rarr; read and retell &rarr; cold monologue &rarr; monologue under pressure &rarr; real stakes. Then it cycles again with harder material. The slot never moves and never changes length; only what you do inside it steps up. Priming without escalating load never reaches the afternoon.</p></div></details>'
++'<details class="ref"><summary><span class="st"><span class="day">1.25 min</span><h3>6 &middot; Anticipation work</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb"><p class="why">The block most self-taught programmes skip, and the one that breaks the loop.</p><p>Five words from your scan list said as themselves, three deliberate voluntary stutters on words you do not fear, and the rule set out loud. The point of voluntary stuttering is not fluency. It is proving to your nervous system that a stutter is survivable and that you are steering it.</p></div></details>'
++'</div>'
++'<div class="callout" style="margin-top:30px">'
++'<p><strong>On never facing this again.</strong> For adults the evidence-supported outcome is not the elimination of stuttering. It is a large drop in frequency and a much larger drop in the fear-and-avoidance load, which for most people means the stutter stops being a life problem.</p>'
++'<p>It matters that you hold it that way, because <em>&ldquo;I must never stutter&rdquo;</em> is itself a monitoring instruction. It turns every disfluency into evidence of failure, which raises monitoring, which produces the next one.</p>'
++'<p>Expect the shape to be jagged. Weeks two and three often feel worse than week one, because you start noticing things you used to run past. That is desensitisation working, not the programme failing.</p>'
++'</div>'
++'<div class="foot-note" style="margin-top:30px">'
++'<p><strong>The biggest single accelerator is not in this app.</strong> It is a speech and language therapist, for the outside ear you cannot give yourself. In the UK you can usually self-refer to NHS adult speech and language therapy: search &ldquo;adult speech and language therapy&rdquo; plus your borough. You need to be registered with a GP. STAMMA, the British Stammering Association, runs a helpline on 0808 802 0002. The Michael Palin Centre in London specialises in stammering and offers teletherapy.</p>'
++'<p>If the blanking ever happens with <em>no</em> word-fear attached, or shows up when you write too, that is a different mechanism and deserves a professional read.</p>'
++'<p>Built on the standard adult-stuttering evidence base: speech restructuring (Camperdown, smooth speech), Van Riper block modification, and the fluency-inducing-conditions literature. A structured practice plan, not a clinical assessment.</p>'
++'</div>';
+
+var REF_EXTRAS = '<div class="prose"><p>These are <strong>not</strong> part of the daily twelve minutes, deliberately. They are situational. Reach for one when the situation calls for it, then go back to the fixed sequence.</p></div>'
++'<div style="margin-top:20px">'
++'<details class="ref"><summary><span class="st"><span class="day">After a bad block</span><h3>Recovery drills</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb">'
++'<p><strong>Cancellation.</strong> After a block, stop completely. Pause two full seconds. Say the word again with an easy stretched onset.</p>'
++'<p><strong>Pull-out.</strong> Mid-block, do not stop. Ease the tension out and slide to the end of the word.</p>'
++'<p><strong>Preparatory set.</strong> Before a word you expect trouble on, set up the gentle onset and light contact, then go. This one is already in your daily block 6.</p>'
++'<p class="why">Five minutes of these on any evening after a day with a hard block. They are the only skills that work <em>after</em> a block has started; everything in the daily sequence is prevention. You want both, but prevention is the thing that needs the daily dose.</p></div></details>'
++'<details class="ref"><summary><span class="st"><span class="day">Optional</span><h3>Tongue twisters, done right</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb">'
++'<p>If you enjoy them, do them <strong>slowly and over-articulated with the voice continuous</strong>, four passes, each slightly faster but never past the point where it is still perfectly clean.</p>'
++'<p class="why">Trained for speed and accuracy they reinforce rushing, which is the exact habit that produces blocks. That is why they are not in the daily sequence: the daily dose belongs to the three targets.</p></div></details>'
++'<details class="ref"><summary><span class="st"><span class="day">Before speaking</span><h3>The 20-second reset</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb">'
++'<p>One low breath, exhale longer than you inhaled. Two near-silent &ldquo;ahh&rdquo;s with the voice fading in. Your actual first line, out loud, once. Then the rule: <strong>pause at phrase boundaries, light contacts, no substitutions.</strong></p>'
++'<p class="why">Three anchors and a rule, in a stairwell or with the camera off.</p></div></details>'
++'<details class="ref"><summary><span class="st"><span class="day">~1pm</span><h3>Mid-day re-anchor</h3></span><span style="color:var(--faint)">&#9662;</span></summary><div class="rb">'
++'<p>Sixty seconds of reading aloud plus five gentle onsets.</p>'
++'<p class="why">The morning effect has a half-life of about an hour. Do this on any day with an afternoon meeting.</p></div></details>'
++'</div>';
+
+function refWords(){
+  return '<div class="wordbox"><p class="hint">The words you catch yourself steering around: your own name, place names, hard openers, anything that makes you reach for a synonym instead. Block 6 draws five from here each day. Add to it whenever you notice one &mdash; noticing is already half the work.</p>'
+  +'<textarea id="wordsBox" rows="8" placeholder="One word per line"></textarea><p class="hint">Saved automatically.</p></div>';
+}
+function openRef(title, html){
+  $("refTitle").textContent=title; $("refBody").innerHTML=html; $("ref").hidden=false;
+  document.body.style.overflow="hidden";
+  var wb=$("wordsBox");
+  if(wb){
+    var v=state.config.words;
+    wb.value=(v===null||v===undefined)?applyNames(DEFAULT_WORDS).join("\n"):v;
+    wb.addEventListener("input",function(e){ state.config.words=e.target.value; persist(); });
+  }
+}
+function closeRef(){ $("ref").hidden=true; document.body.style.overflow=""; }
+
+/* =========================================================
+   WIRING
+   ========================================================= */
+loadLocal();
+renderHome();
+show("home");
+
+function setMode(m){ prefs.mode=m; savePrefs(); renderHome(); }
+$("mLen7").onclick=function(){ setMode("short"); };
+$("mLen15").onclick=function(){ setMode("full"); };
+$("welcomeGo").onclick=function(){ prefs.seen=true; savePrefs(); renderHome(); };
+$("nameInput").addEventListener("input", function(e){
+  state.config.name = e.target.value.replace(/[<>]/g,"").slice(0,24);
+  persist();
+});
+$("openHelp").onclick=function(){ prefs.seen=false; savePrefs(); renderHome(); window.scrollTo(0,0); };
+$("startBtn").onclick=function(){
+  chime("step");
+  var d=today();
+  startSession(d.done.length<BLOCK_COUNT && d.step>0);
+};
+$("pExit").onclick=exitSession;
+$("pNext").onclick=function(){ next(); };
+$("pBack").onclick=function(){ clearInterval(tick); goto(idx-1); };
+$("pPause").onclick=function(){
+  paused=!paused;
+  $("pPause").textContent = paused?"Resume":"Pause";
+  $("ring").classList.toggle("paused",paused);
+  if(paused) hush();
+};
+$("dHome").onclick=function(){ show("home"); renderHome(); };
+$("dNote").addEventListener("input",function(e){ today().note=e.target.value; persist(); });
+$("tVoice").onchange=function(e){ prefs.voice=e.target.checked; savePrefs(); if(!prefs.voice) hush(); };
+$("tSound").onchange=function(e){ prefs.sound=e.target.checked; savePrefs(); if(prefs.sound) chime("step"); };
+$("tAuto").onchange=function(e){ prefs.auto=e.target.checked; savePrefs(); };
+$("openRef").onclick=function(){ openRef("Why this works", REF_WHY + '<div class="sec-h" style="margin-top:34px"><p class="eyebrow">Every morning, in this order</p><h2>The sequence</h2></div>' + REF_SEQ); };
+$("openReset").onclick=function(){ openRef("Extras", REF_EXTRAS); };
+$("openWords").onclick=function(){ openRef("My scan list", refWords()); };
+$("refClose").onclick=closeRef;
+
+document.addEventListener("keydown",function(e){
+  if(!$("ref").hidden){ if(e.key==="Escape") closeRef(); return; }
+  if($("player").hidden) return;
+  if(e.key===" "){ e.preventDefault(); $("pPause").click(); }
+  else if(e.key==="ArrowRight"){ e.preventDefault(); next(); }
+  else if(e.key==="ArrowLeft"){ e.preventDefault(); $("pBack").click(); }
+  else if(e.key==="Escape"){ exitSession(); }
+});
+
+/* db capability: syncs the log across devices. Absent = this browser only. */
+(function(){
+  if(typeof window.claude==="undefined"||!window.claude||typeof window.claude.use!=="function") return;
+  window.claude.use("db").then(function(x){
+    if(!x) return; db=x;
+    return Promise.all([
+      db.doc("meta/config").get().catch(function(){return null;}),
+      db.collection("log").orderBy("date","desc").limit(200).get().catch(function(){return null;})
+    ]).then(function(res){
+      var cfg=res[0], logs=res[1];
+      if(cfg&&cfg.exists){ var c=cfg.data();
+        if(c.start) state.config.start=c.start;
+        if(c.words!==undefined&&c.words!==null) state.config.words=c.words;
+        if(c.name!==undefined&&c.name!==null) state.config.name=c.name; }
+      if(logs&&logs.docs) logs.docs.forEach(function(s){
+        var v=s.data(); if(!v||!v.date) return;
+        var l=state.days[v.date];
+        if(!l||(v.done||[]).length>=(l.done||[]).length)
+          state.days[v.date]={done:v.done||[],complete:!!v.complete,rating:v.rating||0,note:v.note||"",step:v.step||0};
+      });
+      saveLocal();
+      if(!$("home").hidden) renderHome();
+    });
+  }).catch(function(){});
+})();
+
+/* new day while the tab is open */
+var shownDay=dkey();
+setInterval(function(){ var k=dkey(); if(k!==shownDay){ shownDay=k; if(!$("home").hidden) renderHome(); } },30000);
+
+})();
+</script>
+
+<script>
+if("serviceWorker" in navigator){ addEventListener("load", function(){ navigator.serviceWorker.register("sw.js").catch(function(){}); }); }
+</script>
+</body>
+</html>
