@@ -1,87 +1,55 @@
 # Voice On
 
-A guided 12-minute daily practice for speech fluency. One exercise at a time,
-timed, auto-advancing, with visual demonstrations of the physical targets and
-fresh reading material every day.
+A free daily speech warm-up with 6, 8, and 12 minutes of active practice. Static HTML, CSS and JavaScript; no build step or runtime dependencies.
 
-Built for adults who stutter, and useful to anyone who wants steadier speech
-before interviews, presentations or calls.
+## Experience
 
-Static site. No build step, no dependencies, no backend, no analytics.
-`index.html` is the whole app.
+Start without signing up. Choose a duration and a real-life context (everyday life, meeting, presentation). Seven guided steps move from a starting sentence through breathing, articulation, phrases, reading and unscripted speaking, then repeat the starting sentence. Reflection is self-reported; the app does not record or score speech or promise instant results.
 
-## Using it
+Each timer starts only when the user is ready. Reading instructions and breaks add to the selected practice time. Users may finish a step early, pause, return to the previous step, or save and exit. Backgrounding the app pauses it. Spoken cues use the browser's speech synthesis when available.
 
-Press start. It walks you through fifteen steps and moves on by itself.
+## Run locally
 
-Every step shows **a count and a timer**: the count is the target, the timer is
-how long you have. Finish early and start again until the timer runs out.
-
-Turn on **spoken guidance** to have each step read aloud, which matters because
-most of these are mouth exercises you should not be squinting at a screen to do.
-The screen stays awake for the whole session.
-
-Optionally enter a first name. Your own name is the single most commonly feared
-word for people who stutter, so several drills use it.
-
-## The session
-
-Two lengths, same targets. **Eight minutes is the default.**
-
-**The prime — 7 compound steps, 8 min.** Each step stacks things the long
-version trains separately, and the last one is a sentence you are about to say
-for real.
-
-| # | Step | Time |
-|---|------|------|
-| 1 | Breathe, then sound — breath support and gentle onset together | 60s |
-| 2 | Glide on a trill — lips, jaw, breath and continuous voicing at once | 45s |
-| 3 | Onset ladder — 20 phrases, exaggerated then normal | 75s |
-| 4 | Read it three ways — one text: linked, then light, then normal | 120s |
-| 5 | Carry it into real speech — escalates one rung per week | 90s |
-| 6 | Feared words, then voluntary stuttering | 60s |
-| 7 | One real sentence you will actually say today | 30s |
-
-**The full session — 15 steps, 12 min.** Isolates each target before combining
-them: breath, articulators, then gentle onset / continuous phonation / light
-contact one at a time, then a blend step, then load and anticipation work. The
-better way in if any of it is still unfamiliar.
-
-Step 5 is the only thing that changes over time, one rung per week: read aloud →
-read and retell → cold monologue → monologue under pressure → real stakes.
-Priming without escalating load never reaches the afternoon.
-
-Reading passages, phrase sets and monologue prompts are picked by a date seed,
-so the material is stable through the day and different tomorrow.
-
-## Data
-
-Everything is stored in `localStorage` in the browser: the practice log, the day
-ratings, the scan list, your name, the preferences. Nothing is sent anywhere,
-there is no account, and there is no tracking of any kind. Clearing site data
-clears the log.
-
-## Local
-
-```
-python3 -m http.server 8000
+```sh
+python3 -m http.server 8765
 ```
 
-Then open <http://localhost:8000>. A plain `file://` open works too, but the
-service worker and the installable-app behaviour need to be served over http.
+Open http://localhost:8765. Serve over HTTPS in production for the installable app, clipboard, sharing and screen wake lock capabilities. These features have fallbacks.
 
-## Deploying
+## Files and compatibility
 
-Any static host. Point it at this directory, no build command, no output
-directory. On Vercel or Netlify, importing the repo and hitting deploy is the
-whole setup.
+- `index.html`: landing page and session screens
+- `styles.css`: responsive layout, accessible focus states and reduced-motion support
+- `app.js`: session engine, prompts, persistence and reflection
+- `fluency.html`: preserved original fluency routine
+- `sw.js`: versioned offline shell and network-first updates
 
-After a deploy, bump `CACHE` in `sw.js` so returning visitors pick up the new
-version instead of the cached one.
+New practice data uses `voiceOn.clarity.v1` in localStorage. Existing `voiceOn.v1` history and preferences remain untouched; completed legacy days are included in the new seven-day history display. An in-progress new session retains its original date, prompts, context, duration and remaining time, even if home preferences change. Completing a session credits its completion date.
 
-## Not medical advice
+No microphone, account, analytics, or backend. Google Fonts are optional; local font fallbacks keep the app functional offline. Speech synthesis availability depends on the device. Browser storage restrictions can prevent persistent progress.
 
-A structured practice plan built on the standard adult-stuttering evidence base:
-speech restructuring (Camperdown, smooth speech), Van Riper block modification,
-and the fluency-inducing-conditions literature. It is not a clinical assessment
-and it is not a substitute for a speech and language therapist.
+## Deployment
+
+Keep the existing Vercel static-site settings: no framework, build command, or output directory. Deploy the repository root. Increment the cache version in `sw.js` when updating the shell. Test a returning visitor as well as a fresh browser after deployment.
+
+The original specialist routine is preserved for continuity. It has not been clinically reviewed as part of this interface redesign.
+
+## Daily habit features
+
+A three-, five-, or seven-day goal measures the last seven local calendar days. Current streaks include yesterday until today's practice is complete; best streaks include preserved legacy history. Repeat sessions on one date never add streak days. A daily calendar reminder downloads as an `.ics` file with local floating time; the user must import it and can edit or remove it in their calendar. Completion previews the next day's reading passage.
+
+Progress saves automatically without sign-in on the same browser. Clearing site data removes progress. There is no cross-device sync or server-sent reminder.
+
+## Analytics setup
+
+`analytics.js` loads Vercel Web Analytics only on HTTPS public hosts, respecting Do Not Track and Global Privacy Control. It strips query strings and URL fragments before events are sent. Analytics endpoints bypass the offline service-worker cache. Local previews do not load the analytics script.
+
+In Vercel, open this project → Analytics → Enable, then deploy. Pageviews and traffic insights become available once the production script is active. This dashboard step requires project access and has not been performed in the local build.
+
+Detailed events are prepared but disabled by default because Vercel custom events require Pro or Enterprise. If your plan supports them, set `customEvents = true` in `analytics.js`, then deploy. Do not upgrade your plan just to launch this version.
+
+Prepared event names: `session_start`, `session_resume`, `exercise_complete`, `session_exit`, `session_complete`, `share_click`, `reminder_download`, `weekly_goal_change`. Properties are restricted to numeric duration, step, elapsed seconds, goal, and a boolean for finishing an exercise early. No intent, names, prompts, voice, or reflection is sent. A `voice:analytics` CustomEvent exposes the same sanitized payload for automated tests or a future analytics adapter.
+
+Use traffic → session starts → completions to assess the conversion funnel once custom events are enabled. Compare drop-off by exercise number and completion by selected duration. Button completion is self-reported, not proof of speech quality; tab closures are not guaranteed to emit an exit event.
+
+References: https://vercel.com/docs/analytics/quickstart and https://vercel.com/docs/analytics/custom-events

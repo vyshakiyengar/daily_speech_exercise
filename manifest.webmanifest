@@ -1,17 +1,14 @@
 {
-  "name": "Voice On — daily speech fluency practice",
+  "name": "Voice On — Daily speech warm-up",
   "short_name": "Voice On",
-  "description": "A guided 12-minute daily speech fluency practice.",
+  "description": "A free 6–12 minute guided speech warm-up. Your voice, your pace.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "orientation": "portrait",
-  "background_color": "#F6F8F7",
-  "theme_color": "#0E5F52",
+  "background_color": "#f8f5ed",
+  "theme_color": "#f8f5ed",
   "icons": [
-    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" },
-    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"}
   ]
 }

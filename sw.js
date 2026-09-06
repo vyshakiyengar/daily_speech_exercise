@@ -1,48 +1,18 @@
-/* Voice On — offline shell. Bump CACHE on each deploy. */
-var CACHE = "voice-on-v5";
-var SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
-
-self.addEventListener("install", function (e) {
-  self.skipWaiting();
-  e.waitUntil(caches.open(CACHE).then(function (c) { return c.addAll(SHELL); }).catch(function () {}));
+/* Voice On — versioned offline shell. Only remove this app's own caches. */
+const CACHE = 'voice-on-v6';
+const SHELL = ['./', './index.html', './app.js', './analytics.js', './styles.css', './fluency.html', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png'];
+self.addEventListener('install', event => {
+  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
 });
-
-self.addEventListener("activate", function (e) {
-  e.waitUntil(
-    caches.keys().then(function (keys) {
-      return Promise.all(keys.filter(function (k) { return k !== CACHE; }).map(function (k) { return caches.delete(k); }));
-    }).then(function () { return self.clients.claim(); })
-  );
+self.addEventListener('activate', event => {
+  event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('voice-on-') && key !== CACHE).map(key => caches.delete(key)))).then(() => self.clients.claim()));
 });
-
-self.addEventListener("fetch", function (e) {
-  var req = e.request;
-  if (req.method !== "GET") return;
-
-  // App shell: network first so a new deploy lands, cache as the offline fallback.
-  if (req.mode === "navigate") {
-    e.respondWith(
-      fetch(req).then(function (res) {
-        var copy = res.clone();
-        caches.open(CACHE).then(function (c) { c.put("./index.html", copy); });
-        return res;
-      }).catch(function () {
-        return caches.match("./index.html").then(function (r) { return r || Response.error(); });
-      })
-    );
-    return;
-  }
-
-  // Everything else (fonts included): cache first, fill in behind.
-  e.respondWith(
-    caches.match(req).then(function (hit) {
-      return hit || fetch(req).then(function (res) {
-        if (res && res.status === 200) {
-          var copy = res.clone();
-          caches.open(CACHE).then(function (c) { c.put(req, copy); });
-        }
-        return res;
-      }).catch(function () { return hit; });
-    })
-  );
+self.addEventListener('fetch', event => {
+  const request = event.request;
+  if(new URL(request.url).pathname.startsWith('/_vercel/')) return;
+  if(request.method !== 'GET' || new URL(request.url).origin !== self.location.origin) return;
+  event.respondWith(fetch(request).then(response => {
+    if(response.ok){const copy=response.clone();event.waitUntil(caches.open(CACHE).then(cache=>cache.put(request,copy)));}
+    return response;
+  }).catch(async () => (await caches.match(request)) || (request.mode==='navigate' && new URL(request.url).pathname.endsWith('/') ? await caches.match('./index.html') : null) || Response.error()));
 });
