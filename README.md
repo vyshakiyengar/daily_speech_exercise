@@ -4,7 +4,7 @@ A free daily speech warm-up with 5, 8, and 12 minutes of active practice. Static
 
 ## Experience
 
-Start without signing up. Choose a duration and a real-life context (everyday life, meeting, presentation). Seven guided steps move from a starting sentence through breathing, articulation, phrases, reading and unscripted speaking, then repeat the starting sentence. Reflection is self-reported; the app does not record or score speech or promise instant results.
+Start without signing up. Choose a duration and a real-life context (everyday life, meeting, presentation). Seven guided steps move from a starting sentence through breathing, articulation, phrases, word emphasis and unscripted speaking, then repeat the starting sentence. Reflection is self-reported; the app does not record or score speech or promise instant results.
 
 Each timer starts only when the user is ready. Reading instructions and breaks add to the selected practice time. Users may move to the next step at any time, pause, return to the previous step, or save and exit. Backgrounding the app pauses it. Spoken cues use the browser's speech synthesis when available.
 
@@ -21,10 +21,10 @@ Open http://localhost:8765. Serve over HTTPS in production for the installable a
 - `index.html`: landing page and session screens
 - `styles.css`: responsive layout, accessible focus states and reduced-motion support
 - `app.js`: session engine, prompts, persistence and reflection
-- `fluency.html`: preserved original fluency routine
+- `fluency.html`: redirects old links to the current routine; original source remains in Git history
 - `sw.js`: versioned offline shell and network-first updates
 
-New practice data uses `voiceOn.clarity.v1` in localStorage. Existing `voiceOn.v1` history and preferences remain untouched; completed legacy days are included in the new seven-day history display. An in-progress new session retains its original date, prompts, context, duration and remaining time, even if home preferences change. Completing a session credits its completion date.
+New practice data uses `voiceOn.clarity.v1` in localStorage. Existing `voiceOn.v1` history and preferences remain untouched; completed legacy days are included in the new seven-day history display. An in-progress new session retains its original date, prompts, context, duration and remaining time, even if home preferences change. Confirming practice credits the confirmation date; running a timer alone never credits a day.
 
 No microphone, account, analytics, or backend. Google Fonts are optional; local font fallbacks keep the app functional offline. Speech synthesis availability depends on the device. Browser storage restrictions can prevent persistent progress.
 
@@ -61,11 +61,11 @@ The app uses a blue palette, larger touch targets, sticky exercise controls, and
 
 Browsing exercises alone does not earn a practice day. Users who practice without a timer can explicitly save their practice at the end. Exercise skip, session browse, and untimed practice confirmation have separate analytics event hooks. These event hooks remain disabled for Vercel Hobby.
 
-The articulation and reading drills use deliberately exaggerated speech followed by natural speech, with comfortable effort and explicit repetitions. The About dialog links ASHA and NIDCD sources and distinguishes clinical techniques from validation of this particular routine. The 5–12 minute program is not clinically validated and is not a muscle-strengthening or stuttering treatment.
+The sound and phrase drills use deliberate speech, with phrases then repeated naturally, with comfortable effort and explicit repetitions. The About dialog links ASHA and NIDCD sources and distinguishes clinical techniques from validation of this particular routine. The 5–12 minute program is not clinically validated and is not a muscle-strengthening or stuttering treatment.
 
 ## Screen-fitting exercise player
 
-The active player occupies the viewport using dynamic viewport height. Exercise content and controls have separate grid rows; the controls never cover the text. All phrases and the full reading passage appear together, without a second level of navigation. Tips open in a dialog and pause a running timer.
+The active player occupies the viewport using dynamic viewport height. Exercise content and controls have separate grid rows; the controls never cover the text. All phrases and emphasis examples appear together, without a second level of navigation. Tips open in a dialog and pause a running timer.
 
 Verified all seven exercises with all content visible at 1440×900, 1280×640, 390×844, 320×568, and 844×390: no content overflow, out-of-viewport controls, or overlapping material/actions. The landing page and long reference dialogs retain their natural scrolling.
 
@@ -74,7 +74,7 @@ Verified all seven exercises with all content visible at 1440×900, 1280×640, 3
 
 The landing page now leads with three benefits (Clarity, Articulation, Fluency), one sentence, and a large GO button. A five-minute meeting routine is selected for new visitors; longer durations and contexts sit under Change time or occasion. Habits and reminders live in My progress & reminders instead of competing with the start action. No entrance animation delays the main content.
 
-Every exercise uses a short topic heading and one sentence combining the action and its purpose, with Next exercise as the primary action and the timer secondary. Redundant phase labels, timer hints, upcoming-step text, and footer encouragement are hidden. The left journey panel includes navigation completion percentage, also shown in the mobile header. A short illustrative lip animation demonstrates rounded oo and spread ee on the articulation step; it stops after four seconds and respects reduced motion. Phrase sets rotate by date; the same opening and closing sentence is intentionally retained for comparison. Completion uses one short check-in and a prominent Done action.
+Every exercise uses a short topic heading and one sentence combining the action and its purpose, with Next exercise as the primary action and the timer secondary. Redundant phase labels, timer hints, upcoming-step text, and footer encouragement are hidden. The left journey panel includes navigation completion percentage, also shown in the mobile header. A short illustrative lip animation demonstrates rounded oo and spread ee on the articulation step; it stops after four seconds and respects reduced motion. Phrase and emphasis sets rotate by date; the same opening and closing sentence is intentionally retained for comparison. Completion uses one short check-in and a prominent Done action.
 
 The new routine contains 300 seconds of optional exercise timers. Reading, pauses, and manual transitions can add time; it is not a guaranteed five-minute wall-clock session. Saved six-minute sessions still resume; new selections offer 5/8/12 minutes.
 

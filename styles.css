@@ -238,3 +238,14 @@ footer p{font-size:10px}
  #player .mouth-demo{height:48px}
  #player .mouth-demo svg{height:44px}
 }
+
+/* Emphasis is a distinct speech task, without extra instructions or controls. */
+#player .all-phrases strong{color:var(--accent);font-weight:800;text-decoration:underline;text-underline-offset:5px}
+#done #save-untimed{margin:14px 0 0;min-height:48px}
+@media(max-width:360px){#player .player-top{font-size:9px;gap:6px}#player .player-top button{font-size:10px;padding:6px 2px}#player #next{white-space:nowrap}#player .exercise-controls{gap:5px}#player .exercise-controls #next{font-size:12px;padding:10px 8px}}
+/* Keep enlarged text reachable when accessibility settings exceed the fitted layout. */
+@media(max-height:320px){#player{position:relative;height:auto;min-height:100dvh}#player .exercise-layout{display:block}#player .exercise{display:flex;flex-direction:column}#player .material{min-height:180px}body.practicing{overflow:auto}}
+
+/* Announce timer state without restoring visible instruction clutter. */
+#player #timer-state{display:block;position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#player .all-phrases li{display:block}
