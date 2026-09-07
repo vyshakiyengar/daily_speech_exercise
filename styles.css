@@ -158,6 +158,10 @@ body.practicing>.site-header{display:none}
 #done .done-actions .quiet{min-height:44px}
 footer{font-size:10px}
 footer p{font-size:10px}
+.credit{font-size:10px;color:var(--muted)}
+.credit a{text-decoration:underline}
+footer .credit{flex:1}
+#player .credit{text-align:center;margin-top:10px}
 @media(max-width:760px){
  #home{grid-template-columns:minmax(0,1fr);padding:26px 22px 18px;gap:23px;min-height:0;max-width:520px}
  #home .hero-copy h1{font-size:48px;margin:14px 0 10px;line-height:1.03}
