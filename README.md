@@ -62,3 +62,9 @@ The app uses a blue palette, larger touch targets, sticky exercise controls, and
 Browsing exercises alone does not earn a practice day. Users who practice without a timer can explicitly save their practice at the end. Exercise skip, session browse, and untimed practice confirmation have separate analytics event hooks. These event hooks remain disabled for Vercel Hobby.
 
 The articulation and reading drills use deliberately exaggerated speech followed by natural speech, with comfortable effort and explicit repetitions. The About dialog links ASHA and NIDCD sources and distinguishes clinical techniques from validation of this particular routine. The 6–12 minute program is not clinically validated and is not a muscle-strengthening or stuttering treatment.
+
+## Screen-fitting exercise player
+
+The active player occupies the viewport using dynamic viewport height. Exercise content and controls have separate grid rows; the controls never cover the text. Lists are phrase cards and reading passages are sentence cards with previous/next/repeat navigation. Card position saves with the session. Tips open in a dialog and pause a running timer.
+
+Verified all seven exercises and every card at 1440×900, 1280×640, 390×844, 320×568, and 844×390: no content overflow, out-of-viewport controls, or overlapping material/actions. The landing page and long reference dialogs retain their natural scrolling.

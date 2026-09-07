@@ -48,3 +48,74 @@ button:disabled:hover{background:transparent}
  #next{min-width:60px}
 }
 #save-untimed{margin-top:20px}
+/* Viewport-sized player: content and controls occupy separate rows, never overlap. */
+body.practicing{overflow:hidden}
+body.practicing>.site-header{display:none}
+#player{position:fixed;inset:0;z-index:20;width:100%;height:100dvh;max-width:none;margin:0;padding:12px max(20px,calc((100vw - 1200px)/2)) max(12px,env(safe-area-inset-bottom));background:var(--paper);display:grid;grid-template-rows:44px 5px minmax(0,1fr);gap:12px}
+#player .player-top{flex-wrap:nowrap;gap:8px}
+#player .progress{margin:0}
+#player .exercise-layout{min-height:0;grid-template-columns:200px minmax(0,1fr);gap:40px;padding-top:8px}
+#player .exercise-layout aside{padding-top:8px}
+#player .exercise{min-height:0;min-width:0;display:grid;grid-template-rows:auto auto auto minmax(0,1fr) auto;gap:12px}
+.exercise-heading{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#player .exercise-heading button{min-height:32px;padding:4px 0;font-size:12px}
+#player .exercise h2{font-size:clamp(26px,4vh,40px);margin:0;line-height:1.12}
+#player .exercise>#instruction{font-size:16px;line-height:1.5;max-width:70ch}
+#material{min-height:0;min-width:0;display:flex}
+#player .material{width:100%;min-height:0;margin:0;padding:20px 24px;display:grid;grid-template-rows:auto minmax(0,1fr);gap:12px;text-align:center}
+#player .material:has(.card-nav){grid-template-rows:auto minmax(0,1fr) 44px}
+#player .material .eyebrow{margin:0;font-size:10px}
+#player .material blockquote{align-self:center;font-size:clamp(22px,3.5vh,36px);line-height:1.35;max-width:38ch;justify-self:center}
+.card-nav{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card-nav button{font-size:12px;padding:8px 12px;min-width:44px}
+.card-nav span{font-size:11px;color:var(--muted)}
+#player .player-actions{position:static;padding:0;box-shadow:none}
+#player .player-actions .timer-panel{margin:0;padding:10px 0;gap:16px}
+#player .timer{font-size:30px;min-width:80px}
+#player .exercise-controls .primary{padding:10px 16px;max-width:none}
+#player .exercise-controls button{min-height:44px}
+#player .control-hint{margin:5px 0 0;font-size:11px}
+#player .keyboard{display:none}
+#player .breathing{height:100%;width:100%;margin:0}
+@media(max-width:800px){
+ #player{padding:10px 16px max(10px,env(safe-area-inset-bottom));gap:8px}
+ #player .exercise-layout{display:block;padding:0}
+ #player .exercise-layout aside{display:none}
+ #player .exercise{height:100%;gap:9px}
+ #player .exercise h2{font-size:28px}
+ #player .exercise>#instruction{font-size:15px;line-height:1.4}
+ #player .material{padding:14px;gap:8px}
+ #player .material blockquote{font-size:clamp(20px,3vh,28px)}
+ #player .material .eyebrow{font-size:8px}
+ #player .player-top{font-size:10px}
+ #player .player-top button{font-size:11px}
+ #player .timer-panel p{font-size:11px}
+ #player #next-up{display:none}
+ #player .control-hint{font-size:10px}
+}
+@media(max-height:650px){
+ #player{gap:6px;padding-top:6px;padding-bottom:6px}
+ #player .exercise{gap:6px}
+ #player .exercise h2{font-size:25px}
+ #player .exercise>#instruction{font-size:14px;line-height:1.35}
+ #player .material{padding:10px 12px;gap:6px}
+ #player .material blockquote{font-size:21px}
+ #player .player-actions .timer-panel{padding:6px 0}
+ #player .control-hint{display:none}
+ #player .breath-circle{width:65px;height:65px;box-shadow:0 0 0 12px #dce9fc,0 0 0 24px #eaf2fd}
+}
+@media(max-height:450px) and (min-width:600px){
+ #player .exercise-layout{display:block;padding:0}
+ #player .exercise-layout aside{display:none}
+ #player .exercise{height:100%;grid-template-columns:1fr 1fr;grid-template-rows:auto auto minmax(0,1fr) auto;column-gap:24px}
+ #player .exercise-heading{grid-column:1;grid-row:1}
+ #player .exercise h2{grid-column:1;grid-row:2}
+ #player #instruction{grid-column:1;grid-row:3;font-size:13px}
+ #player #material{grid-column:2;grid-row:1/4}
+ #player .player-actions{grid-column:1/-1;grid-row:4;display:flex;align-items:center;gap:20px}
+ #player .player-actions .timer-panel{border:0;flex:1}
+ #player .exercise-controls{flex:1}
+ #player #timer-state{font-size:10px}
+ #player #next-up{display:none}
+}
+#player .exercise h2{line-height:1.25}
