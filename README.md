@@ -1,4 +1,4 @@
-# Voice On
+# Speech On
 
 A free daily speech warm-up with 5, 8, and 12 minutes of active practice. Static HTML, CSS and JavaScript; no build step or runtime dependencies.
 
