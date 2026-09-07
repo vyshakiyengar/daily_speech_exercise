@@ -119,3 +119,80 @@ body.practicing>.site-header{display:none}
  #player #next-up{display:none}
 }
 #player .exercise h2{line-height:1.25}
+/* Five-second entry: three benefits, one dominant action, optional settings. */
+#home{max-width:1080px;margin:0 auto;padding:64px 28px 38px;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:34px 65px;align-items:center;min-height:min(710px,calc(100dvh - 170px))}
+#home .hero-copy h1{font-size:clamp(54px,6.1vw,82px);line-height:1.06;letter-spacing:-.065em;margin:22px 0}
+#home .hero-copy .intro{font-size:17px;max-width:30ch;line-height:1.5}
+#home .practice-card{padding:0;border:0;background:none;box-shadow:none;width:100%}
+#home #start-heading{font-size:10px}
+#home #start{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:7px;padding:30px 32px;margin:16px 0 0;border-radius:22px;min-height:178px;text-align:left;box-shadow:0 12px 30px #2457a620}
+#home #start strong{font:800 64px/1 var(--display);letter-spacing:-.05em}
+#home #start span{font-size:15px}
+#home .no-friction{text-align:left;font-size:12px;margin:15px 0}
+#session-options{border-top:1px solid var(--line);margin-top:18px;padding-top:8px}
+#session-options summary{cursor:pointer;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:12px}
+#session-options summary::after{content:'+';margin-left:auto}
+#session-options[open] summary::after{content:'−'}
+#session-options fieldset{margin-top:16px}
+#session-options .gentle-note{margin-top:12px}
+.home-bottom{grid-column:1/-1;border-top:1px solid var(--line);padding-top:18px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--muted);font-size:12px}
+.home-bottom .quiet{white-space:nowrap}
+#habits{max-width:690px}
+#habits .habit{display:flex;flex-direction:column;align-items:stretch;padding:18px}
+#habits .week{justify-content:space-between}
+#habits .habit-tools{margin-top:16px;gap:12px;padding:18px}
+#habits .habit h3{font-size:18px}
+#player .exercise-controls #play:not(.primary){flex:0 1 auto;padding:8px 12px}
+#player .exercise-controls #next{flex:1;padding:10px 14px;font-size:14px}
+#done{max-width:640px;margin:24px auto 35px}
+#done .completion-mark{font-size:36px;margin:0 0 6px}
+#done h1{font-size:48px;margin:12px 0}
+#done #done-summary{font-size:14px;max-width:42ch;margin:auto}
+#done .reflection{margin:18px 0;padding:18px}
+#done .reflection h2{font-size:19px}
+#done .feeling{margin:14px 0 8px}
+#done .reflection p{font-size:12px}
+#done .takeaway-line{font-size:15px;margin:18px 0}
+#done .done-actions{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}
+#done #home-button{grid-column:1/-1;min-height:48px;font-size:16px}
+#done .done-actions .quiet{min-height:44px}
+footer{font-size:10px}
+footer p{font-size:10px}
+@media(max-width:760px){
+ #home{grid-template-columns:minmax(0,1fr);padding:26px 22px 18px;gap:23px;min-height:0;max-width:520px}
+ #home .hero-copy h1{font-size:48px;margin:14px 0 10px;line-height:1.03}
+ #home .hero-copy .eyebrow{font-size:8px}
+ #home .hero-copy .intro{font-size:14px;max-width:32ch}
+ #home #start-heading{font-size:9px}
+ #home #start{min-height:112px;padding:20px 24px;margin-top:9px;border-radius:16px}
+ #home #start strong{font-size:44px}
+ #home #start span{font-size:14px}
+ #home .no-friction{font-size:11px;margin:11px 0}
+ #session-options{margin-top:10px;padding-top:4px}
+ .home-bottom{flex-direction:column;align-items:flex-start;padding-top:12px;gap:1px;font-size:11px}
+ #habits .habit-tools{grid-template-columns:1fr}
+ #done{margin:18px auto;padding:0 20px}
+ #done h1{font-size:36px;margin:8px 0}
+ #done .completion-mark{font-size:28px}
+ #done .reflection{padding:13px;margin:13px 0}
+ #done .takeaway-line{font-size:13px;margin:13px 0}
+ #done .reflection h2{font-size:17px}
+ #done .feeling button{min-height:44px}
+ footer{gap:12px;padding-top:15px;padding-bottom:15px}
+ footer .footer-brand,footer p{display:none}
+}
+@media(max-width:360px),(max-height:650px) and (max-width:760px){
+ #home{padding-top:18px;gap:18px}
+ #home .hero-copy h1{font-size:40px}
+ #home .hero-copy .intro{font-size:13px}
+ #home #start{min-height:100px}
+ #home #start strong{font-size:38px}
+ #home #start span{font-size:12px}
+ #done .reflection p{font-size:11px}
+ #done .done-actions{gap:0 10px}
+}
+#player .control-hint{display:block;font-size:11px;color:var(--accent);margin-top:5px}
+@media(max-height:650px){#player .control-hint{font-size:10px;margin-top:3px}}
+@media(max-height:450px) and (min-width:600px){#player .control-hint{max-width:130px;margin:0;font-size:10px}}
+/* The first action is visible immediately; no entrance animation delays it. */
+#home .hero-copy,#home .practice-card{animation:none}

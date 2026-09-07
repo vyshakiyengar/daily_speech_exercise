@@ -1,6 +1,6 @@
 # Voice On
 
-A free daily speech warm-up with 6, 8, and 12 minutes of active practice. Static HTML, CSS and JavaScript; no build step or runtime dependencies.
+A free daily speech warm-up with 5, 8, and 12 minutes of active practice. Static HTML, CSS and JavaScript; no build step or runtime dependencies.
 
 ## Experience
 
@@ -61,10 +61,21 @@ The app uses a blue palette, larger touch targets, sticky exercise controls, and
 
 Browsing exercises alone does not earn a practice day. Users who practice without a timer can explicitly save their practice at the end. Exercise skip, session browse, and untimed practice confirmation have separate analytics event hooks. These event hooks remain disabled for Vercel Hobby.
 
-The articulation and reading drills use deliberately exaggerated speech followed by natural speech, with comfortable effort and explicit repetitions. The About dialog links ASHA and NIDCD sources and distinguishes clinical techniques from validation of this particular routine. The 6–12 minute program is not clinically validated and is not a muscle-strengthening or stuttering treatment.
+The articulation and reading drills use deliberately exaggerated speech followed by natural speech, with comfortable effort and explicit repetitions. The About dialog links ASHA and NIDCD sources and distinguishes clinical techniques from validation of this particular routine. The 5–12 minute program is not clinically validated and is not a muscle-strengthening or stuttering treatment.
 
 ## Screen-fitting exercise player
 
 The active player occupies the viewport using dynamic viewport height. Exercise content and controls have separate grid rows; the controls never cover the text. Lists are phrase cards and reading passages are sentence cards with previous/next/repeat navigation. Card position saves with the session. Tips open in a dialog and pause a running timer.
 
 Verified all seven exercises and every card at 1440×900, 1280×640, 390×844, 320×568, and 844×390: no content overflow, out-of-viewport controls, or overlapping material/actions. The landing page and long reference dialogs retain their natural scrolling.
+
+
+## Five-second UX audit
+
+The landing page now leads with three benefits (Clarity, Articulation, Confidence), one sentence, and a large GO button. A five-minute meeting routine is selected for new visitors; longer durations and contexts sit under Change time or occasion. Habits and reminders live in My progress & reminders instead of competing with the start action. No entrance animation delays the main content.
+
+Every exercise uses an imperative heading and a short instruction, with Next exercise as the primary action and the optional timer secondary. A short purpose line explains the progression from breath to sounds, phrases, reading, unscripted speech, and comparison. Phrase sets rotate by date; the same opening and closing sentence is intentionally retained for comparison. Completion uses one short check-in and a prominent Done action.
+
+The new routine contains 300 seconds of optional exercise timers. Reading, pauses, and manual transitions can add time; it is not a guaranteed five-minute wall-clock session. Saved six-minute sessions still resume; new selections offer 5/8/12 minutes.
+
+Checked GO and Done visibility above the fold on desktop, 390px phones, and 320px phones, along with preserved habits, reminders, duration selection, and resume. These are heuristic and functional checks, not a measured study of first-time users.
