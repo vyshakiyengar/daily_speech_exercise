@@ -196,3 +196,45 @@ footer p{font-size:10px}
 @media(max-height:450px) and (min-width:600px){#player .control-hint{max-width:130px;margin:0;font-size:10px}}
 /* The first action is visible immediately; no entrance animation delays it. */
 #home .hero-copy,#home .practice-card{animation:none}
+
+/* One instruction, one exercise, one next action. */
+#player #phase,#player #next-up,#player #timer-state,#player .control-hint,#player .keyboard{display:none}
+#player .exercise{grid-template-rows:auto auto auto minmax(0,1fr) auto;gap:10px}
+#player .exercise-heading{justify-content:flex-end}
+#player .exercise h2{font-size:clamp(24px,3.8vh,38px);margin:0}
+#player #instruction{font-size:clamp(14px,2.2vh,19px);line-height:1.4;max-width:70ch}
+#player #session-percent{position:static;font-size:24px;font-weight:700;color:var(--accent);margin:12px 0 20px}
+#player .material{display:flex;flex-direction:column;justify-content:center;align-items:stretch;gap:12px;padding:18px 26px;overflow:visible}
+#player .all-phrases{list-style:none;padding:0;margin:0;display:grid;gap:12px;text-align:left}
+#player .all-phrases li{font:500 clamp(18px,3vh,30px)/1.3 var(--ui);padding:0;margin:0;color:var(--ink)}
+#player .material blockquote{margin:0 auto;font-size:clamp(20px,3vh,30px)}
+#player .reading-material blockquote{font-size:clamp(16px,2.4vh,24px);line-height:1.5;text-align:left;max-width:55ch}
+#player .mouth-demo{height:76px;flex-shrink:0;display:flex;align-items:center;justify-content:center;gap:4px;color:var(--accent);font-size:18px}
+#player .mouth-demo svg{width:130px;height:65px}
+.mouth-shape{animation:lip-demo 2s ease-in-out 2;transform-box:fill-box;transform-origin:center}
+@keyframes lip-demo{0%,100%{transform:scale(1,1)}50%{transform:scale(2,.45)}}
+@media(prefers-reduced-motion:reduce){.mouth-shape{animation:none}}
+#player .player-actions{display:flex;align-items:center;gap:20px;border-top:1px solid var(--line);padding-top:10px}
+#player .player-actions .timer-panel{border:0;padding:0;flex:0 0 auto}
+#player .exercise-controls{flex:1}
+@media(max-width:600px){
+ #player .material{padding:14px 16px;gap:8px}
+ #player .all-phrases{gap:12px}
+ #player .all-phrases li{font-size:18px}
+ #player .player-actions{flex-wrap:wrap;gap:0;padding-top:5px}
+ #player .timer-panel{width:100%}
+ #player .timer{font-size:26px}
+ #player .exercise-controls{width:100%;flex-basis:100%}
+ #player .mouth-demo{height:55px}
+ #player .mouth-demo svg{height:50px}
+ #player .reading-material blockquote{font-size:16px;line-height:1.4}
+}
+@media(max-height:450px) and (min-width:600px){
+ #player .exercise{grid-template-rows:auto auto minmax(0,1fr) auto}
+ #player .all-phrases{gap:8px}
+ #player .all-phrases li{font-size:17px}
+ #player .material{padding:10px}
+ #player .reading-material blockquote{font-size:14px;line-height:1.35}
+ #player .mouth-demo{height:48px}
+ #player .mouth-demo svg{height:44px}
+}

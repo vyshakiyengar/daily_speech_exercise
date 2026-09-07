@@ -65,16 +65,16 @@ The articulation and reading drills use deliberately exaggerated speech followed
 
 ## Screen-fitting exercise player
 
-The active player occupies the viewport using dynamic viewport height. Exercise content and controls have separate grid rows; the controls never cover the text. Lists are phrase cards and reading passages are sentence cards with previous/next/repeat navigation. Card position saves with the session. Tips open in a dialog and pause a running timer.
+The active player occupies the viewport using dynamic viewport height. Exercise content and controls have separate grid rows; the controls never cover the text. All phrases and the full reading passage appear together, without a second level of navigation. Tips open in a dialog and pause a running timer.
 
-Verified all seven exercises and every card at 1440×900, 1280×640, 390×844, 320×568, and 844×390: no content overflow, out-of-viewport controls, or overlapping material/actions. The landing page and long reference dialogs retain their natural scrolling.
+Verified all seven exercises with all content visible at 1440×900, 1280×640, 390×844, 320×568, and 844×390: no content overflow, out-of-viewport controls, or overlapping material/actions. The landing page and long reference dialogs retain their natural scrolling.
 
 
 ## Five-second UX audit
 
 The landing page now leads with three benefits (Clarity, Articulation, Fluency), one sentence, and a large GO button. A five-minute meeting routine is selected for new visitors; longer durations and contexts sit under Change time or occasion. Habits and reminders live in My progress & reminders instead of competing with the start action. No entrance animation delays the main content.
 
-Every exercise uses an imperative heading and a short instruction, with Next exercise as the primary action and the optional timer secondary. A short purpose line explains the progression from breath to sounds, phrases, reading, unscripted speech, and comparison. Phrase sets rotate by date; the same opening and closing sentence is intentionally retained for comparison. Completion uses one short check-in and a prominent Done action.
+Every exercise uses a short topic heading and one sentence combining the action and its purpose, with Next exercise as the primary action and the timer secondary. Redundant phase labels, timer hints, upcoming-step text, and footer encouragement are hidden. The left journey panel includes navigation completion percentage, also shown in the mobile header. A short illustrative lip animation demonstrates rounded oo and spread ee on the articulation step; it stops after four seconds and respects reduced motion. Phrase sets rotate by date; the same opening and closing sentence is intentionally retained for comparison. Completion uses one short check-in and a prominent Done action.
 
 The new routine contains 300 seconds of optional exercise timers. Reading, pauses, and manual transitions can add time; it is not a guaranteed five-minute wall-clock session. Saved six-minute sessions still resume; new selections offer 5/8/12 minutes.
 

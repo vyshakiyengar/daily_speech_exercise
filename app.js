@@ -46,7 +46,17 @@ function steps(session) {
  {title:'Read. Pause. Repeat.',short:'Read with room',phase:'05 / FIND YOUR FLOW',instruction:'Read clearly. Pause at the full stop. Repeat the passage naturally.',label:'2 READS · EXAGGERATED → CONVERSATIONAL',quote:passages[daySeed(session.date)%passages.length],tip:'On the second read, imagine talking to one person. Keep only as much exaggeration as helps the words stay clear. Repeat the pair of reads if you have time.'},
  {title:'Say your own update.',short:'Try a real conversation',phase:'06 / TAKE IT WITH YOU',instruction:{everyday:'Say two sentences about your day. Pause between ideas.',meeting:'Say what happened and what comes next. Pause between ideas.',presentation:'Introduce your idea. Give one example. Say why it matters.'}[session.intent],label:'NO SCRIPT NEEDED',quote:{everyday:'“One thing I’m looking forward to is…”',meeting:'“The main update is…”',presentation:'“The idea I’d like to share is…”'}[session.intent],tip:'If you lose your place, pause and start with a simple sentence. It is fine to repeat an idea or use different words.'},
  {title:'Say it once more.',short:'Notice the difference',phase:'07 / CHECK OUT',instruction:'Repeat your first sentence. Notice your pace and effort.',label:'YOUR BEFORE & AFTER SENTENCE',quote:cue,tip:'This is your own impression, not a test or a clinical measurement. Some days feel different from others.'}
- ].map((step,i) => ({...step, seconds:durations[i], focus:focus[i]}));
+ ].map((step,i) => ({...step,
+ title:['Your starting point','Easy breathing','Lips & tongue','Clear phrases','Speaking rhythm','Your conversation','Your before & after'][i],
+ instruction:[
+ 'Read this aloud now, then again at the end to compare how clear and easy your speech feels.',
+ 'Breathe in for 4 counts and out for 8, comfortably, to settle your breathing before speaking.',
+ 'Repeat every line twice with bigger, comfortable lip and tongue movements to practice making distinct sounds.',
+ 'Say all four phrases twice with slightly exaggerated mouth movements to practice clear words in a sentence.',
+ 'Read this aloud twice, pausing at each full stop to practice a steady speaking pace.',
+ ({meeting:'Give a short meeting update',everyday:'Say two sentences about your day',presentation:'Introduce your idea and give an example'}[session.intent])+', pausing between ideas to practice clear speech in conversation.',
+ 'Read the same sentence again in your normal speaking style and notice any change in clarity or effort.'
+ ][i],seconds:durations[i], focus:focus[i]}));
 }
 function validSession(s) {return s && s.version===1 && [5,6,8,12].includes(s.minutes) && Object.hasOwn(choices,s.intent) && typeof s.date==='string' && Number.isInteger(s.index) && s.index>=0 && s.index<7 && Number.isFinite(s.remaining) && s.remaining>=0 && s.remaining<=180;}
 if (!validSession(state.session)) state.session = null;
@@ -90,7 +100,9 @@ async function hold() {if(!navigator.wakeLock || document.visibilityState!=='vis
 function release(){if(wakeLock){wakeLock.release().catch(()=>{});wakeLock=null;}}
 function renderStep() {
  stop(); const session=state.session, list=steps(session), step=list[session.index];
- $('step-count').textContent=`${session.index+1} of 7 · ${session.minutes} min practice`;
+ const percent=Math.round(session.index/7*100);
+ $('step-count').textContent=`${session.index+1} of 7 · ${percent}% complete`;
+ $('session-percent').textContent=`${percent}% complete`;
  $('progress').replaceChildren();$('journey').replaceChildren();
  list.forEach((item,i)=>{const segment=document.createElement('span');segment.className=i<session.index?'complete':i===session.index?'current':'';$('progress').append(segment);const li=document.createElement('li');if(i===session.index)li.setAttribute('aria-current','step');const n=document.createElement('span');n.textContent=i<session.index?'✓':i+1;li.append(n,document.createTextNode(item.short));$('journey').append(li);});
  $('phase').textContent=step.phase; $('exercise-title').textContent=step.title; $('instruction').textContent=step.instruction;
@@ -100,26 +112,21 @@ function renderStep() {
  $('listen').disabled=!('speechSynthesis' in window);$('listen').setAttribute('aria-pressed','false'); updateTimer();
  $('play').textContent=session.remaining<=0?(session.index===6?'Finish →':'Next exercise →'):session.started?'Resume':'Start timer';
  updateControls();
- $('timer-state').textContent=session.remaining<=0?'Exercise complete.':session.started?'Paused. Tap Resume when you’re ready.':'Timer is optional.';
+ $('timer-state').textContent=session.remaining<=0?'Exercise complete.':session.started?'Paused. Tap Resume when you’re ready.':'';
  window.scrollTo(0,0); $('exercise-title').focus({preventScroll:true});
 }
 function renderMaterial(){
  const session=state.session,step=steps(session)[session.index];
  $('material').replaceChildren();
  if(step.breath){const visual=document.createElement('div');visual.className='breathing';visual.innerHTML='<div class="breath-circle" aria-hidden="true"></div><span class="breath-label">Breathe easy</span>';$('material').append(visual);return;}
- const pages=step.phrases || (session.index===4 ? step.quote.match(/[^.!?]+[.!?]+|[^.!?]+$/g).map(s=>s.trim()) : [step.quote]);
- const page=Math.min(Math.max(0,session.card||0),pages.length-1);session.card=page;
  const material=document.createElement('div');material.className='material';
- const label=document.createElement('p');label.className='eyebrow';label.textContent=step.label;material.append(label);
- const text=document.createElement('blockquote');text.id='card-text';text.setAttribute('aria-live','polite');text.textContent=pages[page];material.append(text);
- if(pages.length>1){
- const nav=document.createElement('div');nav.className='card-nav';
- const previous=document.createElement('button');previous.id='card-back';previous.textContent='←';previous.setAttribute('aria-label','Previous '+(step.phrases?'phrase':'sentence'));previous.disabled=page===0;
- const count=document.createElement('span');count.id='card-count';count.textContent=(step.phrases?'Phrase ':'Sentence ')+(page+1)+' of '+pages.length;
- const next=document.createElement('button');next.id='card-next';next.textContent=page===pages.length-1?'Repeat ↺':(step.phrases?'Next phrase →':'Next sentence →');
- const turn=(target,focus)=>{session.card=target;save();renderMaterial();$(target===0?'card-next':focus).focus({preventScroll:true});};
- previous.onclick=()=>turn(page-1,'card-back');next.onclick=()=>turn((page+1)%pages.length,'card-next');nav.append(previous,count,next);material.append(nav);
+ if(session.index===2){
+ const demo=document.createElement('div');demo.className='mouth-demo';demo.setAttribute('role','img');demo.setAttribute('aria-label','Lip shape guide: rounded lips for oo, spread lips for ee.');
+ demo.innerHTML='<svg viewBox="0 0 200 70" aria-hidden="true"><ellipse class="mouth-shape" cx="100" cy="28" rx="18" ry="22" fill="#172f50" stroke="#5386ce" stroke-width="7"/></svg><span>oo → ee</span>';
+ material.append(demo);
  }
+ if(step.phrases){const list=document.createElement('ul');list.className='all-phrases';step.phrases.forEach(phrase=>{const item=document.createElement('li');item.textContent=phrase;list.append(item);});material.append(list);}
+ else {const text=document.createElement('blockquote');text.id='card-text';text.textContent=step.quote;material.append(text);if(session.index===4)material.classList.add('reading-material');}
  $('material').append(material);
 }
 function updateControls(){
