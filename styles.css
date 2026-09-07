@@ -249,3 +249,12 @@ footer p{font-size:10px}
 /* Announce timer state without restoring visible instruction clutter. */
 #player #timer-state{display:block;position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 #player .all-phrases li{display:block}
+
+#home .home-time{margin:0 0 18px;border:0;padding:0}
+#home .home-time legend{font-size:16px;margin-bottom:12px}
+#home .home-time .duration{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+#home .home-time button{padding:16px 10px;min-height:66px}
+#home .hero-copy .intro{font-size:20px;line-height:1.5;max-width:33ch}
+#home .home-bottom{border:0;padding-top:0;justify-content:flex-end}
+#home .resume:empty{display:none}
+@media(max-width:760px){#home .hero-copy .intro{font-size:17px}#home .home-time{margin-bottom:12px}#home .home-time button{min-height:56px;padding:12px 8px}#home .home-bottom{align-items:flex-start}}

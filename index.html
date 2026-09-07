@@ -13,20 +13,17 @@
 </head>
 <body>
 <a class="skip" href="#main">Skip to practice</a>
-<header class="site-header"><a class="brand" href="./" aria-label="Voice On home"><span class="brand-mark" aria-hidden="true">ıιı</span>voice<span>on</span><i></i></a><span class="header-note">Daily, or before your next meeting.</span><button class="quiet" id="help">How it works <span aria-hidden="true">↗</span></button></header>
+<header class="site-header"><a class="brand" href="./" aria-label="Voice On home"><span class="brand-mark" aria-hidden="true">ıιı</span>voice<span>on</span><i></i></a><button class="quiet" id="help">How it works <span aria-hidden="true">↗</span></button></header>
 <main id="main">
 <section id="home" class="home">
-<div class="hero-copy"><p class="eyebrow"><span class="live-dot"></span> MEETING IN FIVE MINUTES?</p><h1>Clarity.<br>Articulation.<br><em>Fluency.</em></h1><p class="intro">Get your lips, tongue, and voice ready to speak.</p></div>
+<div class="hero-copy"><h1>Clarity.<br>Articulation.<br><em>Fluency.</em></h1><p class="intro">Practice clear speech with guided exercises for your lips, tongue, and speaking pace.</p></div>
 <div class="practice-card">
-<p class="eyebrow" id="start-heading">FIVE MINUTES. START HERE.</p>
+<p id="start-heading" hidden></p><fieldset class="home-time"><legend>Practice time</legend><div class="duration"><button data-minutes="5" aria-pressed="true"><b>5 <small>min</small></b></button><button data-minutes="8" aria-pressed="false"><b>8 <small>min</small></b></button><button data-minutes="12" aria-pressed="false"><b>12 <small>min</small></b></button></div></fieldset>
 <button class="primary start" id="start"><strong>GO</strong><span>Start 5-minute warm-up →</span></button>
-<p class="no-friction">No sign-in. Progress saves on this browser.</p>
+
 <p id="resume" class="resume" hidden></p><button class="quiet restart" id="restart" hidden>Start a different session</button>
-<details id="session-options"><summary>Change time or occasion</summary>
-<fieldset><legend>Practice time</legend><div class="duration"><button data-minutes="5" aria-pressed="true"><b>5 <small>min</small></b><span>Before a meeting</span></button><button data-minutes="8" aria-pressed="false"><b>8 <small>min</small></b><span>Daily practice</span></button><button data-minutes="12" aria-pressed="false"><b>12 <small>min</small></b><span>More time</span></button></div></fieldset>
-<fieldset class="intent-field"><legend>Getting ready for</legend><div class="intents"><button data-intent="meeting" aria-pressed="true">A meeting</button><button data-intent="everyday" aria-pressed="false">Everyday life</button><button data-intent="presentation" aria-pressed="false">A presentation</button></div></fieldset><p class="gentle-note">Exercise time. You can pause or move on anytime.</p>
-</details></div>
-<div class="home-bottom"><p>Clear sounds. Steady pace. Practice for your next conversation.</p><button class="quiet" id="open-habits">My progress & reminders ↗</button></div>
+</div>
+<div class="home-bottom"><button class="quiet" id="open-habits">My progress & reminders ↗</button></div>
 </section>
 <dialog id="habits"><div class="dialog-top"><h2>Your practice</h2><button class="quiet" id="close-habits" aria-label="Close progress">✕</button></div><div class="habit"><div><span class="eyebrow">SMALL STEPS ADD UP</span><h3 id="habit-title">Your first practice is a good start.</h3><p id="habit-copy">No catching up. Just a little time for yourself today.</p><p class="gentle-note">Saved on this browser · signing in isn’t required. Clearing browser data removes your progress.</p></div><div class="week" id="week" aria-label="Practice over the last seven days"></div></div>
 <section class="habit-tools" aria-label="Build your practice habit"><div><span class="eyebrow">A RHYTHM THAT FITS YOUR LIFE</span><div class="streak-stats"><p><b id="current-streak">0</b> day streak</p><p><b id="best-streak">0</b> personal best</p></div><p class="gentle-note" id="streak-note">One day at a time. Miss a day? You’re always welcome back.</p></div><div class="goal"><label for="weekly-goal">My practice goal</label><select id="weekly-goal"><option value="3">3 days in 7 · a gentle start</option><option value="5">5 days in 7 · a regular rhythm</option><option value="7">7 days in 7 · a daily moment</option></select><progress id="goal-progress" value="0" max="3"></progress><p id="goal-copy"></p></div><button id="reminder" class="quiet">Set a daily reminder ↗</button></section>
@@ -40,7 +37,7 @@
 <div class="done-actions"><button class="primary" id="home-button">Done →</button><button class="quiet" id="done-reminder">Remind me tomorrow</button><button class="quiet" id="share">Share ↗</button></div>
 <p id="tomorrow-preview" hidden></p><p id="share-status" role="status"></p></section>
 </main>
-<footer><span class="brand footer-brand">voice<span>on</span><i></i></span><p>A little speech practice. Daily, or before a meeting.</p><button class="quiet" id="about">About & privacy</button></footer>
+<footer><span class="brand footer-brand">voice<span>on</span><i></i></span><button class="quiet" id="about">About & privacy</button></footer>
 <dialog id="reminder-dialog"><div class="dialog-top"><h2>A daily reminder.</h2><button class="quiet" id="close-reminder" aria-label="Close reminder">✕</button></div><p>Pick a time for your daily practice.</p><label for="reminder-time">My daily practice time</label><input type="time" id="reminder-time" value="08:00" required><p class="gentle-note">Download a recurring calendar event, then open it in your calendar and confirm the import. Your calendar handles reminders; this app doesn’t send notifications. To change it later, edit the event in your calendar.</p><button class="primary" id="download-reminder">Download daily reminder ↓</button><p id="reminder-status" role="status"></p></dialog>
 <dialog id="info"><div class="dialog-top"><h2 id="info-title"></h2><button class="quiet" id="close-info" aria-label="Close dialog">✕</button></div><div id="info-body"></div></dialog>
 <noscript><p>This guided timer needs JavaScript. Enable it to start your practice.</p></noscript>
