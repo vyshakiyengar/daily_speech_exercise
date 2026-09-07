@@ -101,6 +101,20 @@ function renderMaterial(){
  $('material').replaceChildren();
  if(step.breath){const visual=document.createElement('div');visual.className='breathing';visual.innerHTML='<div class="breath-circle" aria-hidden="true"></div><span class="breath-label">Breathe easy</span>';$('material').append(visual);return;}
  const material=document.createElement('div');material.className='material';
+ if(session.index!==2){
+ const art=document.createElement('div');art.className='exercise-art art-'+session.index;art.setAttribute('aria-hidden','true');
+ const drawings={
+ 0:'<path d="M48 48V28m12 30V18m12 36V24m12 21V33m12 20V25m12 35V16m12 32V28"/>',
+ 1:'<path d="M30 28h68q24 0 24-12t-18-4M30 40h112M30 52h68q24 0 24 12t-18 4"/>',
+ 3:'<path d="M24 30h18m10 0h26m10 0h18m10 0h28M24 46h28m10 0h18m10 0h26m10 0h18"/><path class="art-accent" d="m68 64 8 8 17-18"/>',
+ 4:'<path d="M30 55V35m25 20V25m25 30V12m25 43V25m25 30V35"/>',
+ 5:'<path d="M24 12h75v38H52L36 62V50H24zM110 30h32v37h-13l-13 9v-9H75V59"/><path d="M39 26h45M39 37h30"/>',
+ 6:'<circle cx="80" cy="39" r="28"/><path class="art-accent" d="m65 39 10 10 22-23"/>'
+ };
+ art.innerHTML='<svg viewBox="0 0 160 82" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">'+drawings[session.index]+'</svg>';
+ material.append(art);
+ }
+
  if(session.index===2){
  const demo=document.createElement('div');demo.className='mouth-demo';demo.setAttribute('role','img');demo.setAttribute('aria-label','Lip shape guide: rounded lips for oo, spread lips for ee.');
  demo.innerHTML='<svg viewBox="0 0 200 70" aria-hidden="true"><ellipse class="mouth-shape" cx="100" cy="28" rx="18" ry="22" fill="#172f50" stroke="#5386ce" stroke-width="7"/></svg><span>oo → ee</span>';

@@ -258,3 +258,14 @@ footer p{font-size:10px}
 #home .home-bottom{border:0;padding-top:0;justify-content:flex-end}
 #home .resume:empty{display:none}
 @media(max-width:760px){#home .hero-copy .intro{font-size:17px}#home .home-time{margin-bottom:12px}#home .home-time button{min-height:56px;padding:12px 8px}#home .home-bottom{align-items:flex-start}}
+
+/* Small visual cues, no extra reading or interaction required. */
+#player .exercise-art{height:68px;flex:0 0 68px;display:flex;justify-content:center;align-items:center;color:#7ca2dc}
+#player .exercise-art svg{width:130px;height:68px;animation:speech-art-enter 1.8s ease-in-out 2}
+#player .exercise-art .art-accent{stroke:var(--accent)}
+#player .art-1 svg{animation-name:speech-art-breathe}
+#player .art-4 svg{animation-name:speech-art-breathe}
+@keyframes speech-art-enter{0%{opacity:.45;transform:translateY(4px)}50%,100%{opacity:1;transform:translateY(0)}}
+@keyframes speech-art-breathe{0%,100%{transform:scale(.9);opacity:.65}50%{transform:scale(1);opacity:1}}
+@media(max-height:650px){#player .exercise-art{height:42px;flex-basis:42px}#player .exercise-art svg{height:42px;width:90px}}
+@media(prefers-reduced-motion:reduce){#player .exercise-art svg{animation:none}}
