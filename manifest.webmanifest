@@ -1,7 +1,7 @@
 {
   "name": "Voice On — Daily speech warm-up",
   "short_name": "Voice On",
-  "description": "A free 5–12 minute guided speech warm-up. Your voice, your pace.",
+  "description": "A free 5–12 minute guided speech warm-up. Practice clear sounds, steady pacing, and natural speech.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",

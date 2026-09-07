@@ -72,10 +72,14 @@ Verified all seven exercises and every card at 1440×900, 1280×640, 390×844, 3
 
 ## Five-second UX audit
 
-The landing page now leads with three benefits (Clarity, Articulation, Confidence), one sentence, and a large GO button. A five-minute meeting routine is selected for new visitors; longer durations and contexts sit under Change time or occasion. Habits and reminders live in My progress & reminders instead of competing with the start action. No entrance animation delays the main content.
+The landing page now leads with three benefits (Clarity, Articulation, Fluency), one sentence, and a large GO button. A five-minute meeting routine is selected for new visitors; longer durations and contexts sit under Change time or occasion. Habits and reminders live in My progress & reminders instead of competing with the start action. No entrance animation delays the main content.
 
 Every exercise uses an imperative heading and a short instruction, with Next exercise as the primary action and the optional timer secondary. A short purpose line explains the progression from breath to sounds, phrases, reading, unscripted speech, and comparison. Phrase sets rotate by date; the same opening and closing sentence is intentionally retained for comparison. Completion uses one short check-in and a prominent Done action.
 
 The new routine contains 300 seconds of optional exercise timers. Reading, pauses, and manual transitions can add time; it is not a guaranteed five-minute wall-clock session. Saved six-minute sessions still resume; new selections offer 5/8/12 minutes.
 
 Checked GO and Done visibility above the fold on desktop, 390px phones, and 320px phones, along with preserved habits, reminders, duration selection, and resume. These are heuristic and functional checks, not a measured study of first-time users.
+
+### Messaging audit
+
+Positioning covers lips, tongue, breath, and voice, with clear sounds, steady pacing, and natural speech as practice targets. Home, exercise purpose cues, About, share text, calendar reminders, and metadata use consistent speech-focused language. Fluency describes a practice focus, not a guaranteed outcome or stuttering treatment. Mouth movements are practiced during speech; the app does not claim muscle strengthening.
