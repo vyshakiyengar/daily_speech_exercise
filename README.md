@@ -6,7 +6,7 @@ A free daily speech warm-up with 6, 8, and 12 minutes of active practice. Static
 
 Start without signing up. Choose a duration and a real-life context (everyday life, meeting, presentation). Seven guided steps move from a starting sentence through breathing, articulation, phrases, reading and unscripted speaking, then repeat the starting sentence. Reflection is self-reported; the app does not record or score speech or promise instant results.
 
-Each timer starts only when the user is ready. Reading instructions and breaks add to the selected practice time. Users may finish a step early, pause, return to the previous step, or save and exit. Backgrounding the app pauses it. Spoken cues use the browser's speech synthesis when available.
+Each timer starts only when the user is ready. Reading instructions and breaks add to the selected practice time. Users may move to the next step at any time, pause, return to the previous step, or save and exit. Backgrounding the app pauses it. Spoken cues use the browser's speech synthesis when available.
 
 ## Run locally
 
@@ -53,3 +53,12 @@ Prepared event names: `session_start`, `session_resume`, `exercise_complete`, `s
 Use traffic → session starts → completions to assess the conversion funnel once custom events are enabled. Compare drop-off by exercise number and completion by selected duration. Button completion is self-reported, not proof of speech quality; tab closures are not guaranteed to emit an exit event.
 
 References: https://vercel.com/docs/analytics/quickstart and https://vercel.com/docs/analytics/custom-events
+
+
+## Blue palette and UX audit update
+
+The app uses a blue palette, larger touch targets, sticky exercise controls, and plain-language instructions. Next is available without starting a timer. The timer is optional; at expiry only one Next action remains. A resumed session shows its actual saved choices; Choose a new session returns to selection. Small-phone layouts are checked down to 320 CSS pixels.
+
+Browsing exercises alone does not earn a practice day. Users who practice without a timer can explicitly save their practice at the end. Exercise skip, session browse, and untimed practice confirmation have separate analytics event hooks. These event hooks remain disabled for Vercel Hobby.
+
+The articulation and reading drills use deliberately exaggerated speech followed by natural speech, with comfortable effort and explicit repetitions. The About dialog links ASHA and NIDCD sources and distinguishes clinical techniques from validation of this particular routine. The 6–12 minute program is not clinically validated and is not a muscle-strengthening or stuttering treatment.

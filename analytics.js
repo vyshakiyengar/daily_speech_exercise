@@ -1,6 +1,6 @@
 /* No personal content or persistent user identifier is included in custom events. */
 (() => {
-  const allowed = new Set(['session_start','session_resume','exercise_complete','session_exit','session_complete','share_click','reminder_download','weekly_goal_change']);
+  const allowed = new Set(['session_browse','exercise_skip','practice_confirm','session_start','session_resume','exercise_complete','session_exit','session_complete','share_click','reminder_download','weekly_goal_change']);
   const local = ['localhost','127.0.0.1','[::1]'].includes(location.hostname) || location.protocol !== 'https:';
   // Enable only after confirming the Vercel project supports custom events (Pro/Enterprise).
   const customEvents = false;
