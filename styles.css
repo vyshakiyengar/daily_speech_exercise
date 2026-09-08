@@ -313,3 +313,11 @@ footer .credit{flex:1}
 @media(max-height:450px) and (min-width:600px){#player .coach-art{height:45px;flex-basis:45px}}
 @media(prefers-reduced-motion:reduce){.massage-hand,.flutter-mouth,.air-trails,.coach-mouth,.coach-5 .coach-brows{animation:none}}
 @media(max-height:650px) and (max-width:600px){#player .coach-art{height:40px;flex-basis:40px}}
+
+#home{position:relative;padding-top:74px}
+#home .research-stamp{position:absolute;right:28px;top:15px;border:1px solid #9ab8de;border-radius:6px;padding:7px 12px;font-size:11px;color:var(--accent);background:#eaf2ff;min-height:44px}
+#home .meeting-hook{font-size:20px;font-weight:600;color:var(--accent)}
+#home .hero-copy h1{font-size:clamp(42px,5vw,65px);line-height:1.08;letter-spacing:-.055em}
+#home .hero-copy h1 em{white-space:normal}
+@media(max-width:760px){#home{padding-top:64px}#home .research-stamp{right:22px;top:9px;font-size:10px}#home .meeting-hook{font-size:17px}#home .hero-copy h1{font-size:43px;margin:12px 0}#home .hero-copy .intro{font-size:16px}}
+@media(max-width:360px){#home .hero-copy h1{font-size:36px}#home .hero-copy .intro{font-size:14px}#home .meeting-hook{font-size:16px}}
