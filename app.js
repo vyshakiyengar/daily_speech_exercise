@@ -25,9 +25,9 @@ function steps(session) {
  {title:'Massage around your mouth and jaw',short:'Cheek massage',instruction:'Gently massage around your mouth and jaw with clean fingertips.',quote:'',tip:'Keep your teeth apart and touch only the outside of your cheeks. Avoid sore, swollen, injured, or recently treated areas; skip this if uncomfortable. This is a relaxation activity, not muscle strengthening.'},
  {title:'Make motorboat lips',short:'Motorboat lips',instruction:'Keep your lips loose and blow out gently to make “brrrr” for about 15 seconds in total, taking breaths whenever needed.',quote:'Brrrr…',tip:'Your lips should flutter, not squeeze together. Stop before you run out of breath; skip if it feels difficult, dizzy, painful, or strained. There is no need to do 15 seconds in one breath.'},
  {title:'Exaggerate every sound and word',short:'Sounds → words',instruction:'Say the sounds on the left, then the words on the right, with big, comfortable mouth movements; read each row '+rounds+' times.',pairs:[['oo · ee','you · me'],['pa · ba','paper · bag'],['ta · da','today · day'],['ka · ga','keep · going']],tip:'Say every item aloud. For example: oo, ee, you, me. Clearly exaggerate your lip and tongue movements without pushing or straining.'},
- {title:'Exaggerate every sentence',short:'Sentences',instruction:'Read every sentence aloud twice with exaggerated mouth movements.',phrases:phraseSets[daySeed(session.date)%phraseSets.length],tip:'Use big but comfortable movements, not extra loudness. '+(rounds>2?'For this longer routine, repeat the whole set '+(rounds-1)+' times.':'Read the list twice with big, comfortable mouth movements.')},
+ {title:'Exaggerate every sentence',short:'Sentences',instruction:'Read every sentence aloud '+(rounds===2?'twice':rounds+' times')+' with exaggerated mouth movements.',phrases:phraseSets[daySeed(session.date)%phraseSets.length],tip:'Use big but comfortable movements, not extra loudness; follow the repetition count above.'},
  {title:'Say it in your own words',short:'Your conversation',instruction:'Say '+(rounds===2?'two':rounds===3?'four':'six')+' sentences about your day, pausing after each sentence.',quote:'“One thing that happened today…”',tip:'Speak normally and keep the words clear; start again whenever you need to.'},
- {title:'Give it some personality',short:'Fun finish',instruction:'Say “Let’s give it a go!” three times: first friendly, then excited, then confident.',phrases:['Friendly 🙂','Excited ✨','Confident 💬'],tip:'Use your usual volume. Change your tone and expression, not how loudly you speak; this is a playful way to practice expression.'}
+ {title:'Give it some personality',short:'Fun finish',instruction:'Say “Let’s give it a go!” three times: first friendly, then excited, then confident.',quote:'Let’s give it a go!',tones:['Friendly','Excited','Confident'],tip:'Use your usual volume. Change your tone and expression, not how loudly you speak; this is a playful way to practice expression.'}
  ];
 }
 function validSession(s) {return s && s.version===2 && [5,6,8,12].includes(s.minutes) && Object.hasOwn(choices,s.intent) && typeof s.date==='string' && Number.isInteger(s.index) && s.index>=0 && s.index<6;}
@@ -49,8 +49,8 @@ function renderHome() {
  const duration=state.session?.minutes||state.minutes;
  $('start').replaceChildren();
  const word=document.createElement('strong');word.textContent=state.session?'RESUME':'GO';
- const label=document.createElement('span');label.textContent=state.session?('Step '+(state.session.index+1)+' of 6 →'):('Start ~'+duration+'-minute warm-up →');
- $('start').append(word,label);$('start').setAttribute('aria-label',state.session?'Resume saved practice':('Start '+duration+'-minute speech warm-up'));
+ const label=document.createElement('span');label.textContent=state.session?('Step '+(state.session.index+1)+' of 6 →'):('Start practice →');
+ $('start').append(word,label);$('start').setAttribute('aria-label',state.session?'Resume saved practice':('Start '+duration+'-minute speech practice'));
  $('start-heading').textContent=state.session?'PICK UP WHERE YOU LEFT OFF.':duration===5?'FIVE MINUTES. START HERE.':('YOUR '+duration+'-MINUTE WARM-UP.');
  document.querySelectorAll('[data-minutes],[data-intent]').forEach(button=>button.disabled=!!state.session);
  $('resume').hidden = !state.session; $('restart').hidden = !state.session;
@@ -97,6 +97,7 @@ function renderMaterial(){
  if(step.pairs){const table=document.createElement('table');table.className='sound-words';table.innerHTML='<thead><tr><th>Sounds</th><th>Words</th></tr></thead>';const body=document.createElement('tbody');step.pairs.forEach(pair=>{const row=document.createElement('tr');pair.forEach(value=>{const cell=document.createElement('td');cell.textContent=value;row.append(cell);});body.append(row);});table.append(body);material.append(table);}
  else if(step.phrases){const list=document.createElement('ul');list.className='all-phrases';step.phrases.forEach(phrase=>{const item=document.createElement('li');if(step.emphasis){const word=step.emphasis[list.children.length],at=phrase.indexOf(word);item.append(document.createTextNode(phrase.slice(0,at)));const strong=document.createElement('strong');strong.textContent=word;item.append(strong,document.createTextNode(phrase.slice(at+word.length)));}else item.textContent=phrase;list.append(item);});material.append(list);}
  else {const text=document.createElement('blockquote');text.id='card-text';text.textContent=step.quote;if(step.quote)material.append(text);}
+ if(step.tones){const tones=document.createElement('div');tones.className='delivery-tones';step.tones.forEach((tone,i)=>{const label=document.createElement('span');label.textContent=(i+1)+'. '+tone;tones.append(label);});material.append(tones);}
  $('material').append(material);
 }
 function advance(){stop();track('exercise_complete',{step:state.session.index+1,minutes:state.session.minutes});if(state.session.index===5){finish();return;}state.session.index++;save();renderStep();}
