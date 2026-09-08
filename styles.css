@@ -293,3 +293,23 @@ footer .credit{flex:1}
 @media(prefers-reduced-motion:reduce){.big-mouth{animation:none}}
 @media(max-height:450px) and (min-width:600px){#player .mouth-demo{height:38px}#player .mouth-demo svg{height:38px}.sound-words{font-size:17px}.sound-words td{padding:3px}.sound-words th{font-size:12px;padding-bottom:4px}}
 @media(max-height:650px) and (max-width:600px){#player .mouth-demo{height:40px}#player .mouth-demo svg{height:40px}.sound-words td{padding:3px}#player .exercise{gap:7px}}
+
+#player .coach-art{display:flex;justify-content:center;flex:0 0 150px;height:150px}
+#player .coach-art svg{height:100%;width:225px;overflow:visible}
+.massage-hand{fill:#d1e0f5;stroke:#7699c7;stroke-width:2;animation:massage-circles 2s ease-in-out 2}
+.right-hand{animation-direction:reverse}
+@keyframes massage-circles{0%,100%{transform:translate(0,0)}25%{transform:translate(4px,-4px)}50%{transform:translate(0,-8px)}75%{transform:translate(-4px,-4px)}}
+.flutter-mouth{transform-box:fill-box;transform-origin:center;animation:flutter-demo .12s linear 32}
+@keyframes flutter-demo{50%{transform:scaleY(.45) translateY(2px)}}
+.air-trails{animation:air-demo 1s ease-out 4}
+@keyframes air-demo{0%{opacity:0;transform:translateX(-4px)}40%{opacity:1}100%{opacity:0;transform:translateX(8px)}}
+.coach-mouth{transform-box:fill-box;transform-origin:center;animation:expression-demo 2s ease-in-out 2}
+@keyframes expression-demo{0%,100%{transform:scale(1,.5)}35%{transform:scale(.85,1.7)}70%{transform:scale(1.65,.7)}}
+.coach-5 .coach-brows{animation:brow-demo 2s ease-in-out 2}
+@keyframes brow-demo{50%{transform:translateY(-4px)}}
+#player .material:has(.coach-0),#player .material:has(.coach-1){justify-content:center}
+#player .material:has(.coach-0) .coach-art,#player .material:has(.coach-1) .coach-art{height:210px;flex-basis:210px}
+@media(max-height:650px){#player .coach-art{height:65px;flex-basis:65px}#player .material:has(.coach-0) .coach-art,#player .material:has(.coach-1) .coach-art{height:135px;flex-basis:135px}}
+@media(max-height:450px) and (min-width:600px){#player .coach-art{height:45px;flex-basis:45px}}
+@media(prefers-reduced-motion:reduce){.massage-hand,.flutter-mouth,.air-trails,.coach-mouth,.coach-5 .coach-brows{animation:none}}
+@media(max-height:650px) and (max-width:600px){#player .coach-art{height:40px;flex-basis:40px}}
