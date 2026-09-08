@@ -13,26 +13,42 @@ const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } c
 const choices = { everyday: 'I have something to share, and I can take my time saying it.', meeting: 'Here is the main update, and here is what we can do next.', presentation: 'Today I want to share one idea and explain why it matters.' };
 const daySeed = key => Math.floor(Date.parse(key+'T12:00:00Z')/86400000);
 function steps(session) {
- const cue = choices[session.intent];
  const phraseSets=[
  ['A bright blue morning.','Take a little time.','Pack the paper bag.','Keep the conversation going.'],
  ['Bring the blue notebook.','Let me finish that thought.','The next step is simple.','Thanks for making the time.'],
  ['Please pass the plan.','Tell me what you think.','Keep the key points clear.','Let’s take this one step further.'],
  ['Put the point into words.','Today we can try again.','Give the group an update.','Pause before the next idea.']
  ];
- const rounds=session.minutes>=12?4:session.minutes>=8?3:2;
- return [
- {title:'Massage around your mouth and jaw',short:'Cheek massage',instruction:'Gently massage around your mouth and jaw with clean fingertips.',quote:'',tip:'Keep your teeth apart and touch only the outside of your cheeks. Avoid sore, swollen, injured, or recently treated areas; skip this if uncomfortable. This is a relaxation activity, not muscle strengthening.'},
- {title:'Make motorboat lips',short:'Motorboat lips',instruction:'Keep your lips loose and blow out gently to make “brrrr” for about 15 seconds in total, taking breaths whenever needed.',quote:'Brrrr…',tip:'Your lips should flutter, not squeeze together. Stop before you run out of breath; skip if it feels difficult, dizzy, painful, or strained. There is no need to do 15 seconds in one breath.'},
- {title:'Exaggerate every sound and word',short:'Sounds → words',instruction:'Say the sounds on the left, then the words on the right, with big, comfortable mouth movements; read each row '+rounds+' times.',pairs:[['oo · ee','you · me'],['pa · ba','paper · bag'],['ta · da','today · day'],['ka · ga','keep · going']],tip:'Say every item aloud. For example: oo, ee, you, me. Clearly exaggerate your lip and tongue movements without pushing or straining.'},
- {title:'Exaggerate every sentence',short:'Sentences',instruction:'Read every sentence aloud '+(rounds===2?'twice':rounds+' times')+' with exaggerated mouth movements.',phrases:phraseSets[daySeed(session.date)%phraseSets.length],tip:'Use big but comfortable movements, not extra loudness; follow the repetition count above.'},
- {title:'Say it in your own words',short:'Your conversation',instruction:'Say '+(rounds===2?'two':rounds===3?'four':'six')+' sentences about your day, pausing after each sentence.',quote:'“One thing that happened today…”',tip:'Speak normally and keep the words clear; start again whenever you need to.'},
- {title:'Give it some personality',short:'Fun finish',instruction:'Say “Let’s give it a go!” three times: first friendly, then excited, then confident.',quote:'Let’s give it a go!',tones:['Friendly','Excited','Confident'],tip:'Use your usual volume. Change your tone and expression, not how loudly you speak; this is a playful way to practice expression.'}
- ];
+ const phraseSet=phraseSets[daySeed(session.date)%phraseSets.length];
+ const step={
+ massage:{id:'massage',art:0,title:'Massage around your mouth and jaw',short:'Cheek massage',instruction:'Gently massage around your mouth and jaw with clean fingertips.',quote:'',tip:'Keep your teeth apart and touch only the outside of your cheeks. Skip sore or recently treated areas. This is a brief relaxation activity; stop if uncomfortable.'},
+ motor:{id:'motor',art:1,title:'Make motorboat lips',short:'Motorboat lips',instruction:'Keep your lips loose and blow out gently to make “brrrr” for about 15 seconds in total, taking breaths whenever needed.',quote:'Brrrr…',tip:'Let your lips flutter without squeezing. Stop before you run out of breath; skip if difficult, dizzy, painful, or strained. Fifteen seconds does not need to be one breath.'},
+ sounds:{id:'sounds',art:2,title:'Exaggerate every sound and word',short:'Sounds → words',instruction:'Say the sounds on the left, then the words on the right, with big, comfortable mouth movements; read each row twice.',pairs:[['oo · ee','you · me'],['pa · ba','paper · bag'],['ta · da','today · day'],['ka · ga','keep · going']],tip:'Say every item aloud: for example, oo, ee, you, me. Use comfortable effort without pushing or straining.'},
+ endings:{id:'endings',art:2,title:'Finish every word',short:'Word endings',instruction:'Read each line aloud twice, making the last sound of every word clear.',phrases:['cap · cat · cab','back · bag · bat','seat · seed · seem'],tip:'Keep the ending clear without adding an extra vowel: say cat, not cat-uh. Use your own accent; this is not a speed test.'},
+ blends:{id:'blends',art:2,title:'Keep the sounds together',short:'Sound combinations',instruction:'Read each line slowly twice, keeping the first two sounds together without adding a vowel between them.',phrases:['blue · bloom · blanket','green · grow · great','stay · step · stop'],tip:'For blue, move smoothly from b to l, without saying buh-loo. Go slowly; you do not need to get faster.'},
+ sentences:{id:'sentences',art:3,title:'Exaggerate every sentence',short:'Clear sentences',instruction:'Read every sentence aloud twice with exaggerated, comfortable mouth movements.',phrases:phraseSet,tip:'Make the movements bigger, not your voice louder. Read the list twice, with a brief pause between sentences.'},
+ pauses:{id:'pauses',art:4,title:'Pause at the blue line',short:'Easy pauses',instruction:'Read each line aloud twice in your normal voice, taking a short pause at each blue slash (/).',phrases:['Here is the update / we have a clear plan.','The first step is ready / let’s check it together.','Thank you for your time / I’ll send the details.'],pauseMarks:true,tip:'The slash marks a pause; do not say “slash.” Breathe whenever you need to. This supplied script brings clear words into everyday speaking.'},
+ emphasis:{id:'emphasis',art:4,title:'Make the blue word stand out',short:'Word emphasis',instruction:'Read each line aloud twice, saying the blue word a little longer than the other words.',phrases:['We can start today.','We can start today.','We can start today.'],emphasis:['We','start','today'],tip:'You can lengthen the highlighted word slightly without speaking louder. Notice how the same sentence draws attention to who, what, or when.'},
+ reading:{id:'reading',art:4,title:'Put it all together',short:'Guided reading',instruction:'Read the passage aloud twice in your normal voice, keeping words clear and pausing at each blue slash (/).',phrases:['Thanks for joining today / let’s look at our plan.','The first task is finished / the next one starts tomorrow.','We have time for questions / then we can agree on the next step.'],pauseMarks:true,tip:'Read the three lines as one short talk. Use the pauses to avoid rushing; restart a line if needed. All the words are supplied.'},
+ fun:{id:'fun',art:5,title:'Give it some personality',short:'Fun finish',instruction:'Say “Let’s give it a go!” three times: first friendly, then excited, then confident.',quote:'Let’s give it a go!',tones:['Friendly','Excited','Confident'],tip:'Use your usual volume. Change your tone and expression rather than how loudly you speak.'}
+ };
+ const route=['massage','motor','sounds'];
+ if(session.minutes>=8)route.push('endings');
+ if(session.minutes>=12)route.push('blends');
+ route.push('sentences','pauses');
+ if(session.minutes>=8)route.push('emphasis');
+ if(session.minutes>=12)route.push('reading');
+ route.push('fun');
+ return route.map(id=>step[id]);
 }
-function validSession(s) {return s && s.version===2 && [5,6,8,12].includes(s.minutes) && Object.hasOwn(choices,s.intent) && typeof s.date==='string' && Number.isInteger(s.index) && s.index>=0 && s.index<6;}
+function validSession(s) {return s && s.version===3 && [5,6,8,12].includes(s.minutes) && Object.hasOwn(choices,s.intent) && typeof s.date==='string' && Number.isInteger(s.index) && s.index>=0 && s.index<steps(s).length;}
 if(state.session?.version===1){state.session.version=2;state.session.index=Math.min(5,Math.max(0,state.session.index-1));}
+if(state.session?.version===2&&[5,6,8,12].includes(state.session.minutes)&&typeof state.session.date==='string'){
+ const id=['massage','motor','sounds','sentences','pauses','fun'][state.session.index];
+ state.session.index=steps(state.session).findIndex(step=>step.id===id);state.session.version=3;
+}
 if (!validSession(state.session)) state.session = null;
+
 function show(screen) {document.querySelector('.site-header').inert=screen==='player';document.body.classList.toggle('practicing',screen==='player');['home','player','done'].forEach(id => $(id).hidden = id!==screen); document.querySelector('footer').hidden = screen==='player'; window.scrollTo(0,0);}
 function completed(key) {return !!state.days[key]?.complete || !!legacy.days?.[key]?.complete || (Array.isArray(legacy.days?.[key]?.done) && legacy.days[key].done.length>=5);}
 function habitStats(){
@@ -49,7 +65,7 @@ function renderHome() {
  const duration=state.session?.minutes||state.minutes;
  $('start').replaceChildren();
  const word=document.createElement('strong');word.textContent=state.session?'RESUME':'GO';
- const label=document.createElement('span');label.textContent=state.session?('Step '+(state.session.index+1)+' of 6 →'):('Start practice →');
+ const label=document.createElement('span');label.textContent=state.session?('Step '+(state.session.index+1)+' of '+steps(state.session).length+' →'):('Start practice →');
  $('start').append(word,label);$('start').setAttribute('aria-label',state.session?'Resume saved practice':('Start '+duration+'-minute speech practice'));
  $('start-heading').textContent=state.session?'PICK UP WHERE YOU LEFT OFF.':duration===5?'FIVE MINUTES. START HERE.':('YOUR '+duration+'-MINUTE WARM-UP.');
  document.querySelectorAll('[data-minutes],[data-intent]').forEach(button=>button.disabled=!!state.session);
@@ -65,42 +81,42 @@ function renderHome() {
 }
 function start(fresh=false) {
  const resuming=!fresh&&!!state.session; if(fresh&&state.session)track('session_exit',{step:state.session.index+1,minutes:state.session.minutes});
- if(fresh || !state.session) state.session={version:2,date:dateKey(),minutes:state.minutes,intent:state.intent,index:0};
+ if(fresh || !state.session) state.session={version:3,date:dateKey(),minutes:state.minutes,intent:state.intent,index:0};
  track(resuming?'session_resume':'session_start',{minutes:state.session.minutes,step:state.session.index+1}); save(); show('player'); renderStep();
 }
 function stop(){if('speechSynthesis' in window)speechSynthesis.cancel();}
 function renderStep() {
  stop(); const session=state.session, list=steps(session), step=list[session.index];
- const percent=Math.round(session.index/6*100);
- $('step-count').textContent=`${session.index+1} of 6 · ${percent}% complete`;
+ const total=list.length,percent=Math.round(session.index/total*100);
+ $('step-count').textContent=`${session.index+1} of ${total} · ${percent}% complete`;
  $('session-percent').textContent=`${percent}% complete`;
- $('progress').setAttribute('role','progressbar');$('progress').setAttribute('aria-valuemin','0');$('progress').setAttribute('aria-valuemax','100');$('progress').setAttribute('aria-valuenow',String(percent));$('progress').setAttribute('aria-valuetext',`${session.index} of 6 steps passed`);
- $('progress').replaceChildren();$('journey').replaceChildren();
+ $('progress').setAttribute('role','progressbar');$('progress').setAttribute('aria-valuemin','0');$('progress').setAttribute('aria-valuemax','100');$('progress').setAttribute('aria-valuenow',String(percent));$('progress').setAttribute('aria-valuetext',`${session.index} of ${total} steps passed`);
+ $('progress').replaceChildren();$('journey').replaceChildren();$('journey').classList.toggle('long-journey',total>6);
  list.forEach((item,i)=>{const segment=document.createElement('span');segment.className=i<session.index?'complete':i===session.index?'current':'';$('progress').append(segment);const li=document.createElement('li');if(i===session.index)li.setAttribute('aria-current','step');const n=document.createElement('span');n.textContent=i<session.index?'✓':i+1;li.append(n,document.createTextNode(item.short));$('journey').append(li);});
  $('exercise-title').textContent=step.title; $('instruction').textContent=step.instruction;
  renderMaterial();
- $('back').disabled=session.index===0; $('next').textContent=session.index===5?'Finish →':'Next exercise →';
+ $('back').disabled=session.index===0; $('next').textContent=session.index===total-1?'Finish →':'Next exercise →';
  $('next').disabled=false;
  $('listen').disabled=!('speechSynthesis' in window);$('listen').setAttribute('aria-pressed','false');
  window.scrollTo(0,0); $('exercise-title').focus({preventScroll:true});
 }
 function renderMaterial(){
- const session=state.session,step=steps(session)[session.index];
+ const session=state.session,step=steps(session)[session.index],artIndex=step.art;
  $('material').replaceChildren();
  const material=document.createElement('div');material.className='material';
- const art=document.createElement('div');art.className='coach-art coach-'+session.index;art.setAttribute('role','img');
- art.setAttribute('aria-label',['Hands gently circling the cheeks and jaw','Loose lips fluttering as air flows outward','Mouth opening and widening','Mouth opening and widening','Speaker with a speech bubble','Speaker smiling with expressive eyebrows'][session.index]);
+ const art=document.createElement('div');art.className='coach-art coach-'+artIndex;art.setAttribute('role','img');
+ art.setAttribute('aria-label',['Hands gently circling the cheeks and jaw','Loose lips fluttering as air flows outward','Mouth opening and widening','Mouth opening and widening','Speaker with a speech bubble','Speaker smiling with expressive eyebrows'][artIndex]);
  const hands='<g class="massage-hand left-hand"><path d="M61 114v-27q0-7 5-7t5 7v9-17q0-6 5-6t5 6v17-12q0-6 5-6t5 6v22q0 17-15 22z"/></g><g class="massage-hand right-hand"><path d="M179 114v-27q0-7-5-7t-5 7v9-17q0-6-5-6t-5 6v17-12q0-6-5-6t-5 6v22q0 17 15 22z"/></g>';
- const mouth=session.index===1?'<g class="flutter-mouth"><path d="M99 93q10-10 21-3q11-7 21 3q-21 19-42 0" fill="#5185ca"/><path d="M101 94q19-4 38 0" stroke="#172f50" stroke-width="3"/></g><g class="air-trails" stroke="#6e9bd6" stroke-width="3"><path d="M165 79q15-5 25 0M169 94h28M165 109q15 5 25 0"/></g>':session.index===0?'<path d="M109 96q11 5 22 0" fill="none" stroke="#294b77" stroke-width="3" stroke-linecap="round"/>':'<ellipse class="coach-mouth" cx="120" cy="96" rx="14" ry="10" fill="#172f50" stroke="#6c93c5" stroke-width="3"/>';
- art.innerHTML='<svg viewBox="0 0 240 160" aria-hidden="true"><ellipse cx="120" cy="147" rx="77" ry="8" fill="#dbe8fa"/><path d="M66 146q5-31 54-31t54 31" fill="#4479c0"/><rect x="108" y="107" width="24" height="26" rx="10" fill="#c7d9f2"/><ellipse cx="120" cy="68" rx="44" ry="52" fill="#e4edfa" stroke="#8eadcf" stroke-width="2"/><path d="M77 53q-6-43 44-43q45 0 43 43q-22-8-29-22q-22 22-58 22" fill="#244568"/><g class="coach-brows" stroke="#244568" stroke-width="3" stroke-linecap="round"><path d="M97 59h12M132 59h12"/></g><circle cx="104" cy="68" r="3" fill="#244568"/><circle cx="137" cy="68" r="3" fill="#244568"/><path d="M120 69v13h5" fill="none" stroke="#8eadcf" stroke-width="2"/>'+mouth+(session.index===0?hands:'')+(session.index>=4?'<path d="M174 24h45v27h-25l-10 9V51h-10z" fill="#d4e5fb" stroke="#7fa1cb"/><g fill="#4479c0"><circle cx="185" cy="38" r="2"/><circle cx="196" cy="38" r="2"/><circle cx="207" cy="38" r="2"/></g>':'')+'</svg>';
+ const mouth=artIndex===1?'<g class="flutter-mouth"><path d="M99 93q10-10 21-3q11-7 21 3q-21 19-42 0" fill="#5185ca"/><path d="M101 94q19-4 38 0" stroke="#172f50" stroke-width="3"/></g><g class="air-trails" stroke="#6e9bd6" stroke-width="3"><path d="M165 79q15-5 25 0M169 94h28M165 109q15 5 25 0"/></g>':artIndex===0?'<path d="M109 96q11 5 22 0" fill="none" stroke="#294b77" stroke-width="3" stroke-linecap="round"/>':'<ellipse class="coach-mouth" cx="120" cy="96" rx="14" ry="10" fill="#172f50" stroke="#6c93c5" stroke-width="3"/>';
+ art.innerHTML='<svg viewBox="0 0 240 160" aria-hidden="true"><ellipse cx="120" cy="147" rx="77" ry="8" fill="#dbe8fa"/><path d="M66 146q5-31 54-31t54 31" fill="#4479c0"/><rect x="108" y="107" width="24" height="26" rx="10" fill="#c7d9f2"/><ellipse cx="120" cy="68" rx="44" ry="52" fill="#e4edfa" stroke="#8eadcf" stroke-width="2"/><path d="M77 53q-6-43 44-43q45 0 43 43q-22-8-29-22q-22 22-58 22" fill="#244568"/><g class="coach-brows" stroke="#244568" stroke-width="3" stroke-linecap="round"><path d="M97 59h12M132 59h12"/></g><circle cx="104" cy="68" r="3" fill="#244568"/><circle cx="137" cy="68" r="3" fill="#244568"/><path d="M120 69v13h5" fill="none" stroke="#8eadcf" stroke-width="2"/>'+mouth+(artIndex===0?hands:'')+(artIndex>=4?'<path d="M174 24h45v27h-25l-10 9V51h-10z" fill="#d4e5fb" stroke="#7fa1cb"/><g fill="#4479c0"><circle cx="185" cy="38" r="2"/><circle cx="196" cy="38" r="2"/><circle cx="207" cy="38" r="2"/></g>':'')+'</svg>';
  material.append(art);
  if(step.pairs){const table=document.createElement('table');table.className='sound-words';table.innerHTML='<thead><tr><th>Sounds</th><th>Words</th></tr></thead>';const body=document.createElement('tbody');step.pairs.forEach(pair=>{const row=document.createElement('tr');pair.forEach(value=>{const cell=document.createElement('td');cell.textContent=value;row.append(cell);});body.append(row);});table.append(body);material.append(table);}
- else if(step.phrases){const list=document.createElement('ul');list.className='all-phrases';step.phrases.forEach(phrase=>{const item=document.createElement('li');if(step.emphasis){const word=step.emphasis[list.children.length],at=phrase.indexOf(word);item.append(document.createTextNode(phrase.slice(0,at)));const strong=document.createElement('strong');strong.textContent=word;item.append(strong,document.createTextNode(phrase.slice(at+word.length)));}else item.textContent=phrase;list.append(item);});material.append(list);}
+ else if(step.phrases){const list=document.createElement('ul');list.className='all-phrases';step.phrases.forEach(phrase=>{const item=document.createElement('li');if(step.emphasis){const word=step.emphasis[list.children.length],at=phrase.indexOf(word);item.append(document.createTextNode(phrase.slice(0,at)));const strong=document.createElement('strong');strong.textContent=word;item.append(strong,document.createTextNode(phrase.slice(at+word.length)));}else if(step.pauseMarks){phrase.split('/').forEach((part,i)=>{if(i){const mark=document.createElement('strong');mark.className='pause-mark';mark.textContent='/';item.append(mark);}item.append(document.createTextNode(part));});}else item.textContent=phrase;list.append(item);});material.append(list);}
  else {const text=document.createElement('blockquote');text.id='card-text';text.textContent=step.quote;if(step.quote)material.append(text);}
  if(step.tones){const tones=document.createElement('div');tones.className='delivery-tones';step.tones.forEach((tone,i)=>{const label=document.createElement('span');label.textContent=(i+1)+'. '+tone;tones.append(label);});material.append(tones);}
  $('material').append(material);
 }
-function advance(){stop();track('exercise_complete',{step:state.session.index+1,minutes:state.session.minutes});if(state.session.index===5){finish();return;}state.session.index++;save();renderStep();}
+function advance(){stop();track('exercise_complete',{step:state.session.index+1,minutes:state.session.minutes});if(state.session.index===steps(state.session).length-1){finish();return;}state.session.index++;save();renderStep();}
 function finish(){
  const session=state.session;track('session_browse',{minutes:session.minutes,elapsed_seconds:Math.round(session.elapsed||0)});
  lastCompleted=dateKey();state.session=null;save();show('done');

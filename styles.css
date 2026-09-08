@@ -345,3 +345,9 @@ footer .credit{flex:1}
 .delivery-tones{display:flex;justify-content:center;gap:14px;font-size:13px;color:var(--accent);margin-top:6px}
 @media(max-width:760px){.site-header{padding:16px 22px;gap:12px}.site-header .brand{font-size:25px}#home{padding:28px 22px 22px;gap:25px}#home .hero-copy h1{font-size:44px;margin:14px 0}#home .hero-copy .intro{font-size:16px}#home .home-time{margin-bottom:12px}#home .home-time button{min-height:48px}#home #start{min-height:100px;padding:17px 22px}#home #start strong{font-size:36px}#home #start span{font-size:13px}.delivery-tones{gap:9px;font-size:12px}}
 @media(max-width:360px){.site-header{padding:13px 18px;gap:8px}.site-header .research-stamp{font-size:9px;padding:8px}.site-header .brand{font-size:23px}#home{padding:22px 18px;gap:22px}#home .hero-copy h1{font-size:37px}#home .hero-copy .intro{font-size:14px}#home .meeting-hook{font-size:9px}#home #start{min-height:92px}}
+
+/* Longer routines add skills without squeezing the reading area. */
+#player .all-phrases .pause-mark{text-decoration:none;padding:0 2px;font-weight:800}
+#player #journey.long-journey{gap:12px}
+#player #journey.long-journey li{font-size:12px;padding:0;min-height:30px}
+@media(max-height:700px){#player #journey.long-journey{gap:7px}#player #journey.long-journey li{font-size:11px;min-height:26px}}
