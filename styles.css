@@ -269,3 +269,22 @@ footer p{font-size:10px}
 @keyframes speech-art-breathe{0%,100%{transform:scale(.9);opacity:.65}50%{transform:scale(1);opacity:1}}
 @media(max-height:650px){#player .exercise-art{height:42px;flex-basis:42px}#player .exercise-art svg{height:42px;width:90px}}
 @media(prefers-reduced-motion:reduce){#player .exercise-art svg{animation:none}}
+
+#how-it-works{grid-column:1/-1;border-top:1px solid var(--line);padding-top:24px}
+#how-it-works h2{font-size:24px;margin-bottom:12px}
+#how-it-works ol{margin:0;padding-left:22px;font-size:16px;line-height:1.8}
+.sound-words{width:100%;border-collapse:collapse;text-align:left;font-size:clamp(18px,3vh,27px)}
+.sound-words th{font:600 14px var(--ui);color:var(--muted);padding-bottom:8px}
+.sound-words td{padding:8px 4px;border-top:1px solid var(--line)}
+#player .art-2{height:100px;flex-basis:100px}#player .art-2 svg{width:180px;height:100px;animation:none}
+.trill-lips{animation:trill .15s linear 26;transform-origin:center}
+@keyframes trill{50%{transform:translateY(2px) scaleY(.92)}}
+@media(max-height:650px){.sound-words td{padding:5px 3px}#player .art-2{height:65px;flex-basis:65px}#player .art-2 svg{height:65px}}
+@media(prefers-reduced-motion:reduce){.trill-lips{animation:none}}
+
+#player .mouth-demo{height:100px}#player .mouth-demo svg{height:100px;width:150px}
+.big-mouth{transform-box:fill-box;transform-origin:center;animation:big-mouth 2s ease-in-out 2}
+@keyframes big-mouth{0%,100%{transform:scale(.75,.65)}35%{transform:scale(1,1.2)}70%{transform:scale(1.55,.65)}}
+@media(max-height:650px){#player .mouth-demo{height:60px}#player .mouth-demo svg{height:60px}}
+@media(prefers-reduced-motion:reduce){.big-mouth{animation:none}}
+@media(max-height:450px) and (min-width:600px){#player .mouth-demo{height:38px}#player .mouth-demo svg{height:38px}.sound-words{font-size:17px}.sound-words td{padding:3px}.sound-words th{font-size:12px;padding-bottom:4px}}

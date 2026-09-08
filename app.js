@@ -8,13 +8,11 @@ const stored = read(KEY);
 const state = {minutes: [5,8,12].includes(stored.minutes) ? stored.minutes : 5, intent: ['everyday','meeting','presentation'].includes(stored.intent) ? stored.intent : 'everyday', goal: [3,5,7].includes(stored.goal) ? stored.goal : 3, reminderTime: /^\d{2}:\d{2}$/.test(stored.reminderTime||'') ? stored.reminderTime : '08:00', days: stored.days && typeof stored.days === 'object' ? stored.days : {}, session: stored.session || null};
 const legacy = read('voiceOn.v1');
 const dateKey = (date = new Date()) => `${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
-let storageWorks = true, interval = null, running = false, endAt = 0, wakeLock = null, lastTick = 0, lastCompleted = null;
+let storageWorks = true, lastCompleted = null;
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { storageWorks = false; } };
-const format = seconds => { const whole = Math.ceil(seconds); return `${Math.floor(whole/60)}:${String(whole%60).padStart(2,'0')}`; };
 const choices = { everyday: 'I have something to share, and I can take my time saying it.', meeting: 'Here is the main update, and here is what we can do next.', presentation: 'Today I want to share one idea and explain why it matters.' };
 const daySeed = key => Math.floor(Date.parse(key+'T12:00:00Z')/86400000);
 function steps(session) {
- const durations = {5:[20,36,48,48,72,56,20],6:[30,48,60,60,90,42,30],8:[30,60,90,90,120,60,30],12:[30,96,150,150,174,90,30]}[session.minutes];
  const cue = choices[session.intent];
  const phraseSets=[
  ['A bright blue morning.','Take a little time.','Pack the paper bag.','Keep the conversation going.'],
@@ -22,23 +20,18 @@ function steps(session) {
  ['Please pass the plan.','Tell me what you think.','Keep the key points clear.','Let’s take this one step further.'],
  ['Put the point into words.','Today we can try again.','Give the group an update.','Pause before the next idea.']
  ];
- const emphasisSets=[
- ['We can share the update today.',['We','update','today']],
- ['I can send the plan tomorrow.',['I','plan','tomorrow']],
- ['We need a clear next step.',['We','clear','next']]
- ];
- const [emphasis,words]=emphasisSets[daySeed(session.date)%emphasisSets.length];
+ const rounds=session.minutes>=12?4:session.minutes>=8?3:2;
  return [
- {title:'Read this out loud',short:'Before',instruction:'Read this sentence out loud once, in your normal voice; remember how easy or hard it feels.',quote:cue,tip:'Notice clarity and effort without changing your accent or trying to sound a certain way; this is a personal comparison, not a scored test.'},
- {title:'Breathe in. Then speak.',short:'Breath → words',instruction:'Breathe in gently, then say the first sentence out loud as you breathe out; do the same for the second sentence.',phrases:['Here is my update.','Let’s take one step at a time.'],tip:'Use your normal breath size and volume; breathe again whenever you need to. Do not hold your breath or force a long exhale. Stop if you feel dizzy or strained.'},
- {title:'Make big mouth movements',short:'Lips & tongue',instruction:'Say the sounds, then the words after the arrow, with big but comfortable mouth movements; repeat each line twice.',phrases:['oo — ee → you and me','pa — ba → paper bag','ta — da → today','ka — ga → keep going'],tip:'Say the sounds aloud as your lips and tongue move. The animation illustrates only oo-to-ee lip shapes; it is not a model of every sound. Use gentle effort, not force; stop if it hurts.'},
- {title:'Exaggerate. Then speak normally.',short:'Clear phrases',instruction:'Read the whole list out loud once with exaggerated mouth movements, then read it once more normally.',phrases:phraseSets[daySeed(session.date)%phraseSets.length],tip:'Read the list once with deliberate sounds, then once in your usual speaking style. Aim for clear words without speaking louder, faster, or harder.'},
- {title:'Make the blue word stand out',short:'Word emphasis',instruction:'Read each line out loud once, saying the blue word a little longer than the other words.',phrases:words.map(()=>emphasis),emphasis:words,tip:'Give the highlighted word a little extra length or pitch change; you do not need to raise your volume. Notice whether you draw attention to who, what, or when.'},
- {title:'Try your next conversation',short:'Your conversation',instruction:({meeting:'Give a two-sentence meeting update',everyday:'Describe one thing from your day',presentation:'Introduce your idea and give an example'}[session.intent])+'; pause briefly after each sentence.',quote:{everyday:'“One thing that happened today…”',meeting:'“The main update is…”',presentation:'“The idea I’d like to share is…”'}[session.intent],tip:'Use your usual speaking style, keep the words clear, and pause when you need to. You can restart or change your words; this is rehearsal, not a performance.'},
- {title:'Read your first sentence again',short:'After',instruction:'Read this out loud once in your normal voice; does speaking feel easier, the same, or harder than before?',quote:cue,tip:'Repeating a familiar sentence can itself make it feel easier. Your impression is not proof of lasting improvement or a clinical assessment.'}
- ].map((step,i)=>({...step,seconds:durations[i]}));
+ {title:'Read this out loud',short:'Before',instruction:'Read this sentence once in your normal voice and remember how easy or hard it feels.',quote:cue,tip:'You will read the same sentence at the end; this is a personal comparison, not a test.'},
+ {title:'Gently massage your cheeks',short:'Cheek massage',instruction:'With clean fingertips, make five light circles on each cheek beside your mouth, then five over your jaw muscles.',quote:'Light circles · relaxed jaw',tip:'Keep your teeth apart and touch only the outside of your cheeks. Avoid sore, swollen, injured, or recently treated areas; skip this if uncomfortable. This is a relaxation activity, not muscle strengthening.'},
+ {title:'Make motorboat lips',short:'Motorboat lips',instruction:'Keep your lips loose and blow out gently to make “brrrr” for about 15 seconds in total, taking breaths whenever needed.',quote:'Brrrr…',tip:'Your lips should flutter, not squeeze together. Stop before you run out of breath; skip if it feels difficult, dizzy, painful, or strained. There is no need to do 15 seconds in one breath.'},
+ {title:'Exaggerate every sound and word',short:'Sounds → words',instruction:'Say the sounds on the left, then the words on the right, with big, comfortable mouth movements; read each row '+rounds+' times.',pairs:[['oo · ee','you · me'],['pa · ba','paper · bag'],['ta · da','today · day'],['ka · ga','keep · going']],tip:'Say every item aloud. For example: oo, ee, you, me. Clearly exaggerate your lip and tongue movements without pushing or straining.'},
+ {title:'Exaggerate, then compare',short:'Sentences',instruction:'Read every sentence aloud twice with exaggerated mouth movements, then once normally to notice the difference.',phrases:phraseSets[daySeed(session.date)%phraseSets.length],tip:'Use big but comfortable movements, not extra loudness. '+(rounds>2?'For this longer routine, repeat the whole set '+(rounds-1)+' times.':'Read the list twice exaggerated and once in your normal speaking style.')},
+ {title:'Say it in your own words',short:'Your conversation',instruction:'Say '+(rounds===2?'two':rounds===3?'four':'six')+' sentences about your day, pausing after each sentence.',quote:'“One thing that happened today…”',tip:'Speak normally and keep the words clear; start again whenever you need to.'},
+ {title:'Read your first sentence again',short:'After',instruction:'Read this once in your normal voice; does speaking feel easier, the same, or harder than before?',quote:cue,tip:'Familiarity can make the sentence feel easier; this is not a measured or guaranteed improvement.'}
+ ];
 }
-function validSession(s) {return s && s.version===1 && [5,6,8,12].includes(s.minutes) && Object.hasOwn(choices,s.intent) && typeof s.date==='string' && Number.isInteger(s.index) && s.index>=0 && s.index<7 && Number.isFinite(s.remaining) && s.remaining>=0 && s.remaining<=180;}
+function validSession(s) {return s && s.version===1 && [5,6,8,12].includes(s.minutes) && Object.hasOwn(choices,s.intent) && typeof s.date==='string' && Number.isInteger(s.index) && s.index>=0 && s.index<7;}
 if (!validSession(state.session)) state.session = null;
 function show(screen) {document.querySelector('.site-header').inert=screen==='player';document.body.classList.toggle('practicing',screen==='player');['home','player','done'].forEach(id => $(id).hidden = id!==screen); document.querySelector('footer').hidden = screen==='player'; window.scrollTo(0,0);}
 function completed(key) {return !!state.days[key]?.complete || !!legacy.days?.[key]?.complete || (Array.isArray(legacy.days?.[key]?.done) && legacy.days[key].done.length>=5);}
@@ -56,7 +49,7 @@ function renderHome() {
  const duration=state.session?.minutes||state.minutes;
  $('start').replaceChildren();
  const word=document.createElement('strong');word.textContent=state.session?'RESUME':'GO';
- const label=document.createElement('span');label.textContent=state.session?('Step '+(state.session.index+1)+' of 7 →'):('Start '+duration+'-minute warm-up →');
+ const label=document.createElement('span');label.textContent=state.session?('Step '+(state.session.index+1)+' of 7 →'):('Start ~'+duration+'-minute warm-up →');
  $('start').append(word,label);$('start').setAttribute('aria-label',state.session?'Resume saved practice':('Start '+duration+'-minute speech warm-up'));
  $('start-heading').textContent=state.session?'PICK UP WHERE YOU LEFT OFF.':duration===5?'FIVE MINUTES. START HERE.':('YOUR '+duration+'-MINUTE WARM-UP.');
  document.querySelectorAll('[data-minutes],[data-intent]').forEach(button=>button.disabled=!!state.session);
@@ -72,12 +65,10 @@ function renderHome() {
 }
 function start(fresh=false) {
  const resuming=!fresh&&!!state.session; if(fresh&&state.session)track('session_exit',{step:state.session.index+1,minutes:state.session.minutes});
- if(fresh || !state.session) state.session={version:1,date:dateKey(),minutes:state.minutes,intent:state.intent,index:0,remaining:state.minutes===5?20:30,elapsed:0,started:false,practiced:[]};
+ if(fresh || !state.session) state.session={version:1,date:dateKey(),minutes:state.minutes,intent:state.intent,index:0};
  track(resuming?'session_resume':'session_start',{minutes:state.session.minutes,step:state.session.index+1}); save(); show('player'); renderStep();
 }
-function stop() { clearInterval(interval); interval=null; running=false; if('speechSynthesis' in window) speechSynthesis.cancel(); release(); }
-async function hold() {if(!navigator.wakeLock || document.visibilityState!=='visible')return;try{const lock=await navigator.wakeLock.request('screen');if(!running){await lock.release();return;}wakeLock=lock;}catch{}}
-function release(){if(wakeLock){wakeLock.release().catch(()=>{});wakeLock=null;}}
+function stop(){if('speechSynthesis' in window)speechSynthesis.cancel();}
 function renderStep() {
  stop(); const session=state.session, list=steps(session), step=list[session.index];
  const percent=Math.round(session.index/7*100);
@@ -88,12 +79,9 @@ function renderStep() {
  list.forEach((item,i)=>{const segment=document.createElement('span');segment.className=i<session.index?'complete':i===session.index?'current':'';$('progress').append(segment);const li=document.createElement('li');if(i===session.index)li.setAttribute('aria-current','step');const n=document.createElement('span');n.textContent=i<session.index?'✓':i+1;li.append(n,document.createTextNode(item.short));$('journey').append(li);});
  $('exercise-title').textContent=step.title; $('instruction').textContent=step.instruction;
  renderMaterial();
- $('back').disabled=session.index===0; $('next').textContent=session.index===6?'Finish →':'Next exercise →'; $('next-up').textContent=session.index<6?`Up next: ${list[session.index+1].short}`:'Next: your personal check-in';
+ $('back').disabled=session.index===0; $('next').textContent=session.index===6?'Finish →':'Next exercise →';
  $('next').disabled=false;
- $('listen').disabled=!('speechSynthesis' in window);$('listen').setAttribute('aria-pressed','false'); updateTimer();
- $('play').textContent=session.remaining<=0?(session.index===6?'Finish →':'Next exercise →'):session.started?'Resume':'Start timer';
- updateControls();
- $('timer-state').textContent=session.remaining<=0?'Exercise complete.':session.started?'Paused. Tap Resume when you’re ready.':'';
+ $('listen').disabled=!('speechSynthesis' in window);$('listen').setAttribute('aria-pressed','false');
  window.scrollTo(0,0); $('exercise-title').focus({preventScroll:true});
 }
 function renderMaterial(){
@@ -101,11 +89,12 @@ function renderMaterial(){
  $('material').replaceChildren();
  if(step.breath){const visual=document.createElement('div');visual.className='breathing';visual.innerHTML='<div class="breath-circle" aria-hidden="true"></div><span class="breath-label">Breathe easy</span>';$('material').append(visual);return;}
  const material=document.createElement('div');material.className='material';
- if(session.index!==2){
+ if(session.index!==3&&session.index!==4){
  const art=document.createElement('div');art.className='exercise-art art-'+session.index;art.setAttribute('aria-hidden','true');
  const drawings={
  0:'<path d="M48 48V28m12 30V18m12 36V24m12 21V33m12 20V25m12 35V16m12 32V28"/>',
- 1:'<path d="M30 28h68q24 0 24-12t-18-4M30 40h112M30 52h68q24 0 24 12t-18 4"/>',
+ 1:'<ellipse cx="80" cy="38" rx="30" ry="34"/><path d="M69 46q11 8 22 0"/><circle cx="51" cy="42" r="8"/><circle cx="109" cy="42" r="8"/>',
+ 2:'<path class="trill-lips" d="M38 38Q60 15 80 32Q100 15 122 38Q100 62 80 47Q60 62 38 38ZM38 38h84"/><path d="m132 25 9-5m-7 19h12m-14 14 9 5"/>',
  3:'<path d="M24 30h18m10 0h26m10 0h18m10 0h28M24 46h28m10 0h18m10 0h26m10 0h18"/><path class="art-accent" d="m68 64 8 8 17-18"/>',
  4:'<path d="M30 55V35m25 20V25m25 30V12m25 43V25m25 30V35"/>',
  5:'<path d="M24 12h75v38H52L36 62V50H24zM110 30h32v37h-13l-13 9v-9H75V59"/><path d="M39 26h45M39 37h30"/>',
@@ -115,26 +104,17 @@ function renderMaterial(){
  material.append(art);
  }
 
- if(session.index===2){
- const demo=document.createElement('div');demo.className='mouth-demo';demo.setAttribute('role','img');demo.setAttribute('aria-label','Lip shape guide: rounded lips for oo, spread lips for ee.');
- demo.innerHTML='<svg viewBox="0 0 200 70" aria-hidden="true"><ellipse class="mouth-shape" cx="100" cy="28" rx="18" ry="22" fill="#172f50" stroke="#5386ce" stroke-width="7"/></svg><span>oo → ee</span>';
+ if(session.index===3||session.index===4){
+ const demo=document.createElement('div');demo.className='mouth-demo';demo.setAttribute('role','img');demo.setAttribute('aria-label','Illustration of a face opening and widening its mouth; use comfortable movements.');
+ demo.innerHTML='<svg viewBox="0 0 160 110" aria-hidden="true"><ellipse cx="80" cy="53" rx="43" ry="48" fill="#edf4ff" stroke="#7ca2dc" stroke-width="3"/><circle cx="63" cy="36" r="3" fill="#2457a6"/><circle cx="97" cy="36" r="3" fill="#2457a6"/><path d="M80 40v12h5" fill="none" stroke="#7ca2dc" stroke-width="3"/><ellipse class="big-mouth" cx="80" cy="73" rx="15" ry="14" fill="#172f50" stroke="#5386ce" stroke-width="5"/></svg>';
  material.append(demo);
  }
- if(step.phrases){const list=document.createElement('ul');list.className='all-phrases';step.phrases.forEach(phrase=>{const item=document.createElement('li');if(step.emphasis){const word=step.emphasis[list.children.length],at=phrase.indexOf(word);item.append(document.createTextNode(phrase.slice(0,at)));const strong=document.createElement('strong');strong.textContent=word;item.append(strong,document.createTextNode(phrase.slice(at+word.length)));}else item.textContent=phrase;list.append(item);});material.append(list);}
+ if(step.pairs){const table=document.createElement('table');table.className='sound-words';table.innerHTML='<thead><tr><th>Sounds</th><th>Words</th></tr></thead>';const body=document.createElement('tbody');step.pairs.forEach(pair=>{const row=document.createElement('tr');pair.forEach(value=>{const cell=document.createElement('td');cell.textContent=value;row.append(cell);});body.append(row);});table.append(body);material.append(table);}
+ else if(step.phrases){const list=document.createElement('ul');list.className='all-phrases';step.phrases.forEach(phrase=>{const item=document.createElement('li');if(step.emphasis){const word=step.emphasis[list.children.length],at=phrase.indexOf(word);item.append(document.createTextNode(phrase.slice(0,at)));const strong=document.createElement('strong');strong.textContent=word;item.append(strong,document.createTextNode(phrase.slice(at+word.length)));}else item.textContent=phrase;list.append(item);});material.append(list);}
  else {const text=document.createElement('blockquote');text.id='card-text';text.textContent=step.quote;material.append(text);if(session.index===4)material.classList.add('reading-material');}
  $('material').append(material);
 }
-function updateControls(){
- const session=state.session,finished=session.remaining<=0;
- $('play').classList.toggle('primary',finished);$('play').classList.toggle('quiet',!finished);
- $('next').hidden=finished;
-
-}
-function updateTimer(){const session=state.session; $('timer').textContent=format(session.remaining);if(session.index===1){const elapsed=steps(session)[1].seconds-session.remaining, phase=elapsed%12;const circle=document.querySelector('.breath-circle'),label=document.querySelector('.breath-label'); if(circle)circle.style.setProperty('--breath-scale',String(phase<4?.75+phase/4*.4:1.15-(phase-4)/8*.4));if(label)label.textContent=session.started?(phase<4?'Breathe in · 4':'Breathe out · 8'):'Breathe easy';}}
-function syncTime(){if(!running || !state.session)return;const now=Date.now();state.session.elapsed=(state.session.elapsed||0)+Math.max(0,Math.min((now-lastTick)/1000,state.session.remaining));lastTick=now;state.session.remaining=Math.max(0,(endAt-now)/1000);updateTimer();}
-function pause(){syncTime();stop();save();$('play').textContent='Resume';$('timer-state').textContent='Paused. Tap Resume when you’re ready.';}
-function toggle(){if(running){pause();return;}const session=state.session;if(session.remaining<=0){advance();return;}if('speechSynthesis' in window)speechSynthesis.cancel();session.started=true;$('next').disabled=false;updateControls();running=true;endAt=Date.now()+session.remaining*1000;lastTick=Date.now();$('play').textContent='Pause';$('timer-state').textContent='Speak out loud.';hold();save();interval=setInterval(()=>{syncTime();save();if(session.remaining<=0){stop();$('play').textContent=session.index===6?'Finish →':'Next exercise →';$('timer-state').textContent='Exercise complete.';updateControls();save();}},200);}
-function advance(){syncTime();stop();if(!Array.isArray(state.session.practiced))state.session.practiced=[];if(state.session.started&&!state.session.practiced.includes(state.session.index))state.session.practiced.push(state.session.index);track(state.session.started?'exercise_complete':'exercise_skip',{step:state.session.index+1,minutes:state.session.minutes,finished_early:state.session.remaining>0});if(state.session.index===6){finish();return;}state.session.index++;state.session.card=0;state.session.remaining=steps(state.session)[state.session.index].seconds;state.session.started=false;save();renderStep();}
+function advance(){stop();track('exercise_complete',{step:state.session.index+1,minutes:state.session.minutes});if(state.session.index===6){finish();return;}state.session.index++;save();renderStep();}
 function finish(){
  const session=state.session;track('session_browse',{minutes:session.minutes,elapsed_seconds:Math.round(session.elapsed||0)});
  lastCompleted=dateKey();state.session=null;save();show('done');
@@ -145,25 +125,25 @@ function finish(){
  $('done').querySelector('h1').setAttribute('tabindex','-1');$('done').querySelector('h1').focus({preventScroll:true});
 }
 function renderFeeling(){const feeling=state.days[lastCompleted]?.feeling;document.querySelectorAll('[data-feeling]').forEach(button=>button.setAttribute('aria-pressed',button.dataset.feeling===feeling));$('feedback').textContent=({easier:'Use the same tip in your meeting.',same:'That’s useful to notice. Keep it comfortable.',harder:'Take a break. Keep your next conversation comfortable.'})[feeling]||'Your impression, not a measured score.';}
-function exit(){if(running)syncTime();stop();track('session_exit',{step:state.session.index+1,minutes:state.session.minutes,elapsed_seconds:Math.round(state.session.elapsed||0)});save();show('home');renderHome();if(!storageWorks){$('resume').hidden=false;$('resume').textContent='Browser storage is unavailable. You can resume while this page stays open.';}$('start').focus({preventScroll:true});}
+function exit(){stop();track('session_exit',{step:state.session.index+1,minutes:state.session.minutes,elapsed_seconds:Math.round(state.session.elapsed||0)});save();show('home');renderHome();if(!storageWorks){$('resume').hidden=false;$('resume').textContent='Browser storage is unavailable. You can resume while this page stays open.';}$('start').focus({preventScroll:true});}
 function info(title,html){$('info-title').textContent=title;$('info-body').innerHTML=html;$('info').showModal();}
-$('exercise-tip').onclick=()=>{const step=steps(state.session)[state.session.index];if(running)pause();info('How to do this exercise','');const instruction=document.createElement('p');instruction.textContent=step.instruction;const tip=document.createElement('p');tip.textContent=step.tip;$('info-body').append(instruction,tip);};
+$('exercise-tip').onclick=()=>{const step=steps(state.session)[state.session.index];info('How to do this exercise','');const instruction=document.createElement('p');instruction.textContent=step.instruction;const tip=document.createElement('p');tip.textContent=step.tip;$('info-body').append(instruction,tip);};
 $('open-habits').onclick=()=>$('habits').showModal();$('close-habits').onclick=()=>$('habits').close();
-$('help').onclick=()=>info('GO. Speak. Repeat.','<ol><li>Choose 5, 8, or 12 minutes, then tap GO.</li><li>Say the words out loud. Follow the short instruction.</li><li>Tap Next exercise when you’re ready. The timer is optional.</li></ol><p>Reading and breaks add to the exercise time. Progress saves in this browser without sign-in.</p>');
-$('about').onclick=()=>info('Practice for clearer speech.','<p>Speech On is a free speech warm-up for practicing clear sounds, steady pacing, and natural speech. Spoken exercises coordinate lip and tongue movements with breath and voice. It doesn’t assess speech, guarantee instant improvement, or replace speech and language therapy.</p><p>Your practice history, preferences, and session progress stay in this browser. No account, microphone, or voice recording. When enabled on the published site, Vercel Web Analytics collects traffic statistics. Optional interaction events contain only exercise numbers, duration, and button actions; your prompts and reflections are never included. Clearing browser storage removes your progress. Fonts load from Google Fonts; the app can fall back to local fonts.</p><h3>Why these exercises?</h3><p>Deliberately clearer articulation, pacing, and practicing real speech are techniques used in speech therapy. This app uses exaggerated-to-natural repetitions to practice those skills. The breath-to-words activity practices comfortable phrasing without a fixed breathing ratio; the emphasis activity explores how stress changes meaning. These are coordination and communication tasks, not muscle-strengthening exercises.</p><p>The cited guidance describes clinical techniques, primarily for people with diagnosed speech disorders; it does not validate this app for healthy speakers. These general exercises and the 5–12 minute routine have not been clinically validated. Techniques for diagnosed speech disorders need individual assessment; this routine is not a treatment for stuttering or muscle weakness.</p><p>Sources: <a href="https://www.asha.org/practice-portal/clinical-topics/dysarthria-in-adults/" target="_blank" rel="noopener">ASHA: clear speech and articulation</a>; <a href="https://www.nidcd.nih.gov/health/stuttering" target="_blank" rel="noopener">NIDCD: speech coordination and stuttering</a>; <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener">NIDCD: voice care</a>.</p><p>Practice at a comfortable volume; stop if speaking hurts or feels strained. Rest a hoarse or tired voice. For persistent speech or voice concerns, consult a qualified speech-language pathologist. Saved practice history from the original routine remains on this browser.</p>');
+$('help').onclick=()=>$('how-it-works').scrollIntoView({behavior:'smooth'});
+$('about').onclick=()=>info('Practice for clearer speech.','<p>Speech On is a free speech warm-up for practicing clear sounds, steady pacing, and natural speech. Spoken exercises coordinate lip and tongue movements with breath and voice. It doesn’t assess speech, guarantee instant improvement, or replace speech and language therapy.</p><p>Your practice history, preferences, and session progress stay in this browser. No account, microphone, or voice recording. When enabled on the published site, Vercel Web Analytics collects traffic statistics. Optional interaction events contain only exercise numbers, duration, and button actions; your prompts and reflections are never included. Clearing browser storage removes your progress. Fonts load from Google Fonts; the app can fall back to local fonts.</p><h3>Why these exercises?</h3><p>Deliberately clearer articulation, pacing, and practicing real speech are techniques used in speech therapy. This app uses exaggerated-to-natural repetitions to practice those skills. The gentle external cheek massage is for relaxation, and lip trills are a voice warm-up; neither is proven to improve articulation in this app. These are coordination and communication tasks, not muscle-strengthening exercises.</p><p>The cited guidance describes clinical techniques, primarily for people with diagnosed speech disorders; it does not validate this app for healthy speakers. These general exercises and the 5–12 minute routine have not been clinically validated. Techniques for diagnosed speech disorders need individual assessment; this routine is not a treatment for stuttering or muscle weakness.</p><p>Sources: <a href="https://www.asha.org/practice-portal/clinical-topics/dysarthria-in-adults/" target="_blank" rel="noopener">ASHA: clear speech and articulation</a>; <a href="https://www.nidcd.nih.gov/health/stuttering" target="_blank" rel="noopener">NIDCD: speech coordination and stuttering</a>; <a href="https://www.nidcd.nih.gov/health/taking-care-your-voice" target="_blank" rel="noopener">NIDCD: voice care</a>; <a href="https://www.cuh.nhs.uk/patient-information/lip-trills-exercises/" target="_blank" rel="noopener">NHS: lip trills</a>.</p><p>Practice at a comfortable volume; stop if speaking hurts or feels strained. Rest a hoarse or tired voice. For persistent speech or voice concerns, consult a qualified speech-language pathologist. Saved practice history from the original routine remains on this browser.</p>');
 $('close-info').onclick=()=>$('info').close();
 $('start').onclick=()=>start();$('restart').onclick=()=>{state.session=null;save();renderHome();document.querySelector('[data-minutes]').focus();};
-$('play').onclick=toggle;$('next').onclick=advance;$('exit').onclick=exit;
-$('back').onclick=()=>{if(state.session.index===0)return;stop();state.session.index--;state.session.card=0;state.session.remaining=steps(state.session)[state.session.index].seconds;state.session.started=false;save();renderStep();};
-$('listen').onclick=()=>{if(!('speechSynthesis' in window))return;if(running)pause();speechSynthesis.cancel();const step=steps(state.session)[state.session.index],speech=new SpeechSynthesisUtterance(`${step.title} ${step.instruction}`);speech.lang='en-US';speech.rate=.9;$('listen').setAttribute('aria-pressed','true');speech.onend=speech.onerror=()=>$('listen').setAttribute('aria-pressed','false');speechSynthesis.speak(speech);};
+$('next').onclick=advance;$('exit').onclick=exit;
+$('back').onclick=()=>{if(state.session.index===0)return;stop();state.session.index--;save();renderStep();};
+$('listen').onclick=()=>{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();const step=steps(state.session)[state.session.index],speech=new SpeechSynthesisUtterance(`${step.title} ${step.instruction}`);speech.lang='en-US';speech.rate=.9;$('listen').setAttribute('aria-pressed','true');speech.onend=speech.onerror=()=>$('listen').setAttribute('aria-pressed','false');speechSynthesis.speak(speech);};
 $('save-untimed').onclick=()=>{const key=dateKey(),previous=state.days[key]||{};state.days[key]={...previous,complete:true,count:(previous.count||0)+1};lastCompleted=key;save();track('practice_confirm');$('save-untimed').hidden=true;$('home-button').className='primary';$('done-summary').textContent=storageWorks?'Practice saved here. New phrases tomorrow.':'Practice complete. Browser storage is unavailable.';$('done').querySelector('h1').innerHTML='Practice <em>done.</em>';document.querySelector('.reflection').hidden=false;renderFeeling();};
 $('home-button').onclick=()=>{show('home');renderHome();$('start').focus({preventScroll:true});};
 $('share').onclick=async()=>{track('share_click');const url=new URL('./',location.href).href;try{if(navigator.share){await navigator.share({title:'Speech On',text:'Get your lips, tongue, and voice ready to speak. Try this free speech warm-up.',url});$('share-status').textContent='Thanks for passing it on.';}else{await navigator.clipboard.writeText(url);$('share-status').textContent='Link copied. Share it with someone who could use a little warm-up.';}}catch(error){if(error.name!=='AbortError'){$('share-status').textContent=`Share this link: ${url}`;}}};
 for(const button of document.querySelectorAll('[data-minutes]'))button.onclick=()=>{state.minutes=Number(button.dataset.minutes);save();renderHome();};
 for(const button of document.querySelectorAll('[data-intent]'))button.onclick=()=>{state.intent=button.dataset.intent;save();renderHome();};
 for(const button of document.querySelectorAll('[data-feeling]'))button.onclick=()=>{state.days[lastCompleted].feeling=button.dataset.feeling;save();renderFeeling();};
-document.addEventListener('keydown',event=>{if($('player').hidden||$('info').open||$('reminder-dialog').open||event.target.closest('button,a,summary,input,textarea,select'))return;if(event.code==='Space'){event.preventDefault();toggle();}else if(event.key==='ArrowRight'){event.preventDefault();advance();}else if(event.key==='ArrowLeft'){$('back').click();}else if(event.key==='Escape')exit();});
-document.addEventListener('visibilitychange',()=>{if(document.hidden&&running)pause();});window.addEventListener('pagehide',()=>{if(running)syncTime();stop();save();});
+document.addEventListener('keydown',event=>{if($('player').hidden||$('info').open||$('reminder-dialog').open||event.target.closest('button,a,summary,input,textarea,select'))return;if(event.key==='ArrowRight'){event.preventDefault();advance();}else if(event.key==='ArrowLeft'){$('back').click();}else if(event.key==='Escape')exit();});
+window.addEventListener('pagehide',()=>{stop();save();});
 let shownDay=dateKey();setInterval(()=>{if(dateKey()!==shownDay){shownDay=dateKey();if(!$('home').hidden)renderHome();}},30000);
 $('weekly-goal').onchange=event=>{state.goal=Number(event.target.value);track('weekly_goal_change',{goal:state.goal});save();renderHome();};
 function openReminder(){ $('reminder-time').value=state.reminderTime; $('reminder-status').textContent=''; $('reminder-dialog').showModal(); }
