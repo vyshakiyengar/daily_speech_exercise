@@ -158,6 +158,10 @@ body.practicing>.site-header{display:none}
 #done .done-actions .quiet{min-height:44px}
 footer{font-size:10px}
 footer p{font-size:10px}
+.credit{font-size:10px;color:var(--muted)}
+.credit a{text-decoration:underline}
+footer .credit{flex:1}
+#player .credit{text-align:center;margin-top:10px}
 @media(max-width:760px){
  #home{grid-template-columns:minmax(0,1fr);padding:26px 22px 18px;gap:23px;min-height:0;max-width:520px}
  #home .hero-copy h1{font-size:48px;margin:14px 0 10px;line-height:1.03}
@@ -288,3 +292,4 @@ footer p{font-size:10px}
 @media(max-height:650px){#player .mouth-demo{height:60px}#player .mouth-demo svg{height:60px}}
 @media(prefers-reduced-motion:reduce){.big-mouth{animation:none}}
 @media(max-height:450px) and (min-width:600px){#player .mouth-demo{height:38px}#player .mouth-demo svg{height:38px}.sound-words{font-size:17px}.sound-words td{padding:3px}.sound-words th{font-size:12px;padding-bottom:4px}}
+@media(max-height:650px) and (max-width:600px){#player .mouth-demo{height:40px}#player .mouth-demo svg{height:40px}.sound-words td{padding:3px}#player .exercise{gap:7px}}
