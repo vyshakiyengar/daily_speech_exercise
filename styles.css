@@ -351,3 +351,17 @@ footer .credit{flex:1}
 #player #journey.long-journey{gap:12px}
 #player #journey.long-journey li{font-size:12px;padding:0;min-height:30px}
 @media(max-height:700px){#player #journey.long-journey{gap:7px}#player #journey.long-journey li{font-size:11px;min-height:26px}}
+/* Let the illustration shrink to the space left by the exercise text.
+   Safari toolbars can reduce the visible height between media breakpoints. */
+#player .material{display:grid;grid-template-rows:minmax(0,1fr) auto;align-content:stretch;align-items:stretch;justify-content:stretch}
+#player .material:has(.delivery-tones){grid-template-rows:minmax(0,1fr) auto auto}
+#player .material:has(.coach-0){grid-template-rows:minmax(0,1fr)}
+#player .material .coach-art{height:100%;min-height:0;max-height:150px;flex:none;align-self:center;margin:0}
+#player .material:has(.coach-0) .coach-art,#player .material:has(.coach-1) .coach-art{height:100%;max-height:210px;min-height:0;flex:none}
+#player .material .coach-art svg{display:block;height:100%;width:100%;max-width:225px;max-height:100%;min-height:0;overflow:hidden}
+#player .material>.all-phrases,#player .material>.sound-words{align-self:end}
+@media(max-width:800px){
+ #player .sound-words{font-size:clamp(18px,5vw,23px);line-height:1.35}
+ #player .sound-words td{padding:6px 4px}
+}
+@media(max-width:360px),(max-height:450px){#player .sound-words td{padding:3px 4px}#player .sound-words{font-size:18px}}

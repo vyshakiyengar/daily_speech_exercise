@@ -1,5 +1,5 @@
 /* Speech On — versioned offline shell. Only remove this app's own caches. */
-const CACHE = 'voice-on-v21';
+const CACHE = 'voice-on-v22';
 const SHELL = ['./', './index.html', './app.js', './analytics.js', './styles.css', './fluency.html', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png'];
 self.addEventListener('install', event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(SHELL)).then(() => self.skipWaiting()));
