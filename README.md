@@ -83,3 +83,8 @@ Checked GO and Done visibility above the fold on desktop, 390px phones, and 320p
 ### Messaging audit
 
 Positioning covers lips, tongue, breath, and voice, with clear sounds, steady pacing, and natural speech as practice targets. Home, exercise purpose cues, About, share text, calendar reminders, and metadata use consistent speech-focused language. Fluency describes a practice focus, not a guaranteed outcome or stuttering treatment. Mouth movements are practiced during speech; the app does not claim muscle strengthening.
+
+
+### Heavy routine
+
+Choose **5**, **8**, **12**, or **Heavy (~20 minutes)**. Durations are estimates; steps are self-paced. Heavy includes 18 steps covering breathing, external cheek relaxation, jaw movement, lip sounds, front/back tongue coordination, gentle voicing, a rest break, and transfer into everyday speech. It adds breadth and repetitions at comfortable effort, not resistance or muscle-strengthening claims. Existing shorter routines and saved progress are preserved.

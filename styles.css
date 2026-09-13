@@ -365,3 +365,13 @@ footer .credit{flex:1}
  #player .sound-words td{padding:6px 4px}
 }
 @media(max-width:360px),(max-height:450px){#player .sound-words td{padding:3px 4px}#player .sound-words{font-size:18px}}
+
+/* Four routine choices, with room for Heavy on narrow screens. */
+#home .home-time .duration{grid-template-columns:repeat(4,minmax(0,1fr))}
+#home .home-time button[data-minutes="20"] b{font-size:18px;letter-spacing:-.5px}
+#home .home-time button[data-minutes="20"]>small{display:block;font-size:11px;margin-top:4px}
+#home .routine-detail{font-size:13px;line-height:1.55;color:var(--muted);margin:0 0 12px}
+#player #journey.long-journey{max-height:calc(100dvh - 200px);overflow-y:auto;padding-right:8px}
+@media(max-width:360px){#home .home-time .duration{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+#home .practice-disclaimer{font-size:12px;line-height:1.6;color:var(--muted);margin-top:14px;text-align:left}
