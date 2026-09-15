@@ -366,7 +366,7 @@ footer .credit{flex:1}
 }
 @media(max-width:360px),(max-height:450px){#player .sound-words td{padding:3px 4px}#player .sound-words{font-size:18px}}
 
-/* Four routine choices, with room for Heavy on narrow screens. */
+/* Four routine choices, with room for Full on narrow screens. */
 #home .home-time .duration{grid-template-columns:repeat(4,minmax(0,1fr))}
 #home .home-time button[data-minutes="20"] b{font-size:18px;letter-spacing:-.5px}
 #home .home-time button[data-minutes="20"]>small{display:block;font-size:11px;margin-top:4px}
