@@ -16,7 +16,7 @@ const LANGUAGES = [
  {code:'fr',    name:'French',     native:'Français',   dir:'ltr', group:'world', ready:true},
  {code:'de',    name:'German',     native:'Deutsch',    dir:'ltr', group:'world', ready:true},
  {code:'pt',    name:'Portuguese', native:'Português',  dir:'ltr', group:'world', ready:true},
- {code:'ru',    name:'Russian',    native:'Русский',    dir:'ltr', group:'world'},
+ {code:'ru',    name:'Russian',    native:'Русский',    dir:'ltr', group:'world', ready:true},
  {code:'ar',    name:'Arabic',     native:'العربية',     dir:'rtl', group:'world'},
  {code:'zh',    name:'Chinese',    native:'中文',        dir:'ltr', group:'world'},
  {code:'ja',    name:'Japanese',   native:'日本語',      dir:'ltr', group:'world'},
