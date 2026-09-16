@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Accessibility — Speech On</title>
+<meta name="description" content="Speech On aims to meet WCAG 2.2 level AA. What works, what does not yet, and how to report a barrier.">
+<meta name="theme-color" content="#f3f7fd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1724" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://www.speechon.app/accessibility">
+<meta property="og:title" content="Accessibility — Speech On"><meta property="og:description" content="Speech On aims to meet WCAG 2.2 level AA. What works, what does not yet, and how to report a barrier.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://www.speechon.app/accessibility">
+<meta property="og:image" content="https://www.speechon.app/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="stylesheet" href="/page.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="site-header">
+<a class="brand" href="/" aria-label="Speech On home"><span class="brand-mark" aria-hidden="true">ıιı</span>speech<span>on</span><i></i></a>
+<nav aria-label="Reference pages">
+<a href="/routine">The routine</a><a href="/safety">Safety</a><a href="/for-clinicians">For clinicians</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a>
+</nav>
+</header>
+<main id="main">
+<h1>Accessibility</h1>
+<p class="lede">Many of the people this app is for are disabled. Getting this right is not an afterthought, and this page says honestly where we are.</p>
+<p class="updated">Last updated 16 September 2026</p>
+
+<h2>Our target</h2>
+<p>We aim to conform to the <a href="https://www.w3.org/TR/WCAG22/" rel="noopener">Web Content Accessibility Guidelines version 2.2</a> at level AA. We are <strong>partially conformant</strong>: most of the app meets that standard, and the known exceptions are listed below.</p>
+<p>This statement is voluntary. Speech On is a free service run by one person, which places it within the microenterprise exemption for services under the European Accessibility Act. We publish it anyway, because an app about speaking should be usable by people who find speaking hard.</p>
+
+<h2>What should work</h2>
+<ul>
+<li><strong>Keyboard only.</strong> Every control is reachable and operable by keyboard. Arrow keys move between exercises, Escape saves and exits, and a skip link jumps past the header. Focus is visible throughout and moves to the exercise heading when the step changes.</li>
+<li><strong>Screen readers.</strong> Tested with VoiceOver. Progress is announced as a progress bar with a text value, button states use <code>aria-pressed</code>, status messages use live regions, and the illustrations carry text descriptions.</li>
+<li><strong>Contrast.</strong> Body text is at least 12:1 against its background, supporting text at least 5:1, and interface controls at least 3:1, in both light and dark themes.</li>
+<li><strong>Dark mode.</strong> Follows your system setting, and can be overridden in the app.</li>
+<li><strong>Larger text.</strong> A text-size control in the app enlarges the practice material without breaking the layout. Browser zoom to 200% is also supported.</li>
+<li><strong>Reduced motion.</strong> If your system asks for reduced motion, the mouth animations and transitions stop. The illustrations still show each position, they simply do not move.</li>
+<li><strong>Small screens.</strong> Laid out down to 320 pixels wide, with touch targets of at least 44 pixels.</li>
+<li><strong>Spoken instructions.</strong> Every instruction can be read aloud by your browser, for anyone who finds reading difficult.</li>
+<li><strong>Offline.</strong> Once loaded the app works without a connection, which matters on unreliable or metered connections.</li>
+<li><strong>No time limits.</strong> Nothing expires, nothing is timed unless you switch the optional pacer on, and you can stop and resume whenever you like.</li>
+</ul>
+
+<h2>Known problems</h2>
+<table>
+<tr><th>Problem</th><th>Who it affects</th><th>Plan</th></tr>
+<tr><td>The mouth and tongue illustrations are described in text, but the text description is necessarily less precise than the picture.</td><td>Blind and low-vision users</td><td>Adding audio recordings of each exercise, which will carry the information the picture does.</td></tr>
+<tr><td>There are no audio recordings of the sounds and phrases yet, so a user who cannot read the material cannot get it any other way than synthesised speech.</td><td>Blind users, users with dyslexia, users with low literacy</td><td>Planned. This is our highest priority.</td></tr>
+<tr><td>Translations are machine-assisted and awaiting review by native speakers, and some scripts depend on fonts your device may not have.</td><td>Users practising in languages other than English</td><td>Being reviewed language by language. Each language is marked in the app.</td></tr>
+<tr><td>The app requires JavaScript.</td><td>Users with scripting disabled</td><td>Not planned to change. <a href="/routine">The routine page</a> is plain HTML and needs no JavaScript, so all the content is readable without it.</td></tr>
+</table>
+
+<h2>Things this app deliberately does not do</h2>
+<p>It does not listen to you, score you, rush you, or tell you that you got something wrong. There is no account to create, no password to remember, no email to confirm and no payment step. For a lot of people those are the real accessibility barriers, and the simplest fix was not to build them.</p>
+
+<h2>Tell us about a barrier</h2>
+<p>If you hit something that does not work for you, please write to <a href="mailto:hello@speechon.app">hello@speechon.app</a>. Tell us what you were trying to do and what happened, and what you use if you are comfortable saying. We aim to reply within five working days. This is a one-person project so the fix may take longer than the reply, but we will tell you honestly what we can do.</p>
+<p>If you are in the UK and you believe you have been discriminated against, the <a href="https://www.equalityadvisoryservice.com/" rel="noopener">Equality Advisory and Support Service</a> can advise you.</p>
+
+<h2>How this was assessed</h2>
+<p>Self-assessed by the developer, using manual keyboard testing, VoiceOver, automated checks and programmatic contrast calculation, in September 2026. It has not been audited by an independent accessibility specialist or tested with a panel of disabled users. Both would improve it, and both are things we would welcome help with.</p>
+<a class="back" href="/">← Back to practice</a>
+</main>
+<footer>
+<nav aria-label="Footer">
+<a href="/">Practice</a><a href="/routine">The routine</a><a href="/for-clinicians">For clinicians</a><a href="/safety">Safety</a><a href="/accessibility">Accessibility</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:hello@speechon.app">Contact</a>
+</nav>
+<p>Speech On is a free practice tool. It is not a medical device and is not a treatment for any condition.<br>A project by <a href="https://www.linkedin.com/in/vyshakiyengar" rel="noopener">Vyshak K Iyengar</a>.</p>
+</footer>
+</div>
+</body></html>

@@ -1,6 +1,8 @@
 /* No personal content or persistent user identifier is included in custom events. */
 (() => {
   const allowed = new Set(['session_browse','exercise_skip','practice_confirm','session_start','session_resume','exercise_complete','session_exit','session_complete','share_click','reminder_download','weekly_goal_change']);
+  let optedOut = false;
+  try { optedOut = localStorage.getItem('voiceOn.analyticsOptOut') === '1'; } catch(e) {}
   const local = ['localhost','127.0.0.1','[::1]'].includes(location.hostname) || location.protocol !== 'https:';
   // Enable only after confirming the Vercel project supports custom events (Pro/Enterprise).
   const customEvents = false;
@@ -14,9 +16,9 @@
     }
     // A testable adapter boundary; no event queue or personal data is stored locally.
     window.dispatchEvent(new CustomEvent('voice:analytics', {detail:{name,data}}));
-    if(!local && customEvents) window.va('event',{name,data});
+    if(!local && !optedOut && customEvents) window.va('event',{name,data});
   };
-  if(!local && navigator.doNotTrack !== '1' && !navigator.globalPrivacyControl) {
+  if(!local && !optedOut && navigator.doNotTrack !== '1' && !navigator.globalPrivacyControl) {
     const script=document.createElement('script');script.defer=true;script.src='/_vercel/insights/script.js';document.head.append(script);
   }
 })();

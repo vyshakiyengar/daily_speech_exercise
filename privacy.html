@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Privacy notice — Speech On</title>
+<meta name="description" content="Speech On has no accounts, no microphone and no server. Your practice history stays in your browser. Here is exactly what is and is not collected.">
+<meta name="theme-color" content="#f3f7fd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1724" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://www.speechon.app/privacy">
+<meta property="og:title" content="Privacy notice — Speech On"><meta property="og:description" content="Speech On has no accounts, no microphone and no server. Your practice history stays in your browser. Here is exactly what is and is not collected.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://www.speechon.app/privacy">
+<meta property="og:image" content="https://www.speechon.app/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icon-180.png">
+<link rel="stylesheet" href="/page.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="wrap">
+<header class="site-header">
+<a class="brand" href="/" aria-label="Speech On home"><span class="brand-mark" aria-hidden="true">ıιı</span>speech<span>on</span><i></i></a>
+<nav aria-label="Reference pages">
+<a href="/routine">The routine</a><a href="/safety">Safety</a><a href="/for-clinicians">For clinicians</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a>
+</nav>
+</header>
+<main id="main">
+<h1>Privacy notice</h1>
+<p class="lede">There is no account, no microphone, no server and no database. Your practice history never leaves your browser. This page explains the small amount that is collected and how to switch it off.</p>
+<p class="updated">Last updated 16 September 2026</p>
+
+<div class="card">
+<h2 style="margin-top:0">In one paragraph</h2>
+<p>Speech On stores your streak, preferences and unfinished session in your own browser, where we cannot see them. We never record, listen to or transmit your voice. The site loads no third-party fonts, scripts or trackers. The only data that reaches us is anonymous, aggregate page-view statistics, and you can turn those off below.</p>
+<p><label style="display:flex;align-items:center;gap:.6rem;font-weight:600;cursor:pointer"><input type="checkbox" id="opt-out" style="width:1.15rem;height:1.15rem"> Do not count my visits in the site statistics</label></p>
+<p id="opt-out-status" role="status" style="font-size:.93rem;color:var(--muted);margin:.3rem 0 0"></p>
+</div>
+
+<h2>Who is responsible</h2>
+<p>The data controller is Vyshak K Iyengar, London, United Kingdom, contact <a href="mailto:hello@speechon.app">hello@speechon.app</a>. Speech On is an individual project, not a company, and is not required to register a data protection officer.</p>
+
+<h2>What stays on your device</h2>
+<p>The following is written to your browser's <code>localStorage</code> under the key <code>voiceOn.clarity.v1</code>. It is stored on your device only. It is not transmitted anywhere, we have no access to it, and there is no copy of it on any server.</p>
+<table>
+<tr><th>What</th><th>Why</th></tr>
+<tr><td>Which days you marked as practised</td><td>To show your week and your streak</td></tr>
+<tr><td>Your chosen duration, language, context, theme, text size and practice goal</td><td>So the app opens the way you left it</td></tr>
+<tr><td>An unfinished session and which step you reached</td><td>So you can resume</td></tr>
+<tr><td>Your one-word reflection after a session</td><td>Shown back to you only</td></tr>
+<tr><td>Your reminder time, if you set one</td><td>To pre-fill the calendar file you download</td></tr>
+</table>
+<p>Clearing your browser's site data erases all of it permanently. You can also erase it from inside the app, under <em>My progress</em>. Because it is per-browser, it does not follow you to another device, and anyone else using the same browser profile can see it. If you share a computer, the erase button is there for you.</p>
+
+<h2>Your voice</h2>
+<p>Speech On does not ask for microphone access, does not request it, and contains no code that could record audio. The site sends a <code>Permissions-Policy: microphone=()</code> header on every response, which instructs your browser to refuse microphone access to this site even if something tried. Your browser's own speech synthesis reads instructions aloud if you press "Hear instructions"; that is text going out to your device's speaker, and nothing coming in.</p>
+
+<h2>What reaches us</h2>
+<h3>Site statistics</h3>
+<p>We use Vercel Web Analytics to count page views and referrers. It is cookieless, sets nothing on your device, and does not build a profile or track you across sites. It records a page path, a referrer, a coarse country, and a device and browser type. IP addresses are processed transiently to do that and are not stored by us. We strip query strings and fragments from the URL before anything is sent.</p>
+<p><strong>Legal basis:</strong> our legitimate interest in understanding whether the site works and how many people it reaches (UK GDPR Article 6(1)(f)). For storage on your device, we rely on the statistical-purposes exception in the Privacy and Electronic Communications Regulations as amended by the Data (Use and Access) Act 2025, which requires that we tell you clearly and give you a free and simple way to object. That is the checkbox at the top of this page.</p>
+<p>We also honour the <em>Do Not Track</em> and <em>Global Privacy Control</em> signals automatically. If your browser sends either, the analytics script is never loaded at all.</p>
+<h3>Server logs</h3>
+<p>Our host, Vercel Inc., processes standard request logs, including IP address and user agent, as part of delivering the site and protecting it from abuse. Vercel acts as our processor under a data processing agreement. Where data is transferred outside the UK or EEA, that transfer relies on the UK International Data Transfer Addendum and the EU Standard Contractual Clauses.</p>
+<h3>If you write to us</h3>
+<p>If you email us we keep the message and your address for as long as needed to deal with it, on the basis of our legitimate interest in replying to you.</p>
+
+<h2>What we do not do</h2>
+<ul>
+<li>No accounts, no sign-up, no email address required, ever.</li>
+<li>No advertising, no advertising identifiers, no data sold or shared with brokers.</li>
+<li>No third-party fonts. The typefaces are served from our own domain, so no request, and therefore no IP address, goes to Google or any other font host.</li>
+<li>No social media pixels, no session recording, no heatmaps, no A/B testing tools.</li>
+<li>No health data collected, inferred or stored. We do not ask why you are here.</li>
+<li>No cookies at all. We set none.</li>
+</ul>
+
+<h2>Children</h2>
+<p>The Service is designed for adults and is not directed at children. We do not knowingly collect any personal data from anyone, of any age.</p>
+
+<h2>Retention</h2>
+<p>Aggregate analytics are retained by our provider on a rolling basis and contain nothing that identifies you. Server logs are short lived. Data in your browser stays until you or your browser removes it, and we cannot remove it for you because we cannot see it.</p>
+
+<h2>Your rights</h2>
+<p>Under the UK GDPR and the EU GDPR you have rights of access, rectification, erasure, restriction, objection and portability. Because we hold no data that identifies you, there is usually nothing for us to give you or delete. For the data on your device: access it in the app, port it with the export button under <em>My progress</em>, and erase it with the erase button or by clearing site data. Email <a href="mailto:hello@speechon.app">hello@speechon.app</a> with any request and we will respond within one month.</p>
+<p>If you are unhappy with how we have handled your data you may complain to the UK <a href="https://ico.org.uk/make-a-complaint/" rel="noopener">Information Commissioner's Office</a>, or to your own EU supervisory authority.</p>
+
+<h2>Changes</h2>
+<p>If this notice changes, the date at the top changes with it.</p>
+
+<script src="/optout.js" defer></script>
+<a class="back" href="/">← Back to practice</a>
+</main>
+<footer>
+<nav aria-label="Footer">
+<a href="/">Practice</a><a href="/routine">The routine</a><a href="/for-clinicians">For clinicians</a><a href="/safety">Safety</a><a href="/accessibility">Accessibility</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="mailto:hello@speechon.app">Contact</a>
+</nav>
+<p>Speech On is a free practice tool. It is not a medical device and is not a treatment for any condition.<br>A project by <a href="https://www.linkedin.com/in/vyshakiyengar" rel="noopener">Vyshak K Iyengar</a>.</p>
+</footer>
+</div>
+</body></html>

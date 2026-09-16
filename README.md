@@ -1,12 +1,66 @@
 # Speech On
 
-A free daily speech warm-up with 5, 8, and 12 minutes of active practice. Static HTML, CSS and JavaScript; no build step or runtime dependencies.
+A free guided speech warm-up at [speechon.app](https://www.speechon.app/). Open the link and practise. No account, no sign-up, no microphone, no backend, no build step, no runtime dependencies.
 
-## Experience
+**Speech On is not a medical device and is not a treatment for any condition.** It is a general practice and wellbeing tool. See [`/terms`](https://www.speechon.app/terms), [`/safety`](https://www.speechon.app/safety) and [`/for-clinicians`](https://www.speechon.app/for-clinicians).
 
-Start without signing up. Choose a duration and a real-life context (everyday life, meeting, presentation). Seven guided steps move from a starting sentence through breathing, articulation, phrases, word emphasis and unscripted speaking, then repeat the starting sentence. Reflection is self-reported; the app does not record or score speech or promise instant results.
+## What it does
 
-Each timer starts only when the user is ready. Reading instructions and breaks add to the selected practice time. Users may move to the next step at any time, pause, return to the previous step, or save and exit. Backgrounding the app pauses it. Spoken cues use the browser's speech synthesis when available.
+Pick 5, 8, 12 minutes or the full sequence (~20 minutes, 18 exercises), pick an occasion, and work through guided exercises: settling the breath, relaxing the face, jaw and lip and tongue movement with speech attached, deliberate articulation, word endings, consonant clusters, rate control and pausing, prosodic emphasis, connected reading, and transfer into unscripted speech.
+
+Every exercise carries a written caution. Every step is self-paced; an optional timer can be switched on in settings and measures nothing. The shorter routines are subsets of the same exercises.
+
+The complete routine is readable without starting a session at [`/routine`](https://www.speechon.app/routine), which is generated from `content.js` so it cannot drift from the app.
+
+## Design commitments
+
+- **No microphone.** There is no code that could record audio, and the site sends `Permissions-Policy: microphone=()` on every response.
+- **No third-party requests.** Fonts are self-hosted. No CDN, no tag manager, no pixels, no cookies.
+- **Nothing leaves the browser.** Practice history, preferences and the unfinished session live in one `localStorage` key. There is no server to send them to.
+- **Analytics are optional and anonymous.** Vercel Web Analytics is cookieless, honours Do Not Track and Global Privacy Control automatically, and can be switched off on [`/privacy`](https://www.speechon.app/privacy).
+- **Works offline** once loaded, including the reference pages.
+- **No claims it cannot support.** The routine has not been clinically validated. The face massage and lip trill are labelled on screen as a settling step and a voice warm-up respectively, not articulation exercises.
+
+## Files
+
+| File | What it is |
+| --- | --- |
+| `index.html` | App shell: home, player and completion screens |
+| `app.js` | Session engine, state, streaks, pacer, data export and import |
+| `content.js` | Exercise structure, routes, artwork labels and the English pack |
+| `lang/*.json` | Translated packs, loaded on demand |
+| `art.js` | Articulation artwork: front-on mouth shapes per exercise |
+| `styles.css` | App styles, light and dark, self-hosted fonts |
+| `page.css` | Shared styles for the static reference pages |
+| `routine.html` | Every exercise in full, generated from `content.js` |
+| `safety.html` `terms.html` `privacy.html` `accessibility.html` | The reference pages |
+| `for-clinicians.html` `handout.html` | Clinician page and a printable patient handout |
+| `sw.js` | Versioned offline shell, network first |
+| `vercel.json` | Clean URLs, redirects, cache and security headers |
+
+## Languages
+
+The interface and every exercise are translated per language; the exercises are adapted rather than translated word for word, because sound contrasts do not carry across languages. **Safety, legal and About text stays in English in every language**, deliberately: a mistranslated caution is worse than an untranslated one, and the app says so.
+
+Only languages with a pack in `lang/` appear in the picker (`ready: true` in `content.js`). Anything a pack leaves out falls back to English rather than going blank.
+
+Shipping now: English, Spanish, French, German, Portuguese, Indonesian, Hindi, Kannada.
+Queued: Russian, Arabic, Chinese, Japanese, Bengali, Marathi, Telugu, Tamil, Gujarati, Malayalam, Punjabi, Odia, Urdu.
+
+**Every translation except English is machine-assisted and has not been reviewed by a native speaker.** The app says this to the user on the home screen. Native-speaker review of any pack is the single most useful contribution anyone could make; open an issue or write to hello@speechon.app.
+
+## Adding a language
+
+1. Copy `lang/es.json` and translate it. Keys the app needs are in `content.js` under `EN.ui`, `EN.contexts` and `EN.steps`.
+2. Adapt the exercise material rather than translating it: the sound pairs, word endings and consonant clusters must be contrasts that exist and matter in that language.
+3. Add the language to `LANGUAGES` in `content.js` with `ready: true`.
+4. For a right-to-left language set `dir: 'rtl'`; the layout and the arrow-key navigation already handle it.
+
+## Accessibility
+
+Target is WCAG 2.2 AA; the app is partially conformant and the known gaps are listed at [`/accessibility`](https://www.speechon.app/accessibility). Keyboard operable throughout, screen-reader labelled, reduced motion honoured (the artwork shows both positions side by side instead of alternating), dark mode, a text-size control, and contrast of at least 12:1 for body text in both themes. Checked down to 320 CSS pixels.
+
+The largest known gap is that there are no audio recordings of the sounds and phrases, so a user who cannot read the material has only synthesised speech. That is the next thing to build.
 
 ## Run locally
 
@@ -14,77 +68,14 @@ Each timer starts only when the user is ready. Reading instructions and breaks a
 python3 -m http.server 8765
 ```
 
-Open http://localhost:8765. Serve over HTTPS in production for the installable app, clipboard, sharing and screen wake lock capabilities. These features have fallbacks.
+Then open http://localhost:8765. Serve over HTTPS in production for the installable app, clipboard, sharing and the service worker; all of these degrade gracefully without it. Analytics never load on localhost or over plain HTTP.
 
-## Files and compatibility
+## Deploy
 
-- `index.html`: landing page and session screens
-- `styles.css`: responsive layout, accessible focus states and reduced-motion support
-- `app.js`: session engine, prompts, persistence and reflection
-- `fluency.html`: redirects old links to the current routine; original source remains in Git history
-- `sw.js`: versioned offline shell and network-first updates
+Vercel static site from the repository root: no framework, no build command, no output directory. `vercel.json` handles clean URLs, the `fluency.html` redirect, cache headers and the security headers. **Increment `CACHE` in `sw.js` whenever the shell changes**, then test both a returning visitor and a fresh browser.
 
-New practice data uses `voiceOn.clarity.v1` in localStorage. Existing `voiceOn.v1` history and preferences remain untouched; completed legacy days are included in the new seven-day history display. An in-progress new session retains its original date, prompts, context, duration and remaining time, even if home preferences change. Confirming practice credits the confirmation date; running a timer alone never credits a day.
+## Contributing
 
-No microphone, account, analytics, or backend. Google Fonts are optional; local font fallbacks keep the app functional offline. Speech synthesis availability depends on the device. Browser storage restrictions can prevent persistent progress.
+Most useful, in order: native-speaker review of a language pack; a recorded reference voice for any language; review of the routine by a registered speech and language therapist; accessibility testing with real assistive technology. Corrections to anything on `/routine` or `/for-clinicians` are very welcome — open an issue.
 
-## Deployment
-
-Keep the existing Vercel static-site settings: no framework, build command, or output directory. Deploy the repository root. Increment the cache version in `sw.js` when updating the shell. Test a returning visitor as well as a fresh browser after deployment.
-
-The original specialist routine is preserved for continuity. It has not been clinically reviewed as part of this interface redesign.
-
-## Daily habit features
-
-A three-, five-, or seven-day goal measures the last seven local calendar days. Current streaks include yesterday until today's practice is complete; best streaks include preserved legacy history. Repeat sessions on one date never add streak days. A daily calendar reminder downloads as an `.ics` file with local floating time; the user must import it and can edit or remove it in their calendar. Completion previews the next day's reading passage.
-
-Progress saves automatically without sign-in on the same browser. Clearing site data removes progress. There is no cross-device sync or server-sent reminder.
-
-## Analytics setup
-
-`analytics.js` loads Vercel Web Analytics only on HTTPS public hosts, respecting Do Not Track and Global Privacy Control. It strips query strings and URL fragments before events are sent. Analytics endpoints bypass the offline service-worker cache. Local previews do not load the analytics script.
-
-In Vercel, open this project → Analytics → Enable, then deploy. Pageviews and traffic insights become available once the production script is active. Web Analytics was enabled on the existing Hobby plan for this project on 2026-09-06. A deployment containing the analytics script must receive visits before data appears.
-
-Detailed events are prepared but disabled by default because Vercel custom events require Pro or Enterprise. If your plan supports them, set `customEvents = true` in `analytics.js`, then deploy. Do not upgrade your plan just to launch this version.
-
-Prepared event names: `session_start`, `session_resume`, `exercise_complete`, `session_exit`, `session_complete`, `share_click`, `reminder_download`, `weekly_goal_change`. Properties are restricted to numeric duration, step, elapsed seconds, goal, and a boolean for finishing an exercise early. No intent, names, prompts, voice, or reflection is sent. A `voice:analytics` CustomEvent exposes the same sanitized payload for automated tests or a future analytics adapter.
-
-Use traffic → session starts → completions to assess the conversion funnel once custom events are enabled. Compare drop-off by exercise number and completion by selected duration. Button completion is self-reported, not proof of speech quality; tab closures are not guaranteed to emit an exit event.
-
-References: https://vercel.com/docs/analytics/quickstart and https://vercel.com/docs/analytics/custom-events
-
-
-## Blue palette and UX audit update
-
-The app uses a blue palette, larger touch targets, sticky exercise controls, and plain-language instructions. Next is available without starting a timer. The timer is optional; at expiry only one Next action remains. A resumed session shows its actual saved choices; Choose a new session returns to selection. Small-phone layouts are checked down to 320 CSS pixels.
-
-Browsing exercises alone does not earn a practice day. Users who practice without a timer can explicitly save their practice at the end. Exercise skip, session browse, and untimed practice confirmation have separate analytics event hooks. These event hooks remain disabled for Vercel Hobby.
-
-The sound and phrase drills use deliberate speech, with phrases then repeated naturally, with comfortable effort and explicit repetitions. The About dialog links ASHA and NIDCD sources and distinguishes clinical techniques from validation of this particular routine. The 5–12 minute program is not clinically validated and is not a muscle-strengthening or stuttering treatment.
-
-## Screen-fitting exercise player
-
-The active player occupies the viewport using dynamic viewport height. Exercise content and controls have separate grid rows; the controls never cover the text. All phrases and emphasis examples appear together, without a second level of navigation. Tips open in a dialog and pause a running timer.
-
-Verified all seven exercises with all content visible at 1440×900, 1280×640, 390×844, 320×568, and 844×390: no content overflow, out-of-viewport controls, or overlapping material/actions. The landing page and long reference dialogs retain their natural scrolling.
-
-
-## Five-second UX audit
-
-The landing page now leads with three benefits (Clarity, Articulation, Fluency), one sentence, and a large GO button. A five-minute meeting routine is selected for new visitors; longer durations and contexts sit under Change time or occasion. Habits and reminders live in My progress & reminders instead of competing with the start action. No entrance animation delays the main content.
-
-Every exercise uses a short topic heading and one sentence combining the action and its purpose, with Next exercise as the primary action and the timer secondary. Redundant phase labels, timer hints, upcoming-step text, and footer encouragement are hidden. The left journey panel includes navigation completion percentage, also shown in the mobile header. A short illustrative lip animation demonstrates rounded oo and spread ee on the articulation step; it stops after four seconds and respects reduced motion. Phrase and emphasis sets rotate by date; the same opening and closing sentence is intentionally retained for comparison. Completion uses one short check-in and a prominent Done action.
-
-The new routine contains 300 seconds of optional exercise timers. Reading, pauses, and manual transitions can add time; it is not a guaranteed five-minute wall-clock session. Saved six-minute sessions still resume; new selections offer 5/8/12 minutes.
-
-Checked GO and Done visibility above the fold on desktop, 390px phones, and 320px phones, along with preserved habits, reminders, duration selection, and resume. These are heuristic and functional checks, not a measured study of first-time users.
-
-### Messaging audit
-
-Positioning covers lips, tongue, breath, and voice, with clear sounds, steady pacing, and natural speech as practice targets. Home, exercise purpose cues, About, share text, calendar reminders, and metadata use consistent speech-focused language. Fluency describes a practice focus, not a guaranteed outcome or stuttering treatment. Mouth movements are practiced during speech; the app does not claim muscle strengthening.
-
-
-### Full routine
-
-Choose **5**, **8**, **12**, or **Full (~20 minutes)**. Durations are estimates; steps are self-paced. Full includes 18 steps covering breathing, external cheek relaxation, jaw movement, lip sounds, front/back tongue coordination, gentle voicing, a rest break, and transfer into everyday speech. It adds breadth and repetitions at comfortable effort, not resistance or muscle-strengthening claims. Existing shorter routines and saved progress are preserved.
+A project by [Vyshak K Iyengar](https://www.linkedin.com/in/vyshakiyengar).
