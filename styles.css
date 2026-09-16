@@ -51,8 +51,13 @@ h1,h2,h3,.brand,.eyebrow,button,select{font-family:var(--display)}
 button{font:inherit;cursor:pointer}
 a{color:var(--accent)}
 
-.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--accent-ink);padding:.7rem 1rem;z-index:40;border-radius:0 0 .5rem 0;text-decoration:none}
-.skip:focus{left:0}
+/* Off-screen vertically, never horizontally: a large negative inline offset
+   creates thousands of pixels of leftward overflow in right-to-left layouts
+   and pushes the whole page out of view. */
+.skip{position:absolute;inset-inline-start:0;top:0;transform:translateY(-250%);
+ background:var(--accent);color:var(--accent-ink);padding:.7rem 1rem;z-index:40;
+ border-end-end-radius:.5rem;text-decoration:none}
+.skip:focus{transform:translateY(0)}
 
 /* ---------- header ---------- */
 .site-header{display:flex;align-items:center;justify-content:space-between;gap:.6rem;

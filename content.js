@@ -17,21 +17,14 @@ const LANGUAGES = [
  {code:'de',    name:'German',     native:'Deutsch',    dir:'ltr', group:'world', ready:true},
  {code:'pt',    name:'Portuguese', native:'Português',  dir:'ltr', group:'world', ready:true},
  {code:'ru',    name:'Russian',    native:'Русский',    dir:'ltr', group:'world', ready:true},
- {code:'ar',    name:'Arabic',     native:'العربية',     dir:'rtl', group:'world'},
- {code:'zh',    name:'Chinese',    native:'中文',        dir:'ltr', group:'world'},
- {code:'ja',    name:'Japanese',   native:'日本語',      dir:'ltr', group:'world'},
+ {code:'ar',    name:'Arabic',     native:'العربية',     dir:'rtl', group:'world', ready:true},
+ {code:'zh',    name:'Chinese',    native:'中文',        dir:'ltr', group:'world', ready:true},
+ {code:'ja',    name:'Japanese',   native:'日本語',      dir:'ltr', group:'world', ready:true},
  {code:'id',    name:'Indonesian', native:'Bahasa Indonesia', dir:'ltr', group:'world', ready:true},
  {code:'hi',    name:'Hindi',      native:'हिन्दी',        dir:'ltr', group:'india', ready:true},
- {code:'bn',    name:'Bengali',    native:'বাংলা',        dir:'ltr', group:'india'},
- {code:'mr',    name:'Marathi',    native:'मराठी',        dir:'ltr', group:'india'},
- {code:'te',    name:'Telugu',     native:'తెలుగు',       dir:'ltr', group:'india'},
- {code:'ta',    name:'Tamil',      native:'தமிழ்',        dir:'ltr', group:'india'},
- {code:'gu',    name:'Gujarati',   native:'ગુજરાતી',       dir:'ltr', group:'india'},
- {code:'kn',    name:'Kannada',    native:'ಕನ್ನಡ',        dir:'ltr', group:'india', ready:true},
- {code:'ml',    name:'Malayalam',  native:'മലയാളം',     dir:'ltr', group:'india'},
- {code:'pa',    name:'Punjabi',    native:'ਪੰਜਾਬੀ',        dir:'ltr', group:'india'},
- {code:'or',    name:'Odia',       native:'ଓଡ଼ିଆ',         dir:'ltr', group:'india'},
- {code:'ur',    name:'Urdu',       native:'اردو',        dir:'rtl', group:'india'}
+ {code:'te',    name:'Telugu',     native:'తెలుగు',       dir:'ltr', group:'india', ready:true},
+ {code:'ta',    name:'Tamil',      native:'தமிழ்',        dir:'ltr', group:'india', ready:true},
+ {code:'kn',    name:'Kannada',    native:'ಕನ್ನಡ',        dir:'ltr', group:'india', ready:true}
 ];
 
 /* Structure of every exercise. Language packs supply words only; the shape,
