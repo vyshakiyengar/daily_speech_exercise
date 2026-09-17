@@ -47,7 +47,7 @@ Only languages with a pack in `lang/` appear in the picker (`ready: true` in `co
 Shipping now: English, Spanish, French, German, Portuguese, Indonesian, Hindi, Kannada.
 Queued: Russian, Arabic, Chinese, Japanese, Bengali, Marathi, Telugu, Tamil, Gujarati, Malayalam, Punjabi, Odia, Urdu.
 
-**Every translation except English is machine-assisted and has not been reviewed by a native speaker.** The app says this to the user on the home screen. Native-speaker review of any pack is the single most useful contribution anyone could make; open an issue or write to hello@speechon.app.
+**Every translation except English is machine-assisted and has not been reviewed by a native speaker.** The app says this to the user on the home screen. Native-speaker review of any pack is the single most useful contribution anyone could make; open an issue.
 
 ## Adding a language
 
