@@ -165,3 +165,53 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:.25rem;padding
  .stage-top,.player-top{padding-top:max(.7rem, env(safe-area-inset-top))}
  footer{padding-bottom:max(2rem, env(safe-area-inset-bottom))}
 }
+
+/* ---------- daily-three progress (home) ---------- */
+.trio-progress{margin:0}
+@media(min-width:900px){.trio-progress{grid-column:1 / -1}}
+.progress-head h2{margin:0 0 .2rem}
+.trio-progress .kpis{margin:.8rem 0}
+.per-mod{display:grid;gap:.4rem;margin:.4rem 0 1rem}
+.per-row{display:grid;grid-template-columns:4.2rem 1fr;grid-template-rows:auto auto;column-gap:.7rem;row-gap:.15rem;align-items:center;
+ text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--hair);border-radius:.8rem;padding:.55rem .8rem}
+.per-row:hover{border-color:var(--accent)}
+.per-row b{font-family:var(--display);grid-row:1 / span 2}
+.per-bar{height:.45rem;background:var(--hair);border-radius:999px;overflow:hidden;display:block}
+.per-bar i{display:block;height:100%;border-radius:999px}
+.per-txt{font-size:.8rem;color:var(--muted);font-weight:600}
+.speak{--mod:var(--accent)} .read{--mod:#2f8f83} .think{--mod:#b8742a}
+:root[data-theme="dark"] .read{--mod:#5cc3b4} :root[data-theme="dark"] .think{--mod:#e3a35a}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .read{--mod:#5cc3b4} :root:not([data-theme="light"]) .think{--mod:#e3a35a}}
+.per-bar i,.cal-dots i.on,.cal-legend i{background:var(--mod)}
+.cal{border-top:1px solid var(--hair);padding-top:.8rem}
+.cal-head{display:flex;align-items:center;justify-content:space-between}
+.cal-head .quiet{font-size:1.4rem;line-height:1;padding:.3rem .8rem}
+.cal-head .quiet:disabled{opacity:.3;cursor:default}
+.cal-title{margin:0;font-size:1rem}
+.cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:.3rem;margin:.5rem 0}
+.cal-dow{font-size:.68rem;font-weight:700;color:var(--muted);text-align:center;letter-spacing:.06em}
+.cal-day{aspect-ratio:1/1;border-radius:.6rem;background:var(--paper);border:1px solid var(--hair);display:grid;
+ grid-template-rows:1fr auto;justify-items:center;padding:.25rem .1rem .35rem;min-width:0}
+.cal-num{font-size:.8rem;font-weight:700;color:var(--muted);font-family:var(--display);align-self:center}
+.cal-dots{display:flex;gap:.18rem}
+.cal-dots i{width:.38rem;height:.38rem;border-radius:50%;background:var(--hair)}
+.cal-day.c3{background:var(--accent);border-color:var(--accent)}
+.cal-day.c3 .cal-num{color:var(--accent-ink)}
+.cal-day.c3 .cal-dots i{background:var(--accent-ink)}
+.cal-day.is-today{outline:2px solid var(--accent);outline-offset:1px}
+.cal-day.future{opacity:.45}
+.cal-legend{display:flex;flex-wrap:wrap;gap:.3rem 1rem;font-size:.78rem;color:var(--muted);margin:.2rem 0 .8rem}
+.cal-legend span{display:inline-flex;align-items:center;gap:.35rem}
+.cal-legend i{width:.55rem;height:.55rem;border-radius:50%;display:inline-block}
+.cal-full-key{width:.9rem;height:.9rem;border-radius:.25rem;background:var(--accent);display:inline-block}
+.cal-tools{display:grid;gap:.55rem;border-top:1px solid var(--hair);padding-top:.9rem}
+.cal-tools .label{margin:0}
+.cal-tools .field{max-width:12rem}
+@media(min-width:900px){
+ .trio-progress{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,22rem);column-gap:2rem;align-items:start}
+ .progress-head,.trio-progress .kpis{grid-column:1 / -1}
+ .trio-progress .kpis{grid-template-columns:repeat(6,minmax(0,1fr))}
+ .per-mod{grid-column:1;grid-row:3;margin:0}
+ .cal-tools{grid-column:1;grid-row:4;margin-top:1rem}
+ .cal{grid-column:2;grid-row:3 / span 2;border-top:0;padding-top:0}
+}

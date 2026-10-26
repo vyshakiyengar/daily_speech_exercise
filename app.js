@@ -229,6 +229,7 @@ function renderHandoff(){
 
 function renderHome(){
  window.Trio?.renderStrip($('trio'), 'speak');
+ window.Trio?.renderProgress($('trio-progress'));
  const mins = state.session?.minutes || state.minutes;
  for (const b of document.querySelectorAll('[data-minutes]')) {
   b.setAttribute('aria-pressed', String(Number(b.dataset.minutes) === mins));

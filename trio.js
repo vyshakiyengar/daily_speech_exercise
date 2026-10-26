@@ -8,7 +8,13 @@
  const dateKey = (d = new Date()) =>
   `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
 
- const doneOn = (mod, key = dateKey()) => !!readStore(KEYS[mod]).days?.[key]?.complete;
+ const LEGACY_SPEAK = 'voiceOn.v1';
+ const doneOn = (mod, key = dateKey()) => {
+  if (readStore(KEYS[mod]).days?.[key]?.complete) return true;
+  if (mod !== 'speak') return false;
+  const l = readStore(LEGACY_SPEAK).days?.[key];
+  return !!l?.complete || (Array.isArray(l?.done) && l.done.length >= 5);
+ };
 
  const MODULES = [
   {id:'speak', href:'/', name:'Speak', sub:'Clear speech'},
@@ -39,6 +45,7 @@
 
  function renderStrip(el, current){
   if (!el) return;
+  el.dataset.current = current || '';
   el.replaceChildren();
   const count = MODULES.filter(m => doneOn(m.id)).length;
   const head = document.createElement('p');
@@ -79,6 +86,175 @@
   return null;
  }
 
+
+ /* ---------------- progress: streaks, calendar, calendar files ---------------- */
+
+ const parseKey = k => { const [y, m, d] = k.split('-').map(Number); return new Date(y, m - 1, d); };
+ const dayNo = k => Math.round(parseKey(k).getTime() / 86400000);
+ function historyKeys(){
+  const keys = new Set();
+  for (const k of [...Object.values(KEYS), LEGACY_SPEAK]) for (const d of Object.keys(readStore(k).days || {})) if (/^\d{4}-\d{2}-\d{2}$/.test(d)) keys.add(d);
+  return [...keys].sort();
+ }
+ const status = key => { const s = {}; let n = 0; for (const m of MODULES) { s[m.id] = doneOn(m.id, key); if (s[m.id]) n++; } s.count = n; return s; };
+
+ /* Current streak: today counts if done, otherwise the run ending yesterday is still alive. */
+ function streakOf(test){
+  let n = 0; const d = new Date();
+  if (!test(dateKey(d))) d.setDate(d.getDate() - 1);
+  while (test(dateKey(d))) { n++; d.setDate(d.getDate() - 1); }
+  return n;
+ }
+ function bestOf(test, keys){
+  let best = 0, run = 0, last = null;
+  for (const k of keys) {
+   if (!test(k)) { run = 0; last = null; continue; }
+   const n = dayNo(k); run = last !== null && n === last + 1 ? run + 1 : 1; best = Math.max(best, run); last = n;
+  }
+  return best;
+ }
+ function stats(){
+  const keys = historyKeys();
+  const full = k => status(k).count === 3, any = k => status(k).count > 0;
+  const now = new Date(), monthPrefix = dateKey(now).slice(0, 7);
+  const last7 = [...Array(7)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() - i); return dateKey(d); });
+  const last30 = [...Array(30)].map((_, i) => { const d = new Date(); d.setDate(d.getDate() - i); return dateKey(d); });
+  const per = {};
+  for (const m of MODULES) {
+   const t = k => doneOn(m.id, k);
+   per[m.id] = {current: streakOf(t), best: bestOf(t, keys), total: keys.filter(t).length, last30: last30.filter(t).length};
+  }
+  return {
+   fullCurrent: streakOf(full), fullBest: bestOf(full, keys), fullTotal: keys.filter(full).length,
+   anyCurrent: streakOf(any), daysPractised: keys.filter(any).length,
+   monthFull: keys.filter(k => k.startsWith(monthPrefix) && full(k)).length, monthSoFar: now.getDate(),
+   week: last7.reduce((a, k) => a + status(k).count, 0),
+   last30Full: last30.filter(full).length,
+   per, first: keys.find(any) || null
+  };
+ }
+
+ const h = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+ const tile = (big, small) => { const t = h('div', 'kpi'); t.append(h('b', null, big), h('span', null, small)); return t; };
+
+ function renderCalendar(host, year, month){
+  host.replaceChildren();
+  const first = new Date(year, month, 1), days = new Date(year, month + 1, 0).getDate();
+  const head = h('div', 'cal-head');
+  const prev = h('button', 'quiet', '‹'); prev.type = 'button'; prev.setAttribute('aria-label', 'Previous month');
+  const next = h('button', 'quiet', '›'); next.type = 'button'; next.setAttribute('aria-label', 'Next month');
+  const title = h('h3', 'cal-title', first.toLocaleDateString('en-GB', {month:'long', year:'numeric'}));
+  const today = new Date();
+  next.disabled = year > today.getFullYear() || (year === today.getFullYear() && month >= today.getMonth());
+  prev.onclick = () => renderCalendar(host, month ? year : year - 1, month ? month - 1 : 11);
+  next.onclick = () => renderCalendar(host, month === 11 ? year + 1 : year, month === 11 ? 0 : month + 1);
+  head.append(prev, title, next);
+  const grid = h('div', 'cal-grid'); grid.setAttribute('role', 'grid'); grid.setAttribute('aria-label', title.textContent);
+  for (const d of ['Mo','Tu','We','Th','Fr','Sa','Su']) grid.append(h('span', 'cal-dow', d));
+  const offset = (first.getDay() + 6) % 7;
+  for (let i = 0; i < offset; i++) grid.append(h('span', 'cal-pad'));
+  const todayKey = dateKey();
+  for (let d = 1; d <= days; d++) {
+   const key = dateKey(new Date(year, month, d)), s = status(key);
+   const cell = h('div', `cal-day c${s.count}${key === todayKey ? ' is-today' : ''}${key > todayKey ? ' future' : ''}`);
+   cell.setAttribute('role', 'gridcell');
+   const done = MODULES.filter(m => s[m.id]).map(m => m.name);
+   cell.setAttribute('aria-label', `${d} ${title.textContent}: ${s.count === 3 ? 'all three done' : done.length ? done.join(', ') + ' done' : 'nothing done'}`);
+   cell.append(h('span', 'cal-num', String(d)));
+   const dots = h('span', 'cal-dots'); dots.setAttribute('aria-hidden', 'true');
+   for (const m of MODULES) dots.append(h('i', s[m.id] ? 'on ' + m.id : ''));
+   cell.append(dots);
+   grid.append(cell);
+  }
+  const legend = h('p', 'cal-legend');
+  legend.innerHTML = '<span><i class="on speak"></i>Speak</span><span><i class="on read"></i>Read</span><span><i class="on think"></i>Think</span><span><b class="cal-full-key"></b>All three</span>';
+  host.append(head, grid, legend);
+ }
+
+ function download(name, lines){
+  const blob = new Blob([lines.join('\r\n') + '\r\n'], {type:'text/calendar;charset=utf-8'});
+  const url = URL.createObjectURL(blob), a = document.createElement('a');
+  a.href = url; a.download = name; document.body.append(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+ }
+ const esc = v => String(v).replace(/\\/g,'\\\\').replace(/\n/g,'\\n').replace(/,/g,'\\,').replace(/;/g,'\;');
+ const stampNow = () => new Date().toISOString().replace(/[-:]/g,'').replace(/\.\d{3}/,'');
+
+ /* One recurring daily event covering all three, with links back into the app. */
+ function reminderICS(time){
+  const [hh, mm] = time.split(':').map(Number), at = new Date(); at.setHours(hh, mm, 0, 0);
+  if (at <= new Date()) at.setDate(at.getDate() + 1);
+  const start = dateKey(at).replaceAll('-','') + 'T' + time.replace(':','') + '00';
+  const base = location.origin;
+  const desc = `Your daily three, about 30 minutes:\n1. Speak: ${base}/\n2. Read: ${base}/read\n3. Think: ${base}/think`;
+  download('speech-on-daily-three.ics', ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Speech On//Daily Three//EN','BEGIN:VEVENT',
+   'UID:speech-on-daily-three@speechon.app','DTSTAMP:' + stampNow(),'DTSTART:' + start,'DURATION:PT30M','RRULE:FREQ=DAILY',
+   'SUMMARY:' + esc('Speech On: Speak · Read · Think'),'DESCRIPTION:' + esc(desc),'URL:' + base + '/',
+   'BEGIN:VALARM','TRIGGER:PT0M','ACTION:DISPLAY','DESCRIPTION:' + esc('Time for your daily three'),'END:VALARM','END:VEVENT','END:VCALENDAR']);
+ }
+ /* Every practised day as an all-day event. Stable UIDs, so re-importing updates rather than duplicates where the calendar supports it. */
+ function logICS(){
+  const lines = ['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Speech On//Practice Log//EN','X-WR-CALNAME:Speech On practice'];
+  let n = 0;
+  for (const k of historyKeys()) {
+   const s = status(k); if (!s.count) continue; n++;
+   const done = MODULES.filter(m => s[m.id]).map(m => m.name);
+   const end = parseKey(k); end.setDate(end.getDate() + 1);
+   lines.push('BEGIN:VEVENT', `UID:speech-on-${k}@speechon.app`, 'DTSTAMP:' + stampNow(),
+    'DTSTART;VALUE=DATE:' + k.replaceAll('-',''), 'DTEND;VALUE=DATE:' + dateKey(end).replaceAll('-',''),
+    'SUMMARY:' + esc(s.count === 3 ? 'Speech On ✓ all three' : `Speech On ${s.count}/3: ${done.join(', ')}`),
+    'TRANSP:TRANSPARENT', 'END:VEVENT');
+  }
+  lines.push('END:VCALENDAR');
+  if (n) download('speech-on-practice-log.ics', lines);
+  return n;
+ }
+
+ function renderProgress(host){
+  if (!host) return;
+  const s = stats();
+  host.replaceChildren();
+  const top = h('div', 'progress-head');
+  const title = h('h2', null, 'Your daily three');
+  const lead = h('p', 'meta', s.fullCurrent
+   ? `${s.fullCurrent} full day${s.fullCurrent === 1 ? '' : 's'} in a row. ${status(dateKey()).count === 3 ? 'Today is done.' : 'Finish all three today to keep it going.'}`
+   : s.anyCurrent ? `${s.anyCurrent} day${s.anyCurrent === 1 ? '' : 's'} in a row with at least one. A full day is all three.` : 'A full day is all three: Speak, Read and Think. Start one today.');
+  top.append(title, lead);
+  const kpis = h('div', 'kpis');
+  kpis.append(tile(String(s.fullCurrent), 'full-day streak'), tile(String(s.fullBest), 'best full-day streak'),
+   tile(String(s.fullTotal), 'full days in total'), tile(`${s.monthFull}/${s.monthSoFar}`, 'full days this month'),
+   tile(`${s.week}/21`, 'exercises in the last 7 days'), tile(String(s.daysPractised), 'days practised'));
+  const per = h('div', 'per-mod');
+  for (const m of MODULES) {
+   const p = s.per[m.id], row = h('a', 'per-row'); row.href = m.href;
+   const name = h('b', null, m.name);
+   const bar = h('span', 'per-bar'); const fill = h('i', m.id); fill.style.width = Math.round(100 * p.last30 / 30) + '%'; bar.append(fill);
+   bar.setAttribute('aria-hidden', 'true');
+   const txt = h('span', 'per-txt', `${p.current}-day streak · best ${p.best} · ${p.last30}/30 days`);
+   row.append(name, bar, txt);
+   row.setAttribute('aria-label', `${m.name}: ${p.current}-day streak, best ${p.best}, ${p.last30} of the last 30 days, ${p.total} in total`);
+   per.append(row);
+  }
+  const cal = h('div', 'cal'); const now = new Date(); renderCalendar(cal, now.getFullYear(), now.getMonth());
+  const tools = h('div', 'cal-tools');
+  const timeLbl = h('label', 'label', 'Daily reminder time'); timeLbl.htmlFor = 'trio-time';
+  const time = document.createElement('input'); time.type = 'time'; time.id = 'trio-time'; time.className = 'field';
+  try { time.value = localStorage.getItem('speechOn.trioTime') || '08:00'; } catch { time.value = '08:00'; }
+  const msg = h('p', 'gentle-note'); msg.setAttribute('role', 'status');
+  const r = h('button', 'btn-ghost', 'Add a daily reminder for all three ↓'); r.type = 'button';
+  r.onclick = () => { if (!time.value) return; try { localStorage.setItem('speechOn.trioTime', time.value); } catch {} reminderICS(time.value);
+   msg.textContent = 'Open the downloaded file to add a repeating 30-minute event to your calendar, with links to each exercise.'; };
+  const l = h('button', 'btn-ghost', 'Add my practised days to my calendar ↓'); l.type = 'button';
+  l.onclick = () => { const n = logICS(); msg.textContent = n
+   ? `${n} practised day${n === 1 ? '' : 's'} saved as all-day events. Open the file to import them; do it again any time to bring the calendar up to date.`
+   : 'Nothing to add yet. Finish an exercise first.'; };
+  const note = h('p', 'gentle-note', 'Your history stays on this device. The calendar files are created here and only go where you open them.');
+  tools.append(timeLbl, time, r, l, msg, note);
+  host.append(top, kpis, per, cal, tools);
+ }
+
+ window.addEventListener('storage', () => { const p = document.getElementById('trio-progress'); if (p) renderProgress(p); renderStrip(document.getElementById('trio'), document.getElementById('trio')?.dataset.current); });
+
  /* iPhone and iPad: Safari has no install prompt, so show the steps once.
     Progress in Safari and in the home-screen app is stored separately on iOS,
     which is why the hint says to practise from the icon. */
@@ -100,6 +276,6 @@
  try { navigator.storage?.persist?.(); } catch {}
  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installHint); else installHint();
 
- window.Trio = {KEYS, dateKey, doneOn, renderStrip, next, applyDisplay, setDisplay, readStore, fullDayStreak, MODULES};
+ window.Trio = {KEYS, dateKey, doneOn, renderStrip, renderProgress, stats, next, applyDisplay, setDisplay, readStore, fullDayStreak, MODULES};
  applyDisplay();
 })();
