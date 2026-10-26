@@ -1,3 +1,1476 @@
-{"items":[
-{"q":"Should a company enter a new market just because a competitor did?","t":"strategy"}
-]}
+{
+"items": [
+{
+"q": "Should a company enter a new market just because a competitor did?",
+"t": "strategy"
+},
+{
+"q": "What does your team do, in a way your grandmother would understand?",
+"t": "explain"
+},
+{
+"q": "Would you rather ship a good product now or a great one in six months?",
+"t": "decision"
+},
+{
+"q": "How would you handle a high performer who is difficult to work with?",
+"t": "lead"
+},
+{
+"q": "Is remote work better for careers or worse?",
+"t": "opinion"
+},
+{
+"q": "Convince a sceptical CFO to fund a small experiment.",
+"t": "persuade"
+},
+{
+"q": "What is one thing most companies in your industry get wrong?",
+"t": "strategy"
+},
+{
+"q": "Explain compound interest to someone who has never saved.",
+"t": "explain"
+},
+{
+"q": "What is a decision you changed your mind about, and why?",
+"t": "reflect"
+},
+{
+"q": "How would you work out whether a price increase is worth it?",
+"t": "numbers"
+},
+{
+"q": "Should a market leader cut prices when a cheaper rival appears?",
+"t": "strategy"
+},
+{
+"q": "How do you give bad news to a team that has worked hard?",
+"t": "lead"
+},
+{
+"q": "Are meetings a sign of a healthy company or an unhealthy one?",
+"t": "opinion"
+},
+{
+"q": "Why do most new products fail?",
+"t": "explain"
+},
+{
+"q": "Your top client asks for a feature nobody else wants. Do you build it?",
+"t": "decision"
+},
+{
+"q": "Argue that your company should spend less on advertising.",
+"t": "persuade"
+},
+{
+"q": "What makes a competitive advantage hard to copy?",
+"t": "strategy"
+},
+{
+"q": "What is the best piece of feedback you ever received?",
+"t": "reflect"
+},
+{
+"q": "Explain what a brand is, without using the word logo.",
+"t": "explain"
+},
+{
+"q": "How should a new manager spend their first month?",
+"t": "lead"
+},
+{
+"q": "How would you estimate the size of a market nobody has measured?",
+"t": "numbers"
+},
+{
+"q": "Should companies take public positions on social issues?",
+"t": "opinion"
+},
+{
+"q": "When should a company buy another company instead of building?",
+"t": "strategy"
+},
+{
+"q": "Two equally good candidates, one internal and one external. Who do you hire?",
+"t": "decision"
+},
+{
+"q": "Make the case for a four-day week to a sceptical board.",
+"t": "persuade"
+},
+{
+"q": "What is the difference between revenue and profit, and why does it matter?",
+"t": "explain"
+},
+{
+"q": "How do you keep a team motivated during a long, slow project?",
+"t": "lead"
+},
+{
+"q": "Is it better to be first to market or best in market?",
+"t": "strategy"
+},
+{
+"q": "Is artificial intelligence more likely to create jobs or destroy them in the next ten years?",
+"t": "opinion"
+},
+{
+"q": "What is a skill you wish you had learned five years earlier?",
+"t": "reflect"
+},
+{
+"q": "Why do subscription businesses obsess over churn?",
+"t": "explain"
+},
+{
+"q": "A project is three months late. Cancel it, or keep going?",
+"t": "decision"
+},
+{
+"q": "Convince a team to adopt a tool they have never used.",
+"t": "persuade"
+},
+{
+"q": "How should a small company compete with a giant?",
+"t": "strategy"
+},
+{
+"q": "What would you do in your first week if you inherited a struggling team?",
+"t": "lead"
+},
+{
+"q": "How would you decide between two job offers using numbers?",
+"t": "numbers"
+},
+{
+"q": "Do company values actually change behaviour?",
+"t": "opinion"
+},
+{
+"q": "Explain network effects with an example from everyday life.",
+"t": "explain"
+},
+{
+"q": "What is the biggest risk to your industry in the next five years?",
+"t": "strategy"
+},
+{
+"q": "Should you tell your manager about a colleague’s mistake?",
+"t": "decision"
+},
+{
+"q": "Argue for investing in training during a downturn.",
+"t": "persuade"
+},
+{
+"q": "When did you last change your mind in a meeting?",
+"t": "reflect"
+},
+{
+"q": "Why is cash flow sometimes more important than profit?",
+"t": "explain"
+},
+{
+"q": "How do you disagree with your boss in public?",
+"t": "lead"
+},
+{
+"q": "Should a company focus on one product or many?",
+"t": "strategy"
+},
+{
+"q": "Is it better to specialise early in a career or stay broad?",
+"t": "opinion"
+},
+{
+"q": "How would you tell if a marketing campaign actually worked?",
+"t": "numbers"
+},
+{
+"q": "What does a good strategy document need to say?",
+"t": "explain"
+},
+{
+"q": "Your best engineer wants to move to sales. Do you support it?",
+"t": "decision"
+},
+{
+"q": "Convince a city council to build more housing.",
+"t": "persuade"
+},
+{
+"q": "When is it right to ignore what customers say they want?",
+"t": "strategy"
+},
+{
+"q": "How would you run a meeting that has to end with a decision?",
+"t": "lead"
+},
+{
+"q": "What is a mistake you learned the most from?",
+"t": "reflect"
+},
+{
+"q": "Why do prices end in .99?",
+"t": "explain"
+},
+{
+"q": "Should executives be paid in shares?",
+"t": "opinion"
+},
+{
+"q": "How do you know when a market is about to change?",
+"t": "strategy"
+},
+{
+"q": "A big partner offers a deal that would make you dependent on them. Take it?",
+"t": "decision"
+},
+{
+"q": "Persuade a friend to start saving for retirement now.",
+"t": "persuade"
+},
+{
+"q": "How would you work out whether a new hire paid for themselves?",
+"t": "numbers"
+},
+{
+"q": "Explain what inflation does to savings.",
+"t": "explain"
+},
+{
+"q": "How do you build trust with a team that does not know you?",
+"t": "lead"
+},
+{
+"q": "Should a company make its product free and charge for extras?",
+"t": "strategy"
+},
+{
+"q": "Are open-plan offices good for collaboration?",
+"t": "opinion"
+},
+{
+"q": "What do you do when you notice you are procrastinating?",
+"t": "reflect"
+},
+{
+"q": "Why can two passengers on the same flight pay very different prices?",
+"t": "explain"
+},
+{
+"q": "You can launch in one new country this year. How do you choose?",
+"t": "decision"
+},
+{
+"q": "Argue that your team should stop doing one thing it currently does.",
+"t": "persuade"
+},
+{
+"q": "What should a company do when its core product is shrinking?",
+"t": "strategy"
+},
+{
+"q": "How would you handle two senior people who refuse to work together?",
+"t": "lead"
+},
+{
+"q": "How would you check whether a growth forecast is realistic?",
+"t": "numbers"
+},
+{
+"q": "Is it ever right to break a company rule?",
+"t": "opinion"
+},
+{
+"q": "What is the sunk cost fallacy, and where have you seen it?",
+"t": "explain"
+},
+{
+"q": "How should a company decide what not to do?",
+"t": "strategy"
+},
+{
+"q": "A customer threatens to leave unless you cut your price by 20%. What do you do?",
+"t": "decision"
+},
+{
+"q": "Convince a hesitant colleague to present at a big meeting.",
+"t": "persuade"
+},
+{
+"q": "What does a good day at work look like for you?",
+"t": "reflect"
+},
+{
+"q": "Why do large teams often move more slowly?",
+"t": "explain"
+},
+{
+"q": "What would you do if your team kept missing deadlines?",
+"t": "lead"
+},
+{
+"q": "Should companies chase growth or profit first?",
+"t": "strategy"
+},
+{
+"q": "Should children learn to code at school?",
+"t": "opinion"
+},
+{
+"q": "How would you estimate how much a coffee shop earns in a year?",
+"t": "numbers"
+},
+{
+"q": "Explain how a central bank fights inflation.",
+"t": "explain"
+},
+{
+"q": "Should you accept a promotion that means managing your former peers?",
+"t": "decision"
+},
+{
+"q": "Make the case for a company to publish its salaries.",
+"t": "persuade"
+},
+{
+"q": "What separates a good acquisition from a bad one?",
+"t": "strategy"
+},
+{
+"q": "How do you recognise good work without seeming fake?",
+"t": "lead"
+},
+{
+"q": "What is a habit that has made you better at your job?",
+"t": "reflect"
+},
+{
+"q": "Why are generic medicines so much cheaper than branded ones?",
+"t": "explain"
+},
+{
+"q": "Is it better to have a few deep friendships or many light ones at work?",
+"t": "opinion"
+},
+{
+"q": "How should a company respond to a public scandal?",
+"t": "strategy"
+},
+{
+"q": "A supplier offers a large discount for a five-year contract. Sign?",
+"t": "decision"
+},
+{
+"q": "Argue for hiring someone with less experience but more potential.",
+"t": "persuade"
+},
+{
+"q": "How would you decide whether to rent or buy equipment?",
+"t": "numbers"
+},
+{
+"q": "What is a pre-mortem, and why does it work?",
+"t": "explain"
+},
+{
+"q": "How would you coach someone who freezes in presentations?",
+"t": "lead"
+},
+{
+"q": "When should a company raise prices?",
+"t": "strategy"
+},
+{
+"q": "Are university degrees still worth it?",
+"t": "opinion"
+},
+{
+"q": "What is something you believe that most people disagree with?",
+"t": "reflect"
+},
+{
+"q": "Why do most actively managed funds fail to beat the index?",
+"t": "explain"
+},
+{
+"q": "Your project can finish on time with lower quality, or late with higher quality. Which?",
+"t": "decision"
+},
+{
+"q": "Convince your team to cancel a weekly meeting.",
+"t": "persuade"
+},
+{
+"q": "What role should data play in strategic decisions?",
+"t": "strategy"
+},
+{
+"q": "How do you lead people who are more expert than you?",
+"t": "lead"
+},
+{
+"q": "How would you measure whether a new feature is being used?",
+"t": "numbers"
+},
+{
+"q": "What does it mean for a company to have a moat?",
+"t": "explain"
+},
+{
+"q": "Should companies let employees choose their own job titles?",
+"t": "opinion"
+},
+{
+"q": "How do platforms solve the chicken-and-egg problem?",
+"t": "strategy"
+},
+{
+"q": "Should you take a job you are excited about that pays less?",
+"t": "decision"
+},
+{
+"q": "Argue that your company should enter India.",
+"t": "persuade"
+},
+{
+"q": "Who is the best leader you have worked with, and what did they do differently?",
+"t": "reflect"
+},
+{
+"q": "Why can a fine make people behave worse?",
+"t": "explain"
+},
+{
+"q": "How would you announce a reorganisation?",
+"t": "lead"
+},
+{
+"q": "What is the difference between a goal and a strategy?",
+"t": "strategy"
+},
+{
+"q": "Is it better to set ambitious targets or achievable ones?",
+"t": "opinion"
+},
+{
+"q": "How would you estimate the value of a loyal customer?",
+"t": "numbers"
+},
+{
+"q": "Explain why the sky is blue to a ten-year-old.",
+"t": "explain"
+},
+{
+"q": "You have budget for either a new hire or new software. Which?",
+"t": "decision"
+},
+{
+"q": "Convince a reluctant client to try a pilot instead of a full rollout.",
+"t": "persuade"
+},
+{
+"q": "Should a company copy a competitor’s successful feature?",
+"t": "strategy"
+},
+{
+"q": "How do you handle someone who takes credit for others’ work?",
+"t": "lead"
+},
+{
+"q": "What would you do differently if you started your career again?",
+"t": "reflect"
+},
+{
+"q": "What is the difference between correlation and causation?",
+"t": "explain"
+},
+{
+"q": "Should companies use AI to screen job applicants?",
+"t": "opinion"
+},
+{
+"q": "What makes a company culture hard to change?",
+"t": "strategy"
+},
+{
+"q": "A rival poaches your best salesperson. How do you respond?",
+"t": "decision"
+},
+{
+"q": "Argue that cities should charge drivers to enter the centre.",
+"t": "persuade"
+},
+{
+"q": "How would you work out the break-even point for a new product?",
+"t": "numbers"
+},
+{
+"q": "Why do people underestimate how long projects will take?",
+"t": "explain"
+},
+{
+"q": "How do you balance supporting your team with challenging them?",
+"t": "lead"
+},
+{
+"q": "How should a company think about long-term versus short-term investment?",
+"t": "strategy"
+},
+{
+"q": "Is ambition a strength or a weakness?",
+"t": "opinion"
+},
+{
+"q": "What is one thing you would like to be known for at work?",
+"t": "reflect"
+},
+{
+"q": "How does a vaccine prepare the body?",
+"t": "explain"
+},
+{
+"q": "You discover your product has a minor safety flaw. Recall it or fix quietly?",
+"t": "decision"
+},
+{
+"q": "Convince a manager to let you work on a side project.",
+"t": "persuade"
+},
+{
+"q": "When should a company stop listening to its biggest customers?",
+"t": "strategy"
+},
+{
+"q": "How do you make a decision when your team is split fifty-fifty?",
+"t": "lead"
+},
+{
+"q": "How would you decide how much to spend acquiring a customer?",
+"t": "numbers"
+},
+{
+"q": "What does a good apology contain?",
+"t": "explain"
+},
+{
+"q": "Should there be a maximum ratio between CEO pay and worker pay?",
+"t": "opinion"
+},
+{
+"q": "What is the best way to enter a market dominated by one player?",
+"t": "strategy"
+},
+{
+"q": "Should a startup take money from an investor it does not trust?",
+"t": "decision"
+},
+{
+"q": "Argue for spending more on brand building than performance ads.",
+"t": "persuade"
+},
+{
+"q": "What drains your energy at work, and what restores it?",
+"t": "reflect"
+},
+{
+"q": "Why do some cities feel much hotter than the countryside?",
+"t": "explain"
+},
+{
+"q": "How would you build a culture where people admit mistakes?",
+"t": "lead"
+},
+{
+"q": "What should a company measure to know it is healthy?",
+"t": "strategy"
+},
+{
+"q": "Should social media platforms be responsible for what users post?",
+"t": "opinion"
+},
+{
+"q": "How would you tell if a business is growing because of luck or skill?",
+"t": "numbers"
+},
+{
+"q": "What is comparative advantage?",
+"t": "explain"
+},
+{
+"q": "A partner wants to rebrand the product you just launched. Agree?",
+"t": "decision"
+},
+{
+"q": "Convince an investor that a boring business is a great one.",
+"t": "persuade"
+},
+{
+"q": "How do you know if a trend is a fad?",
+"t": "strategy"
+},
+{
+"q": "How would you handle a team member who is clearly burning out?",
+"t": "lead"
+},
+{
+"q": "When do you do your best thinking?",
+"t": "reflect"
+},
+{
+"q": "Why do most plastic items never get recycled?",
+"t": "explain"
+},
+{
+"q": "Should governments nudge people’s choices?",
+"t": "opinion"
+},
+{
+"q": "Is it better to grow by selling more to existing customers or finding new ones?",
+"t": "strategy"
+},
+{
+"q": "Do you share bad quarterly results early or wait until they are final?",
+"t": "decision"
+},
+{
+"q": "Argue for a company-wide no-meetings day.",
+"t": "persuade"
+},
+{
+"q": "How would you calculate whether a loan is worth taking?",
+"t": "numbers"
+},
+{
+"q": "Explain the tragedy of the commons.",
+"t": "explain"
+},
+{
+"q": "How do you onboard someone senior who joins from a competitor?",
+"t": "lead"
+},
+{
+"q": "How should a company price a completely new kind of product?",
+"t": "strategy"
+},
+{
+"q": "Is failure overrated in startup culture?",
+"t": "opinion"
+},
+{
+"q": "What is a question you wish people asked you more often?",
+"t": "reflect"
+},
+{
+"q": "Why does ice float?",
+"t": "explain"
+},
+{
+"q": "Should you hire a friend?",
+"t": "decision"
+},
+{
+"q": "Convince a teenager that reading is worth their time.",
+"t": "persuade"
+},
+{
+"q": "When does it make sense to sell a profitable division?",
+"t": "strategy"
+},
+{
+"q": "How would you respond if your team told you they did not trust you?",
+"t": "lead"
+},
+{
+"q": "How would you work out how many staff a shop needs on a Saturday?",
+"t": "numbers"
+},
+{
+"q": "What is survivorship bias?",
+"t": "explain"
+},
+{
+"q": "Should companies offer unlimited holiday?",
+"t": "opinion"
+},
+{
+"q": "What should the first hundred days of a new CEO look like?",
+"t": "strategy"
+},
+{
+"q": "Your team wants to work fully remote. Do you allow it?",
+"t": "decision"
+},
+{
+"q": "Argue that your company should open-source a tool it built.",
+"t": "persuade"
+},
+{
+"q": "What has surprised you most about your current role?",
+"t": "reflect"
+},
+{
+"q": "How does GPS work out where you are?",
+"t": "explain"
+},
+{
+"q": "How do you set priorities when everything feels urgent?",
+"t": "lead"
+},
+{
+"q": "How would you turn around a declining brand?",
+"t": "strategy"
+},
+{
+"q": "Is it better to be liked or respected as a leader?",
+"t": "opinion"
+},
+{
+"q": "How would you judge whether an acquisition price is fair?",
+"t": "numbers"
+},
+{
+"q": "What is a network effect, and when does it fail?",
+"t": "explain"
+},
+{
+"q": "Should you go back to a company you left?",
+"t": "decision"
+},
+{
+"q": "Make the case for paying interns properly.",
+"t": "persuade"
+},
+{
+"q": "Should a company build its own AI or buy it?",
+"t": "strategy"
+},
+{
+"q": "How would you run a retrospective after a failed launch?",
+"t": "lead"
+},
+{
+"q": "What do you do to keep learning?",
+"t": "reflect"
+},
+{
+"q": "Why do cats land on their feet?",
+"t": "explain"
+},
+{
+"q": "Should managers be promoted from within or hired from outside?",
+"t": "opinion"
+},
+{
+"q": "What makes a partnership between two companies work?",
+"t": "strategy"
+},
+{
+"q": "You are offered a big role at a company with values you dislike. Accept?",
+"t": "decision"
+},
+{
+"q": "Convince your manager to give you a stretch assignment.",
+"t": "persuade"
+},
+{
+"q": "How would you estimate the cost of a customer complaint?",
+"t": "numbers"
+},
+{
+"q": "What is loss aversion?",
+"t": "explain"
+},
+{
+"q": "How do you make sure quieter people are heard in meetings?",
+"t": "lead"
+},
+{
+"q": "How should a company decide which markets to exit?",
+"t": "strategy"
+},
+{
+"q": "Is work-life balance possible in senior roles?",
+"t": "opinion"
+},
+{
+"q": "What advice would you give your first-year self at work?",
+"t": "reflect"
+},
+{
+"q": "Why do some companies make cancelling a subscription hard?",
+"t": "explain"
+},
+{
+"q": "A journalist asks you about a rumour you know is true. What do you say?",
+"t": "decision"
+},
+{
+"q": "Argue for investing in employee wellbeing as a business case.",
+"t": "persuade"
+},
+{
+"q": "What is the right balance between innovation and efficiency?",
+"t": "strategy"
+},
+{
+"q": "How do you handle a team member who disagrees with every decision?",
+"t": "lead"
+},
+{
+"q": "How would you assess whether a new store location is viable?",
+"t": "numbers"
+},
+{
+"q": "Explain the planning fallacy and how to beat it.",
+"t": "explain"
+},
+{
+"q": "Should companies be judged on their environmental impact?",
+"t": "opinion"
+},
+{
+"q": "What would you do if a new technology threatened your core product?",
+"t": "strategy"
+},
+{
+"q": "You can only fix one of three problems this quarter. How do you choose?",
+"t": "decision"
+},
+{
+"q": "Convince a sceptic that small habits matter.",
+"t": "persuade"
+},
+{
+"q": "What is a belief you held strongly that turned out to be wrong?",
+"t": "reflect"
+},
+{
+"q": "What is the difference between a market and a platform?",
+"t": "explain"
+},
+{
+"q": "How would you lead a team through a merger?",
+"t": "lead"
+},
+{
+"q": "Should a premium brand ever launch a cheaper line?",
+"t": "strategy"
+},
+{
+"q": "Is the customer always right?",
+"t": "opinion"
+},
+{
+"q": "How would you compare two investment options quickly?",
+"t": "numbers"
+},
+{
+"q": "Why do defaults change behaviour so much?",
+"t": "explain"
+},
+{
+"q": "Should you speak up in a meeting when you are only half sure?",
+"t": "decision"
+},
+{
+"q": "Argue that your company should hire more people over fifty.",
+"t": "persuade"
+},
+{
+"q": "How would you grow a business that is profitable but not growing?",
+"t": "strategy"
+},
+{
+"q": "What does good delegation look like?",
+"t": "lead"
+},
+{
+"q": "What do you find hardest about giving feedback?",
+"t": "reflect"
+},
+{
+"q": "How does a solar panel make electricity?",
+"t": "explain"
+},
+{
+"q": "Should universities be free?",
+"t": "opinion"
+},
+{
+"q": "When does vertical integration make sense?",
+"t": "strategy"
+},
+{
+"q": "A key supplier is unreliable but cheapest. Switch?",
+"t": "decision"
+},
+{
+"q": "Make the case for slowing down a product launch.",
+"t": "persuade"
+},
+{
+"q": "How would you check if a sales target is achievable?",
+"t": "numbers"
+},
+{
+"q": "What is Goodhart’s law?",
+"t": "explain"
+},
+{
+"q": "How would you handle a crisis on your first day in a new job?",
+"t": "lead"
+},
+{
+"q": "How do you choose between two strategies that both look good?",
+"t": "strategy"
+},
+{
+"q": "Is it better to build products for experts or beginners?",
+"t": "opinion"
+},
+{
+"q": "What is something you do differently from most people in your role?",
+"t": "reflect"
+},
+{
+"q": "Why are electric cars more efficient than petrol cars?",
+"t": "explain"
+},
+{
+"q": "Should you raise prices for existing customers or only new ones?",
+"t": "decision"
+},
+{
+"q": "Convince a sceptical audience that AI can be used responsibly.",
+"t": "persuade"
+},
+{
+"q": "What should a company do with a product that customers love but that loses money?",
+"t": "strategy"
+},
+{
+"q": "How do you lead when you do not have formal authority?",
+"t": "lead"
+},
+{
+"q": "How would you decide whether to expand to a second office?",
+"t": "numbers"
+},
+{
+"q": "Explain what diminishing returns means with a work example.",
+"t": "explain"
+},
+{
+"q": "Should companies track employees’ productivity with software?",
+"t": "opinion"
+},
+{
+"q": "Is a strong brand still valuable in a world of reviews?",
+"t": "strategy"
+},
+{
+"q": "Your manager asks you to bend the truth to a client. What do you do?",
+"t": "decision"
+},
+{
+"q": "Argue for keeping a struggling product alive one more year.",
+"t": "persuade"
+},
+{
+"q": "How do you prepare for a big conversation?",
+"t": "reflect"
+},
+{
+"q": "Why do mountain tops stay cold?",
+"t": "explain"
+},
+{
+"q": "How do you rebuild morale after layoffs?",
+"t": "lead"
+},
+{
+"q": "How should a company respond to a price war?",
+"t": "strategy"
+},
+{
+"q": "Should there be limits on how much data companies can collect?",
+"t": "opinion"
+},
+{
+"q": "How would you work out if a discount promotion made money?",
+"t": "numbers"
+},
+{
+"q": "What makes a good forecast?",
+"t": "explain"
+},
+{
+"q": "Do you take a guaranteed bonus now or a larger uncertain one later?",
+"t": "decision"
+},
+{
+"q": "Make the case for learning a second language as an adult.",
+"t": "persuade"
+},
+{
+"q": "What is the role of a corporate strategy team?",
+"t": "strategy"
+},
+{
+"q": "How do you manage someone who is older and more experienced?",
+"t": "lead"
+},
+{
+"q": "When did you last feel completely focused, and why?",
+"t": "reflect"
+},
+{
+"q": "What is a sovereign wealth fund?",
+"t": "explain"
+},
+{
+"q": "Is it better to move fast and fix later, or slow and get it right?",
+"t": "opinion"
+},
+{
+"q": "How do you know whether to keep investing in a product or stop?",
+"t": "strategy"
+},
+{
+"q": "You find a better job offer a month after starting a new role. Leave?",
+"t": "decision"
+},
+{
+"q": "Convince your team to write more and meet less.",
+"t": "persuade"
+},
+{
+"q": "How would you value a company with no profits yet?",
+"t": "numbers"
+},
+{
+"q": "What is the innovator’s dilemma?",
+"t": "explain"
+},
+{
+"q": "How do you make a team accountable without blame?",
+"t": "lead"
+},
+{
+"q": "Should a company prioritise its home market or go global early?",
+"t": "strategy"
+},
+{
+"q": "Should companies have a mandatory retirement age?",
+"t": "opinion"
+},
+{
+"q": "What is a small decision that changed your life?",
+"t": "reflect"
+},
+{
+"q": "Why did the world adopt time zones?",
+"t": "explain"
+},
+{
+"q": "Should you publicly admit your company made a mistake?",
+"t": "decision"
+},
+{
+"q": "Argue that your company should lend its experts to charities.",
+"t": "persuade"
+},
+{
+"q": "How should a mature company find new growth?",
+"t": "strategy"
+},
+{
+"q": "How do you handle a team that resists change?",
+"t": "lead"
+},
+{
+"q": "How would you estimate the return on a training programme?",
+"t": "numbers"
+},
+{
+"q": "What is a BATNA and why does it matter?",
+"t": "explain"
+},
+{
+"q": "Is talent or effort more important for success?",
+"t": "opinion"
+},
+{
+"q": "When is it smart to give a product away for free?",
+"t": "strategy"
+},
+{
+"q": "Your startup can either raise money now at a low valuation or wait. Which?",
+"t": "decision"
+},
+{
+"q": "Convince a nervous client to go ahead with a launch.",
+"t": "persuade"
+},
+{
+"q": "What do you want to be better at a year from now?",
+"t": "reflect"
+},
+{
+"q": "How does the internet send a photo from one phone to another?",
+"t": "explain"
+},
+{
+"q": "How do you lead a meeting where emotions are running high?",
+"t": "lead"
+},
+{
+"q": "How should a company use its cash pile?",
+"t": "strategy"
+},
+{
+"q": "Should children be allowed smartphones before secondary school?",
+"t": "opinion"
+},
+{
+"q": "How would you work out if your team is understaffed?",
+"t": "numbers"
+},
+{
+"q": "What is the resource curse?",
+"t": "explain"
+},
+{
+"q": "Should you hire for culture fit or culture add?",
+"t": "decision"
+},
+{
+"q": "Argue that every team should run a pre-mortem before big projects.",
+"t": "persuade"
+},
+{
+"q": "How would you decide whether to enter the subscription business?",
+"t": "strategy"
+},
+{
+"q": "How do you hold someone to a high standard while being kind?",
+"t": "lead"
+},
+{
+"q": "What is something you are proud of that nobody noticed?",
+"t": "reflect"
+},
+{
+"q": "Why do chess masters remember positions so well?",
+"t": "explain"
+},
+{
+"q": "Should companies pay for employees’ further education?",
+"t": "opinion"
+},
+{
+"q": "What is the right way to respond to a disruptive competitor?",
+"t": "strategy"
+},
+{
+"q": "A client offers a large contract that would stretch your team too far. Take it?",
+"t": "decision"
+},
+{
+"q": "Convince your boss that you need fewer priorities, not more resources.",
+"t": "persuade"
+},
+{
+"q": "How would you estimate how much a city spends on coffee each day?",
+"t": "numbers"
+},
+{
+"q": "What is a placebo, and why do trials use one?",
+"t": "explain"
+},
+{
+"q": "How do you know if you are micromanaging?",
+"t": "lead"
+},
+{
+"q": "Is market share still a useful goal?",
+"t": "strategy"
+},
+{
+"q": "Should important decisions be made by individuals or committees?",
+"t": "opinion"
+},
+{
+"q": "What is the most useful thing you learned from a failure?",
+"t": "reflect"
+},
+{
+"q": "Explain why trade can benefit both countries.",
+"t": "explain"
+},
+{
+"q": "Should you take a lateral move to learn a new area?",
+"t": "decision"
+},
+{
+"q": "Make the case for a company to measure customer happiness.",
+"t": "persuade"
+},
+{
+"q": "How do you evaluate a company’s strategy from the outside?",
+"t": "strategy"
+},
+{
+"q": "How would you introduce yourself to a new team in two minutes?",
+"t": "lead"
+},
+{
+"q": "How would you work out how long a company’s cash will last?",
+"t": "numbers"
+},
+{
+"q": "Why does the monsoon matter to India’s economy?",
+"t": "explain"
+},
+{
+"q": "Is it better to be an expert or a generalist in the age of AI?",
+"t": "opinion"
+},
+{
+"q": "When should a company stop a successful marketing campaign?",
+"t": "strategy"
+},
+{
+"q": "Should you replace a loyal but underperforming team member?",
+"t": "decision"
+},
+{
+"q": "Argue for keeping a physical office.",
+"t": "persuade"
+},
+{
+"q": "How do you know when you have done enough on a piece of work?",
+"t": "reflect"
+},
+{
+"q": "What does GDP leave out?",
+"t": "explain"
+},
+{
+"q": "How do you lead a team spread across time zones?",
+"t": "lead"
+},
+{
+"q": "What makes a good business model?",
+"t": "strategy"
+},
+{
+"q": "Should we trust online ratings?",
+"t": "opinion"
+},
+{
+"q": "How would you decide whether to fix or replace an old system?",
+"t": "numbers"
+},
+{
+"q": "Why do some apologies make things worse?",
+"t": "explain"
+},
+{
+"q": "A competitor offers to buy your small company. What would you need to know?",
+"t": "decision"
+},
+{
+"q": "Convince a group of executives to take a risk on a new idea.",
+"t": "persuade"
+},
+{
+"q": "How should a company plan for an uncertain future?",
+"t": "strategy"
+},
+{
+"q": "What would you say to your team on your last day in a role?",
+"t": "lead"
+},
+{
+"q": "What do you want people to feel after a conversation with you?",
+"t": "reflect"
+},
+{
+"q": "Explain what a startup’s burn rate is.",
+"t": "explain"
+},
+{
+"q": "Is it better to tell a hard truth or protect someone’s feelings?",
+"t": "opinion"
+},
+{
+"q": "How do you decide where to place big bets?",
+"t": "strategy"
+},
+{
+"q": "You have one hour to prepare for a board question you cannot answer. What do you do?",
+"t": "decision"
+},
+{
+"q": "Argue that thinking out loud makes teams smarter.",
+"t": "persuade"
+},
+{
+"q": "How would you explain a 15% drop in sales to the CEO?",
+"t": "numbers"
+},
+{
+"q": "What is the wisdom of crowds, and when does it fail?",
+"t": "explain"
+},
+{
+"q": "How do you celebrate success without complacency?",
+"t": "lead"
+},
+{
+"q": "What would you do with an extra £10 million to invest in your business?",
+"t": "strategy"
+},
+{
+"q": "Should leaders show vulnerability?",
+"t": "opinion"
+},
+{
+"q": "What does speaking well mean to you?",
+"t": "reflect"
+},
+{
+"q": "Why does a magnitude 7 earthquake do far more damage than a 6?",
+"t": "explain"
+},
+{
+"q": "Should you take a big role abroad?",
+"t": "decision"
+},
+{
+"q": "Make the case that clear writing is a leadership skill.",
+"t": "persuade"
+},
+{
+"q": "How do you build a strategy that survives contact with reality?",
+"t": "strategy"
+},
+{
+"q": "How do you help someone grow into a role they are not ready for yet?",
+"t": "lead"
+},
+{
+"q": "How would you sanity-check a number in a presentation in ten seconds?",
+"t": "numbers"
+},
+{
+"q": "What is the difference between a fixed and a variable cost?",
+"t": "explain"
+},
+{
+"q": "Is it better to over-prepare or to stay flexible?",
+"t": "opinion"
+},
+{
+"q": "Why do good companies fail?",
+"t": "strategy"
+},
+{
+"q": "You can be right or keep the relationship. Which do you choose, and when?",
+"t": "decision"
+},
+{
+"q": "Convince yourself to start the thing you have been putting off.",
+"t": "persuade"
+},
+{
+"q": "What has a year of daily practice taught you?",
+"t": "reflect"
+},
+{
+"q": "What would make your company impossible to compete with?",
+"t": "strategy"
+},
+{
+"q": "Explain a recent news story as if to a colleague who missed it.",
+"t": "explain"
+},
+{
+"q": "You can either cut costs by 10% or grow revenue by 10%. Which is easier, and why?",
+"t": "decision"
+},
+{
+"q": "How do you set a vision that people actually remember?",
+"t": "lead"
+},
+{
+"q": "Should every leader be able to read a balance sheet?",
+"t": "opinion"
+},
+{
+"q": "Convince a team that saying no to a client can be the right answer.",
+"t": "persuade"
+},
+{
+"q": "How would you explain a forecast range of 8 to 14% to a non-finance audience?",
+"t": "numbers"
+},
+{
+"q": "What do you want your next performance review to say?",
+"t": "reflect"
+},
+{
+"q": "What is a market that looks small today but could be huge in ten years?",
+"t": "strategy"
+},
+{
+"q": "Explain what an API is without technical words.",
+"t": "explain"
+},
+{
+"q": "Should you share an idea early to get feedback, or polish it first?",
+"t": "decision"
+},
+{
+"q": "How would you give feedback to your own manager?",
+"t": "lead"
+},
+{
+"q": "Is it possible to be too data-driven?",
+"t": "opinion"
+},
+{
+"q": "Make the case for a company to invest in accessibility.",
+"t": "persuade"
+},
+{
+"q": "How would you decide which of three projects has the best return?",
+"t": "numbers"
+},
+{
+"q": "What does good preparation look like for you before a big presentation?",
+"t": "reflect"
+},
+{
+"q": "How should a creative software company respond to AI image generators?",
+"t": "strategy"
+},
+{
+"q": "Why do some companies trade at very high valuations with low profits?",
+"t": "explain"
+},
+{
+"q": "Should you accept a quick win now that makes a bigger goal harder later?",
+"t": "decision"
+},
+{
+"q": "How do you help a team see the link between their work and the strategy?",
+"t": "lead"
+}
+]
+}

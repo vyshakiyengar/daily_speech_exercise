@@ -1,0 +1,369 @@
+# One question per line: type | question. Built into think/prompts.json by tools/build_think.py.
+strategy | Should a company enter a new market just because a competitor did?
+explain | What does your team do, in a way your grandmother would understand?
+decision | Would you rather ship a good product now or a great one in six months?
+lead | How would you handle a high performer who is difficult to work with?
+opinion | Is remote work better for careers or worse?
+persuade | Convince a sceptical CFO to fund a small experiment.
+strategy | What is one thing most companies in your industry get wrong?
+explain | Explain compound interest to someone who has never saved.
+reflect | What is a decision you changed your mind about, and why?
+numbers | How would you work out whether a price increase is worth it?
+strategy | Should a market leader cut prices when a cheaper rival appears?
+lead | How do you give bad news to a team that has worked hard?
+opinion | Are meetings a sign of a healthy company or an unhealthy one?
+explain | Why do most new products fail?
+decision | Your top client asks for a feature nobody else wants. Do you build it?
+persuade | Argue that your company should spend less on advertising.
+strategy | What makes a competitive advantage hard to copy?
+reflect | What is the best piece of feedback you ever received?
+explain | Explain what a brand is, without using the word logo.
+lead | How should a new manager spend their first month?
+numbers | How would you estimate the size of a market nobody has measured?
+opinion | Should companies take public positions on social issues?
+strategy | When should a company buy another company instead of building?
+decision | Two equally good candidates, one internal and one external. Who do you hire?
+persuade | Make the case for a four-day week to a sceptical board.
+explain | What is the difference between revenue and profit, and why does it matter?
+lead | How do you keep a team motivated during a long, slow project?
+strategy | Is it better to be first to market or best in market?
+opinion | Is artificial intelligence more likely to create jobs or destroy them in the next ten years?
+reflect | What is a skill you wish you had learned five years earlier?
+explain | Why do subscription businesses obsess over churn?
+decision | A project is three months late. Cancel it, or keep going?
+persuade | Convince a team to adopt a tool they have never used.
+strategy | How should a small company compete with a giant?
+lead | What would you do in your first week if you inherited a struggling team?
+numbers | How would you decide between two job offers using numbers?
+opinion | Do company values actually change behaviour?
+explain | Explain network effects with an example from everyday life.
+strategy | What is the biggest risk to your industry in the next five years?
+decision | Should you tell your manager about a colleague’s mistake?
+persuade | Argue for investing in training during a downturn.
+reflect | When did you last change your mind in a meeting?
+explain | Why is cash flow sometimes more important than profit?
+lead | How do you disagree with your boss in public?
+strategy | Should a company focus on one product or many?
+opinion | Is it better to specialise early in a career or stay broad?
+numbers | How would you tell if a marketing campaign actually worked?
+explain | What does a good strategy document need to say?
+decision | Your best engineer wants to move to sales. Do you support it?
+persuade | Convince a city council to build more housing.
+strategy | When is it right to ignore what customers say they want?
+lead | How would you run a meeting that has to end with a decision?
+reflect | What is a mistake you learned the most from?
+explain | Why do prices end in .99?
+opinion | Should executives be paid in shares?
+strategy | How do you know when a market is about to change?
+decision | A big partner offers a deal that would make you dependent on them. Take it?
+persuade | Persuade a friend to start saving for retirement now.
+numbers | How would you work out whether a new hire paid for themselves?
+explain | Explain what inflation does to savings.
+lead | How do you build trust with a team that does not know you?
+strategy | Should a company make its product free and charge for extras?
+opinion | Are open-plan offices good for collaboration?
+reflect | What do you do when you notice you are procrastinating?
+explain | Why can two passengers on the same flight pay very different prices?
+decision | You can launch in one new country this year. How do you choose?
+persuade | Argue that your team should stop doing one thing it currently does.
+strategy | What should a company do when its core product is shrinking?
+lead | How would you handle two senior people who refuse to work together?
+numbers | How would you check whether a growth forecast is realistic?
+opinion | Is it ever right to break a company rule?
+explain | What is the sunk cost fallacy, and where have you seen it?
+strategy | How should a company decide what not to do?
+decision | A customer threatens to leave unless you cut your price by 20%. What do you do?
+persuade | Convince a hesitant colleague to present at a big meeting.
+reflect | What does a good day at work look like for you?
+explain | Why do large teams often move more slowly?
+lead | What would you do if your team kept missing deadlines?
+strategy | Should companies chase growth or profit first?
+opinion | Should children learn to code at school?
+numbers | How would you estimate how much a coffee shop earns in a year?
+explain | Explain how a central bank fights inflation.
+decision | Should you accept a promotion that means managing your former peers?
+persuade | Make the case for a company to publish its salaries.
+strategy | What separates a good acquisition from a bad one?
+lead | How do you recognise good work without seeming fake?
+reflect | What is a habit that has made you better at your job?
+explain | Why are generic medicines so much cheaper than branded ones?
+opinion | Is it better to have a few deep friendships or many light ones at work?
+strategy | How should a company respond to a public scandal?
+decision | A supplier offers a large discount for a five-year contract. Sign?
+persuade | Argue for hiring someone with less experience but more potential.
+numbers | How would you decide whether to rent or buy equipment?
+explain | What is a pre-mortem, and why does it work?
+lead | How would you coach someone who freezes in presentations?
+strategy | When should a company raise prices?
+opinion | Are university degrees still worth it?
+reflect | What is something you believe that most people disagree with?
+explain | Why do most actively managed funds fail to beat the index?
+decision | Your project can finish on time with lower quality, or late with higher quality. Which?
+persuade | Convince your team to cancel a weekly meeting.
+strategy | What role should data play in strategic decisions?
+lead | How do you lead people who are more expert than you?
+numbers | How would you measure whether a new feature is being used?
+explain | What does it mean for a company to have a moat?
+opinion | Should companies let employees choose their own job titles?
+strategy | How do platforms solve the chicken-and-egg problem?
+decision | Should you take a job you are excited about that pays less?
+persuade | Argue that your company should enter India.
+reflect | Who is the best leader you have worked with, and what did they do differently?
+explain | Why can a fine make people behave worse?
+lead | How would you announce a reorganisation?
+strategy | What is the difference between a goal and a strategy?
+opinion | Is it better to set ambitious targets or achievable ones?
+numbers | How would you estimate the value of a loyal customer?
+explain | Explain why the sky is blue to a ten-year-old.
+decision | You have budget for either a new hire or new software. Which?
+persuade | Convince a reluctant client to try a pilot instead of a full rollout.
+strategy | Should a company copy a competitor’s successful feature?
+lead | How do you handle someone who takes credit for others’ work?
+reflect | What would you do differently if you started your career again?
+explain | What is the difference between correlation and causation?
+opinion | Should companies use AI to screen job applicants?
+strategy | What makes a company culture hard to change?
+decision | A rival poaches your best salesperson. How do you respond?
+persuade | Argue that cities should charge drivers to enter the centre.
+numbers | How would you work out the break-even point for a new product?
+explain | Why do people underestimate how long projects will take?
+lead | How do you balance supporting your team with challenging them?
+strategy | How should a company think about long-term versus short-term investment?
+opinion | Is ambition a strength or a weakness?
+reflect | What is one thing you would like to be known for at work?
+explain | How does a vaccine prepare the body?
+decision | You discover your product has a minor safety flaw. Recall it or fix quietly?
+persuade | Convince a manager to let you work on a side project.
+strategy | When should a company stop listening to its biggest customers?
+lead | How do you make a decision when your team is split fifty-fifty?
+numbers | How would you decide how much to spend acquiring a customer?
+explain | What does a good apology contain?
+opinion | Should there be a maximum ratio between CEO pay and worker pay?
+strategy | What is the best way to enter a market dominated by one player?
+decision | Should a startup take money from an investor it does not trust?
+persuade | Argue for spending more on brand building than performance ads.
+reflect | What drains your energy at work, and what restores it?
+explain | Why do some cities feel much hotter than the countryside?
+lead | How would you build a culture where people admit mistakes?
+strategy | What should a company measure to know it is healthy?
+opinion | Should social media platforms be responsible for what users post?
+numbers | How would you tell if a business is growing because of luck or skill?
+explain | What is comparative advantage?
+decision | A partner wants to rebrand the product you just launched. Agree?
+persuade | Convince an investor that a boring business is a great one.
+strategy | How do you know if a trend is a fad?
+lead | How would you handle a team member who is clearly burning out?
+reflect | When do you do your best thinking?
+explain | Why do most plastic items never get recycled?
+opinion | Should governments nudge people’s choices?
+strategy | Is it better to grow by selling more to existing customers or finding new ones?
+decision | Do you share bad quarterly results early or wait until they are final?
+persuade | Argue for a company-wide no-meetings day.
+numbers | How would you calculate whether a loan is worth taking?
+explain | Explain the tragedy of the commons.
+lead | How do you onboard someone senior who joins from a competitor?
+strategy | How should a company price a completely new kind of product?
+opinion | Is failure overrated in startup culture?
+reflect | What is a question you wish people asked you more often?
+explain | Why does ice float?
+decision | Should you hire a friend?
+persuade | Convince a teenager that reading is worth their time.
+strategy | When does it make sense to sell a profitable division?
+lead | How would you respond if your team told you they did not trust you?
+numbers | How would you work out how many staff a shop needs on a Saturday?
+explain | What is survivorship bias?
+opinion | Should companies offer unlimited holiday?
+strategy | What should the first hundred days of a new CEO look like?
+decision | Your team wants to work fully remote. Do you allow it?
+persuade | Argue that your company should open-source a tool it built.
+reflect | What has surprised you most about your current role?
+explain | How does GPS work out where you are?
+lead | How do you set priorities when everything feels urgent?
+strategy | How would you turn around a declining brand?
+opinion | Is it better to be liked or respected as a leader?
+numbers | How would you judge whether an acquisition price is fair?
+explain | What is a network effect, and when does it fail?
+decision | Should you go back to a company you left?
+persuade | Make the case for paying interns properly.
+strategy | Should a company build its own AI or buy it?
+lead | How would you run a retrospective after a failed launch?
+reflect | What do you do to keep learning?
+explain | Why do cats land on their feet?
+opinion | Should managers be promoted from within or hired from outside?
+strategy | What makes a partnership between two companies work?
+decision | You are offered a big role at a company with values you dislike. Accept?
+persuade | Convince your manager to give you a stretch assignment.
+numbers | How would you estimate the cost of a customer complaint?
+explain | What is loss aversion?
+lead | How do you make sure quieter people are heard in meetings?
+strategy | How should a company decide which markets to exit?
+opinion | Is work-life balance possible in senior roles?
+reflect | What advice would you give your first-year self at work?
+explain | Why do some companies make cancelling a subscription hard?
+decision | A journalist asks you about a rumour you know is true. What do you say?
+persuade | Argue for investing in employee wellbeing as a business case.
+strategy | What is the right balance between innovation and efficiency?
+lead | How do you handle a team member who disagrees with every decision?
+numbers | How would you assess whether a new store location is viable?
+explain | Explain the planning fallacy and how to beat it.
+opinion | Should companies be judged on their environmental impact?
+strategy | What would you do if a new technology threatened your core product?
+decision | You can only fix one of three problems this quarter. How do you choose?
+persuade | Convince a sceptic that small habits matter.
+reflect | What is a belief you held strongly that turned out to be wrong?
+explain | What is the difference between a market and a platform?
+lead | How would you lead a team through a merger?
+strategy | Should a premium brand ever launch a cheaper line?
+opinion | Is the customer always right?
+numbers | How would you compare two investment options quickly?
+explain | Why do defaults change behaviour so much?
+decision | Should you speak up in a meeting when you are only half sure?
+persuade | Argue that your company should hire more people over fifty.
+strategy | How would you grow a business that is profitable but not growing?
+lead | What does good delegation look like?
+reflect | What do you find hardest about giving feedback?
+explain | How does a solar panel make electricity?
+opinion | Should universities be free?
+strategy | When does vertical integration make sense?
+decision | A key supplier is unreliable but cheapest. Switch?
+persuade | Make the case for slowing down a product launch.
+numbers | How would you check if a sales target is achievable?
+explain | What is Goodhart’s law?
+lead | How would you handle a crisis on your first day in a new job?
+strategy | How do you choose between two strategies that both look good?
+opinion | Is it better to build products for experts or beginners?
+reflect | What is something you do differently from most people in your role?
+explain | Why are electric cars more efficient than petrol cars?
+decision | Should you raise prices for existing customers or only new ones?
+persuade | Convince a sceptical audience that AI can be used responsibly.
+strategy | What should a company do with a product that customers love but that loses money?
+lead | How do you lead when you do not have formal authority?
+numbers | How would you decide whether to expand to a second office?
+explain | Explain what diminishing returns means with a work example.
+opinion | Should companies track employees’ productivity with software?
+strategy | Is a strong brand still valuable in a world of reviews?
+decision | Your manager asks you to bend the truth to a client. What do you do?
+persuade | Argue for keeping a struggling product alive one more year.
+reflect | How do you prepare for a big conversation?
+explain | Why do mountain tops stay cold?
+lead | How do you rebuild morale after layoffs?
+strategy | How should a company respond to a price war?
+opinion | Should there be limits on how much data companies can collect?
+numbers | How would you work out if a discount promotion made money?
+explain | What makes a good forecast?
+decision | Do you take a guaranteed bonus now or a larger uncertain one later?
+persuade | Make the case for learning a second language as an adult.
+strategy | What is the role of a corporate strategy team?
+lead | How do you manage someone who is older and more experienced?
+reflect | When did you last feel completely focused, and why?
+explain | What is a sovereign wealth fund?
+opinion | Is it better to move fast and fix later, or slow and get it right?
+strategy | How do you know whether to keep investing in a product or stop?
+decision | You find a better job offer a month after starting a new role. Leave?
+persuade | Convince your team to write more and meet less.
+numbers | How would you value a company with no profits yet?
+explain | What is the innovator’s dilemma?
+lead | How do you make a team accountable without blame?
+strategy | Should a company prioritise its home market or go global early?
+opinion | Should companies have a mandatory retirement age?
+reflect | What is a small decision that changed your life?
+explain | Why did the world adopt time zones?
+decision | Should you publicly admit your company made a mistake?
+persuade | Argue that your company should lend its experts to charities.
+strategy | How should a mature company find new growth?
+lead | How do you handle a team that resists change?
+numbers | How would you estimate the return on a training programme?
+explain | What is a BATNA and why does it matter?
+opinion | Is talent or effort more important for success?
+strategy | When is it smart to give a product away for free?
+decision | Your startup can either raise money now at a low valuation or wait. Which?
+persuade | Convince a nervous client to go ahead with a launch.
+reflect | What do you want to be better at a year from now?
+explain | How does the internet send a photo from one phone to another?
+lead | How do you lead a meeting where emotions are running high?
+strategy | How should a company use its cash pile?
+opinion | Should children be allowed smartphones before secondary school?
+numbers | How would you work out if your team is understaffed?
+explain | What is the resource curse?
+decision | Should you hire for culture fit or culture add?
+persuade | Argue that every team should run a pre-mortem before big projects.
+strategy | How would you decide whether to enter the subscription business?
+lead | How do you hold someone to a high standard while being kind?
+reflect | What is something you are proud of that nobody noticed?
+explain | Why do chess masters remember positions so well?
+opinion | Should companies pay for employees’ further education?
+strategy | What is the right way to respond to a disruptive competitor?
+decision | A client offers a large contract that would stretch your team too far. Take it?
+persuade | Convince your boss that you need fewer priorities, not more resources.
+numbers | How would you estimate how much a city spends on coffee each day?
+explain | What is a placebo, and why do trials use one?
+lead | How do you know if you are micromanaging?
+strategy | Is market share still a useful goal?
+opinion | Should important decisions be made by individuals or committees?
+reflect | What is the most useful thing you learned from a failure?
+explain | Explain why trade can benefit both countries.
+decision | Should you take a lateral move to learn a new area?
+persuade | Make the case for a company to measure customer happiness.
+strategy | How do you evaluate a company’s strategy from the outside?
+lead | How would you introduce yourself to a new team in two minutes?
+numbers | How would you work out how long a company’s cash will last?
+explain | Why does the monsoon matter to India’s economy?
+opinion | Is it better to be an expert or a generalist in the age of AI?
+strategy | When should a company stop a successful marketing campaign?
+decision | Should you replace a loyal but underperforming team member?
+persuade | Argue for keeping a physical office.
+reflect | How do you know when you have done enough on a piece of work?
+explain | What does GDP leave out?
+lead | How do you lead a team spread across time zones?
+strategy | What makes a good business model?
+opinion | Should we trust online ratings?
+numbers | How would you decide whether to fix or replace an old system?
+explain | Why do some apologies make things worse?
+decision | A competitor offers to buy your small company. What would you need to know?
+persuade | Convince a group of executives to take a risk on a new idea.
+strategy | How should a company plan for an uncertain future?
+lead | What would you say to your team on your last day in a role?
+reflect | What do you want people to feel after a conversation with you?
+explain | Explain what a startup’s burn rate is.
+opinion | Is it better to tell a hard truth or protect someone’s feelings?
+strategy | How do you decide where to place big bets?
+decision | You have one hour to prepare for a board question you cannot answer. What do you do?
+persuade | Argue that thinking out loud makes teams smarter.
+numbers | How would you explain a 15% drop in sales to the CEO?
+explain | What is the wisdom of crowds, and when does it fail?
+lead | How do you celebrate success without complacency?
+strategy | What would you do with an extra £10 million to invest in your business?
+opinion | Should leaders show vulnerability?
+reflect | What does speaking well mean to you?
+explain | Why does a magnitude 7 earthquake do far more damage than a 6?
+decision | Should you take a big role abroad?
+persuade | Make the case that clear writing is a leadership skill.
+strategy | How do you build a strategy that survives contact with reality?
+lead | How do you help someone grow into a role they are not ready for yet?
+numbers | How would you sanity-check a number in a presentation in ten seconds?
+explain | What is the difference between a fixed and a variable cost?
+opinion | Is it better to over-prepare or to stay flexible?
+strategy | Why do good companies fail?
+decision | You can be right or keep the relationship. Which do you choose, and when?
+persuade | Convince yourself to start the thing you have been putting off.
+reflect | What has a year of daily practice taught you?
+strategy | What would make your company impossible to compete with?
+explain | Explain a recent news story as if to a colleague who missed it.
+decision | You can either cut costs by 10% or grow revenue by 10%. Which is easier, and why?
+lead | How do you set a vision that people actually remember?
+opinion | Should every leader be able to read a balance sheet?
+persuade | Convince a team that saying no to a client can be the right answer.
+numbers | How would you explain a forecast range of 8 to 14% to a non-finance audience?
+reflect | What do you want your next performance review to say?
+strategy | What is a market that looks small today but could be huge in ten years?
+explain | Explain what an API is without technical words.
+decision | Should you share an idea early to get feedback, or polish it first?
+lead | How would you give feedback to your own manager?
+opinion | Is it possible to be too data-driven?
+persuade | Make the case for a company to invest in accessibility.
+numbers | How would you decide which of three projects has the best return?
+reflect | What does good preparation look like for you before a big presentation?
+strategy | How should a creative software company respond to AI image generators?
+explain | Why do some companies trade at very high valuations with low profits?
+decision | Should you accept a quick win now that makes a bigger goal harder later?
+lead | How do you help a team see the link between their work and the strategy?

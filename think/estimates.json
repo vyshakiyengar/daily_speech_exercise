@@ -1,3 +1,3883 @@
-{"items":[
-{"q":"How many cups of coffee are bought in London on a typical weekday?","u":"cups","c":["About 9 million people live in London","Say 1 in 3 buys at least one coffee out on a weekday: 3 million","Average about 1.3 cups each: about 4 million","Add some commuters and visitors: call it 4 to 5 million"],"a":4500000,"lo":2000000,"hi":8000000,"n":"Population × share who do it × how often is the most useful chain in business sizing."}
-]}
+{
+"items": [
+{
+"q": "How many cups of coffee are bought in London on a typical weekday?",
+"u": "cups",
+"c": [
+"About 9 million people live in London",
+"Say 1 in 3 buys at least one coffee out: 3 million",
+"About 1.3 cups each: about 4 million",
+"Add commuters and visitors: about 4.5 million"
+],
+"a": 4500000,
+"lo": 1800000,
+"hi": 11000000,
+"n": "Population × share who do it × how often is the most useful chain in business sizing."
+},
+{
+"q": "How many piano tuners work in Greater London?",
+"u": "tuners",
+"c": [
+"About 9 million people, roughly 3.6 million households",
+"Say 1 in 30 households has a piano: 120,000 pianos",
+"Each tuned about once a year: 120,000 tunings",
+"A tuner does about 4 a day, 220 days a year: about 900 a year",
+"120,000 ÷ 900 ≈ 130 tuners"
+],
+"a": 130,
+"lo": 52,
+"hi": 320,
+"n": "The classic Fermi question. Supply = demand ÷ capacity per worker."
+},
+{
+"q": "How many smartphones are sold in India each year?",
+"u": "phones",
+"c": [
+"About 1.4 billion people",
+"Roughly 750 million smartphone users",
+"People replace phones every 3 years or so: 250 million",
+"Some users share or buy second-hand, so new sales are lower: about 150 million"
+],
+"a": 150000000,
+"lo": 60000000,
+"hi": 380000000,
+"n": "Installed base ÷ replacement cycle is the standard way to size replacement markets."
+},
+{
+"q": "How many litres of water does a typical UK household use in a day?",
+"u": "litres",
+"c": [
+"About 2.4 people per household",
+"Each person uses about 140 litres a day",
+"2.4 × 140 ≈ 340 litres"
+],
+"a": 340,
+"lo": 140,
+"hi": 850,
+"n": "Per-person figures are easier to guess than household ones."
+},
+{
+"q": "How many black cabs work in London?",
+"u": "taxis",
+"c": [
+"Licensed black cabs number in the tens of thousands",
+"Rough approach: 9 million people, maybe 1 cab per 600 people",
+"9,000,000 ÷ 600 ≈ 15,000"
+],
+"a": 15000,
+"lo": 6000,
+"hi": 38000,
+"n": "When you have no data, a ratio to population is a reasonable first anchor."
+},
+{
+"q": "How many hours of video does an average adult watch in a year?",
+"u": "hours",
+"c": [
+"About 3 hours a day across TV and streaming",
+"3 × 365 ≈ 1,100 hours"
+],
+"a": 1100,
+"lo": 440,
+"hi": 2800
+},
+{
+"q": "How many words do you speak in a day?",
+"u": "words",
+"c": [
+"About 16,000 is a commonly cited average",
+"Check: maybe 2 hours of talking a day at 130 words a minute = 15,600"
+],
+"a": 16000,
+"lo": 6400,
+"hi": 40000,
+"n": "Speaking rate × talking time: useful for your own speech practice too."
+},
+{
+"q": "How many flights take off from Heathrow on a typical day?",
+"u": "flights",
+"c": [
+"Around 1,300 movements a day is often quoted",
+"that is take-offs plus landings",
+"So about 650 take-offs"
+],
+"a": 650,
+"lo": 260,
+"hi": 1600,
+"n": "Watch for double-counting: movements include arrivals."
+},
+{
+"q": "How many pizzas are eaten in the UK each week?",
+"u": "pizzas",
+"c": [
+"About 68 million people",
+"Say the average person eats a pizza every 2 to 3 weeks",
+"68 million ÷ 2.5 ≈ 27 million a week"
+],
+"a": 27000000,
+"lo": 11000000,
+"hi": 68000000
+},
+{
+"q": "How much does the UK spend on chocolate in a year?",
+"u": "pounds",
+"c": [
+"About 68 million people",
+"Maybe 1 bar or equivalent a week each at about £1: £52 a year each",
+"68 million × £52 ≈ £3.5 billion",
+"Add boxes and gifts: about £4 billion"
+],
+"a": 4000000000,
+"lo": 1600000000,
+"hi": 10000000000
+},
+{
+"q": "How many golf balls fit in a London bus?",
+"u": "balls",
+"c": [
+"Bus interior about 10 m × 2.5 m × 4 m (two decks, about 2 m each): about 100 cubic metres",
+"Minus seats and structure: say 60 cubic metres usable",
+"A golf ball takes about 50 cubic centimetres with packing",
+"60,000,000 ÷ 50 ≈ 1.2 million"
+],
+"a": 1200000,
+"lo": 480000,
+"hi": 3000000,
+"n": "Volume problems: estimate the container, then divide by the item including packing gaps."
+},
+{
+"q": "How many trains run on the London Underground on a weekday?",
+"u": "train journeys",
+"c": [
+"About 11 lines",
+"Peak service of 20 to 30 trains an hour on busy lines",
+"Over about 19 hours, an average line might run about 300 trips in each direction",
+"11 × 600 ≈ 6,600"
+],
+"a": 6600,
+"lo": 2600,
+"hi": 16000
+},
+{
+"q": "How many people are flying in a plane above the world at any moment?",
+"u": "people",
+"c": [
+"About 100,000 flights a day worldwide",
+"Average flight about 2 hours, so about 8,000 in the air at once",
+"About 150 people each: 1.2 million"
+],
+"a": 1200000,
+"lo": 480000,
+"hi": 3000000,
+"n": "Flow × duration = number in the system at once (Little’s law)."
+},
+{
+"q": "How many hairs are on a human head?",
+"u": "hairs",
+"c": [
+"Scalp area about 600 square centimetres",
+"About 150 to 200 hairs per square centimetre",
+"600 × 170 ≈ 100,000"
+],
+"a": 100000,
+"lo": 40000,
+"hi": 250000
+},
+{
+"q": "How many cups of chai are drunk in India each day?",
+"u": "cups",
+"c": [
+"About 1.4 billion people",
+"Say 70% drink tea daily: about 1 billion",
+"About 2 cups each: about 2 billion"
+],
+"a": 2000000000,
+"lo": 800000000,
+"hi": 5000000000
+},
+{
+"q": "How many dabbawalas would Mumbai need to deliver 200,000 lunches?",
+"u": "dabbawalas",
+"c": [
+"Each dabbawala handles about 30 to 40 boxes a day",
+"200,000 ÷ 40 = 5,000"
+],
+"a": 5000,
+"lo": 2000,
+"hi": 12000
+},
+{
+"q": "How many weddings take place in India each year?",
+"u": "weddings",
+"c": [
+"About 1.4 billion people",
+"Roughly 25 million people turn 25 each year",
+"Most marry, and each wedding involves two people: about 10 to 12 million weddings"
+],
+"a": 11000000,
+"lo": 4400000,
+"hi": 28000000,
+"n": "Sizing by cohort: how many people reach the age at which the event happens."
+},
+{
+"q": "How much money is spent on weddings in India each year?",
+"u": "rupees",
+"c": [
+"About 11 million weddings",
+"Average spend perhaps ₹10 lakh (₹1 million), skewed by big weddings",
+"11 million × ₹1 million ≈ ₹11 trillion"
+],
+"a": 11000000000000,
+"lo": 4400000000000,
+"hi": 28000000000000,
+"n": "Skewed spending: the average is pulled up by a small number of lavish weddings."
+},
+{
+"q": "How many dentists does the UK need?",
+"u": "dentists",
+"c": [
+"About 68 million people",
+"Each person might need about 1.5 hours of dental time a year: 100 million hours",
+"A dentist does about 1,500 clinical hours a year",
+"100 million ÷ 1,500 ≈ 67,000",
+"Hygienists take some load, so dentists about 45,000"
+],
+"a": 45000,
+"lo": 18000,
+"hi": 110000
+},
+{
+"q": "How many emails does a typical office worker receive in a year?",
+"u": "emails",
+"c": [
+"About 100 a day",
+"About 230 working days",
+"100 × 230 = 23,000"
+],
+"a": 23000,
+"lo": 9200,
+"hi": 58000
+},
+{
+"q": "How many steps does a person take in a year?",
+"u": "steps",
+"c": [
+"About 5,000 to 7,000 a day on average",
+"6,000 × 365 ≈ 2.2 million"
+],
+"a": 2200000,
+"lo": 880000,
+"hi": 5500000
+},
+{
+"q": "How many books are in a typical public library branch?",
+"u": "books",
+"c": [
+"A branch might have 60 shelving units",
+"Each unit about 5 shelves × 30 books × 2 sides = 300",
+"Plus storage: about 25,000"
+],
+"a": 25000,
+"lo": 10000,
+"hi": 62000
+},
+{
+"q": "How many petrol stations are there in the UK?",
+"u": "stations",
+"c": [
+"About 33 million cars",
+"Each fills up about every 10 days: 3.3 million fills a day",
+"A station handles about 400 fills a day",
+"3.3 million ÷ 400 ≈ 8,000"
+],
+"a": 8000,
+"lo": 3200,
+"hi": 20000,
+"n": "Demand ÷ capacity per outlet is how retailers size store networks."
+},
+{
+"q": "How many seats are in a Premier League stadium on average?",
+"u": "seats",
+"c": [
+"Stadiums range from about 11,000 to over 70,000",
+"A typical one might be about 40,000"
+],
+"a": 40000,
+"lo": 16000,
+"hi": 100000
+},
+{
+"q": "How much revenue does a busy London coffee shop make in a year?",
+"u": "pounds",
+"c": [
+"About 500 customers a day",
+"Average spend about £4.50: £2,250 a day",
+"Open about 360 days: about £800,000"
+],
+"a": 800000,
+"lo": 320000,
+"hi": 2000000
+},
+{
+"q": "How many hours does a typical person spend commuting in a working life?",
+"u": "hours",
+"c": [
+"About 1 hour a day round trip",
+"230 working days × 40 years",
+"1 × 230 × 40 = 9,200 hours"
+],
+"a": 9200,
+"lo": 3700,
+"hi": 23000
+},
+{
+"q": "How many tennis balls are used at Wimbledon?",
+"u": "balls",
+"c": [
+"About 650 matches in the main draws and qualifying",
+"Balls changed after the first 7 games then every 9: roughly 6 changes a match × 6 balls = 36",
+"Plus practice: about 650 × 40 ≈ 26,000",
+"Add practice courts: about 50,000"
+],
+"a": 50000,
+"lo": 20000,
+"hi": 120000
+},
+{
+"q": "How many people in the UK have a birthday today?",
+"u": "people",
+"c": [
+"68 million people ÷ 365 days"
+],
+"a": 186000,
+"lo": 74000,
+"hi": 460000
+},
+{
+"q": "How many babies are born in the world each day?",
+"u": "babies",
+"c": [
+"About 130 million births a year",
+"÷ 365 ≈ 360,000"
+],
+"a": 360000,
+"lo": 140000,
+"hi": 900000
+},
+{
+"q": "How long would it take to count to a million out loud?",
+"u": "days",
+"c": [
+"Numbers get long: average maybe 2.5 seconds each",
+"1,000,000 × 2.5 = 2.5 million seconds",
+"÷ 86,400 ≈ 29 days nonstop"
+],
+"a": 29,
+"lo": 12,
+"hi": 72
+},
+{
+"q": "How many tonnes of rubbish does London produce in a year?",
+"u": "tonnes",
+"c": [
+"About 9 million people",
+"About 400 kg of household waste each a year",
+"9,000,000 × 0.4 tonnes = 3.6 million tonnes",
+"Add business waste: about 7 million"
+],
+"a": 7000000,
+"lo": 2800000,
+"hi": 18000000
+},
+{
+"q": "How many hotel rooms are there in London?",
+"u": "rooms",
+"c": [
+"About 20 million overnight visitors a year staying about 3 nights: 60 million guest-nights",
+"About 1.5 guests per room: 40 million room-nights",
+"At 80% occupancy: 40m ÷ (365 × 0.8) ≈ 140,000 rooms"
+],
+"a": 140000,
+"lo": 56000,
+"hi": 350000
+},
+{
+"q": "How many Uber trips happen in London each day?",
+"u": "trips",
+"c": [
+"Maybe 3.5 million active riders",
+"Average 2 trips a week: 7 million a week",
+"÷ 7 = 1 million a day",
+"Many are occasional users, so about 600,000"
+],
+"a": 600000,
+"lo": 240000,
+"hi": 1500000
+},
+{
+"q": "What is the annual revenue of a large UK supermarket chain?",
+"u": "pounds",
+"c": [
+"About 2,500 stores",
+"Average store revenue around £20 million a year",
+"2,500 × £20m = £50 billion"
+],
+"a": 50000000000,
+"lo": 20000000000,
+"hi": 120000000000
+},
+{
+"q": "How many cars are on Indian roads?",
+"u": "cars",
+"c": [
+"About 300 million households",
+"Perhaps 1 in 8 owns a car: about 38 million",
+"Plus company and commercial cars: about 50 million"
+],
+"a": 50000000,
+"lo": 20000000,
+"hi": 120000000,
+"n": "Vehicle ownership is often easier to estimate per household than per person."
+},
+{
+"q": "How many two-wheelers are sold in India each year?",
+"u": "vehicles",
+"c": [
+"About 300 million households",
+"Perhaps 60% own a two-wheeler: 180 million in use",
+"Replaced about every 10 years: 18 million a year"
+],
+"a": 18000000,
+"lo": 7200000,
+"hi": 45000000
+},
+{
+"q": "How much electricity does a UK household use in a year?",
+"u": "kilowatt-hours",
+"c": [
+"Fridge, lights, devices, cooking and laundry",
+"Roughly 8 kWh a day",
+"8 × 365 ≈ 2,900 kWh"
+],
+"a": 2900,
+"lo": 1200,
+"hi": 7200
+},
+{
+"q": "How much does it cost to run a fridge for a year in the UK?",
+"u": "pounds",
+"c": [
+"A modern fridge uses about 300 kWh a year",
+"At about 25p per kWh: about £75"
+],
+"a": 75,
+"lo": 30,
+"hi": 190
+},
+{
+"q": "How many people use the London Underground on a weekday?",
+"u": "journeys",
+"c": [
+"Over 4 million journeys a day in recent years",
+"Check: 9 million people, about a third use it, about 1.5 trips each: about 4.5 million"
+],
+"a": 4000000,
+"lo": 1600000,
+"hi": 10000000
+},
+{
+"q": "How many teachers work in England?",
+"u": "teachers",
+"c": [
+"About 9 million pupils in schools",
+"About 20 pupils per teacher on average across ages",
+"9,000,000 ÷ 20 ≈ 450,000"
+],
+"a": 450000,
+"lo": 180000,
+"hi": 1100000
+},
+{
+"q": "How many lines of code are in a typical smartphone app?",
+"u": "lines",
+"c": [
+"A medium app might have 20 to 30 screens",
+"Each screen might take about 2,000 lines including logic and tests",
+"25 × 2,000 = 50,000"
+],
+"a": 50000,
+"lo": 20000,
+"hi": 120000
+},
+{
+"q": "How many cricket balls are bowled in a five-day Test match?",
+"u": "balls",
+"c": [
+"About 90 overs a day for 5 days = 450 overs",
+"6 balls an over = 2,700 balls",
+"Matches often end early: about 2,000"
+],
+"a": 2000,
+"lo": 800,
+"hi": 5000
+},
+{
+"q": "How many streetlights are there in the UK?",
+"u": "lights",
+"c": [
+"About 400,000 km of roads",
+"Lit roads maybe half: 200,000 km",
+"One light every 35 m on lit roads: about 5.7 million"
+],
+"a": 6000000,
+"lo": 2400000,
+"hi": 15000000
+},
+{
+"q": "How many litres of petrol does the UK use in a day?",
+"u": "litres",
+"c": [
+"About 33 million cars",
+"About 25 km each a day at 7 litres per 100 km: about 1.75 litres each",
+"33m × 1.75 ≈ 58 million",
+"Many are diesel or electric: petrol about 35 million"
+],
+"a": 35000000,
+"lo": 14000000,
+"hi": 88000000
+},
+{
+"q": "How much does a person spend on food in a year in the UK?",
+"u": "pounds",
+"c": [
+"Groceries about £40 a week per person",
+"Plus eating out about £15: £55 a week",
+"× 52 ≈ £2,900"
+],
+"a": 2900,
+"lo": 1200,
+"hi": 7200
+},
+{
+"q": "How many apples are sold in UK supermarkets in a year?",
+"u": "apples",
+"c": [
+"68 million people",
+"Average maybe 2 apples a week each",
+"68m × 2 × 52 ≈ 7 billion",
+"Many people eat none, so about 4 billion"
+],
+"a": 4000000000,
+"lo": 1600000000,
+"hi": 10000000000
+},
+{
+"q": "How long would it take to walk around the Earth at the equator?",
+"u": "days",
+"c": [
+"Circumference about 40,000 km",
+"Walking 5 km an hour for 8 hours a day = 40 km a day",
+"40,000 ÷ 40 = 1,000 days"
+],
+"a": 1000,
+"lo": 400,
+"hi": 2500
+},
+{
+"q": "How many heartbeats in a lifetime?",
+"u": "beats",
+"c": [
+"About 70 beats a minute",
+"70 × 60 × 24 × 365 ≈ 37 million a year",
+"× 80 years ≈ 3 billion"
+],
+"a": 3000000000,
+"lo": 1200000000,
+"hi": 7500000000
+},
+{
+"q": "How many breaths do you take in a day?",
+"u": "breaths",
+"c": [
+"About 14 breaths a minute",
+"14 × 60 × 24 ≈ 20,000"
+],
+"a": 20000,
+"lo": 8000,
+"hi": 50000
+},
+{
+"q": "How many people visit the British Museum in a year?",
+"u": "visitors",
+"c": [
+"Open about 360 days",
+"Perhaps 15,000 visitors on an average day",
+"15,000 × 360 ≈ 5.4 million"
+],
+"a": 5400000,
+"lo": 2200000,
+"hi": 14000000
+},
+{
+"q": "How many restaurants are there in Mumbai?",
+"u": "restaurants",
+"c": [
+"About 20 million people in the metro area",
+"Perhaps one restaurant or eatery per 1,000 people",
+"20,000"
+],
+"a": 20000,
+"lo": 8000,
+"hi": 50000
+},
+{
+"q": "How many grains of rice are in a 1 kg bag?",
+"u": "grains",
+"c": [
+"A grain weighs about 0.02 grams",
+"1,000 ÷ 0.02 = 50,000"
+],
+"a": 50000,
+"lo": 20000,
+"hi": 120000
+},
+{
+"q": "How many words are in a typical novel?",
+"u": "words",
+"c": [
+"About 300 pages",
+"About 300 words a page",
+"90,000"
+],
+"a": 90000,
+"lo": 36000,
+"hi": 220000
+},
+{
+"q": "How long would it take to read every book in a small library of 25,000 books?",
+"u": "years",
+"c": [
+"About 90,000 words each, read at 250 words a minute = 6 hours each",
+"25,000 × 6 = 150,000 hours",
+"At 2 hours a day: 75,000 days ≈ 200 years"
+],
+"a": 200,
+"lo": 80,
+"hi": 500
+},
+{
+"q": "How many people does a typical UK GP practice serve?",
+"u": "patients",
+"c": [
+"About 6,300 practices in England",
+"About 57 million people in England",
+"57,000,000 ÷ 6,300 ≈ 9,000"
+],
+"a": 9000,
+"lo": 3600,
+"hi": 22000
+},
+{
+"q": "How many takeaway orders are placed through delivery apps in the UK each week?",
+"u": "orders",
+"c": [
+"About 28 million households",
+"Perhaps 40% order through apps, about once a fortnight",
+"28m × 0.4 ÷ 2 ≈ 5.6 million"
+],
+"a": 5600000,
+"lo": 2200000,
+"hi": 14000000
+},
+{
+"q": "How much tea does Britain drink in a day?",
+"u": "cups",
+"c": [
+"About 68 million people",
+"Perhaps 60% drink tea, average about 3 cups",
+"68m × 0.6 × 3 ≈ 120 million"
+],
+"a": 120000000,
+"lo": 48000000,
+"hi": 300000000
+},
+{
+"q": "How many new cars are sold in the UK each year?",
+"u": "cars",
+"c": [
+"About 33 million cars on the road",
+"Average car kept about 15 years before scrapping",
+"33m ÷ 15 ≈ 2.2 million",
+"Some years are lower: about 1.9 million"
+],
+"a": 1900000,
+"lo": 760000,
+"hi": 4800000
+},
+{
+"q": "How many square metres of office space does a 1,000-person company need?",
+"u": "square metres",
+"c": [
+"About 10 square metres per desk including shared space",
+"Hybrid working: maybe 0.7 desks per person",
+"1,000 × 0.7 × 10 = 7,000"
+],
+"a": 7000,
+"lo": 2800,
+"hi": 18000
+},
+{
+"q": "How many WhatsApp messages are sent worldwide each day?",
+"u": "messages",
+"c": [
+"About 2 billion users",
+"Perhaps 50 messages each a day on average",
+"2 billion × 50 = 100 billion"
+],
+"a": 100000000000,
+"lo": 40000000000,
+"hi": 250000000000
+},
+{
+"q": "How much does an average Londoner spend on transport a year?",
+"u": "pounds",
+"c": [
+"Monthly travelcard for central zones about £180",
+"Most people pay less than that, others drive",
+"About £1,800 a year"
+],
+"a": 1800,
+"lo": 720,
+"hi": 4500
+},
+{
+"q": "How many McDonald’s burgers are sold worldwide each day?",
+"u": "burgers",
+"c": [
+"About 40,000 restaurants",
+"About 800 burgers each a day",
+"40,000 × 800 = 32 million"
+],
+"a": 32000000,
+"lo": 13000000,
+"hi": 80000000
+},
+{
+"q": "How many passengers pass through Delhi airport each year?",
+"u": "passengers",
+"c": [
+"About 200,000 passengers a day at busy times",
+"× 365 ≈ 73 million"
+],
+"a": 73000000,
+"lo": 29000000,
+"hi": 180000000
+},
+{
+"q": "How many bricks are in a typical British house?",
+"u": "bricks",
+"c": [
+"A three-bedroom semi has about 200 square metres of external and internal brick wall",
+"About 60 bricks per square metre",
+"200 × 60 = 12,000"
+],
+"a": 12000,
+"lo": 4800,
+"hi": 30000
+},
+{
+"q": "How much does a cricket stadium earn from tickets on an IPL match day?",
+"u": "rupees",
+"c": [
+"About 35,000 seats",
+"Average ticket about ₹2,500",
+"35,000 × 2,500 ≈ ₹90 million"
+],
+"a": 90000000,
+"lo": 36000000,
+"hi": 220000000
+},
+{
+"q": "How many marathons does the world hold each year?",
+"u": "marathons",
+"c": [
+"Perhaps 800 to 1,000 official marathons globally",
+"Plus small local events: about 1,000"
+],
+"a": 1000,
+"lo": 400,
+"hi": 2500
+},
+{
+"q": "How many people in the world speak English?",
+"u": "people",
+"c": [
+"Native speakers about 400 million",
+"Second-language speakers perhaps 1 billion",
+"Total about 1.5 billion"
+],
+"a": 1500000000,
+"lo": 600000000,
+"hi": 3800000000
+},
+{
+"q": "How many kilometres does a London bus travel in a year?",
+"u": "kilometres",
+"c": [
+"About 15 km an hour average in traffic",
+"About 16 hours a day in service",
+"240 km a day × 360 days ≈ 86,000"
+],
+"a": 86000,
+"lo": 34000,
+"hi": 220000
+},
+{
+"q": "How many bananas does the UK eat each year?",
+"u": "bananas",
+"c": [
+"Perhaps 5 billion is a commonly cited figure",
+"Check: 68 million × 1.5 a week × 52 ≈ 5.3 billion"
+],
+"a": 5000000000,
+"lo": 2000000000,
+"hi": 12000000000
+},
+{
+"q": "How much does it cost to fill a car with petrol in the UK?",
+"u": "pounds",
+"c": [
+"A 50-litre tank",
+"At about £1.40 a litre: £70"
+],
+"a": 70,
+"lo": 28,
+"hi": 180
+},
+{
+"q": "How many people work in a typical large hospital?",
+"u": "staff",
+"c": [
+"About 800 beds",
+"Roughly 5 to 7 staff per bed including all roles",
+"800 × 6 ≈ 5,000"
+],
+"a": 5000,
+"lo": 2000,
+"hi": 12000
+},
+{
+"q": "How many patients visit A&E departments in England each year?",
+"u": "attendances",
+"c": [
+"About 57 million people",
+"Roughly one attendance per 2.5 people a year",
+"About 23 million"
+],
+"a": 23000000,
+"lo": 9200000,
+"hi": 58000000
+},
+{
+"q": "How many slices of bread are eaten in the UK each day?",
+"u": "slices",
+"c": [
+"68 million people",
+"Perhaps 3 slices a day on average",
+"About 200 million"
+],
+"a": 200000000,
+"lo": 80000000,
+"hi": 500000000
+},
+{
+"q": "How many square metres of solar panels would power a UK home?",
+"u": "square metres",
+"c": [
+"Home uses about 2,900 kWh a year",
+"A square metre of panel makes about 150 kWh a year in the UK",
+"2,900 ÷ 150 ≈ 20 square metres"
+],
+"a": 20,
+"lo": 8,
+"hi": 50
+},
+{
+"q": "How many tonnes of food does a city of 1 million eat in a day?",
+"u": "tonnes",
+"c": [
+"About 1.5 kg of food per person per day",
+"1,000,000 × 1.5 kg = 1,500 tonnes"
+],
+"a": 1500,
+"lo": 600,
+"hi": 3800
+},
+{
+"q": "How many lorries would carry a day’s food for a city of 1 million?",
+"u": "lorries",
+"c": [
+"About 1,500 tonnes of food",
+"A large lorry carries about 20 tonnes",
+"1,500 ÷ 20 = 75",
+"Most deliveries are partly full: about 200"
+],
+"a": 200,
+"lo": 80,
+"hi": 500
+},
+{
+"q": "How many students are enrolled in Indian universities and colleges?",
+"u": "students",
+"c": [
+"Around 120 million people aged 18 to 23",
+"Perhaps 30% are enrolled",
+"About 40 million"
+],
+"a": 40000000,
+"lo": 16000000,
+"hi": 100000000
+},
+{
+"q": "How many people take the London Marathon?",
+"u": "runners",
+"c": [
+"About 50,000 finishers in recent years is the record range",
+"Answer about 50,000"
+],
+"a": 50000,
+"lo": 20000,
+"hi": 120000
+},
+{
+"q": "How much money is spent on Christmas presents in the UK?",
+"u": "pounds",
+"c": [
+"About 28 million households",
+"Average about £500 on presents",
+"28m × £500 = £14 billion"
+],
+"a": 14000000000,
+"lo": 5600000000,
+"hi": 35000000000
+},
+{
+"q": "How many litres of milk does the UK drink in a day?",
+"u": "litres",
+"c": [
+"68 million people",
+"About 0.25 litres each a day in tea, cereal and drinks",
+"About 17 million litres"
+],
+"a": 17000000,
+"lo": 6800000,
+"hi": 42000000
+},
+{
+"q": "How many dogs live in the UK?",
+"u": "dogs",
+"c": [
+"About 28 million households",
+"About 1 in 4 has a dog, some more than one",
+"About 7 to 8 million dogs",
+"Answer about 11 million counting multiple-dog homes"
+],
+"a": 11000000,
+"lo": 4400000,
+"hi": 28000000
+},
+{
+"q": "How many dog walkers would a city of 1 million need?",
+"u": "dog walkers",
+"c": [
+"About 450,000 households, a quarter with dogs: 110,000 dogs",
+"Perhaps 5% use a paid walker daily: 5,500 dogs",
+"Each walker handles about 12 dogs a day: about 460 walkers"
+],
+"a": 460,
+"lo": 180,
+"hi": 1200
+},
+{
+"q": "How long would it take to drive from London to Edinburgh?",
+"u": "hours",
+"c": [
+"About 650 km by road",
+"Average about 90 km an hour including slow sections: about 7 hours",
+"Plus a break: about 7.5 hours"
+],
+"a": 7.5,
+"lo": 3,
+"hi": 19
+},
+{
+"q": "How many words are on a typical slide in a business presentation?",
+"u": "words",
+"c": [
+"Title about 8 words",
+"Five bullet points of 8 words: 40",
+"Total about 50"
+],
+"a": 50,
+"lo": 20,
+"hi": 120,
+"n": "Fewer is usually better: listeners can read or listen, not both."
+},
+{
+"q": "How long should a 20-slide presentation take?",
+"u": "minutes",
+"c": [
+"About 1.5 to 2 minutes per slide",
+"20 × 1.75 ≈ 35 minutes"
+],
+"a": 35,
+"lo": 14,
+"hi": 88
+},
+{
+"q": "How many companies are listed on the London Stock Exchange?",
+"u": "companies",
+"c": [
+"Main market plus AIM",
+"Roughly 1,000 to 2,000",
+"About 1,800"
+],
+"a": 1800,
+"lo": 720,
+"hi": 4500
+},
+{
+"q": "How many people work at a typical FTSE 100 company?",
+"u": "employees",
+"c": [
+"Ranges from a few thousand to hundreds of thousands",
+"Median perhaps 25,000"
+],
+"a": 25000,
+"lo": 10000,
+"hi": 62000
+},
+{
+"q": "What is the market for school uniforms in the UK?",
+"u": "pounds",
+"c": [
+"About 10 million pupils",
+"Spend about £100 each a year on uniform",
+"About £1 billion"
+],
+"a": 1000000000,
+"lo": 400000000,
+"hi": 2500000000
+},
+{
+"q": "How many gym memberships are there in the UK?",
+"u": "memberships",
+"c": [
+"68 million people",
+"About 1 in 6 adults is a member: about 55 million adults ÷ 6 ≈ 9 million",
+"Answer about 10 million"
+],
+"a": 10000000,
+"lo": 4000000,
+"hi": 25000000
+},
+{
+"q": "How much revenue does a UK gym chain with 200 sites make?",
+"u": "pounds",
+"c": [
+"About 5,000 members per site",
+"About £25 a month each: £125,000 a month per site",
+"× 12 × 200 ≈ £300 million"
+],
+"a": 300000000,
+"lo": 120000000,
+"hi": 750000000
+},
+{
+"q": "How many cups of coffee does an office of 200 people drink in a day?",
+"u": "cups",
+"c": [
+"About 70% drink coffee",
+"About 2 cups each at work",
+"200 × 0.7 × 2 = 280"
+],
+"a": 280,
+"lo": 110,
+"hi": 700
+},
+{
+"q": "How many hours does it take to build a car on a modern assembly line?",
+"u": "hours",
+"c": [
+"Often quoted figures are around 20 to 30 labour hours per vehicle",
+"About 25"
+],
+"a": 25,
+"lo": 10,
+"hi": 62
+},
+{
+"q": "How many toilets are there in the UK?",
+"u": "toilets",
+"c": [
+"About 28 million homes with about 1.5 toilets each: 42 million",
+"Plus workplaces, schools and public places: about 55 million"
+],
+"a": 55000000,
+"lo": 22000000,
+"hi": 140000000
+},
+{
+"q": "How many litres of water does an average shower use?",
+"u": "litres",
+"c": [
+"About 8 minutes",
+"About 9 litres a minute",
+"About 70 litres"
+],
+"a": 70,
+"lo": 28,
+"hi": 180
+},
+{
+"q": "How many trees would you need to plant to absorb a person’s annual UK emissions?",
+"u": "trees",
+"c": [
+"A UK person emits roughly 7 tonnes of CO₂ a year including imports",
+"A mature tree absorbs about 20 kg a year",
+"7,000 ÷ 20 = 350 trees"
+],
+"a": 350,
+"lo": 140,
+"hi": 880,
+"n": "Useful for sense-checking offset claims: trees take decades to reach that rate."
+},
+{
+"q": "How many mobile phone towers are there in the UK?",
+"u": "sites",
+"c": [
+"Each site covers maybe 1 to 3 square km in towns and far more in the country",
+"Urban area about 20,000 square km at 1 per square km: 20,000",
+"Rural coverage adds about 15,000",
+"About 35,000"
+],
+"a": 35000,
+"lo": 14000,
+"hi": 88000
+},
+{
+"q": "How many people are on a Wimbledon ground staff on finals day?",
+"u": "staff",
+"c": [
+"Including ball crew, stewards, catering and security",
+"Perhaps 6,000"
+],
+"a": 6000,
+"lo": 2400,
+"hi": 15000
+},
+{
+"q": "How many hours of meetings does a senior manager have in a week?",
+"u": "hours",
+"c": [
+"About 25 to 30 hours on average in many surveys",
+"About 23"
+],
+"a": 23,
+"lo": 9.2,
+"hi": 58
+},
+{
+"q": "How many emails does a CEO of a large company receive each day?",
+"u": "emails",
+"c": [
+"Many filtered by assistants",
+"Perhaps 300"
+],
+"a": 300,
+"lo": 120,
+"hi": 750
+},
+{
+"q": "How many passengers does a Mumbai suburban train carry each day in total across the network?",
+"u": "passengers",
+"c": [
+"About 3,000 services a day",
+"About 2,500 passengers each on average across the day",
+"About 7.5 million"
+],
+"a": 7500000,
+"lo": 3000000,
+"hi": 19000000
+},
+{
+"q": "How long would it take to fill an Olympic swimming pool with a garden hose?",
+"u": "days",
+"c": [
+"Pool 50 m × 25 m × 2 m = 2,500 cubic metres = 2.5 million litres",
+"Hose about 15 litres a minute: 900 an hour",
+"2,500,000 ÷ 900 ≈ 2,800 hours ≈ 115 days"
+],
+"a": 115,
+"lo": 46,
+"hi": 290
+},
+{
+"q": "How many letters does Royal Mail deliver on a typical day?",
+"u": "letters",
+"c": [
+"About 28 million addresses",
+"Perhaps 1 letter per address per day on average",
+"About 25 million"
+],
+"a": 25000000,
+"lo": 10000000,
+"hi": 62000000
+},
+{
+"q": "How many parking spaces are there at a large shopping centre?",
+"u": "spaces",
+"c": [
+"About 8,000 to 10,000 at the biggest",
+"A typical large one about 5,000"
+],
+"a": 5000,
+"lo": 2000,
+"hi": 12000
+},
+{
+"q": "How many people in India use UPI?",
+"u": "users",
+"c": [
+"About 750 million smartphone users",
+"Perhaps half use UPI regularly",
+"About 350 to 400 million"
+],
+"a": 380000000,
+"lo": 150000000,
+"hi": 950000000
+},
+{
+"q": "How many UPI transactions happen in a month?",
+"u": "transactions",
+"c": [
+"About 380 million users",
+"Each makes about 40 payments a month",
+"About 15 billion"
+],
+"a": 15000000000,
+"lo": 6000000000,
+"hi": 38000000000
+},
+{
+"q": "How many students sit GCSE exams in England each year?",
+"u": "students",
+"c": [
+"About 650,000 sixteen-year-olds per year group",
+"Nearly all sit GCSEs: about 600,000"
+],
+"a": 600000,
+"lo": 240000,
+"hi": 1500000
+},
+{
+"q": "How much does a UK university earn in tuition fees in a year?",
+"u": "pounds",
+"c": [
+"About 25,000 students",
+"Home fee about £9,250 and international more: average about £14,000",
+"25,000 × 14,000 ≈ £350 million"
+],
+"a": 350000000,
+"lo": 140000000,
+"hi": 880000000
+},
+{
+"q": "How many runs are scored across a full IPL season?",
+"u": "runs",
+"c": [
+"About 74 matches",
+"About 340 runs per match",
+"74 × 340 ≈ 25,000"
+],
+"a": 25000,
+"lo": 10000,
+"hi": 62000
+},
+{
+"q": "How many minutes of music does a typical person stream in a year?",
+"u": "minutes",
+"c": [
+"About 1.5 hours a day for listeners",
+"90 × 365 ≈ 33,000"
+],
+"a": 33000,
+"lo": 13000,
+"hi": 82000
+},
+{
+"q": "How many podcasts are published worldwide?",
+"u": "podcasts",
+"c": [
+"Over 4 million listed",
+"Most inactive",
+"Answer: about 4 million"
+],
+"a": 4000000,
+"lo": 1600000,
+"hi": 10000000
+},
+{
+"q": "How many airline seats are flown daily in the world?",
+"u": "seats",
+"c": [
+"About 100,000 flights a day",
+"About 180 seats each",
+"18 million seats"
+],
+"a": 18000000,
+"lo": 7200000,
+"hi": 45000000
+},
+{
+"q": "How many passports does the UK issue each year?",
+"u": "passports",
+"c": [
+"About 68 million people, about 50 million hold passports",
+"Valid 10 years: 5 million renewals",
+"Plus first passports: about 6 million"
+],
+"a": 6000000,
+"lo": 2400000,
+"hi": 15000000
+},
+{
+"q": "How many people commute into central London on a weekday morning?",
+"u": "people",
+"c": [
+"Pre-pandemic about 1 million",
+"Hybrid working reduces this: about 800,000"
+],
+"a": 800000,
+"lo": 320000,
+"hi": 2000000
+},
+{
+"q": "How many square kilometres of farmland does the UK have?",
+"u": "square kilometres",
+"c": [
+"UK area about 240,000 square km",
+"About 70% is agricultural land",
+"About 170,000"
+],
+"a": 170000,
+"lo": 68000,
+"hi": 420000
+},
+{
+"q": "How many cows are there in the UK?",
+"u": "cattle",
+"c": [
+"About 9 to 10 million cattle including dairy and beef",
+"Answer about 9.5 million"
+],
+"a": 9500000,
+"lo": 3800000,
+"hi": 24000000
+},
+{
+"q": "How many litres of milk does a dairy cow produce in a year?",
+"u": "litres",
+"c": [
+"About 25 litres a day over about 300 days",
+"About 7,500 litres"
+],
+"a": 7500,
+"lo": 3000,
+"hi": 19000
+},
+{
+"q": "How many kilometres of railway track are there in India?",
+"u": "kilometres",
+"c": [
+"Route length about 68,000 km",
+"Many routes are double track: total track over 100,000 km"
+],
+"a": 100000,
+"lo": 40000,
+"hi": 250000
+},
+{
+"q": "How many lifts are there in London?",
+"u": "lifts",
+"c": [
+"About 9 million people, many in buildings with lifts",
+"Perhaps one lift per 100 people including offices",
+"About 90,000"
+],
+"a": 90000,
+"lo": 36000,
+"hi": 220000
+},
+{
+"q": "How much does an hour of a consultant’s time cost a client at a top firm?",
+"u": "pounds",
+"c": [
+"A team of about 4 costs maybe £150,000 a week",
+"4 people × 55 hours = 220 hours",
+"About £680 an hour per person on average"
+],
+"a": 680,
+"lo": 270,
+"hi": 1700
+},
+{
+"q": "How many ATMs are in the UK?",
+"u": "machines",
+"c": [
+"Cash use falling",
+"About 50,000"
+],
+"a": 50000,
+"lo": 20000,
+"hi": 120000
+},
+{
+"q": "How many contactless payments are made in the UK each day?",
+"u": "payments",
+"c": [
+"About 55 million adults",
+"About 1.5 contactless payments a day each",
+"About 80 million"
+],
+"a": 80000000,
+"lo": 32000000,
+"hi": 200000000
+},
+{
+"q": "How many shops are on a typical UK high street?",
+"u": "shops",
+"c": [
+"High street about 500 m long",
+"Shops about 8 m wide each side: 500 ÷ 8 × 2 ≈ 125"
+],
+"a": 125,
+"lo": 50,
+"hi": 310
+},
+{
+"q": "How many people attend Premier League matches in a season?",
+"u": "people",
+"c": [
+"380 matches",
+"Average attendance about 38,000",
+"380 × 38,000 ≈ 14.5 million"
+],
+"a": 14500000,
+"lo": 5800000,
+"hi": 36000000
+},
+{
+"q": "How much does a Premier League club earn from broadcasting per season?",
+"u": "pounds",
+"c": [
+"Total TV deals about £3 billion a year",
+"Split among 20 clubs: about £150 million each"
+],
+"a": 150000000,
+"lo": 60000000,
+"hi": 380000000
+},
+{
+"q": "How many people live within 1 km of where you are now if you are in central London?",
+"u": "people",
+"c": [
+"Area within 1 km: about 3.14 square km",
+"Central London density about 12,000 per square km",
+"About 38,000"
+],
+"a": 38000,
+"lo": 15000,
+"hi": 95000
+},
+{
+"q": "How many kilograms of chocolate does a typical Briton eat in a year?",
+"u": "kilograms",
+"c": [
+"About 2 bars a week of 45 g",
+"90 g × 52 ≈ 4.7 kg",
+"Plus other chocolate: about 7 kg"
+],
+"a": 7,
+"lo": 2.8,
+"hi": 18
+},
+{
+"q": "How many hours of sleep does a person get in a lifetime?",
+"u": "hours",
+"c": [
+"About 7.5 hours a night",
+"7.5 × 365 × 80 ≈ 220,000 hours"
+],
+"a": 220000,
+"lo": 88000,
+"hi": 550000
+},
+{
+"q": "How many photos are taken worldwide each year?",
+"u": "photos",
+"c": [
+"About 7 billion smartphones",
+"Perhaps 0.7 photos per phone per day on average",
+"7bn × 0.7 × 365 ≈ 1.8 trillion"
+],
+"a": 1800000000000,
+"lo": 720000000000,
+"hi": 4500000000000
+},
+{
+"q": "How many school buses would a city of 1 million need?",
+"u": "buses",
+"c": [
+"About 150,000 school-age children",
+"Perhaps 15% take a school bus: 22,500",
+"About 50 per bus, two runs each: 22,500 ÷ 100 ≈ 225"
+],
+"a": 225,
+"lo": 90,
+"hi": 560
+},
+{
+"q": "How long does it take light from the Sun to reach Earth?",
+"u": "minutes",
+"c": [
+"Distance about 150 million km",
+"Light travels 300,000 km a second",
+"150,000,000 ÷ 300,000 = 500 seconds ≈ 8.3 minutes"
+],
+"a": 8.3,
+"lo": 3.3,
+"hi": 21
+},
+{
+"q": "How many cars pass a busy motorway point in a day?",
+"u": "vehicles",
+"c": [
+"About 3 lanes each way",
+"At busy times each lane carries about 1,800 vehicles an hour",
+"Average across the day maybe 900 per lane per hour",
+"6 × 900 × 24 ≈ 130,000"
+],
+"a": 130000,
+"lo": 52000,
+"hi": 320000
+},
+{
+"q": "How many staff does a large supermarket store employ?",
+"u": "staff",
+"c": [
+"Open about 16 hours a day, 7 days",
+"Perhaps 40 staff on shift at a time plus night stock: about 60 shifts of 8 hours a day needs about 1,000 hours a day",
+"About 35 hours a week each: about 200 staff"
+],
+"a": 200,
+"lo": 80,
+"hi": 500
+},
+{
+"q": "How many people use public libraries in England in a year?",
+"u": "active borrowers",
+"c": [
+"57 million people",
+"Perhaps 1 in 8 borrows at least once a year",
+"About 7 million"
+],
+"a": 7000000,
+"lo": 2800000,
+"hi": 18000000
+},
+{
+"q": "How many litres of fuel does a long-haul flight use from London to Delhi?",
+"u": "litres",
+"c": [
+"About 8.5 hours of flight",
+"A wide-body jet burns about 7,000 litres an hour",
+"About 60,000 litres"
+],
+"a": 60000,
+"lo": 24000,
+"hi": 150000
+},
+{
+"q": "What is the fuel cost of that London–Delhi flight?",
+"u": "pounds",
+"c": [
+"About 60,000 litres",
+"Jet fuel about 60p a litre",
+"About £36,000"
+],
+"a": 36000,
+"lo": 14000,
+"hi": 90000
+},
+{
+"q": "How much fuel per passenger on London to Delhi?",
+"u": "litres",
+"c": [
+"About 60,000 litres",
+"About 300 passengers",
+"200 litres each"
+],
+"a": 200,
+"lo": 80,
+"hi": 500
+},
+{
+"q": "How many people does Indian Railways employ?",
+"u": "employees",
+"c": [
+"One of the world’s largest employers",
+"About 1.2 million"
+],
+"a": 1200000,
+"lo": 480000,
+"hi": 3000000
+},
+{
+"q": "How many kilograms of rice does India produce each year?",
+"u": "kilograms",
+"c": [
+"About 130 million tonnes"
+],
+"a": 130000000000,
+"lo": 52000000000,
+"hi": 320000000000
+},
+{
+"q": "How many years does it take to learn London’s taxi Knowledge?",
+"u": "years",
+"c": [
+"Typically 3 to 4 years of study",
+"Answer about 3.5 years"
+],
+"a": 3.5,
+"lo": 1.4,
+"hi": 8.8
+},
+{
+"q": "How many questions does a Google-style search engine answer per second worldwide?",
+"u": "searches",
+"c": [
+"About 8.5 billion searches a day",
+"÷ 86,400 ≈ 100,000 a second"
+],
+"a": 100000,
+"lo": 40000,
+"hi": 250000
+},
+{
+"q": "How many TikTok videos are uploaded each day?",
+"u": "videos",
+"c": [
+"About 1 billion monthly users",
+"Perhaps 3% post daily: 30 million"
+],
+"a": 30000000,
+"lo": 12000000,
+"hi": 75000000
+},
+{
+"q": "How much revenue does a successful mobile game make per day?",
+"u": "pounds",
+"c": [
+"1 million daily players",
+"About 3% pay, spending about £3 a day: 30,000 × £3 = £90,000"
+],
+"a": 90000,
+"lo": 36000,
+"hi": 220000
+},
+{
+"q": "How many weddings happen in the UK each year?",
+"u": "weddings",
+"c": [
+"About 68 million people",
+"About 0.35% of adults marry each year, in pairs",
+"About 250,000 weddings"
+],
+"a": 250000,
+"lo": 100000,
+"hi": 620000
+},
+{
+"q": "How many first-time buyers buy a home in the UK each year?",
+"u": "buyers",
+"c": [
+"About 1 million home sales a year",
+"About a third are first-time buyers: about 330,000"
+],
+"a": 330000,
+"lo": 130000,
+"hi": 820000
+},
+{
+"q": "How many homes are sold in the UK each year?",
+"u": "sales",
+"c": [
+"About 30 million homes",
+"People move about every 25 years: about 1.2 million",
+"Answer about 1 million"
+],
+"a": 1000000,
+"lo": 400000,
+"hi": 2500000
+},
+{
+"q": "What is the total value of homes sold in the UK in a year?",
+"u": "pounds",
+"c": [
+"About 1 million sales",
+"Average price about £285,000",
+"About £285 billion"
+],
+"a": 285000000000,
+"lo": 110000000000,
+"hi": 710000000000
+},
+{
+"q": "How many estate agents work in the UK?",
+"u": "agents",
+"c": [
+"About 1 million sales",
+"An agent handles about 25 sales a year",
+"40,000",
+"Plus lettings: about 60,000"
+],
+"a": 60000,
+"lo": 24000,
+"hi": 150000
+},
+{
+"q": "How many cups of coffee does the world drink each day?",
+"u": "cups",
+"c": [
+"About 2 billion cups is a commonly quoted figure",
+"Check: 8 billion people, a quarter drink about 1 cup"
+],
+"a": 2000000000,
+"lo": 800000000,
+"hi": 5000000000
+},
+{
+"q": "How many kilometres does an average car drive in a year in the UK?",
+"u": "kilometres",
+"c": [
+"About 11,000 km"
+],
+"a": 11000,
+"lo": 4400,
+"hi": 28000
+},
+{
+"q": "How many hours of driving lessons does a typical UK learner take?",
+"u": "hours",
+"c": [
+"About 45 hours with an instructor is a commonly cited average"
+],
+"a": 45,
+"lo": 18,
+"hi": 110
+},
+{
+"q": "How much does it cost to learn to drive in the UK?",
+"u": "pounds",
+"c": [
+"About 45 lessons at about £40: £1,800",
+"Plus tests and theory: about £2,000"
+],
+"a": 2000,
+"lo": 800,
+"hi": 5000
+},
+{
+"q": "How many words does a typical business email contain?",
+"u": "words",
+"c": [
+"Perhaps 4 short paragraphs of 30 words",
+"About 120"
+],
+"a": 120,
+"lo": 48,
+"hi": 300
+},
+{
+"q": "How long does it take to read 120 words?",
+"u": "seconds",
+"c": [
+"At about 250 words a minute",
+"About 30 seconds"
+],
+"a": 30,
+"lo": 12,
+"hi": 75
+},
+{
+"q": "How many minutes a day does a typical office worker spend reading emails?",
+"u": "minutes",
+"c": [
+"About 100 emails, many skimmed, average 15 seconds",
+"1,500 seconds ≈ 25 minutes",
+"Plus writing: about 90 minutes in total"
+],
+"a": 90,
+"lo": 36,
+"hi": 220
+},
+{
+"q": "How many years would it take to save £30,000 for a deposit at £500 a month?",
+"u": "years",
+"c": [
+"£30,000 ÷ £500 = 60 months",
+"5 years, slightly less with interest"
+],
+"a": 5,
+"lo": 2,
+"hi": 12
+},
+{
+"q": "How many delivery drivers does a large online grocer need in London?",
+"u": "drivers",
+"c": [
+"Perhaps 150,000 orders a week in London",
+"About 15 drops per driver per shift: 10,000 shifts a week",
+"About 5 shifts each a week: 2,000 drivers"
+],
+"a": 2000,
+"lo": 800,
+"hi": 5000
+},
+{
+"q": "How many restaurant meals are eaten in the UK each week?",
+"u": "meals",
+"c": [
+"68 million people",
+"About 1 meal out a week each on average including cafés and takeaways eaten in",
+"About 70 million"
+],
+"a": 70000000,
+"lo": 28000000,
+"hi": 180000000
+},
+{
+"q": "How many people does a typical UK primary school have?",
+"u": "pupils",
+"c": [
+"About 2 classes per year group, 7 year groups, 28 pupils each",
+"2 × 7 × 28 ≈ 400",
+"Many are smaller: about 280"
+],
+"a": 280,
+"lo": 110,
+"hi": 700
+},
+{
+"q": "How many words does a child know by age five?",
+"u": "words",
+"c": [
+"Often estimated at around 5,000 words understood"
+],
+"a": 5000,
+"lo": 2000,
+"hi": 12000
+},
+{
+"q": "How many new words does an adult learn in a year?",
+"u": "words",
+"c": [
+"Perhaps one new word every couple of days",
+"About 200"
+],
+"a": 200,
+"lo": 80,
+"hi": 500
+},
+{
+"q": "How many minutes does a typical person spend on their phone each day?",
+"u": "minutes",
+"c": [
+"About 3.5 to 4.5 hours of screen time",
+"About 240"
+],
+"a": 240,
+"lo": 96,
+"hi": 600
+},
+{
+"q": "How many times a day does a person unlock their phone?",
+"u": "unlocks",
+"c": [
+"Commonly cited range 50 to 100",
+"About 80"
+],
+"a": 80,
+"lo": 32,
+"hi": 200
+},
+{
+"q": "How much does a city of 1 million spend on electricity a year?",
+"u": "pounds",
+"c": [
+"About 450,000 households × 2,900 kWh = 1.3 billion kWh",
+"Plus businesses doubling it: 2.6 billion kWh",
+"At about 25p: about £650 million"
+],
+"a": 650000000,
+"lo": 260000000,
+"hi": 1600000000
+},
+{
+"q": "How many electric vehicle chargers would a city of 1 million need if half its cars were electric?",
+"u": "chargers",
+"c": [
+"About 400,000 cars, so 200,000 electric",
+"Many charge at home",
+"Perhaps one public charger per 10 EVs: 20,000"
+],
+"a": 20000,
+"lo": 8000,
+"hi": 50000
+},
+{
+"q": "How many electric cars are on UK roads?",
+"u": "cars",
+"c": [
+"About 33 million cars",
+"Perhaps 4% fully electric",
+"About 1.3 million"
+],
+"a": 1300000,
+"lo": 520000,
+"hi": 3200000
+},
+{
+"q": "How many hours to charge an electric car on a home charger?",
+"u": "hours",
+"c": [
+"Battery about 60 kWh",
+"Home charger about 7 kW",
+"About 8.5 hours from empty"
+],
+"a": 8.5,
+"lo": 3.4,
+"hi": 21
+},
+{
+"q": "How many kilometres can an electric car drive on a full charge?",
+"u": "kilometres",
+"c": [
+"Battery 60 kWh",
+"About 6 km per kWh",
+"About 360 km"
+],
+"a": 360,
+"lo": 140,
+"hi": 900
+},
+{
+"q": "How much does it cost to drive 100 km in an electric car charged at home?",
+"u": "pounds",
+"c": [
+"About 17 kWh per 100 km",
+"At 25p per kWh: about £4.25"
+],
+"a": 4.25,
+"lo": 1.7,
+"hi": 11
+},
+{
+"q": "How much does it cost to drive 100 km in a petrol car?",
+"u": "pounds",
+"c": [
+"About 7 litres per 100 km",
+"At £1.40 a litre: about £10"
+],
+"a": 10,
+"lo": 4,
+"hi": 25
+},
+{
+"q": "How many parcels does a large courier deliver in the UK each day?",
+"u": "parcels",
+"c": [
+"UK parcels about 4 billion a year: 11 million a day",
+"A big courier might handle a fifth: about 2 million"
+],
+"a": 2000000,
+"lo": 800000,
+"hi": 5000000
+},
+{
+"q": "How many people does a call centre of 300 agents serve in a day?",
+"u": "calls",
+"c": [
+"Each agent takes about 60 calls in an 8-hour shift",
+"300 × 60 = 18,000"
+],
+"a": 18000,
+"lo": 7200,
+"hi": 45000
+},
+{
+"q": "How many Indian Premier League viewers watch a final on TV and streaming?",
+"u": "viewers",
+"c": [
+"Peak concurrent streaming viewers in recent finals reported in tens of millions",
+"Total reach perhaps 300 million"
+],
+"a": 300000000,
+"lo": 120000000,
+"hi": 750000000
+},
+{
+"q": "How many runs does a top Test batter score in a career?",
+"u": "runs",
+"c": [
+"About 120 Tests, about 1.8 innings each, averaging 50: 120 × 1.8 × 50 ≈ 10,800"
+],
+"a": 10800,
+"lo": 4300,
+"hi": 27000
+},
+{
+"q": "How many kilometres does a Premier League footballer run in a season?",
+"u": "kilometres",
+"c": [
+"About 10 to 11 km a match",
+"About 35 matches",
+"About 370 km"
+],
+"a": 370,
+"lo": 150,
+"hi": 920
+},
+{
+"q": "How long would it take to type a 90,000-word novel?",
+"u": "hours",
+"c": [
+"Typing at 40 words a minute: 2,250 minutes ≈ 37.5 hours",
+"Writing is slower: drafting at 10 words a minute: 150 hours"
+],
+"a": 150,
+"lo": 60,
+"hi": 380
+},
+{
+"q": "How many people visit the Taj Mahal each year?",
+"u": "visitors",
+"c": [
+"Perhaps 20,000 visitors a day on average",
+"× 365 ≈ 7 million"
+],
+"a": 7000000,
+"lo": 2800000,
+"hi": 18000000
+},
+{
+"q": "How many cinema tickets are sold in the UK each year?",
+"u": "tickets",
+"c": [
+"About 68 million people",
+"About 2 cinema trips a year on average",
+"About 130 million"
+],
+"a": 130000000,
+"lo": 52000000,
+"hi": 320000000
+},
+{
+"q": "How many cinema screens are there in the UK?",
+"u": "screens",
+"c": [
+"About 130 million tickets a year",
+"Each screen sells about 30,000 tickets a year",
+"About 4,300"
+],
+"a": 4300,
+"lo": 1700,
+"hi": 11000
+},
+{
+"q": "How many films does India produce each year?",
+"u": "films",
+"c": [
+"India produces among the most films of any country, across many languages",
+"About 1,800 certified feature films"
+],
+"a": 1800,
+"lo": 720,
+"hi": 4500
+},
+{
+"q": "How many daily newspapers are sold in the UK?",
+"u": "copies",
+"c": [
+"Print circulation has fallen sharply",
+"About 4 million"
+],
+"a": 4000000,
+"lo": 1600000,
+"hi": 10000000
+},
+{
+"q": "How many people listen to the radio in the UK each week?",
+"u": "listeners",
+"c": [
+"About 55 million adults",
+"About 85% listen weekly",
+"About 47 million"
+],
+"a": 47000000,
+"lo": 19000000,
+"hi": 120000000
+},
+{
+"q": "How many people does a typical wedding in India invite?",
+"u": "guests",
+"c": [
+"Often 300 to 500"
+],
+"a": 400,
+"lo": 160,
+"hi": 1000
+},
+{
+"q": "How much food is wasted by UK households each year?",
+"u": "tonnes",
+"c": [
+"About 28 million households",
+"About 250 kg each a year",
+"About 7 million tonnes"
+],
+"a": 7000000,
+"lo": 2800000,
+"hi": 18000000
+},
+{
+"q": "How much does the average UK household spend on energy a year?",
+"u": "pounds",
+"c": [
+"Electricity about 2,900 kWh at 25p: £725",
+"Gas about 11,500 kWh at 6p: £690",
+"Plus standing charges: about £1,700"
+],
+"a": 1700,
+"lo": 680,
+"hi": 4200
+},
+{
+"q": "How many heat pumps would the UK need to replace all gas boilers?",
+"u": "heat pumps",
+"c": [
+"About 23 million homes heated by gas",
+"One per home: 23 million"
+],
+"a": 23000000,
+"lo": 9200000,
+"hi": 58000000
+},
+{
+"q": "How many wind turbines would power the UK’s homes?",
+"u": "turbines",
+"c": [
+"Homes use about 28m × 2,900 kWh ≈ 80 billion kWh",
+"An offshore turbine of 10 MW at 45% capacity makes about 40 million kWh a year",
+"80bn ÷ 40m ≈ 2,000"
+],
+"a": 2000,
+"lo": 800,
+"hi": 5000
+},
+{
+"q": "How much does a large offshore wind turbine cost to install?",
+"u": "pounds",
+"c": [
+"Often quoted at around £3 million per megawatt",
+"A 10 MW turbine: about £30 million"
+],
+"a": 30000000,
+"lo": 12000000,
+"hi": 75000000
+},
+{
+"q": "How many hours of daylight does London get on the longest day?",
+"u": "hours",
+"c": [
+"About 16.5 hours"
+],
+"a": 16.5,
+"lo": 6.6,
+"hi": 41
+},
+{
+"q": "How many square metres is a football pitch?",
+"u": "square metres",
+"c": [
+"About 105 m × 68 m",
+"About 7,100"
+],
+"a": 7100,
+"lo": 2800,
+"hi": 18000
+},
+{
+"q": "How many people could stand on a football pitch?",
+"u": "people",
+"c": [
+"About 7,100 square metres",
+"About 4 people per square metre packed tightly",
+"About 28,000"
+],
+"a": 28000,
+"lo": 11000,
+"hi": 70000
+},
+{
+"q": "How many sheets of A4 paper does an office of 100 print in a year?",
+"u": "sheets",
+"c": [
+"About 20 sheets a day each",
+"× 230 days × 100 ≈ 460,000"
+],
+"a": 460000,
+"lo": 180000,
+"hi": 1200000
+},
+{
+"q": "How much caffeine is in a cup of filter coffee?",
+"u": "milligrams",
+"c": [
+"Typically about 90 to 120 mg",
+"About 100"
+],
+"a": 100,
+"lo": 40,
+"hi": 250
+},
+{
+"q": "How many people does a typical London bus carry in a day?",
+"u": "passengers",
+"c": [
+"About 5.5 million bus journeys a day across about 8,700 buses",
+"About 630 per bus"
+],
+"a": 630,
+"lo": 250,
+"hi": 1600
+},
+{
+"q": "How many buses run in London?",
+"u": "buses",
+"c": [
+"About 8,700"
+],
+"a": 8700,
+"lo": 3500,
+"hi": 22000
+},
+{
+"q": "How many words per minute does a newsreader speak?",
+"u": "words per minute",
+"c": [
+"About 150 to 160"
+],
+"a": 155,
+"lo": 62,
+"hi": 390,
+"n": "A useful benchmark for your own pacing: conversational speech is often faster."
+},
+{
+"q": "How many words per minute in a calm presentation?",
+"u": "words per minute",
+"c": [
+"About 130 to 150"
+],
+"a": 140,
+"lo": 56,
+"hi": 350
+},
+{
+"q": "How many words are in a 10-minute speech?",
+"u": "words",
+"c": [
+"At 140 words a minute: 1,400"
+],
+"a": 1400,
+"lo": 560,
+"hi": 3500
+},
+{
+"q": "How long is a 2,000-word speech?",
+"u": "minutes",
+"c": [
+"At 140 words a minute: about 14 minutes"
+],
+"a": 14,
+"lo": 5.6,
+"hi": 35
+},
+{
+"q": "How many people can a London Underground train carry?",
+"u": "passengers",
+"c": [
+"About 8 carriages",
+"About 130 standing and seated each at crush capacity",
+"About 1,000"
+],
+"a": 1000,
+"lo": 400,
+"hi": 2500
+},
+{
+"q": "How many trains an hour does the Victoria line run at peak?",
+"u": "trains",
+"c": [
+"Around 36 trains an hour at peak, among the most frequent in the world",
+"Answer 36"
+],
+"a": 36,
+"lo": 14,
+"hi": 90
+},
+{
+"q": "How many people travel on the Victoria line in a peak hour in one direction?",
+"u": "passengers",
+"c": [
+"36 trains × about 1,000 at crush, average maybe 800",
+"About 29,000"
+],
+"a": 29000,
+"lo": 12000,
+"hi": 72000
+},
+{
+"q": "How much does a London flat of 60 square metres cost to buy?",
+"u": "pounds",
+"c": [
+"About £8,000 per square metre in many inner areas",
+"About £480,000"
+],
+"a": 480000,
+"lo": 190000,
+"hi": 1200000
+},
+{
+"q": "How many months of salary is that for a typical London earner?",
+"u": "months",
+"c": [
+"Typical take-home perhaps £3,000 a month",
+"£480,000 ÷ £3,000 = 160 months ≈ 13 years"
+],
+"a": 160,
+"lo": 64,
+"hi": 400
+},
+{
+"q": "How much rent does a one-bedroom flat in London cost a month?",
+"u": "pounds",
+"c": [
+"Around £1,800 to £2,200 in many areas",
+"About £2,000"
+],
+"a": 2000,
+"lo": 800,
+"hi": 5000
+},
+{
+"q": "How many people live in a typical London borough?",
+"u": "people",
+"c": [
+"About 9 million across 32 boroughs plus the City",
+"About 280,000"
+],
+"a": 280000,
+"lo": 110000,
+"hi": 700000
+},
+{
+"q": "How many square kilometres is London?",
+"u": "square kilometres",
+"c": [
+"About 1,570"
+],
+"a": 1570,
+"lo": 630,
+"hi": 3900
+},
+{
+"q": "What is the population density of Mumbai city?",
+"u": "people per square kilometre",
+"c": [
+"About 12 million in about 600 square km",
+"About 20,000"
+],
+"a": 20000,
+"lo": 8000,
+"hi": 50000
+},
+{
+"q": "How many square metres per person is that?",
+"u": "square metres",
+"c": [
+"1,000,000 ÷ 20,000 = 50 square metres per person, including roads and everything"
+],
+"a": 50,
+"lo": 20,
+"hi": 120
+},
+{
+"q": "How many rupees does a typical Bengaluru software engineer earn in a year?",
+"u": "rupees",
+"c": [
+"Ranges widely: perhaps ₹12 to 20 lakh mid-level",
+"About ₹15 lakh (₹1.5 million)"
+],
+"a": 1500000,
+"lo": 600000,
+"hi": 3800000
+},
+{
+"q": "How many tech workers are in Bengaluru?",
+"u": "workers",
+"c": [
+"Often estimated at over 1.5 million"
+],
+"a": 1500000,
+"lo": 600000,
+"hi": 3800000
+},
+{
+"q": "How many startups are founded in India each year?",
+"u": "startups",
+"c": [
+"Officially recognised startups number well over 100,000 cumulatively",
+"Perhaps 15,000 new recognitions a year"
+],
+"a": 15000,
+"lo": 6000,
+"hi": 38000
+},
+{
+"q": "What share of startups survive five years?",
+"u": "percent",
+"c": [
+"Commonly cited: roughly half of new businesses close within five years",
+"About 50%"
+],
+"a": 50,
+"lo": 20,
+"hi": 120
+},
+{
+"q": "How many venture-capital-backed startups reach a £1 billion valuation?",
+"u": "percent",
+"c": [
+"Perhaps 1% of funded startups"
+],
+"a": 1,
+"lo": 0.4,
+"hi": 2.5
+},
+{
+"q": "How many customers does a SaaS company need to make £10 million in annual revenue at £100 a month?",
+"u": "customers",
+"c": [
+"£10,000,000 ÷ £1,200 a year ≈ 8,300"
+],
+"a": 8300,
+"lo": 3300,
+"hi": 21000
+},
+{
+"q": "If churn is 3% a month, how many of 8,300 customers leave in a year?",
+"u": "customers",
+"c": [
+"About 1 − 0.97^12 ≈ 31% leave",
+"8,300 × 0.31 ≈ 2,600"
+],
+"a": 2600,
+"lo": 1000,
+"hi": 6500
+},
+{
+"q": "How many new customers must that company win each year just to stay flat?",
+"u": "customers",
+"c": [
+"Replace about 2,600 lost customers"
+],
+"a": 2600,
+"lo": 1000,
+"hi": 6500
+},
+{
+"q": "How long does an average customer stay at 3% monthly churn?",
+"u": "months",
+"c": [
+"1 ÷ 0.03 ≈ 33 months"
+],
+"a": 33,
+"lo": 13,
+"hi": 82
+},
+{
+"q": "At £100 a month and 70% gross margin, what is that customer’s lifetime gross profit?",
+"u": "pounds",
+"c": [
+"£70 a month × 33 months ≈ £2,300"
+],
+"a": 2300,
+"lo": 920,
+"hi": 5800
+},
+{
+"q": "What is the most it could sensibly pay to acquire that customer?",
+"u": "pounds",
+"c": [
+"A common rule: keep acquisition cost below a third of lifetime value",
+"About £770"
+],
+"a": 770,
+"lo": 310,
+"hi": 1900
+},
+{
+"q": "How many sales calls to win one enterprise customer?",
+"u": "calls",
+"c": [
+"Perhaps 1 in 20 qualified leads converts, each needing about 5 calls",
+"About 100"
+],
+"a": 100,
+"lo": 40,
+"hi": 250
+},
+{
+"q": "How many sales staff does a company need to win 200 enterprise customers a year?",
+"u": "salespeople",
+"c": [
+"200 × 100 calls = 20,000 calls",
+"A salesperson makes about 15 meaningful calls a day for 220 days: 3,300",
+"About 6"
+],
+"a": 6,
+"lo": 2.4,
+"hi": 15
+},
+{
+"q": "How long would it take a new salesperson to pay for themselves?",
+"u": "months",
+"c": [
+"Cost about £6,000 a month",
+"Wins about 3 customers a month worth £2,300 each in lifetime profit after ramp-up of 3 months",
+"Roughly 4 months"
+],
+"a": 4,
+"lo": 1.6,
+"hi": 10
+},
+{
+"q": "How many hours does a full-time employee work in a year?",
+"u": "hours",
+"c": [
+"37.5 hours a week × about 46 working weeks after holidays",
+"About 1,700"
+],
+"a": 1700,
+"lo": 680,
+"hi": 4200
+},
+{
+"q": "What is the hourly cost of a £60,000-a-year employee to the company?",
+"u": "pounds",
+"c": [
+"Salary plus about 25% for tax, pension and benefits: £75,000",
+"÷ 1,700 hours ≈ £44"
+],
+"a": 44,
+"lo": 18,
+"hi": 110
+},
+{
+"q": "How much does a one-hour meeting of 10 such people cost?",
+"u": "pounds",
+"c": [
+"10 × £44 = £440"
+],
+"a": 440,
+"lo": 180,
+"hi": 1100,
+"n": "Useful number to say out loud before booking a meeting."
+},
+{
+"q": "How much does a weekly one-hour meeting of 10 cost in a year?",
+"u": "pounds",
+"c": [
+"£440 × 46 weeks ≈ £20,000"
+],
+"a": 20000,
+"lo": 8000,
+"hi": 50000
+},
+{
+"q": "How many hours a year does a 15-minute daily stand-up take for a team of 8?",
+"u": "hours",
+"c": [
+"0.25 hours × 8 people × 230 days = 460 hours"
+],
+"a": 460,
+"lo": 180,
+"hi": 1200
+},
+{
+"q": "How many customers must a café serve daily to cover £8,000 monthly rent?",
+"u": "customers",
+"c": [
+"Gross profit about £3 per customer",
+"£8,000 ÷ 30 days ≈ £270 a day",
+"About 90 customers a day just for rent"
+],
+"a": 90,
+"lo": 36,
+"hi": 220
+},
+{
+"q": "How long would it take to pay back a £50,000 café fit-out at £2,000 profit a month?",
+"u": "months",
+"c": [
+"50,000 ÷ 2,000 = 25 months"
+],
+"a": 25,
+"lo": 10,
+"hi": 62
+},
+{
+"q": "How many people would fill Wembley Stadium?",
+"u": "people",
+"c": [
+"About 90,000"
+],
+"a": 90000,
+"lo": 36000,
+"hi": 220000
+},
+{
+"q": "How many Wembley Stadiums would hold London’s population?",
+"u": "stadiums",
+"c": [
+"9,000,000 ÷ 90,000 = 100"
+],
+"a": 100,
+"lo": 40,
+"hi": 250
+},
+{
+"q": "How many cups of coffee to fill an Olympic swimming pool?",
+"u": "cups",
+"c": [
+"2.5 million litres",
+"A cup is about 0.25 litres",
+"10 million cups"
+],
+"a": 10000000,
+"lo": 4000000,
+"hi": 25000000
+},
+{
+"q": "How many school days are in a year in England?",
+"u": "days",
+"c": [
+"190 days"
+],
+"a": 190,
+"lo": 76,
+"hi": 480
+},
+{
+"q": "How many hours of teaching does a child get in a school year?",
+"u": "hours",
+"c": [
+"About 5 hours a day × 190 days = 950"
+],
+"a": 950,
+"lo": 380,
+"hi": 2400
+},
+{
+"q": "How many hours of school from age 5 to 18?",
+"u": "hours",
+"c": [
+"950 × 13 ≈ 12,000"
+],
+"a": 12000,
+"lo": 4800,
+"hi": 30000
+},
+{
+"q": "How many hours of deliberate practice to become an expert in a skill?",
+"u": "hours",
+"c": [
+"The famous 10,000 figure is an average with huge variation",
+"Answer 10,000 as a rough anchor"
+],
+"a": 10000,
+"lo": 4000,
+"hi": 25000,
+"n": "The research behind it found very wide variation and the number is not a rule."
+},
+{
+"q": "At 10 minutes a day, how many hours of reading practice in a year?",
+"u": "hours",
+"c": [
+"10 × 365 = 3,650 minutes ≈ 61 hours"
+],
+"a": 61,
+"lo": 24,
+"hi": 150
+},
+{
+"q": "At 10 minutes a day, how many passages could you read in a year with this app?",
+"u": "passages",
+"c": [
+"One passage a session, 6 days a week: 312"
+],
+"a": 312,
+"lo": 120,
+"hi": 780
+},
+{
+"q": "How many words will you read in a year of these reading sessions?",
+"u": "words",
+"c": [
+"Average passage about 230 words",
+"× 312 ≈ 72,000"
+],
+"a": 72000,
+"lo": 29000,
+"hi": 180000
+},
+{
+"q": "How many maths problems will you solve in a year of Think sessions?",
+"u": "problems",
+"c": [
+"12 a session × 6 sessions a week × 52 ≈ 3,700"
+],
+"a": 3700,
+"lo": 1500,
+"hi": 9200
+},
+{
+"q": "How many minutes of structured speaking will you do in a year of Say it in 60?",
+"u": "minutes",
+"c": [
+"About 1 minute a day × 312 days ≈ 312"
+],
+"a": 312,
+"lo": 120,
+"hi": 780
+},
+{
+"q": "How many people in the world are over 80?",
+"u": "people",
+"c": [
+"About 8 billion people",
+"About 2% are over 80",
+"About 160 million"
+],
+"a": 160000000,
+"lo": 64000000,
+"hi": 400000000
+},
+{
+"q": "How many people will turn 18 in India this year?",
+"u": "people",
+"c": [
+"About 25 million per single-year age group"
+],
+"a": 25000000,
+"lo": 10000000,
+"hi": 62000000
+},
+{
+"q": "How many new voters join India’s electoral rolls each year?",
+"u": "voters",
+"c": [
+"About 25 million turn 18",
+"Perhaps 70% register in their first year: about 18 million"
+],
+"a": 18000000,
+"lo": 7200000,
+"hi": 45000000
+},
+{
+"q": "How many polling stations does India use in a general election?",
+"u": "polling stations",
+"c": [
+"About 970 million registered voters",
+"About 1,000 voters per station",
+"About 1 million"
+],
+"a": 1000000,
+"lo": 400000,
+"hi": 2500000
+},
+{
+"q": "How many MPs are in the Lok Sabha?",
+"u": "MPs",
+"c": [
+"543 elected seats"
+],
+"a": 543,
+"lo": 220,
+"hi": 1400
+},
+{
+"q": "How many voters does each Lok Sabha MP represent on average?",
+"u": "voters",
+"c": [
+"970 million ÷ 543 ≈ 1.8 million"
+],
+"a": 1800000,
+"lo": 720000,
+"hi": 4500000
+},
+{
+"q": "How many voters does each UK MP represent?",
+"u": "voters",
+"c": [
+"About 48 million voters ÷ 650 seats ≈ 74,000"
+],
+"a": 74000,
+"lo": 30000,
+"hi": 180000
+},
+{
+"q": "How much does a general election cost to run in the UK?",
+"u": "pounds",
+"c": [
+"Often estimated at around £150 million or more",
+"Answer about £150 million"
+],
+"a": 150000000,
+"lo": 60000000,
+"hi": 380000000
+},
+{
+"q": "How many Indian languages have more than 1 million speakers?",
+"u": "languages",
+"c": [
+"Around 30 or more",
+"Answer about 30"
+],
+"a": 30,
+"lo": 12,
+"hi": 75
+},
+{
+"q": "How many people speak Kannada?",
+"u": "people",
+"c": [
+"About 45 million native speakers",
+"Plus second-language speakers: about 60 million"
+],
+"a": 60000000,
+"lo": 24000000,
+"hi": 150000000
+},
+{
+"q": "How much coffee does Karnataka produce in a year?",
+"u": "tonnes",
+"c": [
+"India produces about 350,000 tonnes",
+"Karnataka grows about 70% of it",
+"About 245,000 tonnes"
+],
+"a": 245000,
+"lo": 98000,
+"hi": 610000
+},
+{
+"q": "How much coffee does India produce in a year?",
+"u": "tonnes",
+"c": [
+"About 350,000 tonnes"
+],
+"a": 350000,
+"lo": 140000,
+"hi": 880000
+},
+{
+"q": "How many cups of coffee is that?",
+"u": "cups",
+"c": [
+"350,000 tonnes = 350 million kg",
+"About 10 g per cup",
+"35 billion cups"
+],
+"a": 35000000000,
+"lo": 14000000000,
+"hi": 88000000000
+},
+{
+"q": "How many shipping containers cross the world’s oceans each year?",
+"u": "container journeys",
+"c": [
+"Global port traffic about 850 million container units handled",
+"Each journey counted at least twice (loading and unloading): about 400 million moves of full and empty boxes",
+"Answer about 200 million laden trips"
+],
+"a": 200000000,
+"lo": 80000000,
+"hi": 500000000
+},
+{
+"q": "How many containers does the largest container ship carry?",
+"u": "containers",
+"c": [
+"About 24,000 twenty-foot equivalent units"
+],
+"a": 24000,
+"lo": 9600,
+"hi": 60000
+},
+{
+"q": "How many trucks would that ship’s cargo fill?",
+"u": "trucks",
+"c": [
+"Each truck carries one forty-foot container, which is two units",
+"24,000 ÷ 2 = 12,000"
+],
+"a": 12000,
+"lo": 4800,
+"hi": 30000
+},
+{
+"q": "How many cars are made worldwide each year?",
+"u": "cars",
+"c": [
+"About 90 million vehicles"
+],
+"a": 90000000,
+"lo": 36000000,
+"hi": 220000000
+},
+{
+"q": "How many smartphones are sold worldwide each year?",
+"u": "phones",
+"c": [
+"About 1.2 billion"
+],
+"a": 1200000000,
+"lo": 480000000,
+"hi": 3000000000
+},
+{
+"q": "How much does Apple earn from iPhone sales in a year?",
+"u": "US dollars",
+"c": [
+"About 230 million iPhones a year",
+"Average price about $900",
+"About $200 billion"
+],
+"a": 200000000000,
+"lo": 80000000000,
+"hi": 500000000000
+},
+{
+"q": "How many chips does a modern smartphone contain?",
+"u": "chips",
+"c": [
+"Processor, memory, storage, modem, power and sensors",
+"About 15 to 30"
+],
+"a": 20,
+"lo": 8,
+"hi": 50
+},
+{
+"q": "How many transistors are in a modern phone processor?",
+"u": "transistors",
+"c": [
+"Billions",
+"About 15 billion in recent high-end chips"
+],
+"a": 15000000000,
+"lo": 6000000000,
+"hi": 38000000000
+},
+{
+"q": "How long would it take to count those transistors at one per second?",
+"u": "years",
+"c": [
+"15 billion seconds ÷ 31.5 million seconds a year ≈ 475 years"
+],
+"a": 475,
+"lo": 190,
+"hi": 1200
+},
+{
+"q": "How many people have ever lived on Earth?",
+"u": "people",
+"c": [
+"Demographers’ estimate: about 110 billion"
+],
+"a": 110000000000,
+"lo": 44000000000,
+"hi": 280000000000
+},
+{
+"q": "What share of everyone who ever lived is alive today?",
+"u": "percent",
+"c": [
+"8 ÷ 110 ≈ 7%"
+],
+"a": 7,
+"lo": 2.8,
+"hi": 18
+},
+{
+"q": "How many minutes of the 24 hours in a day do you spend deeply focused?",
+"u": "minutes",
+"c": [
+"For many knowledge workers, perhaps 2 hours of genuine focus",
+"About 120"
+],
+"a": 120,
+"lo": 48,
+"hi": 300
+},
+{
+"q": "How many hours of focused work in a year at 2 hours a day?",
+"u": "hours",
+"c": [
+"2 × 230 = 460 hours"
+],
+"a": 460,
+"lo": 180,
+"hi": 1200
+},
+{
+"q": "How much more focused work would 30 extra minutes a day give in a year?",
+"u": "hours",
+"c": [
+"0.5 × 230 = 115 hours, about three full working weeks"
+],
+"a": 115,
+"lo": 46,
+"hi": 290
+},
+{
+"q": "How many interruptions does a typical office worker get in a day?",
+"u": "interruptions",
+"c": [
+"Surveys suggest one every 10 to 15 minutes",
+"Over 8 hours: about 40"
+],
+"a": 40,
+"lo": 16,
+"hi": 100
+},
+{
+"q": "If each interruption costs 5 minutes of refocusing, how much time is lost a day?",
+"u": "minutes",
+"c": [
+"40 × 5 = 200 minutes",
+"In practice many are short, so about 100"
+],
+"a": 100,
+"lo": 40,
+"hi": 250
+},
+{
+"q": "How many cups of coffee does a London commuter buy in a working year?",
+"u": "cups",
+"c": [
+"About 1 a day on office days",
+"Hybrid 3 days a week × 46 weeks: 138"
+],
+"a": 138,
+"lo": 55,
+"hi": 340
+},
+{
+"q": "How much does that cost at £3.50?",
+"u": "pounds",
+"c": [
+"138 × 3.50 ≈ £480"
+],
+"a": 480,
+"lo": 190,
+"hi": 1200
+},
+{
+"q": "How much would £480 a year grow to in 20 years at 5%?",
+"u": "pounds",
+"c": [
+"Future value of an annuity: 480 × about 33 ≈ £15,900"
+],
+"a": 15900,
+"lo": 6400,
+"hi": 40000
+},
+{
+"q": "How many years to double money at 7%?",
+"u": "years",
+"c": [
+"Rule of 72: 72 ÷ 7 ≈ 10"
+],
+"a": 10,
+"lo": 4,
+"hi": 25
+},
+{
+"q": "What is £10,000 worth after 30 years at 7%?",
+"u": "pounds",
+"c": [
+"Doubles about every 10 years: three doublings",
+"10,000 × 8 = £80,000"
+],
+"a": 80000,
+"lo": 32000,
+"hi": 200000
+},
+{
+"q": "How much interest does a £5,000 credit card balance at 22% cost in a year?",
+"u": "pounds",
+"c": [
+"5,000 × 0.22 = £1,100"
+],
+"a": 1100,
+"lo": 440,
+"hi": 2800
+},
+{
+"q": "How long to clear £5,000 at 22% paying £150 a month?",
+"u": "months",
+"c": [
+"Interest about £90 a month at first, so only £60 goes to the balance",
+"It accelerates as balance falls: roughly 50 months"
+],
+"a": 50,
+"lo": 20,
+"hi": 120
+},
+{
+"q": "How much total interest would that cost?",
+"u": "pounds",
+"c": [
+"50 payments × £150 = £7,500",
+"Minus £5,000 principal: about £2,500"
+],
+"a": 2500,
+"lo": 1000,
+"hi": 6200
+},
+{
+"q": "How many households in the UK have a mortgage?",
+"u": "households",
+"c": [
+"About 28 million households",
+"About 30% have a mortgage: about 8.5 million"
+],
+"a": 8500000,
+"lo": 3400000,
+"hi": 21000000
+},
+{
+"q": "What is the monthly payment on a £300,000 mortgage at 5% over 25 years?",
+"u": "pounds",
+"c": [
+"Rule of thumb: about £5.85 per £1,000 at 5% over 25 years",
+"300 × 5.85 ≈ £1,750"
+],
+"a": 1750,
+"lo": 700,
+"hi": 4400
+},
+{
+"q": "How much total interest over the 25 years?",
+"u": "pounds",
+"c": [
+"1,750 × 300 months = £525,000",
+"Minus £300,000: about £225,000"
+],
+"a": 225000,
+"lo": 90000,
+"hi": 560000
+},
+{
+"q": "How many minutes of exercise does the NHS recommend adults do each week?",
+"u": "minutes",
+"c": [
+"At least 150 minutes of moderate activity"
+],
+"a": 150,
+"lo": 60,
+"hi": 380
+},
+{
+"q": "How many steps is a 30-minute brisk walk?",
+"u": "steps",
+"c": [
+"About 100 to 120 steps a minute",
+"About 3,300"
+],
+"a": 3300,
+"lo": 1300,
+"hi": 8200
+},
+{
+"q": "How far is a 30-minute brisk walk?",
+"u": "kilometres",
+"c": [
+"About 5 to 6 km an hour",
+"About 2.7 km"
+],
+"a": 2.7,
+"lo": 1.1,
+"hi": 6.8
+},
+{
+"q": "How many calories does a 30-minute brisk walk burn for a 75 kg person?",
+"u": "calories",
+"c": [
+"About 4 calories per minute",
+"About 120 to 150"
+],
+"a": 140,
+"lo": 56,
+"hi": 350
+},
+{
+"q": "How many hours of sleep is lost to the spring clock change across the UK?",
+"u": "hours",
+"c": [
+"About 55 million adults lose an hour",
+"About 55 million hours, though many sleep in"
+],
+"a": 55000000,
+"lo": 22000000,
+"hi": 140000000
+},
+{
+"q": "How many people in the world are learning English?",
+"u": "learners",
+"c": [
+"Often estimated at over 1 billion learners"
+],
+"a": 1000000000,
+"lo": 400000000,
+"hi": 2500000000
+},
+{
+"q": "How many books are published in the UK each year?",
+"u": "titles",
+"c": [
+"Often cited as over 180,000 new titles a year including all formats",
+"Answer about 190,000"
+],
+"a": 190000,
+"lo": 76000,
+"hi": 480000
+},
+{
+"q": "How many TED talks are there?",
+"u": "talks",
+"c": [
+"Main TED stage talks about 4,000",
+"Plus TEDx: over 100,000"
+],
+"a": 4000,
+"lo": 1600,
+"hi": 10000
+},
+{
+"q": "How long is a typical TED talk?",
+"u": "minutes",
+"c": [
+"Up to 18 minutes",
+"Average about 12"
+],
+"a": 12,
+"lo": 4.8,
+"hi": 30
+},
+{
+"q": "How many words in an 18-minute TED talk?",
+"u": "words",
+"c": [
+"At about 160 words a minute: about 2,900"
+],
+"a": 2900,
+"lo": 1200,
+"hi": 7200
+},
+{
+"q": "How many slides would that talk typically use?",
+"u": "slides",
+"c": [
+"Many speakers use one slide every 30 to 60 seconds",
+"About 25"
+],
+"a": 25,
+"lo": 10,
+"hi": 62
+},
+{
+"q": "How many minutes do people stay focused on a lecture before attention drops?",
+"u": "minutes",
+"c": [
+"Often claimed 10 to 15 minutes, though evidence is mixed",
+"Answer about 15"
+],
+"a": 15,
+"lo": 6,
+"hi": 38,
+"n": "Treat this as a rough design guide, not a scientific constant."
+},
+{
+"q": "How many questions should you prepare for a 30-minute Q&A?",
+"u": "questions",
+"c": [
+"About 3 minutes per answer",
+"About 10"
+],
+"a": 10,
+"lo": 4,
+"hi": 25
+},
+{
+"q": "How long should a one-sentence summary of your point be?",
+"u": "words",
+"c": [
+"Short enough to say in one breath: about 20 words"
+],
+"a": 20,
+"lo": 8,
+"hi": 50
+},
+{
+"q": "How many minutes does a typical CEO speak in an earnings call?",
+"u": "minutes",
+"c": [
+"Opening remarks about 10 to 15 minutes",
+"Answer 12"
+],
+"a": 12,
+"lo": 4.8,
+"hi": 30
+},
+{
+"q": "How many analysts listen to a large company’s earnings call?",
+"u": "listeners",
+"c": [
+"Perhaps 300 analysts and investors live, more on replay",
+"About 300"
+],
+"a": 300,
+"lo": 120,
+"hi": 750
+},
+{
+"q": "How much does a large company’s share price move on a surprise earnings miss?",
+"u": "percent",
+"c": [
+"Often 5 to 10%",
+"Answer about 7"
+],
+"a": 7,
+"lo": 2.8,
+"hi": 18
+},
+{
+"q": "For a £50 billion company, how much value is that?",
+"u": "pounds",
+"c": [
+"7% of £50 billion = £3.5 billion"
+],
+"a": 3500000000,
+"lo": 1400000000,
+"hi": 8800000000
+},
+{
+"q": "How much revenue does Adobe make in a year?",
+"u": "US dollars",
+"c": [
+"Over $20 billion recently",
+"Answer about $21 billion"
+],
+"a": 21000000000,
+"lo": 8400000000,
+"hi": 52000000000
+},
+{
+"q": "How many employees does Adobe have?",
+"u": "employees",
+"c": [
+"About 30,000"
+],
+"a": 30000,
+"lo": 12000,
+"hi": 75000
+},
+{
+"q": "What is that revenue per employee?",
+"u": "US dollars",
+"c": [
+"$21 billion ÷ 30,000 ≈ $700,000"
+],
+"a": 700000,
+"lo": 280000,
+"hi": 1800000
+},
+{
+"q": "How many Creative Cloud subscribers might there be?",
+"u": "subscribers",
+"c": [
+"Digital Media revenue about $15 billion",
+"Average perhaps $500 a year per subscriber",
+"About 30 million"
+],
+"a": 30000000,
+"lo": 12000000,
+"hi": 75000000,
+"n": "A good executive-style sanity check: revenue ÷ price = customers."
+},
+{
+"q": "How much would a 1% price rise on $15 billion of subscription revenue add, if no one left?",
+"u": "US dollars",
+"c": [
+"1% of $15 billion = $150 million"
+],
+"a": 150000000,
+"lo": 60000000,
+"hi": 380000000
+},
+{
+"q": "How many subscribers could leave before a 5% price rise loses money?",
+"u": "percent",
+"c": [
+"Revenue per remaining subscriber rises 5%",
+"Break-even if about 4.8% leave: 1 − 1/1.05"
+],
+"a": 4.8,
+"lo": 1.9,
+"hi": 12
+},
+{
+"q": "How much is a 1-point improvement in monthly churn worth on 30 million subscribers at $40 a month?",
+"u": "US dollars",
+"c": [
+"1% of 30 million = 300,000 subscribers kept a month",
+"× $40 × 12 months ≈ $144 million in a year",
+"Compounding retention makes it more"
+],
+"a": 144000000,
+"lo": 58000000,
+"hi": 360000000
+},
+{
+"q": "How many design professionals are there worldwide?",
+"u": "people",
+"c": [
+"Perhaps 1 in 300 working people does design as a core job",
+"3.5 billion workers ÷ 300 ≈ 12 million"
+],
+"a": 12000000,
+"lo": 4800000,
+"hi": 30000000
+},
+{
+"q": "How many PDFs are opened worldwide each year?",
+"u": "PDFs",
+"c": [
+"Adobe has cited figures in the hundreds of billions",
+"Answer about 400 billion"
+],
+"a": 400000000000,
+"lo": 160000000000,
+"hi": 1000000000000
+},
+{
+"q": "How many hours of video are uploaded to YouTube every minute?",
+"u": "hours",
+"c": [
+"About 500 hours"
+],
+"a": 500,
+"lo": 200,
+"hi": 1200
+},
+{
+"q": "How many years of video is that uploaded per day?",
+"u": "years",
+"c": [
+"500 × 1,440 = 720,000 hours",
+"÷ 8,760 hours a year ≈ 82 years"
+],
+"a": 82,
+"lo": 33,
+"hi": 200
+},
+{
+"q": "How much data does a typical person generate on their phone each month?",
+"u": "gigabytes",
+"c": [
+"Mobile data about 15 to 20 GB",
+"Answer 17"
+],
+"a": 17,
+"lo": 6.8,
+"hi": 42
+},
+{
+"q": "How many emails are sent worldwide each day?",
+"u": "emails",
+"c": [
+"Estimates over 350 billion including automated mail"
+],
+"a": 350000000000,
+"lo": 140000000000,
+"hi": 880000000000
+},
+{
+"q": "How many people work in the UK?",
+"u": "workers",
+"c": [
+"About 33 million"
+],
+"a": 33000000,
+"lo": 13000000,
+"hi": 82000000
+},
+{
+"q": "How many people in the UK work in hospitality?",
+"u": "workers",
+"c": [
+"About 2.5 million, about 7% of workers"
+],
+"a": 2500000,
+"lo": 1000000,
+"hi": 6200000
+},
+{
+"q": "How many hours does a UK worker spend at work in a lifetime?",
+"u": "hours",
+"c": [
+"About 1,700 a year × 45 years ≈ 76,000"
+],
+"a": 76000,
+"lo": 30000,
+"hi": 190000
+},
+{
+"q": "How many decisions does a manager make in a day?",
+"u": "decisions",
+"c": [
+"If you count small ones, many dozens",
+"meaningful ones perhaps 20"
+],
+"a": 20,
+"lo": 8,
+"hi": 50
+},
+{
+"q": "How many decisions a year is that?",
+"u": "decisions",
+"c": [
+"20 × 230 = 4,600"
+],
+"a": 4600,
+"lo": 1800,
+"hi": 12000
+},
+{
+"q": "If a better process improved 5% of those decisions, how many is that?",
+"u": "decisions",
+"c": [
+"4,600 × 0.05 = 230"
+],
+"a": 230,
+"lo": 92,
+"hi": 580
+},
+{
+"q": "How many minutes does a well-run decision meeting need?",
+"u": "minutes",
+"c": [
+"With a pre-read: about 30"
+],
+"a": 30,
+"lo": 12,
+"hi": 75
+},
+{
+"q": "How many people should be in a decision meeting?",
+"u": "people",
+"c": [
+"Often suggested no more than about 7"
+],
+"a": 7,
+"lo": 2.8,
+"hi": 18
+},
+{
+"q": "How many communication pairs in a meeting of 7?",
+"u": "pairs",
+"c": [
+"7 × 6 ÷ 2 = 21"
+],
+"a": 21,
+"lo": 8.4,
+"hi": 52
+},
+{
+"q": "How many communication pairs in a meeting of 15?",
+"u": "pairs",
+"c": [
+"15 × 14 ÷ 2 = 105"
+],
+"a": 105,
+"lo": 42,
+"hi": 260
+},
+{
+"q": "How many minutes of airtime per person in a 30-minute meeting of 10?",
+"u": "minutes",
+"c": [
+"30 ÷ 10 = 3 minutes each, less after the chair"
+],
+"a": 3,
+"lo": 1.2,
+"hi": 7.5
+},
+{
+"q": "How many coffee cups of rain fall on London in a year?",
+"u": "cups",
+"c": [
+"About 600 mm of rain over 1,570 square km = about 940 million cubic metres",
+"940 billion litres ÷ 0.25 litres ≈ 3.8 trillion cups"
+],
+"a": 3800000000000,
+"lo": 1500000000000,
+"hi": 9500000000000
+},
+{
+"q": "How much rain falls on Cherrapunji or Mawsynram in a year?",
+"u": "millimetres",
+"c": [
+"Among the wettest places on Earth: about 11,000 mm"
+],
+"a": 11000,
+"lo": 4400,
+"hi": 28000
+},
+{
+"q": "How many times more rain is that than London?",
+"u": "times",
+"c": [
+"11,000 ÷ 600 ≈ 18"
+],
+"a": 18,
+"lo": 7.2,
+"hi": 45
+},
+{
+"q": "How many people does a fully loaded A380 carry?",
+"u": "passengers",
+"c": [
+"Typically around 500 in mixed classes"
+],
+"a": 500,
+"lo": 200,
+"hi": 1200
+},
+{
+"q": "How many A380s would carry Wembley Stadium’s crowd?",
+"u": "planes",
+"c": [
+"90,000 ÷ 500 = 180"
+],
+"a": 180,
+"lo": 72,
+"hi": 450
+},
+{
+"q": "How many minutes of advertising in an hour of commercial TV in the UK?",
+"u": "minutes",
+"c": [
+"Limited to an average of about 7 minutes per hour on main channels",
+"Answer 7"
+],
+"a": 7,
+"lo": 2.8,
+"hi": 18
+},
+{
+"q": "How much does a 30-second ad cost in a big UK TV slot?",
+"u": "pounds",
+"c": [
+"Prime time on a major channel might be tens of thousands",
+"A huge event far more",
+"Typical about £50,000"
+],
+"a": 50000,
+"lo": 20000,
+"hi": 120000
+},
+{
+"q": "How many hours of work would a Mars mission need from its crew each day?",
+"u": "hours",
+"c": [
+"Similar to a long working day: about 12"
+],
+"a": 12,
+"lo": 4.8,
+"hi": 30
+},
+{
+"q": "How long does it take to fly to Mars?",
+"u": "months",
+"c": [
+"About 7 to 9 months with current technology",
+"Answer 8"
+],
+"a": 8,
+"lo": 3.2,
+"hi": 20
+},
+{
+"q": "How far is the Moon?",
+"u": "kilometres",
+"c": [
+"About 384,000 km"
+],
+"a": 384000,
+"lo": 150000,
+"hi": 960000
+},
+{
+"q": "How long to drive to the Moon at 100 km an hour?",
+"u": "days",
+"c": [
+"384,000 ÷ 100 = 3,840 hours ÷ 24 ≈ 160 days"
+],
+"a": 160,
+"lo": 64,
+"hi": 400
+},
+{
+"q": "How many satellites orbit Earth?",
+"u": "satellites",
+"c": [
+"Over 10,000 active satellites after recent large constellations",
+"Answer about 10,000"
+],
+"a": 10000,
+"lo": 4000,
+"hi": 25000
+},
+{
+"q": "How many GPS satellites are needed for a position?",
+"u": "satellites",
+"c": [
+"At least 4"
+],
+"a": 4,
+"lo": 1.6,
+"hi": 10
+},
+{
+"q": "How long does a text message take to travel from London to Bengaluru?",
+"u": "seconds",
+"c": [
+"Network routing and processing dominate: about 1 second"
+],
+"a": 1,
+"lo": 0.4,
+"hi": 2.5
+},
+{
+"q": "How long would a letter take by post from London to Bengaluru?",
+"u": "days",
+"c": [
+"International post: about 7 to 14 days",
+"Answer 10"
+],
+"a": 10,
+"lo": 4,
+"hi": 25
+},
+{
+"q": "How many people learn to play chess each year worldwide?",
+"u": "people",
+"c": [
+"Online chess platforms report tens of millions of new accounts a year",
+"About 20 million"
+],
+"a": 20000000,
+"lo": 8000000,
+"hi": 50000000
+},
+{
+"q": "How many possible first moves in chess?",
+"u": "moves",
+"c": [
+"16 pawn moves + 4 knight moves = 20"
+],
+"a": 20,
+"lo": 8,
+"hi": 50
+},
+{
+"q": "How many games does a chess grandmaster study in a career?",
+"u": "games",
+"c": [
+"Perhaps thousands seriously, tens of thousands skimmed",
+"About 10,000"
+],
+"a": 10000,
+"lo": 4000,
+"hi": 25000
+},
+{
+"q": "How many minutes would it take to read this app’s entire reading library aloud?",
+"u": "minutes",
+"c": [
+"About 312 passages × 230 words = 72,000 words",
+"At 140 words a minute: about 510 minutes"
+],
+"a": 510,
+"lo": 200,
+"hi": 1300
+},
+{
+"q": "If you speak in 10 meetings a week with 8 people each, how many listeners do you reach in a year?",
+"u": "listener-meetings",
+"c": [
+"10 meetings × 8 people × 46 weeks = 3,680"
+],
+"a": 3680,
+"lo": 1500,
+"hi": 9200
+},
+{
+"q": "How much better would 1% improvement a week compound to over a year?",
+"u": "times",
+"c": [
+"1.01^52 ≈ 1.68"
+],
+"a": 1.68,
+"lo": 0.67,
+"hi": 4.2,
+"n": "The point is not the exact figure: small gains, kept up, compound."
+}
+]
+}
