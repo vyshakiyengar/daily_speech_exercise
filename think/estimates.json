@@ -1,0 +1,3 @@
+{"items":[
+{"q":"How many cups of coffee are bought in London on a typical weekday?","u":"cups","c":["About 9 million people live in London","Say 1 in 3 buys at least one coffee out on a weekday: 3 million","Average about 1.3 cups each: about 4 million","Add some commuters and visitors: call it 4 to 5 million"],"a":4500000,"lo":2000000,"hi":8000000,"n":"Population × share who do it × how often is the most useful chain in business sizing."}
+]}

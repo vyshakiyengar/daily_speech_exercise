@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Speech On — Your daily speech practice</title>
-<meta name="description" content="A free guided speech warm-up. Practise clear sounds, steady pacing and natural speech in 5 to 20 minutes. No sign-up, no microphone, works offline.">
+<meta name="description" content="A free guided speech warm-up, plus daily reading-focus and quick-thinking practice. No sign-up, no microphone, works offline.">
 <meta name="theme-color" content="#f3f7fd" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0f1724" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://www.speechon.app/">
@@ -24,6 +24,7 @@
 <link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="train.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"Speech On",
 "url":"https://www.speechon.app/","applicationCategory":"HealthApplication",
@@ -35,6 +36,7 @@
 "disclaimer":"Speech On is a practice tool, not a treatment or clinical intervention, and is not a medical device. It does not replace assessment or therapy from a qualified speech-language professional."}
 </script>
 <script src="analytics.js" defer></script>
+<script src="trio.js" defer></script>
 <script src="art.js" defer></script>
 <script src="content.js" defer></script>
 <script src="app.js" defer></script>
@@ -51,6 +53,8 @@
 </header>
 
 <main id="main">
+
+<nav class="trio home-trio" id="trio" aria-label="Today's practice"></nav>
 
 <section id="home" class="home">
  <div class="hero-copy">
@@ -157,6 +161,7 @@
   <button class="quiet" id="share">Share ↗</button>
  </div>
  <p id="share-status" role="status"></p>
+ <a class="handoff" id="handoff" href="/read" hidden><b>Next: Read →</b><span>Ten minutes of reading focus</span></a>
 </section>
 
 </main>

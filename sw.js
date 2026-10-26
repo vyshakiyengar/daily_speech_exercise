@@ -1,5 +1,5 @@
 /* Speech On — offline shell. Only ever removes this app's own caches. */
-const CACHE = 'speech-on-v30';
+const CACHE = 'speech-on-v31';
 const SHELL = [
  './', './index.html', './app.js', './art.js', './content.js', './analytics.js', './styles.css',
  './page.css', './manifest.webmanifest', './icon.svg', './icon-180.png', './icon-192.png', './icon-512.png',
@@ -7,7 +7,9 @@ const SHELL = [
  './fonts/dm-sans-latin.woff2', './fonts/dm-sans-latin-ext.woff2',
  './fonts/manrope-latin.woff2', './fonts/manrope-latin-ext.woff2', './fonts/manrope-cyrillic.woff2',
  './routine.html', './safety.html', './privacy.html', './terms.html',
- './accessibility.html', './for-clinicians.html', './handout.html', './handout.js', './optout.js'
+ './accessibility.html', './for-clinicians.html', './handout.html', './handout.js', './optout.js',
+ './trio.js', './train.css', './read.html', './read.js', './think.html', './think.js',
+ './reading/index.json', './think/estimates.json', './think/prompts.json'
 ];
 
 self.addEventListener('install', event => {

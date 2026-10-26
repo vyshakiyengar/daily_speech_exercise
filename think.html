@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Think — Speech On</title>
+<meta name="description" content="Ten minutes of quick-thinking practice: business maths at speed, a back-of-envelope estimate, and a structured 60-second answer out loud. Adaptive, free, no sign-up.">
+<meta name="theme-color" content="#f3f7fd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1724" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://www.speechon.app/think">
+<meta property="og:title" content="Think — Speech On">
+<meta property="og:description" content="Business maths at speed, a quick estimate, and a structured 60-second answer out loud. Free, no sign-up.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://www.speechon.app/think">
+<meta property="og:image" content="https://www.speechon.app/og.png"><meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="train.css">
+<script src="analytics.js" defer></script>
+<script src="trio.js" defer></script>
+<script src="think.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to practice</a>
+
+<header class="site-header">
+ <a class="brand" href="/" aria-label="Speech On home"><span class="brand-mark" aria-hidden="true">ıιı</span>speech<span>on</span><i></i></a>
+ <div class="header-tools">
+  <button class="evidence-stamp" id="evidence">How this was built ↗</button>
+ </div>
+</header>
+
+<main id="main">
+<nav class="trio trio-narrow" id="trio" aria-label="Today's practice"></nav>
+
+<div class="module" id="home">
+ <section class="module-hero">
+  <p class="meeting-hook">QUICK THINKING · ABOUT 10 MINUTES</p>
+  <h1>Think on your feet.<em>Then say it well.</em></h1>
+  <p class="intro">Business maths at speed, one back-of-envelope estimate, and a structured answer out loud in 60 seconds. The exact skills a room full of executives notices.</p>
+ </section>
+
+ <div class="card">
+  <span class="label" id="today-label">Today's session</span>
+  <h2 id="today-title">Maths sprint · Estimate · Say it in 60</h2>
+  <p class="meta" id="today-meta"></p>
+  <button class="btn big" id="start"><strong>GO</strong><span id="start-sub">Start thinking →</span></button>
+  <p class="meta" id="resume-note" hidden></p>
+  <div class="side-links">
+   <button class="quiet" id="sprint-only">Just a maths sprint (3 min)</button>
+   <button class="quiet" id="speak-only">Just Say it in 60</button>
+   <button class="quiet" id="tricks">Mental maths tricks</button>
+  </div>
+ </div>
+
+ <div class="card">
+  <h2>The three parts</h2>
+  <ol class="toolkit">
+   <li><div><b>Maths sprint · 12 problems</b><span>Percentages, growth, margins, payback, multiples. It adapts: get quick and accurate and the next level unlocks.</span></div></li>
+   <li><div><b>Estimate it · one question</b><span>Break an unknown number into pieces you can guess, then multiply. Within a factor of two is a great answer.</span></div></li>
+   <li><div><b>Say it in 60 · one question</b><span>Twenty seconds to think, sixty to answer out loud: answer first, three reasons, so what.</span></div></li>
+  </ol>
+ </div>
+
+ <div class="card">
+  <h2>Your progress</h2>
+  <div class="kpis" id="kpis"></div>
+  <p class="meta" id="insight"></p>
+  <div class="data-tools">
+   <button class="quiet" id="export">Save my thinking progress ↓</button>
+   <button class="quiet" id="import">Load from a file ↑</button>
+   <button class="quiet danger" id="erase">Erase thinking progress</button>
+  </div>
+  <p id="data-status" class="gentle-note" role="status"></p>
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
+ </div>
+
+ <p class="practice-disclaimer">Skills practice, not brain training and not a treatment for ADHD or any other condition. It will make you faster at these tasks; it does not claim to raise general intelligence. Your answers stay in this browser. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+</div>
+
+<section class="stage" id="stage" hidden aria-label="Thinking practice">
+ <div class="stage-top">
+  <button class="quiet" id="exit">← Save &amp; exit</button>
+  <span class="stage-count" id="stage-count"></span>
+  <span class="timer" id="clock" aria-hidden="true"></span>
+ </div>
+ <div class="progress" id="progress" aria-hidden="true"></div>
+ <div class="stage-body"><div class="stage-inner" id="stage-inner"></div></div>
+</section>
+</main>
+
+<footer>
+ <span class="brand footer-brand">speech<span>on</span><i></i></span>
+ <nav aria-label="Footer">
+  <a href="/">Speak</a><a href="/read">Read</a><a href="/think">Think</a>
+  <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/accessibility">Accessibility</a>
+ </nav>
+ <span class="credit">Not a medical device. Not a treatment. A project by
+  <a href="https://www.linkedin.com/in/vyshakiyengar" rel="noopener">Vyshak K Iyengar</a>.</span>
+</footer>
+
+<dialog id="info">
+ <div class="dialog-top"><h2 id="info-title"></h2>
+  <button class="quiet" id="close-info" aria-label="Close dialog">✕</button></div>
+ <div id="info-body"></div>
+</dialog>
+
+<noscript><p style="padding:1rem">Thinking practice needs JavaScript.</p></noscript>
+</body></html>
