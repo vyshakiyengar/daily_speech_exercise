@@ -218,7 +218,18 @@ function habitStats(){
  return {current, best};
 }
 
+function renderHandoff(){
+ const next = window.Trio?.next('speak'), a = $('handoff');
+ if (!a) return;
+ if (!next || !completed(dateKey())) { a.hidden = true; return; }
+ a.href = next.href; a.hidden = false;
+ a.querySelector('b').textContent = `Next: ${next.name} →`;
+ a.querySelector('span').textContent = next.id === 'read' ? 'Ten minutes of reading focus' : 'Ten minutes of quick thinking';
+}
+
 function renderHome(){
+ window.Trio?.renderStrip($('trio'), 'speak');
+ window.Trio?.renderProgress($('trio-progress'));
  const mins = state.session?.minutes || state.minutes;
  for (const b of document.querySelectorAll('[data-minutes]')) {
   b.setAttribute('aria-pressed', String(Number(b.dataset.minutes) === mins));
@@ -430,6 +441,7 @@ function finish(){
  $('home-button').className = 'quiet';
  document.querySelector('.reflection').hidden = true;
  $('share-status').textContent = '';
+ renderHandoff();
  $('done-title').setAttribute('tabindex','-1'); $('done-title').focus({preventScroll:true});
 }
 
@@ -614,6 +626,7 @@ $('save-untimed').onclick = () => {
  $('done-title').replaceChildren(document.createTextNode(t('practiceDone') + ' '));
  const em = document.createElement('em'); em.textContent = t('doneEm'); $('done-title').append(em);
  document.querySelector('.reflection').hidden = false; renderFeeling();
+ renderHandoff();
 };
 $('home-button').onclick = () => { show('home'); renderHome(); $('start').focus({preventScroll:true}); };
 

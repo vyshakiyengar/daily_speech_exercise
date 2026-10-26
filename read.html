@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Read — Speech On</title>
+<meta name="description" content="Ten minutes of guided reading practice: one paragraph at a time, explain it in your own words, then check what you kept. A year of original passages, plus vocabulary review. Free, no sign-up.">
+<meta name="theme-color" content="#f3f7fd" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1724" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://www.speechon.app/read">
+<meta property="og:title" content="Read — Speech On">
+<meta property="og:description" content="Guided reading practice: one paragraph at a time, explain it, check what you kept. Free, no sign-up.">
+<meta property="og:type" content="website"><meta property="og:url" content="https://www.speechon.app/read">
+<meta property="og:image" content="https://www.speechon.app/og.png"><meta name="twitter:card" content="summary_large_image">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Speech On">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="icon-180.png">
+<link rel="preload" href="fonts/manrope-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/dm-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="train.css">
+<script src="analytics.js" defer></script>
+<script src="trio.js" defer></script>
+<script src="read.js" defer></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to practice</a>
+
+<header class="site-header">
+ <a class="brand" href="/" aria-label="Speech On home"><span class="brand-mark" aria-hidden="true">ıιı</span>speech<span>on</span><i></i></a>
+ <div class="header-tools">
+  <button class="evidence-stamp" id="evidence">How this was built ↗</button>
+ </div>
+</header>
+
+<main id="main">
+<nav class="trio trio-narrow" id="trio" aria-label="Today's practice"></nav>
+
+<div class="module" id="home">
+ <section class="module-hero">
+  <p class="meeting-hook">READING FOCUS · ABOUT 10 MINUTES</p>
+  <h1>Read it once.<em>Keep the thread.</em></h1>
+  <p class="intro">One paragraph at a time. Look away, say what it means, check it, then move on. Built for attention that likes to wander.</p>
+ </section>
+
+ <div class="card">
+  <span class="label" id="today-label">Today's passage</span>
+  <h2 id="today-title">Loading…</h2>
+  <p class="meta" id="today-meta"></p>
+  <button class="btn big" id="start" disabled><strong>GO</strong><span id="start-sub">Start reading →</span></button>
+  <p class="meta" id="resume-note" hidden></p>
+  <div class="side-links">
+   <button class="quiet" id="review">Vocabulary review</button>
+   <button class="quiet" id="own">Use it on your own article</button>
+   <button class="quiet" id="library-open">Choose a passage · challenge level</button>
+  </div>
+ </div>
+
+ <div class="card">
+  <h2>Your reading toolkit</h2>
+  <p class="meta">The same six moves every day, so they become how you read everything.</p>
+  <ol class="toolkit" id="toolkit-home"></ol>
+ </div>
+
+ <div class="card" id="stats-card">
+  <h2>Your progress</h2>
+  <div class="kpis" id="kpis"></div>
+  <p class="meta" id="insight"></p>
+  <div class="data-tools">
+   <button class="quiet" id="export">Save my reading progress ↓</button>
+   <button class="quiet" id="import">Load from a file ↑</button>
+   <button class="quiet danger" id="erase">Erase reading progress</button>
+  </div>
+  <p id="data-status" class="gentle-note" role="status"></p>
+  <input type="file" id="import-file" accept="application/json,.json" hidden>
+ </div>
+
+ <p class="practice-disclaimer">Reading practice, not an assessment, diagnosis or treatment for ADHD, dyslexia or any other condition. If reading has become harder recently, or trouble focusing affects work and daily life, talk to a GP. Your answers stay in this browser. <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a></p>
+</div>
+
+<section class="stage" id="stage" hidden aria-label="Reading practice">
+ <div class="stage-top">
+  <button class="quiet" id="exit">← Save &amp; exit</button>
+  <span class="stage-count" id="stage-count"></span>
+  <button class="quiet" id="toolkit-btn">Toolkit</button>
+ </div>
+ <div class="progress" id="progress" aria-hidden="true"></div>
+ <div class="stage-body"><div class="stage-inner" id="stage-inner"></div></div>
+</section>
+</main>
+
+<footer>
+ <span class="brand footer-brand">speech<span>on</span><i></i></span>
+ <nav aria-label="Footer">
+  <a href="/">Speak</a><a href="/read">Read</a><a href="/think">Think</a>
+  <a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/accessibility">Accessibility</a>
+ </nav>
+ <span class="credit">Not a medical device. Not a treatment. A project by
+  <a href="https://www.linkedin.com/in/vyshakiyengar" rel="noopener">Vyshak K Iyengar</a>.</span>
+</footer>
+
+<dialog id="info">
+ <div class="dialog-top"><h2 id="info-title"></h2>
+  <button class="quiet" id="close-info" aria-label="Close dialog">✕</button></div>
+ <div id="info-body"></div>
+</dialog>
+
+<noscript><p style="padding:1rem">Reading practice needs JavaScript.</p></noscript>
+</body></html>

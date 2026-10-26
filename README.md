@@ -12,6 +12,15 @@ Every exercise carries a written caution. Every step is self-paced; an optional 
 
 The complete routine is readable without starting a session at [`/routine`](https://www.speechon.app/routine), which is generated from `content.js` so it cannot drift from the app.
 
+### The daily three: Speak, Read, Think
+
+The home page shows today's three practices and their streaks: a full-day streak (all three done), per-practice streaks, a month calendar, and two calendar files generated on the device (a repeating daily reminder for all three, and practised days as all-day events).
+
+- **Read** ([`/read`](https://www.speechon.app/read)), about 10 minutes. One paragraph at a time: read, the text hides, explain it from memory, check against a model, note whether attention drifted and what got in the way, link it to the previous paragraph. Then three points from memory, three questions and two vocabulary words that return on a spaced schedule (1, 3, 7, 16, 35, 90 days). 286 original passages at three levels (dense, argument, clear), ordered dense first and mixed from day one; a "Hardest only" setting skips the clearer ones. "Use it on your own article" runs the same moves on pasted text, which never leaves the browser.
+- **Think** ([`/think`](https://www.speechon.app/think)), about 10 minutes. An energy and sleep check-in, a 12-problem business-maths sprint generated across eight adaptive levels (percentages to EV/EBITDA and dilution, with earlier levels interleaved), one Fermi estimate with a worked chain, and "Say it in 60": a structured spoken answer, out loud, with a self-check. Not brain training: it practises the specific skills, and says why on the page.
+
+Neither page assesses, diagnoses or treats ADHD, dyslexia or anything else, and both say so.
+
 ## Design commitments
 
 - **No microphone.** There is no code that could record audio, and the site sends `Permissions-Policy: microphone=()` on every response.
@@ -35,6 +44,12 @@ The complete routine is readable without starting a session at [`/routine`](http
 | `routine.html` | Every exercise in full, generated from `content.js` |
 | `safety.html` `terms.html` `privacy.html` `accessibility.html` | The reference pages |
 | `for-clinicians.html` `handout.html` | Clinician page and a printable patient handout |
+| `trio.js` `train.css` | The daily three: today's ticks, streaks, month calendar, calendar files, iPhone install hint |
+| `read.html` `read.js` | Read: guided reading practice |
+| `reading/r01–r11.json` | 286 original passages; `reading/index.json` holds titles, levels and the reading order |
+| `think.html` `think.js` | Think: maths sprint, estimate, Say it in 60 |
+| `think/*.json` | 344 estimates and 368 speaking prompts, built from `tools/*_src.txt` |
+| `tools/` | `build_think.py` builds the Think banks; `build_reading_index.py` validates every passage and writes the index |
 | `sw.js` | Versioned offline shell, network first |
 | `vercel.json` | Clean URLs, redirects, cache and security headers |
 
@@ -69,6 +84,16 @@ python3 -m http.server 8765
 ```
 
 Then open http://localhost:8765. Serve over HTTPS in production for the installable app, clipboard, sharing and the service worker; all of these degrade gracefully without it. Analytics never load on localhost or over plain HTTP.
+
+## Editing content
+
+Passages live in `reading/r*.json` (one object per passage: title, topic, purpose question, paragraphs, model gists, links between paragraphs, three key points, three questions with the correct option first, two vocabulary items whose word must appear in the text). Estimates and prompts are one line each in `tools/estimates_src.txt` and `tools/prompts_src.txt`. After any edit:
+
+```sh
+python3 tools/build_think.py && python3 tools/build_reading_index.py
+```
+
+The validator fails loudly on malformed passages, duplicate titles or a vocabulary word missing from its passage.
 
 ## Deploy
 
