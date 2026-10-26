@@ -10,11 +10,12 @@ import json, re, sys, pathlib
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 LINKS = {'add', 'eg', 'but', 'why', 'so', 'sum'}
 KINDS = {'main', 'infer', 'build', 'detail', 'purpose', 'apply'}
-errors, titles, files, seen_titles = [], [], [], set()
+errors, titles, files, seen_titles, levels = [], [], [], set(), []
 
 n = 0
 for path in sorted((ROOT / 'reading').glob('r*.json')):
     data = json.loads(path.read_text())
+    level = {1: 1, 2: 2}.get(data.get('band', 3), 3)   # 1 clear, 2 argument, 3 dense
     start = n + 1
     for i, p in enumerate(data['passages']):
         n += 1
@@ -51,6 +52,7 @@ for path in sorted((ROOT / 'reading').glob('r*.json')):
             if not re.search(r'\b' + re.escape(v.get('w', '#')), text, re.I):
                 errors.append(f'{tag}: vocab word "{v.get("w")}" not in passage')
         titles.append([p['t'], p['topic']])
+        levels.append(level)
     files.append({'f': path.name, 'from': start, 'to': n})
 
 for name, need in (('estimates.json', ('q', 'u', 'c', 'a')), ('prompts.json', ('q',))):
@@ -76,5 +78,15 @@ if errors:
     print('\n'.join(errors))
     sys.exit(1)
 
-(ROOT / 'reading' / 'index.json').write_text(json.dumps({'total': n, 'files': files, 'titles': titles}, ensure_ascii=False, separators=(',', ':')))
+# Reading order: start dense on day one and keep mixing, two dense for every
+# argument passage and every clearer one (pattern D A D C). When a level runs
+# out, the others continue in turn.
+pools = {lv: [i + 1 for i, l in enumerate(levels) if l == lv] for lv in (1, 2, 3)}
+order, pattern, k = [], [3, 2, 3, 1], 0
+while any(pools.values()):
+    lv = pattern[k % 4]; k += 1
+    if not pools[lv]:
+        lv = next(l for l in (3, 2, 1) if pools[l])
+    order.append(pools[lv].pop(0))
+(ROOT / 'reading' / 'index.json').write_text(json.dumps({'total': n, 'files': files, 'titles': titles, 'levels': levels, 'order': order}, ensure_ascii=False, separators=(',', ':')))
 print(f'reading: {n} passages in {len(files)} files. index.json written.')

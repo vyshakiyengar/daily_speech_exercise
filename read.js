@@ -18,7 +18,8 @@ const state = {
  obstacles: {word:0, sentence:0, wander:0, logic:0, rushed:0, ...(stored.obstacles || {})},
  drift: {with:0, drifted:0, unsure:0, ...(stored.drift || {})},
  totals: {paras:0, got:0, partly:0, missed:0, mc:0, mcRight:0, v:0, vRight:0, ...(stored.totals || {})},
- session: stored.session || null
+ session: stored.session || null,
+ mix: stored.mix === 'hard' ? 'hard' : 'mixed'
 };
 let storageWorks = true;
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { storageWorks = false; } };
@@ -47,13 +48,17 @@ async function getPassage(n){
  const p = fileCache[file.f].passages[n - file.from];
  return p ? {...p, n} : null;
 }
+/* Reading order mixes levels from day one (dense, argument, dense, clear…).
+   “Hardest only” skips the clearer passages. */
+const LEVEL_NAMES = {1:'Clear', 2:'Argument', 3:'Dense'};
+const level = n => INDEX?.levels?.[n - 1] || 3;
+const sequence = () => (INDEX.order || [...Array(INDEX.total)].map((_, i) => i + 1)).filter(n => state.mix !== 'hard' || level(n) > 1);
 const nextUndone = () => {
  if (!INDEX) return 1;
- for (let n = 1; n <= INDEX.total; n++) if (!state.done[n]) return n;
+ for (const n of sequence()) if (!state.done[n]) return n;
  return null;
 };
-const band = n => n <= 78 ? 1 : n <= 156 ? 2 : n <= 234 ? 3 : 4;
-const BAND_NAMES = {1:'Months 1–3 · Clear explanations', 2:'Months 4–6 · Arguments', 3:'Months 7–9 · Denser ideas', 4:'Months 10–12 · Strategy-grade reading'};
+const dayOf = n => sequence().indexOf(n) + 1;
 
 /* Deterministic shuffle so a resumed session shows options in the same order. */
 function shuffled(arr, seed){
@@ -305,7 +310,7 @@ const RENDER = {
   predict.value = a.predict || '';
   predict.oninput = () => { a.predict = predict.value; save(); };
   return [
-   header(`PASSAGE ${p.n} · ${p.topic.toUpperCase()}`, p.t, `${p.p.length} short paragraphs. About ${Math.max(2, Math.round(words(p) / 180))} minutes of reading, the rest is thinking.`),
+   header(`${LEVEL_NAMES[level(p.n)].toUpperCase()} · ${p.topic.toUpperCase()}`, p.t, `${p.p.length} short paragraphs. About ${Math.max(2, Math.round(words(p) / 180))} minutes of reading, the rest is thinking.`),
    el('div', {class:'purpose'}, el('b', {text:'READ TO FIND OUT'}), p.q),
    el('label', {class:'label', for:'predict', text:'Predict (optional): what do you expect the answer to be?'}),
    predict,
@@ -575,7 +580,7 @@ async function renderHome(){
  $('review').disabled = !due;
  if (s) {
   $('today-label').textContent = 'In progress';
-  if (s.type === 'passage') { const [t, topic] = INDEX.titles[s.n - 1] || ['Passage', '']; $('today-title').textContent = t; $('today-meta').textContent = `Passage ${s.n} · ${topic}`; }
+  if (s.type === 'passage') { const [t, topic] = INDEX.titles[s.n - 1] || ['Passage', '']; $('today-title').textContent = t; $('today-meta').textContent = `${topic} · ${LEVEL_NAMES[level(s.n)]}`; }
   else { $('today-title').textContent = s.type === 'own' ? 'Your own article' : 'Vocabulary review'; $('today-meta').textContent = ''; }
   $('start').querySelector('strong').textContent = 'RESUME';
   $('start-sub').textContent = 'Carry on where you stopped →';
@@ -591,7 +596,7 @@ async function renderHome(){
    const doneToday = T.doneOn('read');
    $('today-label').textContent = doneToday ? 'Done today · one more if you like' : 'Today’s passage';
    $('today-title').textContent = t;
-   $('today-meta').textContent = `Passage ${n} of ${INDEX.total} · ${topic} · ${BAND_NAMES[band(n)]}`;
+   $('today-meta').textContent = `Day ${dayOf(n)} of ${sequence().length} · ${topic} · ${LEVEL_NAMES[level(n)]}`;
    $('start-sub').textContent = 'Start reading →';
    $('start').disabled = false;
    $('start').dataset.n = n;
@@ -629,25 +634,33 @@ function streak(){
 
 function openLibrary(){
  if (!INDEX) return;
- let tab = band(nextUndone() || 1);
+ let tab = 'order';
  const body = el('div');
  const draw = () => {
   body.replaceChildren();
-  const tabs = el('div', {class:'lib-tabs', role:'group', 'aria-label':'Quarter'});
-  for (let b = 1; b <= 4; b++) tabs.append(el('button', {type:'button', 'aria-pressed':String(b === tab), text:BAND_NAMES[b].split(' · ')[0], onclick:() => { tab = b; draw(); }}));
-  body.append(tabs, P(BAND_NAMES[tab].split(' · ')[1], 'meta'));
+  const mix = el('div', {class:'setting-row'}, el('span', {class:'label', text:'Challenge'}),
+   chipsPlain([['mixed','Mixed levels'],['hard','Hardest only']], state.mix, id => { state.mix = id; save(); renderHome(); draw(); }),
+   P(state.mix === 'hard' ? 'Dense and argument passages only. The clearer ones are skipped.' : 'Two dense passages for every argument passage and every clearer one, from day one.', 'gentle-note'));
+  const tabs = el('div', {class:'lib-tabs', role:'group', 'aria-label':'Show'});
+  for (const [id, label] of [['order','In order'],['3','Dense'],['2','Argument'],['1','Clear']])
+   tabs.append(el('button', {type:'button', 'aria-pressed':String(tab === id), text:label, onclick:() => { tab = id; draw(); }}));
   const list = el('ul', {class:'lib'});
-  const from = (tab - 1) * 78 + 1, to = Math.min(tab * 78, INDEX.total);
-  for (let n = from; n <= to; n++) {
+  const ns = tab === 'order' ? sequence() : [...Array(INDEX.total)].map((_, i) => i + 1).filter(n => String(level(n)) === tab);
+  ns.forEach((n, i) => {
    const [t, topic] = INDEX.titles[n - 1] || [];
-   if (!t) continue;
+   if (!t) return;
    list.append(el('li', {}, el('button', {type:'button', onclick:() => { $('info').close(); if (state.session && !confirm('Leave the session in progress and start this passage?')) return; begin('passage', n); }},
-    el('span', {class:'n', text:String(n)}), el('span', {text:`${t} · ${topic}`}), state.done[n] ? el('span', {class:'done-mark', text:'✓'}) : null)));
-  }
-  body.append(list);
+    el('span', {class:'n', text: tab === 'order' ? String(i + 1) : LEVEL_NAMES[level(n)][0]}), el('span', {text:`${t} · ${topic}`}), state.done[n] ? el('span', {class:'done-mark', text:'✓'}) : null)));
+  });
+  body.append(mix, tabs, list);
  };
  draw();
  info('Choose a passage', [body]);
+}
+function chipsPlain(list, sel, onPick){
+ const w = el('div', {class:'chips', role:'group'});
+ for (const [id, label] of list) { const b = el('button', {type:'button', 'aria-pressed':String(sel === id), text:label}); b.onclick = () => onPick(id); w.append(b); }
+ return w;
 }
 
 /* ---------------- about ---------------- */
@@ -665,7 +678,7 @@ function openAbout(){
   h('What this is not'),
   P('Much of the comprehension evidence comes from schools, and none of it validates this app. It is reading practice, not an assessment, diagnosis or treatment for ADHD, dyslexia or anything else. If you think you may have ADHD, an assessment through your GP is the way to find out. If reading has suddenly become much harder, see a GP promptly.'),
   h('The passages'),
-  P('312 original passages, six a week for a year, written for this app across economics, strategy, technology, science, history, psychology and more. They get longer and denser each quarter. The “Use it on your own article” option takes the same moves to the things you actually need to read.'),
+  P('312 original passages, six a week for a year, written for this app across strategy, economics, technology, science, history and psychology. Levels are mixed from day one: dense passages with long, layered sentences come up twice as often as argument or clearer ones, and “Hardest only” in Choose a passage skips the clearer ones. The “Use it on your own article” option takes the same moves to the things you actually need to read.'),
   src(['https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/reading-comprehension-strategies','EEF: reading comprehension strategies'],
    ['https://doi.org/10.1177/1529100612453266','Dunlosky et al. 2013, learning techniques'],
    ['https://doi.org/10.1007/s10648-018-9434-x','Bisra et al. 2018, self-explanation'],
