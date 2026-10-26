@@ -9,7 +9,8 @@ const SHELL = [
  './routine.html', './safety.html', './privacy.html', './terms.html',
  './accessibility.html', './for-clinicians.html', './handout.html', './handout.js', './optout.js',
  './trio.js', './train.css', './read.html', './read.js', './think.html', './think.js',
- './reading/index.json', './think/estimates.json', './think/prompts.json'
+ './reading/index.json', './think/estimates.json', './think/prompts.json',
+ ...Array.from({length: 12}, (_, i) => `./reading/r${String(i + 1).padStart(2, '0')}.json`)
 ];
 
 self.addEventListener('install', event => {

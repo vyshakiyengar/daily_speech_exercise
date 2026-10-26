@@ -11,7 +11,7 @@
  const doneOn = (mod, key = dateKey()) => !!readStore(KEYS[mod]).days?.[key]?.complete;
 
  const MODULES = [
-  {id:'speak', href:'/', name:'Speak', sub:'Speech warm-up'},
+  {id:'speak', href:'/', name:'Speak', sub:'Clear speech'},
   {id:'read',  href:'/read', name:'Read', sub:'Reading focus'},
   {id:'think', href:'/think', name:'Think', sub:'Quick thinking'}
  ];
@@ -78,6 +78,27 @@
   }
   return null;
  }
+
+ /* iPhone and iPad: Safari has no install prompt, so show the steps once.
+    Progress in Safari and in the home-screen app is stored separately on iOS,
+    which is why the hint says to practise from the icon. */
+ function installHint(){
+  const ua = navigator.userAgent;
+  const iOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  const standalone = navigator.standalone === true || matchMedia('(display-mode: standalone)').matches;
+  let dismissed = false; try { dismissed = localStorage.getItem('speechOn.installHint') === 'no'; } catch {}
+  if (!iOS || standalone || dismissed) return;
+  const host = document.getElementById('trio'); if (!host) return;
+  const box = document.createElement('div'); box.className = 'install-hint'; box.setAttribute('role', 'note');
+  const p = document.createElement('p');
+  p.innerHTML = '<b>Use Speech On like an app.</b> Tap <span aria-label="Share">Share ⬆︎</span>, then <b>Add to Home Screen</b>. It opens full screen and works offline. Practise from the icon: on iPhone, progress made in Safari stays in Safari.';
+  const x = document.createElement('button'); x.className = 'quiet'; x.type = 'button'; x.textContent = 'Got it';
+  x.onclick = () => { try { localStorage.setItem('speechOn.installHint', 'no'); } catch {} box.remove(); };
+  box.append(p, x); host.after(box);
+ }
+ /* Ask the browser not to clear this site's storage under pressure. */
+ try { navigator.storage?.persist?.(); } catch {}
+ if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', installHint); else installHint();
 
  window.Trio = {KEYS, dateKey, doneOn, renderStrip, next, applyDisplay, setDisplay, readStore, fullDayStreak, MODULES};
  applyDisplay();

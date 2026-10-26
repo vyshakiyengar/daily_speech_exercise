@@ -154,3 +154,14 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:.25rem;padding
 .home-trio{padding-top:.4rem}
 @media(min-width:900px){.home-trio{padding-top:1rem}}
 .trio-narrow{max-width:46rem;padding:0 clamp(1rem,4vw,2rem)}
+
+/* ---------- iPhone install hint ---------- */
+.install-hint{max-width:46rem;margin:.6rem auto 0;padding:0 clamp(1rem,4vw,2rem);display:flex;gap:.6rem;align-items:flex-start}
+.install-hint p{margin:0;flex:1;font-size:.86rem;line-height:1.5;background:var(--accent-soft);border-radius:.8rem;padding:.65rem .85rem}
+.install-hint .quiet{flex:none;padding-top:.6rem}
+/* Home-screen app: keep content clear of the notch and home bar. */
+@media(display-mode:standalone){
+ .site-header{padding-top:max(1rem, env(safe-area-inset-top))}
+ .stage-top,.player-top{padding-top:max(.7rem, env(safe-area-inset-top))}
+ footer{padding-bottom:max(2rem, env(safe-area-inset-bottom))}
+}
