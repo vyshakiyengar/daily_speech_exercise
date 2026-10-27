@@ -215,3 +215,19 @@ mark{background:var(--accent-soft);color:var(--ink);border-radius:.25rem;padding
  .cal-tools{grid-column:1;grid-row:4;margin-top:1rem}
  .cal{grid-column:2;grid-row:3 / span 2;border-top:0;padding-top:0}
 }
+
+/* Read: classics and real articles */
+.source-line{font-size:.88rem;color:var(--muted);margin:-.2rem 0 0;font-style:italic}
+.context{background:var(--paper);border:1.5px dashed var(--line);border-radius:.8rem;padding:.75rem 1rem;font-size:.95rem;color:var(--ink)}
+.context b{display:block;font-family:var(--display);font-size:.7rem;letter-spacing:.13em;color:var(--muted);margin-bottom:.2rem}
+.gloss{font-size:.88rem;color:var(--muted);margin:-.2rem 0 0;line-height:1.5}
+.gloss b{color:var(--ink);font-weight:700}
+.gloss i{font-style:italic;color:var(--ink)}
+.sources{list-style:none;margin:0;padding:0;display:grid;gap:.5rem}
+.source{display:flex;flex-direction:column;gap:.1rem;padding:.75rem 1rem;border:1.5px solid var(--line);border-radius:.85rem;background:var(--card);color:var(--ink);text-decoration:none;min-height:3rem}
+.source:hover,.source:focus-visible{border-color:var(--accent)}
+.source.picked{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.source b{font-family:var(--display);font-weight:700;font-size:.98rem}
+.source span{font-size:.85rem;color:var(--muted)}
+.word-entry{display:grid;gap:.4rem;padding:.75rem;border:1.5px solid var(--line);border-radius:.9rem;background:var(--paper)}
+.article-card .btn{margin-top:.6rem}
