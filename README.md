@@ -16,7 +16,7 @@ The complete routine is readable without starting a session at [`/routine`](http
 
 The home page shows today's three practices and their streaks: a full-day streak (all three done), per-practice streaks, a month calendar, and two calendar files generated on the device (a repeating daily reminder for all three, and practised days as all-day events).
 
-- **Read** ([`/read`](https://www.speechon.app/read)), about 10 minutes. One paragraph at a time: read, the text hides, explain it from memory, check against a model, note whether attention drifted and what got in the way, link it to the previous paragraph. Then three points from memory, three questions and two vocabulary words that return on a spaced schedule (1, 3, 7, 16, 35, 90 days). 286 original passages at three levels (dense, argument, clear), ordered dense first and mixed from day one; a "Hardest only" setting skips the clearer ones. "Use it on your own article" runs the same moves on pasted text, which never leaves the browser.
+- **Read** ([`/read`](https://www.speechon.app/read)), about 10 minutes. One paragraph at a time: read, the text hides, explain it from memory, check against a model, note whether attention drifted and what got in the way, link it to the previous paragraph. Then three points from memory, three questions and two vocabulary words that return on a spaced schedule (1, 3, 7, 16, 35, 90 days). The passages are 47 verbatim excerpts from public-domain classics (Smith, Mill, Madison, Hobbes, Machiavelli, Thucydides, Keynes, Plato, Aristotle, Bacon, Emerson, Thoreau, Du Bois, Tolstoy, Wilde, Ruskin, Babbage, Taylor and others) across business, philosophy, politics, history, art and technology, taking turns by category, with a context note and glosses for older words. "Read a real article" runs the drill on a piece you read on the publisher's own site (FT, The Economist, Aeon, Foreign Affairs and others): nothing is copied into the app. "Use it on your own article" runs the same moves on pasted text, which never leaves the browser.
 - **Think** ([`/think`](https://www.speechon.app/think)), about 10 minutes. An energy and sleep check-in, a 12-problem business-maths sprint generated across eight adaptive levels (percentages to EV/EBITDA and dilution, with earlier levels interleaved), one Fermi estimate with a worked chain, and "Say it in 60": a structured spoken answer, out loud, with a self-check. Not brain training: it practises the specific skills, and says why on the page.
 
 Neither page assesses, diagnoses or treats ADHD, dyslexia or anything else, and both say so.
@@ -46,7 +46,7 @@ Neither page assesses, diagnoses or treats ADHD, dyslexia or anything else, and 
 | `for-clinicians.html` `handout.html` | Clinician page and a printable patient handout |
 | `trio.js` `train.css` | The daily three: today's ticks, streaks, month calendar, calendar files, iPhone install hint |
 | `read.html` `read.js` | Read: guided reading practice |
-| `reading/r01–r11.json` | 286 original passages; `reading/index.json` holds titles, levels and the reading order |
+| `reading/classics.json` | 47 verbatim public-domain passages with their questions; `reading/index.json` holds ids, titles and the reading order. `tools/classics/` rebuilds them |
 | `think.html` `think.js` | Think: maths sprint, estimate, Say it in 60 |
 | `think/*.json` | 344 estimates and 368 speaking prompts, built from `tools/*_src.txt` |
 | `tools/` | `build_think.py` builds the Think banks; `build_reading_index.py` validates every passage and writes the index |

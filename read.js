@@ -1,6 +1,8 @@
 'use strict';
-/* Speech On — Read. Guided reading practice, one paragraph at a time.
-   No account, no backend. Your answers and progress stay in this browser. */
+/* Speech On — Read. Guided reading practice, one paragraph at a time, on
+   verbatim passages from public-domain classics, or on a real article read on
+   the publisher's own site. No account, no backend. Your answers and progress
+   stay in this browser. */
 (() => {
 const $ = id => document.getElementById(id);
 const T = window.Trio;
@@ -11,21 +13,28 @@ const dateKey = T.dateKey;
 /* ---------------- state ---------------- */
 
 const stored = T.readStore(KEY);
+// Progress on the classics is keyed by passage id. Numeric keys belong to the
+// earlier original passages, which have been retired; they are kept aside.
+const doneIn = stored.done && typeof stored.done === 'object' ? stored.done : {};
+const legacyDone = {...(stored.legacyDone || {})};
+for (const k of Object.keys(doneIn)) if (/^\d+$/.test(k)) { legacyDone[k] = doneIn[k]; delete doneIn[k]; }
 const state = {
- done:  stored.done && typeof stored.done === 'object' ? stored.done : {},
+ done:  doneIn,
+ legacyDone,
+ articles: Array.isArray(stored.articles) ? stored.articles : [],
  days:  stored.days && typeof stored.days === 'object' ? stored.days : {},
  deck:  stored.deck && typeof stored.deck === 'object' ? stored.deck : {},
  obstacles: {word:0, sentence:0, wander:0, logic:0, rushed:0, ...(stored.obstacles || {})},
  drift: {with:0, drifted:0, unsure:0, ...(stored.drift || {})},
  totals: {paras:0, got:0, partly:0, missed:0, mc:0, mcRight:0, v:0, vRight:0, ...(stored.totals || {})},
- session: stored.session || null,
- mix: stored.mix === 'hard' ? 'hard' : 'mixed'
+ session: stored.session?.v === 3 ? stored.session : null,
+ focus: typeof stored.focus === 'string' ? stored.focus : 'all'
 };
 let storageWorks = true;
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch { storageWorks = false; } };
 
-let INDEX = null;            // reading/index.json: {total, files:[{f, from, to}], titles:[[title, topic]]}
-const fileCache = {};
+let INDEX = null;            // reading/index.json: {total, cats, items:[[id, title, category, author]]}
+let CLASSICS = null;         // reading/classics.json, loaded when a passage starts
 
 /* ---------------- content ---------------- */
 
@@ -37,28 +46,28 @@ async function loadIndex(){
  return INDEX;
 }
 async function getPassage(n){
- const idx = await loadIndex();
- const file = idx.files.find(f => n >= f.from && n <= f.to);
- if (!file) return null;
- if (!fileCache[file.f]) {
-  const r = await fetch('reading/' + file.f);
+ await loadIndex();
+ if (!CLASSICS) {
+  const r = await fetch('reading/classics.json');
   if (!r.ok) throw new Error('file');
-  fileCache[file.f] = await r.json();
+  CLASSICS = (await r.json()).passages;
  }
- const p = fileCache[file.f].passages[n - file.from];
+ const p = CLASSICS[n - 1];
  return p ? {...p, n} : null;
 }
-/* Reading order mixes levels from day one (dense, argument, dense, clear…).
-   “Hardest only” skips the clearer passages. */
-const LEVEL_NAMES = {1:'Clear', 2:'Argument', 3:'Dense'};
-const level = n => INDEX?.levels?.[n - 1] || 3;
-const sequence = () => (INDEX.order || [...Array(INDEX.total)].map((_, i) => i + 1)).filter(n => state.mix !== 'hard' || level(n) > 1);
+/* The index is already in reading order: the six categories take turns.
+   “Focus” narrows the order to one category. */
+const item = n => INDEX.items[n - 1] || [];          // [id, title, category, author]
+const idOf = n => item(n)[0];
+const isDone = n => !!state.done[idOf(n)];
+const sequence = () => [...Array(INDEX.total)].map((_, i) => i + 1).filter(n => state.focus === 'all' || item(n)[2] === state.focus);
 const nextUndone = () => {
  if (!INDEX) return 1;
- for (const n of sequence()) if (!state.done[n]) return n;
+ for (const n of sequence()) if (!isDone(n)) return n;
  return null;
 };
-const dayOf = n => sequence().indexOf(n) + 1;
+const doneCount = () => INDEX ? INDEX.items.filter(it => state.done[it[0]]).length : 0;
+const attribution = p => `${p.a}, ${p.w} (${p.y})` + (p.tr ? `. Translated by ${p.tr}` : '');
 
 /* Deterministic shuffle so a resumed session shows options in the same order. */
 function shuffled(arr, seed){
@@ -116,6 +125,43 @@ const OBSTACLES = [
 
 const MC_KIND = {main:'Main idea', infer:'Read between the lines', build:'How it is built', detail:'Detail', purpose:'Author’s purpose', apply:'Apply it'};
 
+/* Real articles: read on the publisher's site, drilled here. Some need a subscription. */
+const CATS = ['Business', 'Philosophy', 'Politics', 'History', 'Art', 'Technology'];
+const SOURCES = {
+ Business: [
+  ['Financial Times', 'https://www.ft.com', 'The Big Read, Lex and the columnists'],
+  ['The Economist', 'https://www.economist.com', 'Briefings, leaders and Schumpeter'],
+  ['Harvard Business Review', 'https://hbr.org', 'Management and strategy'],
+  ['Stratechery', 'https://stratechery.com', 'Strategy of technology businesses']],
+ Philosophy: [
+  ['Aeon', 'https://aeon.co/essays', 'Long essays by scholars'],
+  ['Psyche', 'https://psyche.co', 'The mind and how to live'],
+  ['Stanford Encyclopedia of Philosophy', 'https://plato.stanford.edu', 'Rigorous entries; read one section'],
+  ['Philosophy Now', 'https://philosophynow.org', 'Accessible essays']],
+ Politics: [
+  ['Foreign Affairs', 'https://www.foreignaffairs.com', 'International affairs, in depth'],
+  ['The Atlantic', 'https://www.theatlantic.com', 'Politics and ideas'],
+  ['Project Syndicate', 'https://www.project-syndicate.org', 'Commentary by policymakers and economists'],
+  ['The Guardian Long Read', 'https://www.theguardian.com/news/series/the-long-read', 'Long-form reporting']],
+ History: [
+  ['History Today', 'https://www.historytoday.com', 'Historians writing for general readers'],
+  ['London Review of Books', 'https://www.lrb.co.uk', 'Long reviews that teach a whole subject'],
+  ['The New York Review of Books', 'https://www.nybooks.com', 'Essays and reviews'],
+  ['Smithsonian Magazine', 'https://www.smithsonianmag.com/history/', 'History features']],
+ Art: [
+  ['The Art Newspaper', 'https://www.theartnewspaper.com', 'The art world, reported'],
+  ['Apollo', 'https://www.apollo-magazine.com', 'Art criticism and history'],
+  ['Frieze', 'https://www.frieze.com', 'Contemporary art and culture'],
+  ['The Paris Review', 'https://www.theparisreview.org', 'Writing and the arts']],
+ Technology: [
+  ['MIT Technology Review', 'https://www.technologyreview.com', 'What new technology means'],
+  ['Quanta Magazine', 'https://www.quantamagazine.org', 'Science and maths, explained properly'],
+  ['Ars Technica', 'https://arstechnica.com', 'Technology in depth'],
+  ['Wired', 'https://www.wired.com', 'Technology and culture']]
+};
+const todaysCat = () => { const d = new Date(), start = new Date(d.getFullYear(), 0, 0); return CATS[Math.floor((d - start) / 864e5) % CATS.length]; };
+const QUESTION_STARTERS = ['What is the author’s main claim, and why?', 'What evidence holds the argument up?', 'What would this mean for my work?', 'What would make me disagree?'];
+
 /* ---------------- spaced vocabulary ---------------- */
 
 const INTERVALS = [1, 3, 7, 16, 35, 90];
@@ -135,6 +181,7 @@ function buildSteps(session, p){
  if (session.type !== 'review') s.push({k:'primer'});
  for (let i = 0; i < (session.warm || []).length; i++) s.push({k:'card', i});
  if (session.type === 'review') { s.push({k:'done'}); return s; }
+ if (session.type === 'article') { s.push({k:'source'}, {k:'section'}, {k:'recall'}, {k:'words'}, {k:'done'}); return s; }
  if (session.type === 'own') {
   s.push({k:'paste'});
   const paras = session.paras || [];
@@ -159,13 +206,16 @@ async function begin(type, n){
   const p = await getPassage(n);
   if (!p) return;
   const warm = dueCards().slice(0, 3).map(c => c.w);
-  state.session = {type, n, index:0, warm, a:{}, started:Date.now(), v:2};
+  state.session = {type, n, id:p.id, index:0, warm, a:{}, started:Date.now(), v:3};
  } else if (type === 'own') {
-  state.session = {type, n:0, index:0, warm:[], a:{}, paras:[], started:Date.now(), v:2};
+  state.session = {type, n:0, index:0, warm:[], a:{}, paras:[], started:Date.now(), v:3};
+ } else if (type === 'article') {
+  const warm = dueCards().slice(0, 3).map(c => c.w);
+  state.session = {type, n:0, index:0, warm, a:{cat:todaysCat(), secs:[]}, started:Date.now(), v:3};
  } else {
   const warm = dueCards().slice(0, 15).map(c => c.w);
   if (!warm.length) return;
-  state.session = {type:'review', n:0, index:0, warm, a:{}, started:Date.now(), v:2};
+  state.session = {type:'review', n:0, index:0, warm, a:{}, started:Date.now(), v:3};
  }
  save();
  track('session_start', {minutes:10});
@@ -178,6 +228,8 @@ async function open(){
  if (session.type === 'passage' && !p) { state.session = null; save(); renderHome(); return; }
  if (session.type === 'own' && session.paras?.length) {
   current = {session, p:{t:'Your article', p:session.paras}, steps:null};
+ } else if (session.type === 'article') {
+  current = {session, p:{t:'A real article', p:[]}, steps:null};
  } else current = {session, p, steps:null};
  current.steps = buildSteps(session, current.p);
  $('home').hidden = true; document.querySelector('footer').hidden = true; $('trio').hidden = true;
@@ -282,6 +334,7 @@ const RENDER = {
   const w = current.session.warm[i], c = state.deck[w];
   if (!c) return [header('WORD REVIEW', 'Skipped'), actions('Next →', () => go(1))];
   const ans = A()['card' + i];
+  if (!c.o) return selfCard(c, i, ans);
   const order = shuffled(c.o, hash(w) + (c.seen || 0));
   const list = el('ol', {class:'options'});
   order.forEach((oi, pos) => {
@@ -310,7 +363,9 @@ const RENDER = {
   predict.value = a.predict || '';
   predict.oninput = () => { a.predict = predict.value; save(); };
   return [
-   header(`${LEVEL_NAMES[level(p.n)].toUpperCase()} · ${p.topic.toUpperCase()}`, p.t, `${p.p.length} short paragraphs. About ${Math.max(2, Math.round(words(p) / 180))} minutes of reading, the rest is thinking.`),
+   header(`${p.cat.toUpperCase()} · ${p.a.toUpperCase()}`, p.t, `${p.p.length === 1 ? 'One paragraph' : p.p.length + ' paragraphs'}, quoted exactly as written. About ${Math.max(2, Math.round(words(p) / 160))} minutes of reading; the rest is thinking.`),
+   el('p', {class:'source-line', text:attribution(p)}),
+   p.c ? el('div', {class:'context'}, el('b', {text:'CONTEXT'}), p.c) : null,
    el('div', {class:'purpose'}, el('b', {text:'READ TO FIND OUT'}), p.q),
    el('label', {class:'label', for:'predict', text:'Predict (optional): what do you expect the answer to be?'}),
    predict,
@@ -350,6 +405,7 @@ const RENDER = {
    (current.session.type === 'own' ? current.p.q : p.q) ? el('div', {class:'purpose'}, el('b', {text:'YOUR QUESTION'}), current.session.type === 'own' ? current.p.q : p.q) : null,
    prev ? P('Last paragraph, in your words: “' + prev + '”', 'meta') : null,
    passageBox([p.p[i]], {label:`PARAGRAPH ${i + 1}`}),
+   glossNote(p, p.p[i]),
    actions('I’ve read it — hide the text →', () => go(1))
   ];
  },
@@ -412,17 +468,22 @@ const RENDER = {
  },
 
  recall(){
-  const p = current.p, a = A(), own = current.session.type === 'own';
+  const p = current.p, a = A(), own = current.session.type === 'own', art = current.session.type === 'article';
   const area = el('textarea', {id:'recall', placeholder:'1.\n2.\n3.', style:'min-height:8rem', 'aria-label':'Three points from memory'});
   area.value = a.recall || '';
   area.oninput = () => { a.recall = area.value; save(); };
   const nodes = [header('FROM MEMORY', 'Three points, without looking', 'Recall first, check second. The effort of pulling it back is what makes it stay.'), area];
   if (a.recallShown) {
-   if (!own) nodes.push(el('div', {class:'reveal good'}, el('b', {class:'lbl', text:'The three points we would pick'}), el('ul', {}, p.k.map(k => el('li', {text:k})))));
-   nodes.push(passageBox(p.p, {label:'THE WHOLE TEXT', dim:false}));
+   if (art) {
+    nodes.push(el('div', {class:'tip'}, el('b', {text:'Now check: '}), 'go back to the article in your other tab and skim it from the top. Did your three points catch what mattered most?'));
+    if (a.secs?.length) nodes.push(el('div', {class:'reveal'}, el('b', {class:'lbl', text:'Your notes, section by section'}), el('ol', {}, a.secs.map(x => el('li', {text: x.g || '(said out loud)'})))));
+   } else {
+    if (!own) nodes.push(el('div', {class:'reveal good'}, el('b', {class:'lbl', text:'The three points we would pick'}), el('ul', {}, p.k.map(k => el('li', {text:k})))));
+    nodes.push(passageBox(p.p, {label:'THE WHOLE TEXT', dim:false}));
+   }
    nodes.push(el('span', {class:'label', text:'How many did you have?'}));
    nodes.push(chips([['0','0'],['1','1'],['2','2'],['3','All 3']], a.recallScore, id => { a.recallScore = id; save(); renderStep(); }));
-   const label = own ? 'Finish →' : 'On to the questions →';
+   const label = own ? 'Finish →' : art ? 'Keep two words →' : 'On to the questions →';
    nodes.push(actions(label, () => go(1), {disabled: a.recallScore == null}));
   } else {
    nodes.push(actions('Check against the text →', () => { a.recallShown = true; save(); renderStep(); }));
@@ -479,6 +540,90 @@ const RENDER = {
   return nodes;
  },
 
+ source(){
+  const a = A();
+  const cat = a.cat || todaysCat();
+  const list = el('ul', {class:'sources'});
+  for (const [name, href, note] of SOURCES[cat]) {
+   const link = el('a', {href, target:'_blank', rel:'noopener', class:'source' + (a.src === name ? ' picked' : ''), onclick:() => { a.src = name; save(); setTimeout(renderStep, 0); }},
+    el('b', {text:name + ' ↗'}), el('span', {text:note}));
+   list.append(el('li', {}, link));
+  }
+  const q = el('input', {class:'field', id:'art-q', placeholder:'What am I reading to find out?', 'aria-label':'Your question'});
+  q.value = a.q || '';
+  q.oninput = () => { a.q = q.value; save(); row.querySelector('.btn').disabled = !ready(); };
+  const title = el('input', {class:'field', id:'art-t', placeholder:'e.g. The quiet end of cheap money', 'aria-label':'Article title'});
+  title.value = a.title || '';
+  title.oninput = () => { a.title = title.value; save(); };
+  const ready = () => (a.q || '').trim().length > 3;
+  const row = actions('I’ve opened it — start reading →', () => go(1), {disabled: !ready()});
+  return [
+   header('REAL ARTICLE', 'Pick one serious piece', 'Open a source in a new tab and choose an essay, analysis or long read, not a news brief. You read it there; this page runs the drill. Nothing to copy or paste. Some sources need a subscription.'),
+   el('span', {class:'label', text:`Section${cat === todaysCat() ? ' · today’s suggestion is ' + todaysCat() : ''}`}),
+   chips(CATS.map(c => [c, c]), cat, id => { a.cat = id; delete a.src; save(); renderStep(); }),
+   list,
+   el('label', {class:'label', for:'art-q', text:'Once you have chosen it: what are you reading to find out?'}), q,
+   chips(QUESTION_STARTERS.map(t => [t, t]), a.q, id => { a.q = id; save(); renderStep(); }),
+   el('label', {class:'label', for:'art-t', text:'Its title (optional, for your log)'}), title,
+   row
+  ];
+ },
+
+ section(){
+  const a = A(); a.secs = a.secs || [];
+  const n = a.secs.length + 1, cur = a.cur || (a.cur = {});
+  const nodes = [
+   header(`SECTION ${n}${a.src ? ' · ' + a.src.toUpperCase() : ''}`, n === 1 ? 'Read the first section there' : 'Read the next section there', 'Three to five paragraphs, up to a natural break, at a comfortable pace. Then come back and say it from memory before you go on.'),
+   a.q ? el('div', {class:'purpose'}, el('b', {text:'YOUR QUESTION'}), a.q) : null,
+   n > 1 ? P('Last section, in your words: “' + (a.secs[n - 2].g || 'said out loud') + '”', 'meta') : null,
+   el('span', {class:'label', text:'Back from reading? First: was your mind with the text?'}),
+   chips([['with','With it all the way'],['drifted','Drifted at some point'],['unsure','Not sure']], cur.d, id => { cur.d = id; save(); renderStep(); })
+  ];
+  if (cur.d === 'drifted' || cur.d === 'unsure') nodes.push(el('div', {class:'tip'}, el('b', {text:'Good catch. '}), 'Go back to the last sentence you remember and reread from there before you write.'));
+  const area = el('textarea', {id:'sec-gist', placeholder:'The author is saying… because…', 'aria-label':'This section in your own words'});
+  area.value = cur.g || '';
+  area.oninput = () => { cur.g = area.value; save(); sync(); };
+  const box = el('input', {type:'checkbox', id:'sec-aloud'}); box.checked = !!cur.aloud;
+  box.onchange = () => { cur.aloud = box.checked; save(); sync(); };
+  nodes.push(el('label', {class:'label', for:'sec-gist', text:'This section in your own words'}), area,
+   P('Frame: “The author is saying ___ because ___.” One sentence is enough.', 'frame-hint'),
+   el('div', {class:'checks'}, el('label', {for:'sec-aloud'}, box, el('span', {text:'I said it out loud instead of writing'}))));
+  nodes.push(el('span', {class:'label', text:'Anything get in the way? (optional)'}));
+  nodes.push(chips(OBSTACLES.map(o => [o[0], o[1]]), cur.o, id => { cur.o = cur.o === id ? undefined : id; save(); renderStep(); }));
+  const ob = OBSTACLES.find(o => o[0] === cur.o);
+  if (ob) nodes.push(el('div', {class:'tip'}, el('b', {text:'Fix: '}), ob[2]));
+  const ready = () => !!cur.d && ((cur.g || '').trim().length > 3 || cur.aloud);
+  const commit = () => { a.secs.push({d:cur.d, g:(cur.g || '').trim().slice(0, 400), o:cur.o || null}); a.cur = {}; save(); };
+  const row = el('div', {class:'stage-actions'});
+  if (current.session.index > 0) row.append(el('button', {class:'quiet', type:'button', text:'← Back', onclick:() => go(-1)}));
+  const more = el('button', {class:'btn-ghost', type:'button', text:'Save · next section', onclick:() => { commit(); renderStep(); }});
+  const end = el('button', {class:'btn', type:'button', text:'That was the end →', onclick:() => { commit(); go(1); }});
+  if (n >= 12) more.hidden = true;
+  row.append(more, end);
+  const sync = () => { more.disabled = end.disabled = !ready(); };
+  sync();
+  nodes.push(row);
+  if (a.secs.length) nodes.push(P(`${a.secs.length} section${a.secs.length === 1 ? '' : 's'} done so far.`, 'gentle-note'));
+  return nodes;
+ },
+
+ words(){
+  const a = A(); a.words = a.words || [{}, {}];
+  const nodes = [header('WORDS', 'Keep up to two words', 'Pick words or phrases from the article worth owning. Write what they mean in your own words; they join your review deck and come back on the same spacing schedule.')];
+  a.words.forEach((wd, j) => {
+   const w = el('input', {class:'field', id:'kw' + j, placeholder: j ? 'Second word (optional)' : 'A word or phrase', 'aria-label':`Word ${j + 1}`});
+   w.value = wd.w || ''; w.oninput = () => { wd.w = w.value; save(); };
+   const d = el('input', {class:'field', id:'kd' + j, placeholder:'What it means, in your words', 'aria-label':`Meaning of word ${j + 1}`});
+   d.value = wd.d || ''; d.oninput = () => { wd.d = d.value; save(); };
+   const sn = el('input', {class:'field', id:'ks' + j, placeholder:'Your own sentence with it (optional)', 'aria-label':`Your sentence for word ${j + 1}`});
+   sn.value = wd.s || ''; sn.oninput = () => { wd.s = sn.value; save(); };
+   nodes.push(el('div', {class:'word-entry'}, w, d, sn));
+  });
+  nodes.push(P('No new words today? That is fine. Skip ahead.', 'gentle-note'));
+  nodes.push(actions('Finish →', () => go(1)));
+  return nodes;
+ },
+
  done(){
   if (!current.session.finished) finishSession();
   const r = current.session.result;
@@ -487,6 +632,14 @@ const RENDER = {
    nodes.push(...header('WORD REVIEW', 'Review done.'),
     el('div', {class:'kpis'}, kpi(`${r.cardsRight}/${r.cards}`, 'words recalled')),
     P('Words you missed come back tomorrow. Words you knew come back later each time.', 'meta'));
+  } else if (current.session.type === 'article') {
+   nodes.push(...header('REAL ARTICLE', 'Article read, properly.'),
+    el('div', {class:'kpis'},
+     kpi(String(r.secs), r.secs === 1 ? 'section explained' : 'sections explained'),
+     kpi(`${A().recallScore ?? 0}/3`, 'points recalled'),
+     kpi(String(r.kept), r.kept === 1 ? 'word kept' : 'words kept'),
+     kpi(String(r.drifted), r.drifted === 1 ? 'drift you caught' : 'drifts you caught')));
+   if (r.topObstacle) nodes.push(el('div', {class:'tip'}, el('b', {text:'For next time: '}), OBSTACLES.find(o => o[0] === r.topObstacle)[2]));
   } else {
    nodes.push(...header('READING FOCUS', current.session.type === 'own' ? 'Article read, properly.' : 'Passage done.'),
     el('div', {class:'kpis'},
@@ -504,6 +657,31 @@ const RENDER = {
   return nodes;
  }
 };
+
+/* A word kept from a real article has no options: recall, reveal, rate. */
+function selfCard(c, i, ans){
+ const a = A(), shown = a['show' + i];
+ const nodes = [
+  header(`WORD REVIEW · ${i + 1} OF ${current.session.warm.length}`, 'What does it mean?', 'Say the meaning to yourself first, then reveal your own definition.'),
+  el('p', {class:'vocab-word', text:c.w}),
+  c.mine ? el('p', {class:'purpose'}, highlight(c.mine, c.w)) : null
+ ];
+ if (!shown) nodes.push(el('button', {class:'btn-ghost', type:'button', text:'Show my meaning', onclick:() => { a['show' + i] = true; save(); renderStep(); }}));
+ else {
+  nodes.push(el('div', {class:'reveal'}, el('b', {class:'lbl', text:'Your meaning'}), c.d));
+  nodes.push(el('span', {class:'label', text:'Did you have it?'}));
+  nodes.push(chips([['0','Had it'],['1','Not yet']], ans == null ? null : String(ans), id => { if (ans != null) return; A()['card' + i] = Number(id); scheduleCard(c, id === '0'); save(); renderStep(); }));
+ }
+ nodes.push(actions('Next →', () => go(1), {disabled: ans == null}));
+ return nodes;
+}
+function glossNote(p, para){
+ const hits = Object.entries(p.gl || {}).filter(([w]) => new RegExp(`\\b${w.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}\\b`).test(para));
+ if (!hits.length) return null;
+ const note = el('p', {class:'gloss'}, el('b', {text:'Older words: '}));
+ hits.forEach(([w, m], i) => { if (i) note.append(' · '); note.append(el('i', {text:w}), ' = ' + m); });
+ return note;
+}
 
 function kpi(big, small){ return el('div', {class:'kpi'}, el('b', {text:big}), el('span', {text:small})); }
 function highlight(sentence, word){
@@ -529,9 +707,29 @@ function splitParas(text){
 
 function finishSession(){
  const s = current.session, a = s.a, p = current.p;
- const r = {paras:0, got:0, drifted:0, mc:0, mcRight:0, v:0, vRight:0, cards:0, cardsRight:0, topObstacle:null};
+ const r = {paras:0, got:0, drifted:0, mc:0, mcRight:0, v:0, vRight:0, cards:0, cardsRight:0, topObstacle:null, secs:0, kept:0};
  (s.warm || []).forEach((w, i) => { if (a['card' + i] != null) { r.cards++; if (a['card' + i] === 0) r.cardsRight++; } });
- if (s.type !== 'review' && p) {
+ if (s.type === 'article') {
+  const counts = {};
+  for (const x of a.secs || []) {
+   r.secs++;
+   if (x.d) state.drift[x.d]++;
+   if (x.d === 'drifted') r.drifted++;
+   if (x.o) { state.obstacles[x.o]++; counts[x.o] = (counts[x.o] || 0) + 1; }
+  }
+  r.topObstacle = Object.entries(counts).sort((x, y) => y[1] - x[1])[0]?.[0] || null;
+  for (const wd of a.words || []) {
+   const w = (wd.w || '').trim().slice(0, 60), d = (wd.d || '').trim().slice(0, 280);
+   if (!w || !d) continue;
+   state.deck[w] = {w, n:'article', d, mine:(wd.s || '').trim().slice(0, 280) || null, box:0, due:addDays(INTERVALS[0]), own:true};
+   r.kept++;
+  }
+  state.articles.push({date:dateKey(), cat:a.cat || null, src:a.src || null, title:(a.title || '').trim().slice(0, 140) || null, secs:r.secs, recall:Number(a.recallScore || 0)});
+  if (state.articles.length > 500) state.articles.splice(0, state.articles.length - 500);
+  const key = dateKey(), prev = state.days[key] || {};
+  state.days[key] = {...prev, complete:true, count:(prev.count || 0) + 1};
+  track('session_complete', {minutes:10});
+ } else if (s.type !== 'review' && p) {
   const counts = {};
   p.p.forEach((_, i) => {
    r.paras++;
@@ -548,13 +746,13 @@ function finishSession(){
    p.v.forEach((v, i) => {
     if (a['v' + i] == null) return;
     r.v++; const right = a['v' + i] === 0; if (right) r.vRight++;
-    const card = state.deck[v.w] || {w:v.w, n:p.n, s:sentenceWith(p, v.w), o:v.o, d:v.d, box:0};
+    const card = state.deck[v.w] || {w:v.w, n:p.id, s:sentenceWith(p, v.w), o:v.o, d:v.d, box:0};
     if (a['mine' + i]) card.mine = a['mine' + i].slice(0, 280);
     card.box = 0; card.due = addDays(INTERVALS[0]);
     state.deck[v.w] = card;
    });
    state.totals.mc += r.mc; state.totals.mcRight += r.mcRight; state.totals.v += r.v; state.totals.vRight += r.vRight;
-   state.done[p.n] = {date:dateKey(), mc:r.mcRight, v:r.vRight, got:r.got, recall:Number(a.recallScore || 0)};
+   state.done[p.id] = {date:dateKey(), mc:r.mcRight, v:r.vRight, got:r.got, recall:Number(a.recallScore || 0)};
   }
   const key = dateKey(), prev = state.days[key] || {};
   state.days[key] = {...prev, complete:true, count:(prev.count || 0) + 1};
@@ -571,17 +769,20 @@ async function renderHome(){
  $('toolkit-home').replaceWith(Object.assign(toolkitList(), {id:'toolkit-home'}));
  try { await loadIndex(); } catch {
   $('today-title').textContent = 'Passages could not load';
+  $('article-cat').textContent = todaysCat();
   $('today-meta').textContent = 'Check your connection and reload. Once loaded, reading works offline.';
   return;
  }
  const s = state.session;
  const due = dueCards().length;
+ $('article-cat').textContent = todaysCat();
+ $('article-sources').textContent = SOURCES[todaysCat()].map(x => x[0]).join(' · ');
  $('review').textContent = due ? `Vocabulary review (${due} due)` : 'Vocabulary review (none due)';
  $('review').disabled = !due;
  if (s) {
   $('today-label').textContent = 'In progress';
-  if (s.type === 'passage') { const [t, topic] = INDEX.titles[s.n - 1] || ['Passage', '']; $('today-title').textContent = t; $('today-meta').textContent = `${topic} · ${LEVEL_NAMES[level(s.n)]}`; }
-  else { $('today-title').textContent = s.type === 'own' ? 'Your own article' : 'Vocabulary review'; $('today-meta').textContent = ''; }
+  if (s.type === 'passage') { const [, t, cat, author] = item(s.n); $('today-title').textContent = t || 'Passage'; $('today-meta').textContent = `${cat} · ${author}`; }
+  else { $('today-title').textContent = s.type === 'own' ? 'Your own article' : s.type === 'article' ? 'A real article' + (s.a?.src ? ' · ' + s.a.src : '') : 'Vocabulary review'; $('today-meta').textContent = ''; }
   $('start').querySelector('strong').textContent = 'RESUME';
   $('start-sub').textContent = 'Carry on where you stopped →';
   $('resume-note').hidden = false; $('resume-note').replaceChildren(el('button', {class:'quiet', type:'button', text:'Discard and start fresh', onclick:() => { state.session = null; save(); renderHome(); }}));
@@ -590,13 +791,13 @@ async function renderHome(){
   $('resume-note').hidden = true;
   const n = nextUndone();
   $('start').querySelector('strong').textContent = 'GO';
-  if (!n) { $('today-label').textContent = 'A full year, done'; $('today-title').textContent = 'Every passage finished'; $('today-meta').textContent = 'Use it on your own articles now, or revisit any passage.'; $('start').disabled = true; }
+  if (!n) { $('today-label').textContent = state.focus === 'all' ? 'Every classic read' : `Every ${state.focus} passage read`; $('today-title').textContent = 'Read a real article today'; $('today-meta').textContent = 'Or revisit any passage from Choose a passage. Rereading a classic months later is worth it.'; $('start').disabled = true; }
   else {
-   const [t, topic] = INDEX.titles[n - 1];
+   const [, t, cat, author] = item(n);
    const doneToday = T.doneOn('read');
-   $('today-label').textContent = doneToday ? 'Done today · one more if you like' : 'Today’s passage';
+   $('today-label').textContent = doneToday ? 'Done today · one more if you like' : 'Today’s classic';
    $('today-title').textContent = t;
-   $('today-meta').textContent = `Day ${dayOf(n)} of ${sequence().length} · ${topic} · ${LEVEL_NAMES[level(n)]}`;
+   $('today-meta').textContent = `${cat} · ${author} · ${doneCount()} of ${INDEX.total} read`;
    $('start-sub').textContent = 'Start reading →';
    $('start').disabled = false;
    $('start').dataset.n = n;
@@ -606,11 +807,11 @@ async function renderHome(){
 }
 
 function renderStats(){
- const doneCount = Object.keys(state.done).length;
  const tot = state.totals, deck = Object.values(state.deck);
  const mastered = deck.filter(c => c.box >= 3).length;
  const k = $('kpis'); k.replaceChildren(
-  kpi(`${doneCount}`, `of ${INDEX?.total || 312} passages`),
+  kpi(`${doneCount()}`, `of ${INDEX?.total || 47} classics`),
+  kpi(String(state.articles.length), state.articles.length === 1 ? 'real article' : 'real articles'),
   kpi(String(streak()), 'day reading streak'),
   kpi(tot.paras ? Math.round(100 * tot.got / tot.paras) + '%' : '–', 'paragraphs you got'),
   kpi(tot.mc ? Math.round(100 * tot.mcRight / tot.mc) + '%' : '–', 'questions right'),
@@ -638,21 +839,21 @@ function openLibrary(){
  const body = el('div');
  const draw = () => {
   body.replaceChildren();
-  const mix = el('div', {class:'setting-row'}, el('span', {class:'label', text:'Challenge'}),
-   chipsPlain([['mixed','Mixed levels'],['hard','Hardest only']], state.mix, id => { state.mix = id; save(); renderHome(); draw(); }),
-   P(state.mix === 'hard' ? 'Dense and argument passages only. The clearer ones are skipped.' : 'Two dense passages for every argument passage and every clearer one, from day one.', 'gentle-note'));
+  const focus = el('div', {class:'setting-row'}, el('span', {class:'label', text:'Daily focus'}),
+   chipsPlain([['all','All six'], ...CATS.map(c => [c, c])], state.focus, id => { state.focus = id; save(); renderHome(); draw(); }),
+   P(state.focus === 'all' ? 'Today’s passage rotates through the six categories in turn.' : `Today’s passage comes from ${state.focus} until those run out.`, 'gentle-note'));
   const tabs = el('div', {class:'lib-tabs', role:'group', 'aria-label':'Show'});
-  for (const [id, label] of [['order','In order'],['3','Dense'],['2','Argument'],['1','Clear']])
+  for (const [id, label] of [['order','In order'], ...CATS.map(c => [c, c])])
    tabs.append(el('button', {type:'button', 'aria-pressed':String(tab === id), text:label, onclick:() => { tab = id; draw(); }}));
   const list = el('ul', {class:'lib'});
-  const ns = tab === 'order' ? sequence() : [...Array(INDEX.total)].map((_, i) => i + 1).filter(n => String(level(n)) === tab);
+  const ns = [...Array(INDEX.total)].map((_, i) => i + 1).filter(n => tab === 'order' || item(n)[2] === tab);
   ns.forEach((n, i) => {
-   const [t, topic] = INDEX.titles[n - 1] || [];
+   const [, t, cat, author] = item(n);
    if (!t) return;
    list.append(el('li', {}, el('button', {type:'button', onclick:() => { $('info').close(); if (state.session && !confirm('Leave the session in progress and start this passage?')) return; begin('passage', n); }},
-    el('span', {class:'n', text: tab === 'order' ? String(i + 1) : LEVEL_NAMES[level(n)][0]}), el('span', {text:`${t} · ${topic}`}), state.done[n] ? el('span', {class:'done-mark', text:'✓'}) : null)));
+    el('span', {class:'n', text:String(i + 1)}), el('span', {text:`${t} · ${author}` + (tab === 'order' ? ` · ${cat}` : '')}), isDone(n) ? el('span', {class:'done-mark', text:'✓'}) : null)));
   });
-  body.append(mix, tabs, list);
+  body.append(focus, tabs, list);
  };
  draw();
  info('Choose a passage', [body]);
@@ -678,7 +879,9 @@ function openAbout(){
   h('What this is not'),
   P('Much of the comprehension evidence comes from schools, and none of it validates this app. It is reading practice, not an assessment, diagnosis or treatment for ADHD, dyslexia or anything else. If you think you may have ADHD, an assessment through your GP is the way to find out. If reading has suddenly become much harder, see a GP promptly.'),
   h('The passages'),
-  P('312 original passages, six a week for a year, written for this app across strategy, economics, technology, science, history and psychology. Levels are mixed from day one: dense passages with long, layered sentences come up twice as often as argument or clearer ones, and “Hardest only” in Choose a passage skips the clearer ones. The “Use it on your own article” option takes the same moves to the things you actually need to read.'),
+  P(`${INDEX?.total || 47} passages from the classics of business, philosophy, politics, history, art and technology: Smith, Mill, Madison, Hobbes, Machiavelli, Thucydides, Keynes, Plato, Aristotle, Bacon, Emerson, Thoreau, Du Bois, Tolstoy, Wilde, Ruskin, Babbage, Taylor and others. Each is quoted exactly as written, from public-domain editions on Project Gutenberg (older translations are named with the passage). Only footnote markers are removed. Older words are glossed under the paragraph. The context notes, questions, model summaries and word definitions are written for this app.`),
+  P('“Read a real article” takes the same moves to current writing: you open a strong source (the FT, The Economist, Aeon, Foreign Affairs and others) in a new tab, read it there, and come back after each section to explain it. Nothing is copied into this app. “Use it on your own article” works on text you paste, which stays in this browser.'),
+  src(['https://www.gutenberg.org','Project Gutenberg']),
   src(['https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/reading-comprehension-strategies','EEF: reading comprehension strategies'],
    ['https://doi.org/10.1177/1529100612453266','Dunlosky et al. 2013, learning techniques'],
    ['https://doi.org/10.1007/s10648-018-9434-x','Bisra et al. 2018, self-explanation'],
@@ -722,6 +925,7 @@ function eraseData(){
 $('start').onclick = () => state.session ? open() : begin('passage', Number($('start').dataset.n) || 1);
 $('review').onclick = () => begin('review');
 $('own').onclick = () => { if (state.session && !confirm('Leave the session in progress?')) return; begin('own'); };
+$('article').onclick = () => { if (state.session && !confirm('Leave the session in progress?')) return; begin('article'); };
 $('library-open').onclick = openLibrary;
 $('evidence').onclick = openAbout;
 $('close-info').onclick = () => $('info').close();

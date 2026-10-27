@@ -1,0 +1,58 @@
+# id, category, author, work, year, translator, book, paragraph indices, options
+SMITH = ('Adam Smith', 'The Wealth of Nations', '1776', None, '3300')
+SPEC = [
+ # ---------------- business ----------------
+ ('smith-pins', 'Business', *SMITH, [25], {}),
+ ('smith-butcher', 'Business', *SMITH, [36], {'from': 'Nobody ever saw a dog', 'to': 'but of their advantages.'}),
+ ('smith-invisible-hand', 'Business', *SMITH, [1045], {}),
+ ('smith-directors', 'Business', *SMITH, [1723], {}),
+ ('veblen-conspicuous', 'Business', 'Thorstein Veblen', 'The Theory of the Leisure Class', '1899', None, '833', [111, 112], {}),
+ ('franklin-virtue', 'Business', 'Benjamin Franklin', 'Autobiography', '1791', None, '20203', [363, 365], {}),
+ ('bacon-great-place', 'Business', 'Francis Bacon', 'Essays: Of Great Place', '1625', None, '575', [76], {'words': 330}),
+ ('suntzu-stratagem', 'Business', 'Sun Tzu', 'The Art of War, ch. III', 'c. 500 BC', 'Lionel Giles (1910)', '132',
+   [246, 248, 250, 252, 254, 256, 267, 269, 295, 297], {}),
+ # ---------------- philosophy ----------------
+ ('mill-socrates', 'Philosophy', 'John Stuart Mill', 'Utilitarianism', '1863', None, '11224', [39], {'from': 'A being of higher faculties'}),
+ ('hume-custom', 'Philosophy', 'David Hume', 'An Enquiry Concerning Human Understanding', '1748', None, '9662', [98, 99], {}),
+ ('socrates-unexamined', 'Philosophy', 'Plato', 'Apology', 'c. 399 BC', 'Benjamin Jowett (1871)', '1656', [112], {'to': 'hard for me to persuade you.'}),
+ ('aristotle-habit', 'Philosophy', 'Aristotle', 'Nicomachean Ethics, Book II', 'c. 340 BC', 'D. P. Chase (1847)', '8438', [183, 184, 185], {}),
+ ('emerson-consistency', 'Philosophy', 'Ralph Waldo Emerson', 'Self-Reliance', '1841', None, '16643', [203, 204], {}),
+ ('thoreau-woods', 'Philosophy', 'Henry David Thoreau', 'Walden', '1854', None, '205', [197, 198], {'words': 420}),
+ ('bacon-studies', 'Philosophy', 'Francis Bacon', 'Essays: Of Studies', '1625', None, '575', [277], {'to': 'able to contend.'}),
+ ('marcus-retire', 'Philosophy', 'Marcus Aurelius', 'Meditations, Book IV', 'c. 175', 'Meric Casaubon (1634)', '2680', [114], {'words': 330}),
+ ('plato-cave', 'Philosophy', 'Plato', 'The Republic, Book VII', 'c. 375 BC', 'Benjamin Jowett (1871)', '1497', [188], {'from': 'Imagine human beings', 'words': 400}),
+ # ---------------- politics ----------------
+ ('mill-harm', 'Politics', 'John Stuart Mill', 'On Liberty', '1859', None, '34901', [59], {}),
+ ('mill-silencing', 'Politics', 'John Stuart Mill', 'On Liberty', '1859', None, '34901', [69], {'from': 'Let us suppose, therefore'}),
+ ('federalist-51', 'Politics', 'James Madison', 'The Federalist No. 51', '1788', None, '1404', [1080, 1081], {}),
+ ('federalist-10', 'Politics', 'James Madison', 'The Federalist No. 10', '1787', None, '1404', [218, 219, 220], {}),
+ ('locke-property', 'Politics', 'John Locke', 'Second Treatise of Government', '1690', None, '7370', [74, 75], {}),
+ ('hobbes-war', 'Politics', 'Thomas Hobbes', 'Leviathan', '1651', None, '3207', [558, 560], {}),
+ ('machiavelli-feared', 'Politics', 'Niccolò Machiavelli', 'The Prince, ch. XVII', '1532', 'W. K. Marriott (1908)', '1232', [227, 228], {}),
+ ('paine-society', 'Politics', 'Thomas Paine', 'Common Sense', '1776', None, '147', [29, 30], {}),
+ ('thoreau-civil', 'Politics', 'Henry David Thoreau', 'Civil Disobedience', '1849', None, '71', [12, 13], {}),
+ ('dubois-double', 'Politics', 'W. E. B. Du Bois', 'The Souls of Black Folk', '1903', None, '408', [28, 29], {}),
+ # ---------------- history ----------------
+ ('thucydides-method', 'History', 'Thucydides', 'History of the Peloponnesian War, Book I', 'c. 400 BC', 'Richard Crawley (1874)', '7142', [72, 73], {'from': 'So little pains'}),
+ ('pericles-funeral', 'History', 'Thucydides', 'Pericles’ Funeral Oration', 'c. 400 BC', 'Richard Crawley (1874)', '7142', [235, 236], {'words': 420}),
+ ('melian-dialogue', 'History', 'Thucydides', 'The Melian Dialogue', 'c. 400 BC', 'Richard Crawley (1874)', '7142', [728, 729, 730, 731, 732], {}),
+ ('carlyle-great-men', 'History', 'Thomas Carlyle', 'On Heroes, Hero-Worship, and the Heroic in History', '1841', None, '1091', [18], {}),
+ ('keynes-1914', 'History', 'John Maynard Keynes', 'The Economic Consequences of the Peace', '1919', None, '15776', [40], {}),
+ ('keynes-clemenceau', 'History', 'John Maynard Keynes', 'The Economic Consequences of the Peace', '1919', None, '15776', [85, 87], {}),
+ ('machiavelli-past', 'History', 'Niccolò Machiavelli', 'Discourses on Livy', '1531', 'Ninian Hill Thomson (1883)', '10827', [394, 395], {'words': 330}),
+ ('machiavelli-fortune', 'History', 'Niccolò Machiavelli', 'The Prince, ch. XXV', '1532', 'W. K. Marriott (1908)', '1232', [308, 310], {}),
+ # ---------------- art ----------------
+ ('wilde-life-imitates', 'Art', 'Oscar Wilde', 'The Decay of Lying', '1891', None, '887', [78], {}),
+ ('wilde-critic', 'Art', 'Oscar Wilde', 'The Critic as Artist', '1891', None, '887', [226], {}),
+ ('reynolds-invention', 'Art', 'Joshua Reynolds', 'Discourses on Art', '1774', None, '2176', [254, 255, 256], {}),
+ ('reynolds-rules', 'Art', 'Joshua Reynolds', 'Discourses on Art', '1769', None, '2176', [39, 40, 41], {'to': 'cripples the body which it was made to protect.'}),
+ ('ruskin-memory', 'Art', 'John Ruskin', 'The Seven Lamps of Architecture', '1849', None, '35898', [316, 317], {'from': 'It would be difficult to conceive', 'words': 420}),
+ ('tolstoy-what-is-art', 'Art', 'Leo Tolstoy', 'What Is Art?', '1897', 'Aylmer Maude (1899)', '64908', [482, 483, 484, 485], {}),
+ # ---------------- technology ----------------
+ ('faraday-candle', 'Technology', 'Michael Faraday', 'The Chemical History of a Candle', '1861', None, '14474', [44, 45], {'to': 'were it even so good.'}),
+ ('thoreau-toys', 'Technology', 'Henry David Thoreau', 'Walden', '1854', None, '205', [118], {}),
+ ('emerson-coach', 'Technology', 'Ralph Waldo Emerson', 'Self-Reliance', '1841', None, '16643', [237, 238], {'words': 330}),
+ ('babbage-principle', 'Technology', 'Charles Babbage', 'On the Economy of Machinery and Manufactures', '1832', None, '4238', [611, 612, 613], {}),
+ ('bacon-innovations', 'Technology', 'Francis Bacon', 'Essays: Of Innovations', '1625', None, '575', [164], {}),
+ ('taylor-system', 'Technology', 'Frederick Winslow Taylor', 'The Principles of Scientific Management', '1911', None, '6435', [17, 18, 19, 20, 21, 22], {}),
+]
